@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le trésor de Colomiers - Étape 12</title>
+    <style>
+        /* --- DESIGN GÉNÉRAL (IDENTIQUE) --- */
+        body {
+            font-family: 'Verdana', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            min-height: 100vh;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            padding-bottom: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #d35400;
+            font-size: 24px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 18px;
+            color: #2980b9;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            border-left: 5px solid #2980b9;
+            padding-left: 10px;
+        }
+
+        /* --- STYLE DES DIALOGUES --- */
+        .dialogue-row {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ccc;
+            flex-shrink: 0;
+            margin-right: 15px;
+        }
+
+        .bubble {
+            background-color: #e9eff5;
+            padding: 12px 15px;
+            /* Le triangle est en haut à gauche */
+            border-radius: 0 15px 15px 15px; 
+            position: relative;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+        
+        .bubble::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -10px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid #e9eff5;
+            border-left: 10px solid transparent;
+        }
+
+        .name-tag {
+            font-size: 11px;
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 4px;
+            display: block;
+            text-transform: uppercase;
+        }
+
+        /* Petite classe pour les descriptions narratives (actions, sons) */
+        .narrative-note {
+            text-align: center;
+            font-style: italic;
+            color: #888;
+            font-size: 13px;
+            margin: 15px 0;
+        }
+
+        /* --- COORDONNÉES GPS --- */
+        .gps-box {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff3cd;
+            border-radius: 8px;
+            border: 1px solid #ffeeba;
+        }
+        .gps-link {
+            display: inline-block;
+            margin-top: 5px;
+            color: #856404;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 2px dotted #856404;
+        }
+        .gps-link:hover {
+            background-color: #856404;
+            color: white;
+        }
+
+        /* --- ENCART "MISSION" (ORANGE) --- */
+        .mission-box {
+            border: 3px dashed #d35400;
+            background-color: #fffaf0; 
+            padding: 20px;
+            margin: 30px 0;
+            text-align: left; 
+            font-size: 15px;
+            border-radius: 10px;
+            color: #333;
+        }
+        
+        /* Zone de saisie du résultat (L) */
+        .answer-input-zone {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+        
+        .answer-input-zone label {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #d35400;
+        }
+
+        .answer-input-zone input {
+            width: 50px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        /* Bouton de validation (Non utilisé dans cette version, mais on le garde pour le style) */
+        #validate-button {
+            display: none; /* Masqué car la validation est sur l'input */
+        }
+        
+        /* Message de validation des contraintes */
+        #validation-message {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #e74c3c;
+            min-height: 20px;
+            text-align: center;
+        }
+
+        /* --- ENCART "DIRECTION" (GRIS/NEUTRE) --- */
+        .direction-box {
+            background-color: #f8f9fa;
+            border-left: 6px solid #95a5a6;
+            padding: 15px 20px;
+            margin-top: 40px;
+            color: #555;
+            font-style: italic;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body onload="initEnigmaPage('L')">
+
+<div class="container">
+
+    <h1>Le trésor de Colomiers</h1>
+
+    <h2>12. L’ancienne gare</h2>
+
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.613556,1.33711103.61191287922049" target="_blank" class="gps-link">
+            43.609695, 1.332806
+        </a>
+    </div>
+
+
+    <div class="narrative-note">
+        Bzzzt ! Bzzt !
+    </div>
+    
+    <div class="dialogue-row">
+        <img src="Serge.jpg" alt="Serge" class="avatar">
+        <div class="bubble">
+            <span class="name-tag">Serge</span>
+            Ah, c’est Didier, il dit qu’il arrive rue du Prat… Il en aura mis du temps.
+        </div>
+    </div>
+
+    <div class="dialogue-row">
+        <img src="Loumpour.jpg" alt="Loumpour" class="avatar">
+        <div class="bubble">
+            <span class="name-tag">Loumpour</span>
+            Bon, ben retour à la case départ alors. En même temps, maintenant c’est sur notre chemin.
+        </div>
+    </div>
+
+    <div class="dialogue-row">
+        <img src="Bernard.jpg" alt="Bernard" class="avatar">
+        <div class="bubble">
+            <span class="name-tag">Bernard</span>
+            Eh, vous avez vu ! Il est trop beau ce bâtiment ! On dirait une gare !
+        </div>
+    </div>
+    <div class="dialogue-row">
+        <img src="Serge.jpg" alt="Serge" class="avatar">
+        <div class="bubble">
+            <span class="name-tag">Serge</span>
+            Ben, c’est parce que c’était une gare !
+        </div>
+    </div>
+
+    <div class="dialogue-row">
+        <img src="Bernard.jpg" alt="Bernard" class="avatar">
+        <div class="bubble">
+            <span class="name-tag">Bernard</span>
+            Ici, au milieu de rien du tout ?
+        </div>
+    </div>
+
+    <div class="dialogue-row">
+        <img src="Loumpour.jpg" alt="Loumpour" class="avatar">
+        <div class="bubble">
+            <span class="name-tag">Loumpour</span>
+            Ben je suppose que tout s’est construit autour et qu’ils ont enlevé les rails après, nigaud !
+        </div>
+    </div>
+
+    <div class="dialogue-row">
+        <img src="Serge.jpg" alt="Serge" class="avatar">
+        <div class="bubble">
+            <span class="name-tag">Serge</span>
+            Exactement ! D’après les infos que j’ai, le train est arrivé à Colomiers en 1878. Et Colomiers est devenu un point de passage entre Toulouse et Auch. Ça aussi ce fut une richesse pour la ville ! Mais quand le projet d’aménagement de la ville a été mis en place, pour passer de 5.000 à 30.000 habitants, les rails ont été déviés et la gare a été déplacée 500 mètres plus au sud.
+        </div>
+    </div>
+
+    <div class="dialogue-row">
+        <img src="Loumpour.jpg" alt="Loumpour" class="avatar">
+        <div class="bubble">
+            <span class="name-tag">Loumpour</span>
+            Visiblement, aujourd’hui, c’est une « maison citoyenne ».
+        </div>
+    </div>
+
+    <div class="dialogue-row">
+        <img src="Serge.jpg" alt="Serge" class="avatar">
+        <div class="bubble">
+            <span class="name-tag">Serge</span>
+            Oui, il y en a plein dans toute la ville. Ce sont des lieux de proximité mis à disposition des habitants pour les échanges, l’entraide ou la vie associative.
+        </div>
+    </div>
+
+
+    <div class="mission-box">
+        Sur les murs de l’ancienne gare, le nom de « Colomiers » a été taillé dans la pierre. Mais combien de fois précisément ?
+        <br><br>
+        *Pensez à bien faire le tour complet du bâtiment pour trouver la bonne réponse.*
+        <br><br>
+        Notez ce chiffre qui vaut **L** :
+        
+        <div class="answer-input-zone">
+            <label for="L">L =</label>
+            <input type="number" id="L" min="0" max="9" required onchange="handleEnigmaInput('L')" onkeyup="handleEnigmaInput('L')">
+        </div>
+        
+        <div id="validation-message"></div>
+
+        <button id="validate-button" class="btn-default" style="display: none;">
+            Valider la réponse
+        </button>
+    </div>
+
+
+    <div class="direction-box">
+        Revenez vers le kiosque et remontez quelques mètres encore sur l’allée des droits de l’enfant. Au passage clouté, dirigez vous vers la mairie et la place Alex Raymond.
+    </div>
+
+</div>
+
+<script>
+    // ----------------------------------------------------------------------
+    // --- GESTION ET PERSISTANCE DES DONNÉES (À INCLURE DANS CHAQUE PAGE) ---
+    // ----------------------------------------------------------------------
+
+    // Clé de stockage (doit être la même sur toutes les pages)
+    const ENIGMA_STORAGE_KEY = 'colomiers_enigma_answers';
+    // Maintien de la structure complète des variables pour la persistance
+    const DEFAULT_ANSWERS = {A: null, B: null, C: null, D: null, E: null, F: null, G: null, H: null, I: null, J: null, K: null, L: null, M: null, N: null};
+
+    /**
+     * Charge les réponses depuis le stockage local du navigateur.
+     */
+    function loadEnigmaAnswers() {
+        try {
+            const savedData = localStorage.getItem(ENIGMA_STORAGE_KEY);
+            // Fusionner pour s'assurer que toutes les clés existent
+            return savedData ? {...DEFAULT_ANSWERS, ...JSON.parse(savedData)} : DEFAULT_ANSWERS;
+        } catch (e) {
+            console.error("Impossible de charger les réponses. Réinitialisation des données.", e);
+            return DEFAULT_ANSWERS;
+        }
+    }
+
+    /**
+     * Sauvegarde les réponses dans le stockage local du navigateur.
+     * @param {Object} vars - L'objet contenant toutes les variables d'énigme.
+     */
+    function saveEnigmaAnswers(vars) {
+        try {
+            localStorage.setItem(ENIGMA_STORAGE_KEY, JSON.stringify(vars));
+        } catch (e) {
+            console.error("Impossible de sauvegarder les réponses. Le stockage local est bloqué.", e);
+        }
+    }
+
+    /**
+     * Gère la saisie de l'utilisateur pour une variable spécifique (L: chiffre unique).
+     * @param {string} varKey - La lettre de la variable (ex: 'L').
+     */
+    function handleEnigmaInput(varKey) {
+        const inputElement = document.getElementById(varKey);
+        const validationMessage = document.getElementById('validation-message');
+        
+        let value = inputElement.value.trim();
+        // Utiliser parseFloat pour vérifier si c'est un entier
+        let numericValue = parseFloat(value);
+        let currentVars = loadEnigmaAnswers();
+        validationMessage.textContent = "";
+
+        if (value === "") {
+            // Cas où le champ est vide
+            currentVars[varKey] = null;
+            saveEnigmaAnswers(currentVars);
+            validationMessage.textContent = "";
+            return;
+        }
+        
+        // 1. Validation Spécifique (Doit être un chiffre entier entre 0 et 9)
+        // Vérifie si c'est un nombre, si c'est un entier (pas de décimale), et s'il est dans la plage [0, 9]
+        if (isNaN(numericValue) || numericValue < 0 || numericValue > 9 || numericValue % 1 !== 0) {
+            validationMessage.textContent = "❌ Veuillez entrer un chiffre unique (0-9).";
+            validationMessage.style.color = "#e74c3c";
+            currentVars[varKey] = null;
+            saveEnigmaAnswers(currentVars);
+            return;
+        }
+        
+        // 2. Si la valeur est valide, on la sauvegarde
+        // On sauvegarde le nombre entier, pas la chaîne de caractères
+        currentVars[varKey] = parseInt(value); 
+        saveEnigmaAnswers(currentVars);
+        
+        // Message optionnel de confirmation si la valeur est sauvegardée
+        validationMessage.textContent = `✅ Chiffre ${varKey} = ${parseInt(value)} sauvegardé !`;
+        validationMessage.style.color = "#2ecc71"; // Vert pour succès
+        // Effacer après 3 secondes, mais uniquement si l'utilisateur n'a pas recommencé à taper
+        setTimeout(() => { 
+            if (inputElement.value.trim() === value && validationMessage.textContent.startsWith('✅')) {
+                validationMessage.textContent = "";
+            }
+        }, 3000); 
+
+    }
+    
+    /**
+     * Fonction d'initialisation : charge les données au chargement de la page.
+     * @param {string} varKey - La lettre de la variable pour cette page (ex: 'L').
+     */
+    function initEnigmaPage(varKey) {
+        const loadedVars = loadEnigmaAnswers();
+        const inputElement = document.getElementById(varKey);
+        const savedValue = loadedVars[varKey];
+        
+        if (inputElement && savedValue !== null) {
+            // Afficher la valeur sauvegardée (en s'assurant que c'est bien un nombre pour l'input type="number")
+            inputElement.value = savedValue;
+        } else if (inputElement) {
+            inputElement.value = ""; // S'assurer qu'il est vide si aucune valeur n'est sauvegardée
+        }
+    };
+</script>
+
+</body>
+</html>
