@@ -197,10 +197,18 @@
         
         /* Bouton de validation (Générique L, M, N) */
         /* Etape 13 et 14 utilisent un ID unique pour le bouton */
-        #validate-button-M, #validate-button-N {
-            display: block; width: 100%; padding: 12px; margin-top: 15px; border: none; border-radius: 5px;
-            font-weight: bold; font-size: 16px; cursor: pointer; transition: background-color 0.2s, color 0.2s;
-        }
+#validate-button-L, #validate-button-M, #validate-button-N {
+    display: block; 
+    width: 100%; 
+    padding: 12px; 
+    margin-top: 15px; 
+    border: none; 
+    border-radius: 5px;
+    font-weight: bold; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.2s, color 0.2s;
+}
 
         /* Styles du bouton (Unifiés) */
         .btn-default { background-color: #bdc3c7; color: #34495e; }
@@ -544,8 +552,8 @@
 
     <div class="dialogue-row"> <img src="Loumpour.jpg" alt="Loumpour" class="avatar"> <div class="bubble"> <span class="name-tag">Loumpour</span> Place de la bascule… Ben je la vois pas, moi la bascule… </div> </div>
     <div class="dialogue-row"> <img src="Bernard.jpg" alt="Bernard" class="avatar"> <div class="bubble"> <span class="name-tag">Bernard</span> C’est normal, elle n’est plus là depuis plus de 50 ans. Mais c’est là que les columérins venaient peser leurs récoltes à la fin du XIXème siècle. </div> </div>
-    <div class="dialogue-row"> <img src="Serge.jpg" alt="Serge" class="avatar"> <div class="bubble"> <span class="name-tag">Serge</span> Tiens, j’ai trouvé une vieille photo. La bascule était là, derrière la croix en métal. </div> </div>
-    <a href="Bascule.jpg" target="_blank" class="image-link"> <img src="Bascule.jpg" alt="Ancienne bascule de Colomiers" class="illustration-grande"> </a>
+    <div class="dialogue-row"> <img src="Serge.jpg" alt="Serge" class="avatar"> <div class="bubble"> <span class="name-tag">Serge</span> Tiens, j’ai trouvé une vieille photo. Elle était là, derrière la croix en métal. </div> </div>
+    <a href="bascule.jpg" target="_blank" class="image-link"> <img src="bascule.jpg" alt="Ancienne bascule de Colomiers" class="illustration-grande"> </a>
     <div class="dialogue-row"> <img src="Loumpour.jpg" alt="Loumpour" class="avatar"> <div class="bubble"> <span class="name-tag">Loumpour</span> Euh, les gars… je me demande si je viens pas de trouver le trésor ! Mais, ça me parait pas très légal… Didier vous a pas demandé de braquer des banques quand même ??!! </div> </div>
     <div class="dialogue-row"> <img src="Bernard.jpg" alt="Bernard" class="avatar"> <div class="bubble"> <span class="name-tag">Bernard</span> Meuuh non ! T’es fou ! </div> </div>
     <div class="dialogue-row"> <img src="Serge.jpg" alt="Serge" class="avatar"> <div class="bubble"> <span class="name-tag">Serge</span> Tiens, tu parles vache maintenant toi ! Je savais pas ! </div> </div>
@@ -621,6 +629,7 @@
         <div class="answer-input-zone"> <label for="I">I =</label> <input type="number" id="I" min="0" max="99" required oninput="resetStandardInput('I')"> </div>
         <div id="validation-message-I"></div>
         <button id="validate-button-I" class="btn-default" onclick="handleStandardValidation('I')"> Valider la réponse </button>
+
     </div>
 
     <div class="direction-box"> Continuez votre route en ressortant de l'autre côté du rond-point et continuez sur l'allée des droits de l'enfant jusqu'au point suivant. </div>
@@ -729,18 +738,18 @@
     <div class="dialogue-row"> <img src="Serge.jpg" alt="Serge" class="avatar"> <div class="bubble"> <span class="name-tag">Serge</span> Oui, il y en a plein dans toute la ville. Ce sont des lieux de proximité mis à disposition des habitants pour les échanges, l’entraide ou la vie associative. </div> </div>
 
 <div class="mission-box">
-        Sur les murs de l’ancienne gare, le nom de « Colomiers » a été taillé dans la pierre. Mais combien de fois précisément ?
-        <br><br> Pensez à bien faire le tour complet du bâtiment pour trouver la bonne réponse.
-        <br><br> Notez ce chiffre qui vaut L :
-        <div class="answer-input-zone">
-            <label for="L">L =</label>
-            <input type="number" id="L" min="0" max="99" required oninput="resetStandardInput('L')">
-        </div>
-        <div id="validation-message-L"></div>
-        <button id="validate-button-L" class="btn-default" onclick="handleStandardValidation('L')">
-            Valider la réponse
-        </button>
-    </div>
+        Sur les murs de l’ancienne gare, le nom de « Colomiers » a été taillé dans la pierre. Mais combien de fois précisément ?
+        <br><br> Pensez à bien faire le tour complet du bâtiment pour trouver la bonne réponse.
+        <br><br> Notez ce chiffre qui vaut L :
+        
+        <div class="enigma-interaction-area">             <div class="answer-input-zone">
+                <label for="L">L =</label>
+                <input type="number" id="L" min="0" max="9" required onchange="handleEnigmaInput_L('L')" onkeyup="handleEnigmaInput_L('L')">
+            </div>
+            <div id="validation-message-L"></div>
+            <button id="validate-button-L" class="btn-default" onclick="handleStandardValidation('L')"> Valider la réponse </button>
+        </div>     </div>
+
 
     <div class="direction-box"> Revenez vers le kiosque et remontez quelques mètres encore sur l’allée des droits de l’enfant. Au passage clouté, dirigez vous vers la mairie et la place Alex Raymond. </div>
 </div>
@@ -1563,8 +1572,5 @@
 <script>function toggleHint(){const h=document.getElementById('hint'); h.style.display=(h.style.display==='none'||!h.style.display)?'block':'none';}</script>
 </body>
 </html>
-
-
-
 
 
