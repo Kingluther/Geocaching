@@ -728,15 +728,18 @@
     <div class="dialogue-row"> <img src="Loumpour.jpg" alt="Loumpour" class="avatar"> <div class="bubble"> <span class="name-tag">Loumpour</span> Visiblement, aujourd’hui, c’est une « maison citoyenne ». </div> </div>
     <div class="dialogue-row"> <img src="Serge.jpg" alt="Serge" class="avatar"> <div class="bubble"> <span class="name-tag">Serge</span> Oui, il y en a plein dans toute la ville. Ce sont des lieux de proximité mis à disposition des habitants pour les échanges, l’entraide ou la vie associative. </div> </div>
 
-    <div class="mission-box">
+<div class="mission-box">
         Sur les murs de l’ancienne gare, le nom de « Colomiers » a été taillé dans la pierre. Mais combien de fois précisément ?
         <br><br> Pensez à bien faire le tour complet du bâtiment pour trouver la bonne réponse.
         <br><br> Notez ce chiffre qui vaut L :
         <div class="answer-input-zone">
             <label for="L">L =</label>
-            <input type="number" id="L" min="0" max="9" required onchange="handleEnigmaInput_L('L')" onkeyup="handleEnigmaInput_L('L')">
+            <input type="number" id="L" min="0" max="99" required oninput="resetStandardInput('L')">
         </div>
         <div id="validation-message-L"></div>
+        <button id="validate-button-L" class="btn-default" onclick="handleStandardValidation('L')">
+            Valider la réponse
+        </button>
     </div>
 
     <div class="direction-box"> Revenez vers le kiosque et remontez quelques mètres encore sur l’allée des droits de l’enfant. Au passage clouté, dirigez vous vers la mairie et la place Alex Raymond. </div>
@@ -1560,6 +1563,7 @@
 <script>function toggleHint(){const h=document.getElementById('hint'); h.style.display=(h.style.display==='none'||!h.style.display)?'block':'none';}</script>
 </body>
 </html>
+
 
 
 
