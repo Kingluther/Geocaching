@@ -1,0 +1,1209 @@
+<!doctype html>
+<html lang='fr'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L’armurier du Cabirol</title>
+    
+    <style>
+        /* --- DESIGN GÉNÉRAL --- */
+        body {
+            font-family: 'Verdana', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            min-height: 100vh;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            padding-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: #2980b9;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            border-left: 5px solid #2980b9;
+            padding-left: 10px;
+        }
+        
+        /* --- HEADER --- */
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+        
+        .info-box-header {
+            background-color: #fdfdfa;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin: 20px auto 0;
+            max-width: 600px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .info-box-header .main-title {
+            font-family: 'Dancing Script', 'Brush Script MT', 'cursive';
+            font-size: 36px;
+            color: #d35400;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .info-box-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+        .info-col-left img {
+            width: 130px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #ccc;
+        }
+        .info-col-middle {
+            text-align: center;
+            flex-grow: 1;
+        }
+        .info-col-middle .distance {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 12px;
+        }
+        .info-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .info-icon {
+            font-size: 20px;
+            cursor: help;
+            background-color: #333;
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            line-height: 1;
+        }
+        .info-col-right {
+            text-align: right;
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 500;
+            min-width: 110px;
+            white-space: nowrap;
+        }
+        .info-col-right strong {
+            color: #000;
+        }
+        
+        /* --- INFO PARKING --- */
+        .parking-info {
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: center;
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .parking-info p { margin-top: 0; margin-bottom: 15px; line-height: 1.5; }
+        .parking-info h3 { margin-top: 0; margin-bottom: 10px; color: #333; font-size: 16px; }
+        .parking-info ul { list-style-type: none; padding: 0; margin: 0; }
+        .parking-info ul li { margin: 5px 0; }
+        .parking-info ul li a {
+            color: #2980b9;
+            font-weight: bold;
+            text-decoration: none;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+        }
+
+        /* --- PRÉSENTATION DES PERSONNAGES --- */
+        .character-presentation {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 15px 0;
+            border-bottom: 2px solid #eee;
+        }
+        .character-presentation p { font-size: 1.1em; color: #666; margin: 0 0 15px 0; font-weight: bold; }
+        .character-group { display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap; }
+        .character-item { display: flex; flex-direction: column; align-items: center; margin: 10px 5px; flex-basis: 30%; }
+        .character-icons { display: flex; margin-bottom: 5px; }
+        .badge-icon { width: 91px; height: 91px; border-radius: 50%; object-fit: cover; border: 3px solid #d35400; margin: 0 3px; }
+        .character-label { font-size: 0.85em; color: #d35400; font-weight: bold; margin-top: 5px; }
+        
+        /* --- DIALOGUES --- */
+        .dialogue-row { display: flex; align-items: flex-start; margin-bottom: 15px; }
+        .avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #ccc; flex-shrink: 0; margin-right: 15px; }
+        
+        /* Couleurs de bordure spécifiques aux personnages */
+        img[alt="Jeanine"] { border: 2px solid #2ecc71; } /* Vert tortue */
+        img[alt="Casso"] { border: 2px solid #34495e; } /* Gris Pie */
+        img[alt="Kçor"] { border: 2px solid #e74c3c; } /* Rouge Loup */
+
+        .bubble { background-color: #e9eff5; padding: 12px 15px; border-radius: 0 15px 15px 15px; position: relative; font-size: 15px; line-height: 1.4; }
+        .bubble::before { content: ""; position: absolute; top: 0; left: -10px; width: 0; height: 0; border-top: 10px solid #e9eff5; border-left: 10px solid transparent; }
+        .name-tag { font-size: 11px; font-weight: bold; color: #666; margin-bottom: 4px; display: block; text-transform: uppercase; }
+
+        /* --- COORDONNÉES GPS --- */
+        .gps-box { text-align: center; margin: 20px 0; padding: 15px; background-color: #fff3cd; border-radius: 8px; border: 1px solid #ffeeba; }
+        .gps-link, .path-link { 
+            display: inline-block; margin-top: 5px; color: #856404; font-weight: bold; text-decoration: none; 
+            border-bottom: 2px dotted #856404; font-family: 'Courier New', monospace; font-size: 1.1em; 
+        }
+        .gps-link:hover, .path-link:hover { background-color: #856404; color: white; }
+
+        /* --- ENCARTS --- */
+        .mission-box { border: 3px dashed #d35400; background-color: #fffaf0; padding: 20px; margin: 30px 0; text-align: left; font-size: 15px; border-radius: 10px; color: #333; }
+        
+        #etape15 .mission-box { border: 3px dashed #2ecc71; background-color: #f6fff6; }
+        #etape15 .mission-box h3 { color: #2ecc71; margin-top: 0; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 15px; }
+        
+        /* INPUTS & BOUTONS */
+        .answer-input-zone { display: flex; align-items: center; justify-content: center; margin: 15px 0 5px 0; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f8f9fa; }
+        .answer-input-zone label { font-weight: bold; margin-right: 10px; color: #d35400; }
+        .answer-input-zone input { width: 100px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-size: 18px; font-weight: bold; }
+        
+        button[id^="validate-button-"], .btn-action {
+            display: block; width: 100%; padding: 12px; margin-top: 15px; border: none; border-radius: 5px;
+            font-weight: bold; font-size: 16px; cursor: pointer; transition: background-color 0.2s, color 0.2s;
+            text-align: center; text-decoration: none; box-sizing: border-box;
+        }
+
+        .btn-default, .btn-action { background-color: #bdc3c7; color: #34495e; }
+        .btn-validated { background-color: #e67e22; color: white; }
+        .btn-default:hover, .btn-action:hover { background-color: #ccd1d1; }
+
+        div[id^="validation-message-"] { margin-top: 5px; font-size: 14px; font-weight: bold; color: #e74c3c; min-height: 20px; text-align: center; }
+
+        /* BOUTONS DE CHOIX (Etape 12 & 14) */
+        .choice-btn {
+            display: block; width: 100%; padding: 15px; margin-bottom: 10px; border: 2px solid #ccc; border-radius: 8px;
+            background-color: white; font-size: 15px; cursor: pointer; text-align: left; transition: all 0.2s;
+        }
+        .choice-btn:hover { background-color: #f0f0f0; border-color: #bbb; }
+        .choice-selected { background-color: #e67e22 !important; color: white !important; border-color: #d35400 !important; font-weight: bold; }
+
+
+        /* --- DIRECTION & NARRATION --- */
+        .direction-box { background-color: #f8f9fa; border-left: 6px solid #95a5a6; padding: 15px 20px; margin-top: 40px; color: #555; font-style: italic; font-size: 15px; }
+        .direction-box strong { color: #333; font-weight: bold; font-style: normal; }
+        .narrative-note { text-align: center; font-style: italic; color: #888; font-size: 13px; margin: 15px 0; }
+        .illustration-grande { max-width: 100%; height: auto; border-radius: 8px; margin: 20px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: block; }
+        .image-link { display: block; text-align: center; margin: 20px 0; }
+
+        /* --- GRILLE FINALE --- */
+        #variable-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 20px; }
+        .variable-item { display: flex; flex-direction: column; align-items: center; padding: 8px 10px; background-color: #eee; border-radius: 5px; font-weight: bold; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .variable-reminder { font-size: 11px; color: #666; margin-bottom: 5px; font-weight: normal; text-transform: uppercase; letter-spacing: 0.5px; width: 100%; border-bottom: 1px dotted #ccc; padding-bottom: 3px; min-height: 15px; }
+        .variable-input-row { display: flex; align-items: center; justify-content: center; width: 100%; margin-top: 5px; }
+        .variable-item input { width: 45px; padding: 4px; text-align: center; font-weight: bold; border: 1px solid #ccc; border-radius: 3px; margin-left: 5px; }
+        
+        .status-dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+        .dot-green { background-color: #2ecc71; }
+        .dot-red { background-color: #e74c3c; }
+        .legend p { margin: 5px 0; font-size: 14px; }
+
+        .final-formula-display { font-family: 'Courier New', monospace; font-size: 20px; font-weight: bold; text-align: center; background-color: #fff; border: 2px solid #2ecc71; padding: 15px; border-radius: 8px; margin-bottom: 20px; line-height: 1.5; overflow-x: auto; color: #34495e; white-space: nowrap; }
+        
+        .final-check-zone { display: flex; flex-direction: column; align-items: center; padding: 15px; border: 1px solid #ccc; border-radius: 5px; background-color: #f8f9fa; }
+        .final-check-zone button { margin-top: 15px; padding: 12px 25px; background-color: #d35400; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 18px; font-weight: bold; box-shadow: 0 4px #a04000; transition: all 0.1s; }
+        .final-check-zone button:active { box-shadow: 0 1px #a04000; transform: translateY(3px); }
+        #result-message { margin-top: 15px; font-weight: bold; min-height: 20px; text-align: center; padding: 10px; border-radius: 5px; }
+        #final-link-box { margin-top: 15px; display: none; text-align: center; padding: 15px; background-color: #e8f5e9; border: 1px solid #2ecc71; border-radius: 8px; }
+        
+        #warning-etape15 {
+            max-width: 600px; margin: 20px auto; padding: 20px; text-align: center; background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 8px; color: #856404;
+        }
+        #warning-etape15 h2 { color: #856404; border-left: none; padding-left: 0; margin-top: 0; }
+        
+        #password-zone { max-width: 600px; margin: 20px auto; padding: 20px; text-align: center; background-color: #e8f6f3; border: 1px solid #1abc9c; border-radius: 8px; }
+        #password-zone input { font-size: 20px; padding: 10px; text-transform: uppercase; width: 80%; margin-bottom: 10px; border: 2px solid #16a085; border-radius: 5px; text-align: center; }
+        
+        .hint-button {
+            margin-top: 15px;
+            padding: 8px 15px;
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="info-box-header">
+    <h1 class="main-title">L’armurier du Cabirol</h1>
+    <div class="info-box-content">
+        <div class="info-col-left">
+            <img src="Cabirol.png" alt="Parc du Cabirol">
+        </div>
+        <div class="info-col-middle">
+            <div class="distance">3,7 km</div>
+            <div class="info-icons">
+                <span class="info-icon" title="Faisable à pied">🚶</span>
+                <span class="info-icon" title="Chaussures étanches/bottes recommandées">🥾</span>
+                <span class="info-icon" title="Boueux par endroits">🌧️</span>
+                <span class="info-icon" title="Non accessible poussette/PMR">❌🛒</span>
+            </div>
+        </div>
+        <div class="info-col-right">
+            <strong>Difficulté :</strong> 1.5 / 5<br>
+            <strong>Terrain :</strong> 2.5 / 5<br>
+            <strong>Durée :</strong> 1h15 à 1h45
+        </div>
+    </div>
+</div>
+
+<div class="parking-info">
+    <p>Ce parcours est « mixte » : il alterne des zones naturelles qui peuvent être boueuses selon les saisons, et des zones urbaines où les véhicules circulent ! Prévoyez des chaussures étanches (ou des bottes !) et restez vigilants (et discrets) dans les quartiers résidentiels et au bord des routes.
+A faire : à pied, impossible en poussette et PMR ou même en vélo sur une partie du parcours.</p>
+    <h3>Parkings conseillés :</h3>
+    <ul>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=43.598650,1.329450" target="_blank">Parking principal : N 43° 35.919' E 001° 19.767'</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=43.598633,1.328667" target="_blank">Parking délestage : N 43° 35.918' E 001° 19.720'(en ayant soin de ne pas vous garer devant les sorties d’habitations)</a></li>
+    </ul>
+</div>
+
+<section id="etape1" class="etape">
+<div class="container">
+    
+    <div class="character-presentation">
+        <p>Une aventure avec :</p>
+        <div class="character-group">
+            <div class="character-item">
+                <div class="character-icons"> <img src="Badge Jeanine.png" alt="Jeanine" class="badge-icon"> </div>
+                <span class="character-label">La tortue</span>
+            </div>
+            <div class="character-item">
+                <div class="character-icons"> <img src="Badge Casso.png" alt="Casso" class="badge-icon"> </div>
+                <span class="character-label">La pie</span>
+            </div>
+            <div class="character-item">
+                <div class="character-icons"> <img src="Badge Kçor.png" alt="Kçor" class="badge-icon"> </div>
+                <span class="character-label">Le loup</span>
+            </div>
+        </div>
+    </div>
+    
+    <h2>1. Point de départ : Le pont japonais</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.598283,1.329833" target="_blank" class="gps-link">
+            N 43° 35.897' E 001° 19.790'
+        </a>
+    </div>
+
+    <div class="narrative-note">« Plop »</div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Oh, bonjour ! Des visiteurs ! Ça fait plaisir. Vous venez pour le parc du Cabirol ? Si ça vous dit, je peux vous faire la visite, et même vous amener à la découverte de l’Armurié ! A mon âge avancé, j’ai plein de choses à raconter, et peu de monde pour m’écouter, à part les poissons de la mare. Mais eux, ils s’en fish… </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Vous avez devant vous le « pont japonais », pont d’agrément qui est un vestige de l’époque où le château que vous voyez là-haut appartenait à de riches familles toulousaines. Nous sommes ici dans l’ancien parc d’agrément du château où les propriétaires avaient opté pour un type de jardin « anglo-chinois ». 
+Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation des piétons, et le mettre aux normes de sécurité le dénaturerait totalement. Alors il est fermé à la circulation, mais il agrémente joliment la vue. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Allezassez papoté, suivez-moi, je vais vous montrer l’ancien parc du château. </div> </div>
+
+    <div class="direction-box"> Entrez dans le parc par le portail. </div>
+</div>
+</section>
+
+<section id="etape2" class="etape">
+<div class="container">
+    <h2>2. Le parc du Cabirol</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.598183,1.331617" target="_blank" class="gps-link">
+            N 43° 35.891' E 001° 19.897'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Quelle quiétude ! Le parc fait 8 hectares, soit environ 11 terrains de football. Il abrite bon nombre d’espèces animales ainsi que des arbres classés comme « d'intérêt ». C’est le cas de ce cyprès. Mais je vous parlerai plus en détail de tout ça plus tard car nous aurons l’occasion d’y revenir. Suivez-moi, je vais vous présenter l’Armurié. </div> </div>
+
+    <div class="mission-box">
+        Le cyprès qui se trouve devant vous a une particularité bien singulière qui lui vaut d’avoir un adjectif accolé à son nom ? Sur le panneau de présentation, il est dit qu’il est ……. ? Combien de lettres composent cet adjectif ?
+        <div class="answer-input-zone"> <label for="A">A =</label> <input type="number" id="A" min="0" max="9" required oninput="resetStandardInput('A')"> </div>
+        <div id="validation-message-A"></div>
+        <button id="validate-button-A" class="btn-default" onclick="handleStandardValidation('A')"> Valider la réponse </button>
+    </div>
+
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Jeanine ? Jeanine ! </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Oui, qui m’appelle ? </div> </div>
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> C’est moi, là-haut dans l’arbre ! </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Ah ! Casso ! Ca fait une éternité que je t’avais pas vu ! Tu niches ici maintenant ? </div> </div>
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Ici et ailleurs oui. Ces nichoirs ont beau être de confection humaine, ils sont très agréables. Alors je me suis fait un atelier ici. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Et les autres sont aussi ici ? </div> </div>
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Saro et Cabia ? Je ne sais pas. S’ils sont là tu les trouveras sûrement dans les autres nichoirs le long de l’Armurié. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Ça te dit de venir avec nous ? Je fais faire le tour du propriétaire à des visiteurs ? </div> </div>
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Ola ! Non, j’ai trop de travail à finir. Allez-y sans moi ! </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Ok ! A plus. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Il est très étrange. C’est un artiste un peu torturé. Il a fait un portrait de moi quand nous étions plus jeunes, mais je ne sais pas quoi en penser… Certes ça me ressemble, mais quelque part ça reste étrange. Vous voulez le voir ? </div> </div>
+    
+    <div style="text-align: center; margin: 20px 0;">
+        <a href="portrait.png" target="_blank" class="btn-action" style="display: inline-block; width: auto; padding: 10px 30px;">Cliquez ici</a>
+    </div>
+
+    <div class="mission-box">
+        <p>De nombreux oiseaux ont élu domicile au parc du Cabirol, des oiseaux ordinaires (mésanges, pinsons, rouges-gorges, tourterelles, pies, colverts, poules d’eau) mais on peut également y trouver des hérons cendrés, des martin-pêcheurs (le long de l’Armurié) ou, la nuit, des chouettes hulottes.</p>
+        <hr style="border-top: 1px dashed #d35400; margin: 15px 0;">
+        <p>Entre le point où vous êtes et le prochain point GPS, comptez le nombre de nichoirs identiques à celui qui se trouve devant vous. Suivez le chemin jusqu’à <a href="https://www.google.com/maps/search/?api=1&query=43.598500,1.332883" target="_blank" class="path-link">N 43° 35.910' E 001° 19.973'</a>.</p>
+        <p>Combien en avez-vous compté (y compris le premier) ?</p>
+        <div class="answer-input-zone"> <label for="B">B =</label> <input type="number" id="B" min="0" max="9" required oninput="resetStandardInput('B')"> </div>
+        <div id="validation-message-B"></div>
+        <button id="validate-button-B" class="btn-default" onclick="handleStandardValidation('B')"> Valider la réponse </button>
+    </div>
+
+    <div class="direction-box"> 
+        Maintenant, quittez la voie principale pour prendre à gauche vers le petit pont métallique en contrebas. Si le chemin est trop boueux vous pouvez rester sur le chemin principal, dans ce cas tournez à gauche à la prochaine intersection.
+        <br><br>
+        Arrivés au point <a href="https://www.google.com/maps/search/?api=1&query=43.598817,1.334233" target="_blank" class="path-link">N 43° 35.929' E 001° 20.054'</a> suivez la direction « Chemin de Cournaudis 0,5km ».
+    </div>
+</div>
+</section>
+
+<section id="etape3" class="etape">
+<div class="container">
+    <h2>3. Parlons biodiversité</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.599133,1.334850" target="_blank" class="gps-link">
+            N 43° 35.948' E 001° 20.091'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> J’aime beaucoup cet endroit. Colomiers compte un patrimoine arboré de 40.000 arbres, dont 20.000 sur le domaine public. Cela signifie qu’il y a, à Colomiers, à peu près un arbre par habitant. Mais, tout comme sa population qui affiche une très grande mixité, de très nombreuses espèces sont présentes. Rien que d’ici, en regardant vers les maisons, vous pouvez apercevoir un chêne, un peuplier, des ifs, un pin parasol et un sapin. Le parc du Cabirol compte aussi un cèdre de l’atlas (atteint de nanisme), ainsi que trois autres arbres d'intérêt que je vous présenterai. On trouve également dans le vieux Colomiers un Séquoia géant. </div> </div>
+
+    <div class="direction-box"> Longez à présent le ruisseau de l’Armurié sur 150 mètres jusqu’au point suivant : <a href="https://www.google.com/maps/search/?api=1&query=43.599467,1.336867" target="_blank" class="path-link">N 43° 35.968' E 001° 20.212'</a> </div>
+
+    <div class="mission-box">
+        Sur la couronne du panneau indicateur, vous remarquerez que le Mont-Blanc a une altitude quelque peu incongrue. Relevez les trois chiffres de cette altitude, additionnez-les entre eux et vous obtiendrez un chiffre.
+        <div class="answer-input-zone"> <label for="C">C =</label> <input type="number" id="C" min="0" max="9" required oninput="resetStandardInput('C')"> </div>
+        <div id="validation-message-C"></div>
+        <button id="validate-button-C" class="btn-default" onclick="handleStandardValidation('C')"> Valider la réponse </button>
+    </div>
+
+    <div class="direction-box"> Continuez sur le chemin pendant 200m jusqu’à atteindre la route. </div>
+</div>
+</section>
+
+<section id="etape4" class="etape">
+<div class="container">
+    <h2>4. L’armurié ou l’armurier ?</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.600350,1.339400" target="_blank" class="gps-link">
+            N 43° 36.021' E 001° 20.364'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Nous voici arrivés à l’arrêt de bus de l’Armurier, après avoir longé l’Armurié, et avant que nous n’atteignions le château de l’Armurié. Mais en fait pourquoi ces deux orthographes, et d’ailleurs qui était là en premier de la poule ou de l’œuf ? Est-ce que le château doit son nom au ruisseau ou le ruisseau au château ? </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Et bien, le nom du ruisseau est lié au Château de l'Armurier qu'il traverse. L'origine du nom remonte au XIVe siècle : le domaine a été fondé par Berthomet de Pradères un fabricant de cottes de mailles qui avait acquis des terres et des bois à cet endroit pour y bâtir une métairie. Le nom s'est transmis au château, au parc, puis au ruisseau qui longe la propriété. Puis l’usage commun a transformé le nom « Armurier » en « Armurié », mais l’orthographe initiale reste toujours valide. </div> </div>
+
+    <div class="mission-box">
+        Avant de traverser la route et de poursuivre en direction du château prenez le temps de relever le numéro du bus qui s’arrête. C’est également le numéro d’un département limitrophe de la Haute-Garonne. 
+        <br>Comment s’appelle le département portant ce numéro ? Combien de lettres composent son nom ?
+        <div class="answer-input-zone"> <label for="D">D =</label> <input type="number" id="D" min="0" max="99" required oninput="resetStandardInput('D')"> </div>
+        <div id="validation-message-D"></div>
+        <button id="validate-button-D" class="btn-default" onclick="handleStandardValidation('D')"> Valider la réponse </button>
+    </div>
+
+    <div class="direction-box"> 
+        Dirigez-vous à présent jusqu’au point <a href="https://www.google.com/maps/search/?api=1&query=43.599933,1.339400" target="_blank" class="path-link">N 43° 35.996' E 001° 20.364'</a>, traversez la route au passage piéton et à partir de <a href="https://www.google.com/maps/search/?api=1&query=43.600050,1.339683" target="_blank" class="path-link">N 43° 36.003' E 001° 20.381'</a> suivez de nouveau l’Armurié.
+        Au point <a href="https://www.google.com/maps/search/?api=1&query=43.600444,1.340278" target="_blank" class="path-link">N 43° 36.027' E 001° 20.417'</a> vous pouvez jeter un œil aux sculptures réalisées et exposées dans son jardin par le propriétaire.
+    </div>
+</div>
+</section>
+
+<section id="etape5" class="etape">
+<div class="container">
+    <h2>5. Au fil de l’eau</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.600667,1.341500" target="_blank" class="gps-link">
+            N 43° 36.040' E 001° 20.490'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Entre une chose et l'autre, je ne vous ai pas parlé de l’Armurié… enfin, du ruisseau je veux dire. Il prend sa source dans la commune de Colomiers, sur le plateau situé à l'ouest de la ville. Long de 3,75km seulement, il se jette dans le Touch entre les communes de Colomiers et Toulouse. Malgré sa petite taille, il est officiellement enregistré dans la base de données du réseau hydrographique français. Et vous savez quoi ? Deux illustres personnalités politiques ont arpenté le même chemin que vous il y a plus de 80 ans. Qui ça ? Soyez un peu patients, je vais vous le dire bientôt. </div> </div>
+
+    <div class="mission-box">
+        Le propriétaire d’une des maisons a mis en place une palissade pour le moins incongrue : une fenêtre et une boite aux lettres sont installées vers l’Armurié. Un mot est gravé sur la boite aux lettres.
+        <br>Dans ce mot quelle est la lettre la plus loin dans l’ordre alphabétique ? Quel est le nombre correspondant à la position de cette lettre dans l’alphabet ?
+        <div class="answer-input-zone"> <label for="E">E =</label> <input type="number" id="E" min="1" max="26" required oninput="resetStandardInput('E')"> </div>
+        <div id="validation-message-E"></div>
+        <button id="validate-button-E" class="btn-default" onclick="handleStandardValidation('E')"> Valider la réponse </button>
+    </div>
+</div>
+</section>
+
+<section id="etape6" class="etape">
+<div class="container">
+    <h2>6. Les 82 jours à l’Armurier</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.600500,1.343167" target="_blank" class="gps-link">
+            N 43° 36.030' E 001° 20.590'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Nous y voilà. Colomiers a été le théâtre d’un événement historique passionnant : en juin 1940, après la défaite française et l’invasion de Paris par les troupes allemandes, le gouvernement se replie à Bordeaux pendant que le Maréchal Pétain met en place la collaboration. Léon Blum est un des chefs de l’opposition. Il fera partie des 80 parlementaires (sur 600) qui voteront non à la remise des pleins pouvoirs au Maréchal Pétain, tout comme son ami Eugène Montel. A ce titre ils sont des opposants politiques majeurs au régime de Vichy. Léon Blum est par ailleurs de confession juive, donc une cible de premier ordre pour les nazis. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Afin d’y voir plus clair, Blum décide de se retirer à Colomiers au château de l’Armurié qui appartient à la belle-famille de Vincent Auriol et dont Eugène Montel est le « gestionnaire » local. Ils sont accompagnés de Vincent Auriol (premier Président de la IVème république de 1947 à 1954) et tout trois créent dans le château un « centre de réflexion républicaine ». </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Bien évidemment leur présence est connue de tous : des Columérins comme du régime de Vichy, et même de Roosevelt, Président des Etats-Unis qui proposera à Léon Blum l’asile pour lui éviter un sort funeste. Léon Blum lui répondra : « On ne quitte pas son pays à l'heure du malheur. Je ne veux pas donner l'exemple d'un chef qui s'enfuit alors que son peuple souffre. » </div> </div>
+
+    <div class="mission-box">
+        Prenez le temps de flâner en descendant sur ce chemin de mémoire et profitez de l’installation en place. Parmi toutes les citations, trouvez la réponse à cette question : « Les droits de l’homme ne connaissent pas de … ? ». 
+        <br>Combien de lettres composent ce nom au pluriel ?
+        <div class="answer-input-zone"> <label for="F">F =</label> <input type="number" id="F" min="0" max="99" required oninput="resetStandardInput('F')"> </div>
+        <div id="validation-message-F"></div>
+        <button id="validate-button-F" class="btn-default" onclick="handleStandardValidation('F')"> Valider la réponse </button>
+    </div>
+
+    <div class="direction-box"> 
+        Tournez le dos à cette inscription et prenez le petit sentier à droite. Si vous voyez le panneau « Je le crois parce que je l’espère, etc. », vous êtes allés trop loin. Attention, vous attaquez la partie la plus boueuse du parcours. Soyez prudents.
+    </div>
+    
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Allez, on ne rigole plus. Fini la balade tranquille on passe en mode camouflage ! </div> </div>
+    <div class="dialogue-row"> <img src="Nine-Jea.png" alt="Nine-Jea" class="avatar"> <div class="bubble"> <span class="name-tag">Nine-Jea</span> Et voilà, désormais, appelez-moi Nine-Jea la tortue ! Venez, je vais vous raconter la suite de l’histoire. </div> </div>
+</div>
+</section>
+
+<section id="etape7" class="etape">
+<div class="container">
+    <h2>7. Le 15 septembre 1940</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.600083,1.345639" target="_blank" class="gps-link">
+            N 43° 36.005' E 001° 20.738'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Nine-Jea.png" alt="Nine-Jea" class="avatar"> <div class="bubble"> <span class="name-tag">Nine-Jea</span> Le gouvernement de Vichy, qui se mettait alors en place, surveillait nos trois hommes (surveillance policière discrète au début, puis plus présente). L'idée était de les laisser "en liberté" pour un temps, le temps en fait de préparer les bases juridiques de leur arrestation et du futur procès de Riom. Hitler avait exigé que la France punisse les responsables de la guerre. Il voulait un procès qui prouve que la France avait "attaqué" l'Allemagne sous l'influence de dirigeants "juifs et marxistes". Le temps de la réflexion pour Blum était compté. </div> </div>
+    <div class="dialogue-row"> <img src="Nine-Jea.png" alt="Nine-Jea" class="avatar"> <div class="bubble"> <span class="name-tag">Nine-Jea</span> Le 15 septembre 1940 la police arrive au château pour les placer en "détention administrative". L'arrestation n'est pas une surprise, mais Blum a eu 82 jours de répit pour pouvoir préparer sa ligne de défense. Il n’aura l'occasion de s’en servir que 2 ans plus tard, lors du procès de Riom, mais de façon tellement brillante tous les plans de Vichy tombent à l'eau. </div> </div>
+    <div class="dialogue-row"> <img src="Nine-Jea.png" alt="Nine-Jea" class="avatar"> <div class="bubble"> <span class="name-tag">Nine-Jea</span> Allez, si vous n’avez pas peur, je vais vous montrer un endroit d’où peut-être ils étaient espionnés à l’époque. </div> </div>
+
+    <div class="direction-box"> Sur votre droite, deux rondins de bois marquent le début d’un passage étroit. Il faudra sûrement vous baisser pour pouvoir passer entre les branches des arbres et les bambous, mais n’hésitez pas à monter jusqu’au point suivant. </div>
+</div>
+</section>
+
+<section id="etape8" class="etape">
+<div class="container">
+    <h2>8. La tanière du loup</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.599867,1.345367" target="_blank" class="gps-link">
+            N 43° 35.992' E 001° 20.722'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Kçor.png" alt="Kçor" class="avatar"> <div class="bubble"> <span class="name-tag">Kçor</span> Mais non ! J’y crois pas ! C’est vous ? Vous êtes Léonardo ?? Vous êtes mon héros ! Je vous adore ! </div> </div>
+    <div class="dialogue-row"> <img src="Nine-Jea.png" alt="Nine-Jea" class="avatar"> <div class="bubble"> <span class="name-tag">Nine-Jea</span> Euh, qu’est-ce qui a Kçor !, T’est tombé sur la tête ou quoi ? Tu me reconnais pas ? </div> </div>
+    <div class="dialogue-row"> <img src="Kçor.png" alt="Kçor" class="avatar"> <div class="bubble"> <span class="name-tag">Kçor</span> Vous n’êtes par Léonardo ? La célèbre tortue ninja ? </div> </div>
+    <div class="dialogue-row"> <img src="Nine-Jea.png" alt="Nine-Jea" class="avatar"> <div class="bubble"> <span class="name-tag">Nine-Jea</span> Ah, mince… attends. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Voilà, c’est mieux comme ça ? La mémoire te revient ? </div> </div>
+    <div class="dialogue-row"> <img src="Kçor.png" alt="Kçor" class="avatar"> <div class="bubble"> <span class="name-tag">Kçor (déçu)</span> Jeanine ! Ah : Je t’avais pas reconnue ! Qu’est-ce que tu fais ici ? </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Et toi ? D’habitude tu vis au Bassac ! Tu as fait ta tanière ici ? J’étais en pleine intensité dramatique, et j’avoue que tu as un peu tout stoppé net ! Je racontais à mes visiteurs l’arrestation de 1940. Mais bon, toi t’es trop jeune pour avoir connu ça ! </div> </div>
+    <div class="dialogue-row"> <img src="Kçor.png" alt="Kçor" class="avatar"> <div class="bubble"> <span class="name-tag">Kçor</span> Et ben raconte moi alors, plutôt que de me le reprocher ! </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Ok, profitons du calme de ce lieu pour que je vous raconte le procès de Riom. C’est un procès politique instruit par le régime de Vichy entre février et avril 1942, visant à désigner les responsables de la défaite militaire française de 1940. L'idée de Vichy était de prouver que les réformes sociales du Front Populaire (comme les 40 heures ou les congés payés) avaient empêché la France de s'armer correctement. L'accusation choisie est celle du "Manquement aux devoirs de leur charge" pour ne pas avoir suffisamment préparé le pays à la guerre. Blum, Daladier, Gamelin et d’autres devaient servir de bouc-émissaires. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Très combatifs et brillants orateurs, Léon Blum et Édouard Daladier démontrent que l'impréparation n'était pas politique mais militaire. Ils prouvent que les crédits pour l'armement avaient été votés, mais que c'était le haut commandement (donc Pétain lui-même) qui avait fait de mauvais choix stratégiques. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Le procès devient un tel camouflet pour Vichy que Hitler lui-même s'en agace. Le Führer ne voulait pas que l'on discute des causes militaires de la défaite, mais simplement que l'on condamne les responsables politiques. Sous la pression allemande et devant l'échec de l'accusation, le procès est suspendu le 14 avril 1942. Il ne reprendra jamais. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Et c’est durant ses 82 jours passés à l’Armurié que Blum a commencé à rédiger ses notes et à structurer les arguments qu'il utilisera lors de ce procès. </div> </div>
+    <div class="dialogue-row"> <img src="Kçor.png" alt="Kçor" class="avatar"> <div class="bubble"> <span class="name-tag">Kçor</span> Ca fait froid dans le dos quand même. Bon allez, c’est pas tout, mais j’avais prévu de faire une petite sieste… Ca vous dérange pas de quitter ma tanière ? </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Ah, ces jeunes ! Plus aucun respect ! C’était mieux avant… quoi qu’à bien y réfléchir… non pas vraiment. </div> </div>
+
+    <div class="mission-box">
+        Tournez-vous de façon à entamer la descente (le château est dans votre dos). Sur votre droite se trouve un énorme tronc d’arbre abattu. Sur ce tronc une lettre est vissée. Quelle place occupe-t-elle dans l’alphabet ?
+        <div class="answer-input-zone"> <label for="G">G =</label> <input type="number" id="G" min="1" max="26" required oninput="resetStandardInput('G')"> </div>
+        <div id="validation-message-G"></div>
+        <button id="validate-button-G" class="btn-default" onclick="handleStandardValidation('G')"> Valider la réponse </button>
+    </div>
+
+    <div class="direction-box"> Continuez votre descente, puis arrivés aux deux rondins de bois initiaux, prenez la montée sur votre droite. </div>
+</div>
+</section>
+
+<section id="etape9" class="etape">
+<div class="container">
+    <h2>9. Le château de l’Armurié</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.599283,1.345000" target="_blank" class="gps-link">
+            N 43° 35.957' E 001° 20.700'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Nous y voilà ! Le château de l’Armurié. Bon si vous comptiez le visiter, vous allez être déçus. Après avoir appartenu à la belle-famille de Vincent Auriol, puis à la famille et la belle-famille d’Eugène Montel, le château a connu une période de déclin et de relatif abandon à la fin du XXe siècle. Depuis 2014, le bâtiment n'est plus une demeure privée unique ("le château"). Il a été découpé en appartements de standing. On l'appelle désormais la "Résidence de l'Armurié". Les anciennes dépendances (écuries, etc.) ont également été transformées en logements, tout en préservant l'architecture extérieure. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Peut-être serait-il temps d’ailleurs que je vous parle d’Eugène Montel, car c’est une personnalité importante de Colomiers, où il est enterré par ailleurs. Instituteur de formation, et journaliste, il est - pour beaucoup de ceux qui connaissent son histoire - un homme politique modèle pour sa bravoure et sa résilience. Emprisonné le 15 septembre 1940, il est libéré en octobre 1942, sa santé s’étant dégradée pendant son emprisonnement. Malgré les menaces qui pesaient sur ses proches et sa famille, malgré les propositions de Pétain de se rallier au Régime de Vichy, il a préféré la prison au reniement de ses principes républicains. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Dès le début du mois d'août 1944, alors que les Alliés progressent et que la Résistance s'active, l'administration de Vichy s'effondre. Le maire nommé par Pétain à Colomiers perd toute autorité. Eugène Montel, figure de proue de la Résistance locale et symbole de la légitimité républicaine bafouée en 1940, prend la tête du Comité Local de Libération. Il est élu maire le 20 août 1944 et le restera 22 ans jusqu’à sa mort. Un boulevard et un lycée portent son nom à Colomiers. Des rues portent également son nom à Portet sur Garonne, Tournefeuille, mais aussi Narbonne. </div> </div>
+
+    <div class="mission-box">
+        A gauche du portail de la résidence se trouve un panneau commémoratif évoquant la personnalité de Léon Blum. En quelle année est-il décédé ? Ajoutez les 4 chiffres pour former un nombre, puis ajoutez entre eux les 2 chiffres de ce nombre pour ne former plus qu’un chiffre.
+        <div class="answer-input-zone"> <label for="H">H =</label> <input type="number" id="H" min="0" max="9" required oninput="resetStandardInput('H')"> </div>
+        <div id="validation-message-H"></div>
+        <button id="validate-button-H" class="btn-default" onclick="handleStandardValidation('H')"> Valider la réponse </button>
+    </div>
+
+    <div class="direction-box"> Traversez la route (peu passante) au passage piéton jusqu’à <a href="https://www.google.com/maps/search/?api=1&query=43.599033,1.344450" target="_blank" class="path-link">N 43° 35.942' E 001° 20.667'</a>, restez sur le chemin de droite jusqu’au point suivant. </div>
+</div>
+</section>
+
+<section id="etape10" class="etape">
+<div class="container">
+    <h2>10. Les béals</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.599000,1.343467" target="_blank" class="gps-link">
+            N 43° 35.940' E 001° 20.608'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Prenons le temps de nous asseoir. J’en ai fini avec mes souvenirs de la guerre, mais Colomiers est un village bien plus ancien dont les origines remontent au XIème siècle. Le fort central se situait du côté de l’actuelle place Firmin Pons. Au cours du temps des métairies se sont construites aux endroits où il y avait de l’eau et de quoi nourrir les bêtes. C’est une de ces métairies qui a été transformée en château par son propriétaire armurier. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Les bancs-fontaines sur lesquels nous sommes assis rappellent ce passé : il tracent symboliquement l’écoulement de l’eau, rappellent, par l’usage du rouge, la brique de la façade du château et évoquent les anciens lavoirs et les béals (canaux d’irrigation) que l’on trouvait dans les temps anciens. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Si vous êtes suffisamment reposés, nous pouvons repartir vers le parc du Cabirol, mais au passage, je vais vous montrer quelques endroits choisis. </div> </div>
+
+    <div class="mission-box">
+        Question toute simple avant de partir : combien y a-t-il de « bancs-fontaines » ?
+        <div class="answer-input-zone"> <label for="I">I =</label> <input type="number" id="I" min="0" max="99" required oninput="resetStandardInput('I')"> </div>
+        <div id="validation-message-I"></div>
+        <button id="validate-button-I" class="btn-default" onclick="handleStandardValidation('I')"> Valider la réponse </button>
+    </div>
+
+    <div class="direction-box"> 
+        Suivez l’alignement des bancs jusqu’au point <a href="https://www.google.com/maps/search/?api=1&query=43.598750,1.343400" target="_blank" class="path-link">N 43° 35.925' E 001° 20.604'</a>. Suivez le chemin sur une centaine de mètres jusqu’au point <a href="https://www.google.com/maps/search/?api=1&query=43.597717,1.343133" target="_blank" class="path-link">N 43° 35.863' E 001° 20.588'</a> puis rejoignez la rue au <a href="https://www.google.com/maps/search/?api=1&query=43.597800,1.342517" target="_blank" class="path-link">N 43° 35.868' E 001° 20.551'</a> et prenez à gauche. Vous allez entrer dans un quartier résidentiel, merci de rester discrets et de faire attention au trafic routier.
+        <br>Traversez au <a href="https://www.google.com/maps/search/?api=1&query=43.597183,1.342317" target="_blank" class="path-link">N 43° 35.831' E 001° 20.539'</a> et rendez-vous au point suivant.
+    </div>
+</div>
+</section>
+
+<section id="etape11" class="etape">
+<div class="container">
+    <h2>11. La columérine</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.596883,1.341950" target="_blank" class="gps-link">
+            N 43° 35.813' E 001° 20.517'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Nous y voilà. Regardez cette maison et le parement utilisé pour la façade. C’est un magnifique hommage à ce que l’on nomme ici les « columérines ». C’est un style reconnu officiellement par les architectes de bâtiments de France, assez proche de ce que l’on nomme aussi la « toulousaine », mais avec des différences notables. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> La structure alterne matériau gratuit : les galets de la Garonne, et le matériau noble et coûteux : la brique foraine. Dans ce type de bâtisse, la brique est utilisée pour les chaînages d'angles (les coins), les encadrements de fenêtres et pour créer des lits horizontaux qui "assoient" les galets. Ce mélange n'est pas qu'esthétique : les galets apportent de l'inertie thermique et la brique permet au mur de "respirer" et de rester stable. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Vous noterez que les galets sont posés en "arête de poisson" (opus spicatum) : inclinés à 45°, changeant de sens à chaque rangée pour former des épis. Dans une vraie "columérine" ancienne, cette technique servait à bloquer les galets ronds entre eux. Ici, c'est purement esthétique. L’usage du terme « Columérine » permet en fait de distinguer la ferme de plaine (la Columérine) de la maison de ville (la Toulousaine, qui utilisera plus de brique). Mais les techniques sont identiques. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Pendant notre trajet jusqu’au parc, vous verrez une grande quantité de murs de maisons, ou même de murets utilisant cette technique. </div> </div>
+
+    <div class="mission-box">
+        Avant de partir, relevez le numéro de la maison en question. Ne conservez que le chiffre des unités.
+        <div class="answer-input-zone"> <label for="J">J =</label> <input type="number" id="J" min="0" max="9" required oninput="resetStandardInput('J')"> </div>
+        <div id="validation-message-J"></div>
+        <button id="validate-button-J" class="btn-default" onclick="handleStandardValidation('J')"> Valider la réponse </button>
+    </div>
+
+    <div class="direction-box"> Continuez à suivre l’allée des Algudes. </div>
+</div>
+</section>
+
+<section id="etape12" class="etape">
+<div class="container">
+    <h2>12. « Araucaria araucana ! »</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.596450,1.340333" target="_blank" class="gps-link">
+            N 43° 35.787' E 001° 20.420'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Araucaria araucana ! Ne vous inquiétez pas, ce n’est pas une formule magique ! C’est le nom savant de cet arbre magnifique. Quand je vous disais que Colomiers possédait une très grande biodiversité arboricole ! C’est une espèce originaire de la Cordillère des Andes, entre le Chili et l’Argentine, mais qui s’accommode très bien de notre climat du Sud-Ouest puisqu’il supporte l’humidité et le froid tempéré. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Si son nom ne vous dit rien, c’est parce qu’il n’est pas facile à retenir, mais également parce qu’on l’appelle plus couramment « le désespoir des singes » car ses feuilles sont tellement piquantes et imbriquées qu'il est impossible pour un animal de grimper le long du tronc ou des branches sans se blesser. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> C'est un véritable « fossile vivant » puisqu’il peut vivre plus de 1 000 ans. Il grandit très lentement, surtout durant ses premières années, ce qui veut dire que celui-ci est là depuis déjà bien longtemps. Il produit de gros cônes contenant des pignons comestibles très appréciés par les peuples Mapuches au Chili. </div> </div>
+
+    <div class="mission-box">
+        On peut déterminer approximativement l’âge d’un Auracaria araucana en fonction de sa silhouette. Le spécimen devant vous a-t-il plutôt :
+        
+        <div id="choice-container-K" style="margin-top: 15px;">
+            <button class="choice-btn" id="choice-K-1" onclick="handleChoiceValidation('K', 1)">
+                <strong>1.</strong> Entre 20 et 25 ans : Il a une forme de pyramide parfaite, très pointue, avec des branches partant du sol.
+            </button>
+            <button class="choice-btn" id="choice-K-2" onclick="handleChoiceValidation('K', 2)">
+                <strong>2.</strong> Entre 30-80 ans : Il commence à s'arrondir au sommet et à perdre ses branches basses.
+            </button>
+            <button class="choice-btn" id="choice-K-3" onclick="handleChoiceValidation('K', 3)">
+                <strong>3.</strong> Plus de 100 ans : Il prend une forme de parasol, avec un tronc très long et dégarni et un plumeau de branches uniquement au sommet.
+            </button>
+        </div>
+        
+        <div id="validation-message-K" style="color: #2ecc71; font-weight: bold; margin-top: 10px; text-align: center;"></div>
+    </div>
+
+    <div class="direction-box">
+        Prenez le petit chemin qui vous mènera jusqu’au passage clouté à <a href="https://www.google.com/maps/search/?api=1&query=43.596517,1.339800" target="_blank" class="path-link">N 43° 35.791' E 001° 20.388'</a>.
+        Traversez, prenez à droite jusqu’au rond-point. Restez toujours sur le même trottoir jusqu’au point <a href="https://www.google.com/maps/search/?api=1&query=43.597450,1.339533" target="_blank" class="path-link">N 43° 35.847' E 001° 20.372'</a>.
+        <br><br>
+        Attention il n’y a pas ici de passage piéton, traversez avec la plus grande prudence pour vous rendre ici : <a href="https://www.google.com/maps/search/?api=1&query=43.597683,1.338950" target="_blank" class="path-link">N 43° 35.861' E 001° 20.337'</a>
+        <br><br>
+        A partir de ce point, vous êtes en sécurité continuez 200m sur l’allée jusqu’au point suivant.
+    </div>
+</div>
+</section>
+
+<section id="etape13" class="etape">
+<div class="container">
+    <h2>13. Est-ce en forgeant que l’on devient Guy Forget ?</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.597733,1.336050" target="_blank" class="gps-link">
+            N 43° 35.864' E 001° 20.163'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Nous sommes presque de retour au parc, mais arrêtons-nous d’abord ici, il y a deux choses que je voudrais vous dire. D’abord, c’est ici que s’entraîne l’équipe de tennis de Colomiers. Depuis plus de 20 ans, le club évolue presque sans interruption entre la Pro A et la Pro B (les deux plus hautes divisions nationales), ce qui est exceptionnel pour une ville de cette taille. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Mais le club a aussi connu quelques moments de gloire. D’abord entre 1991 et 1992 quand Guy Forget (Ancien n°4 mondial et capitaine de l'équipe de France) est venu porter le maillot de l’US Colomiers juste après sa victoire en Coupe Davis. Mais également quand Richard Gasquet a fait partie de l'équipe de Colomiers lors des championnats de France par équipes (Interclubs). Le 7 décembre 2014 Colomiers a battu le TC Paris par 4 à 2 et Colomiers est devenu champion de France de Tennis pour la première fois de son histoire. Pas mal non ? </div> </div>
+
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Et maintenant, profitez également du patio. Il est composé essentiellement de plantes « xérophiles », c’est-à-dire qui consomment peu d’eau. La grosse plante aux feuilles très épaisse qui ressemble à un cactus (sans en être un), c’est une agave. Très utile en cas de coup de soleil, ainsi que pour produire de la téquila (à condition que ce soit une agave bleue, ce qui n’est pas le cas de celle-là). Vous pouvez remarquer aussi un phornium de Nouvelle Zélande et un laurier rose. </div> </div>
+
+    <div class="mission-box">
+        Un mot est inscrit sur la porte d’entrée du Tennis Club. Quelle est la première lettre de ce mot ? Quelle est sa place dans l’alphabet ?
+        <br>Notez ce chiffre qui vaut L :
+        <div class="answer-input-zone"> <label for="L">L =</label> <input type="number" id="L" min="1" max="26" required oninput="resetStandardInput('L')"> </div>
+        <div id="validation-message-L"></div>
+        <button id="validate-button-L" class="btn-default" onclick="handleStandardValidation('L')"> Valider la réponse </button>
+    </div>
+
+    <div class="direction-box">
+        Ressortez maintenant du patio et dirigez-vous vers le parc du Cabirol. Descendez en direction du point suivant vous pouvez suivre le chemin ou couper à travers l’aire de jeu, à votre guise.
+    </div>
+
+</div>
+</section>
+
+<section id="etape14" class="etape">
+<div class="container">
+    <h2>14. Mon cousin d’Amérique</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.597531,1.332417" target="_blank" class="gps-link">
+            N 43° 35' 51.1" E 001° 19' 56.7"
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Regardez-le celui-là, toujours ici. C’est un des rares arbres du parc qui soit plus âgés que moi. La longévité des tortues est célèbre, mais comme nous l’avons vu certains arbres peuvent vivre plus de 1.000 ans. Celui-ci à entre 100 et 150 ans. C’est un chêne d’Amérique. Il a la particularité de s’imposer aux autres chênes. En quelques décennies, il dépasse les espèces locales en hauteur, captant ainsi toute la lumière du soleil. Les jeunes chênes indigènes, restés dans l'ombre, finissent par dépérir. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Introduit en France au XVIIIe siècle pour l'ornement puis pour le reboisement, il se comporte un peu comme un "invité qui prend toute la place" au détriment de nos espèces locales. Aujourd'hui, il est classé comme espèce exotique envahissante dans plusieurs régions de France. Mais à Colomiers, il est surveillé de près et bénéficie d'un traitement de faveur en tant que spécimen historique. </div> </div>
+
+    <div class="mission-box">
+        Approchez vous du chêne et touchez son écorce, comment est-elle ?
+        <div id="choice-container-M" style="margin-top: 15px;">
+            <button class="choice-btn" id="choice-M-1" onclick="handleChoiceValidation('M', 1)">
+                <strong>1.</strong> Rugueuse et crevassée
+            </button>
+            <button class="choice-btn" id="choice-M-2" onclick="handleChoiceValidation('M', 2)">
+                <strong>2.</strong> Lisse et douce
+            </button>
+            <button class="choice-btn" id="choice-M-3" onclick="handleChoiceValidation('M', 3)">
+                <strong>3.</strong> Souple et spongieuse
+            </button>
+        </div>
+        <div id="validation-message-M" style="color: #2ecc71; font-weight: bold; margin-top: 10px; text-align: center;"></div>
+    </div>
+
+    <div class="direction-box">
+        Descendez jusqu’au point <a href="https://www.google.com/maps/search/?api=1&query=43.597900,1.331833" target="_blank" class="path-link">N 43° 35.874' E 001° 19.910'</a> et prenez à gauche la « ligne de désir ». C’est ainsi que les architectes nomment ces chemins non prévus initialement et créés par le passage fréquent des promeneurs. De là poursuivez jusqu’au point suivant. Attention à la boue.
+    </div>
+</div>
+</section>
+
+<section id="etape15" class="etape">
+<div class="container">
+    <h2>15. Parce qu’il le vaut bien</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.598028,1.331028" target="_blank" class="gps-link">
+            N 43° 35' 52.9" E 001° 19' 51.7"
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Et voici maintenant mon ami le plus étonnant : Gingko Biloba ! Il est originaire de Chine, et son espèce est sur terre depuis plus de 250 millions d’années ! C’est-à-dire qu’il a connu l’âge où les dinosaures vivaient sur terre. C’est le dernier représentant de son groupe botanique : les Ginkgophyta. On l’a longtemps cru éteint à l’état sauvage. Il a survécu grâce à la culture humaine. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Il possède des qualités exceptionnelles de résistance aux maladies et aux insectes, de longévité (certains spécimens vivent plus de 1.000 ans) et il a une tolérance très grande à la pollution, au froid et au chaud. Il a aussi une capacité très développée à repousser après des traumatismes extrêmes : plusieurs gingkos ont repoussé dès 1945 à Hiroshima à proximité de l’explosion nucléaire. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Et puis, ses feuilles contiennent énormément de propriétés : antioxydant puissant (lutte contre le vieillissement cutané), stimulation de la microcirculation, protecteur vasculaire (pour les peaux sujettes aux rougeurs) et apaisant. Il est de ce fait très utilisé dans l’industrie cosmétique, et c’est grâce à lui que je suis toujours aussi fraiche à mon âge ! </div> </div>
+
+    <div class="mission-box">
+        Vous l’aurez compris, cet arbre est de très grande valeur, mais combien d’écu vaut-il réellement ? (la réponse est sur le panonceau). Ne conservez que le chiffre des unités.
+        <div class="answer-input-zone"> <label for="N">N =</label> <input type="number" id="N" min="0" max="9" required oninput="resetStandardInput('N')"> </div>
+        <div id="validation-message-N"></div>
+        <button id="validate-button-N" class="btn-default" onclick="handleStandardValidation('N')"> Valider la réponse </button>
+    </div>
+
+    <div class="direction-box">
+        Sortez du parc par le portillon, <a href="https://www.google.com/maps/search/?api=1&query=43.597983,1.330150" target="_blank" class="path-link">N 43° 35.879' E 001° 19.809'</a> traversez la route au passage clouté et arrêtez-vous au point suivant.
+    </div>
+</div>
+</section>
+
+<section id="etape16" class="etape">
+<div class="container">
+    <h2>16. Quésaco le « cabirol » ?</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.598067,1.329817" target="_blank" class="gps-link">
+            N 43° 35.884' E 001° 19.789'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> De là où vous êtes, vous apercevez maintenant très bien le château du Cabirol. Le bâtiment que vous voyez aujourd'hui, devenu une clinique de soins de suite et de réadaptation, est une demeure dont les racines remontent au XVIIIe et XIXe siècles. À l'origine, le domaine était une vaste exploitation agricole et viticole appartenant à de riches familles toulousaines qui y installaient leur "maison de campagne" (les fameuses follies ou châteaux de plaine). </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Le château actuel présente un style typique du néo-classique languedocien avec ses briques rouges apparentes. Il a appartenu à des propriétaires privés (notamment la famille de gantiers toulousains Gantous au début du XXe siècle) avant sa transformation. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Voilà une photo du château prise entre 1900 et 1910. </div> </div>
+
+    <div style="text-align: center;">
+        <img src="chateau.jpg" alt="Château du Cabirol 1900" class="illustration-grande">
+    </div>
+
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Le nom "Cabirol" quant à lui est profondément ancré dans la langue occitane. Il signifie "chevreuil" ou "cabri". Avant l'urbanisation, ce secteur de Colomiers était une zone boisée où l'on croisait fréquemment ces animaux. C’est également un nom de famille assez répandu dans le Sud-Ouest. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Et bien, je crois que c’est le moment des adieux ! Je vous remercie de votre si charmante compagnie. Quand j’étais petite et que je rendais visite à ma grand-mère, elle m’offrait toujours un petit quelque chose avant que je ne parte, alors je vais faire pareil. J’ai un petit trésor caché tout près d’ici. Il est gardé par mon ami le grand chêne vert. Allez le trouver de ma part, et contre une dernière énigme, il vous révèlera l’emplacement exacte. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Et merci encore. </div> </div>
+    
+    <div class="narrative-note">plouf</div>
+</div>
+</section>
+
+<section id="etape17" class="etape">
+<div class="container">
+    <h2>17. Le trésor</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.598800,1.330500" target="_blank" class="gps-link">
+            N 43° 35.928' E 001° 19.830'
+        </a>
+    </div>
+
+    <div class="mission-box">
+        Trouvez le chêne vert, dernier arbre d’intérêt du parc, il vous révèlera son vrai nom, ce qui vous permettra de vérifier vos réponses et d’accéder à la cache.
+        <br><br>
+        Tapez ici les 7 lettres magiques qui précèdent le mot « ilex » :
+        
+        <div id="password-zone">
+            <input type="text" id="final-password" placeholder="MOT MAGIQUE">
+            <button class="btn-action" onclick="checkMagicWord()">Valider</button>
+            <div id="password-message" style="margin-top: 10px; font-weight: bold;"></div>
+        </div>
+    </div>
+</div>
+</section>
+
+<section id="final-grid-section" class="etape" style="display: none;">
+<div class="container">
+        
+    <div class="mission-box">
+        <h3>Tableau récapitulatif des indices</h3>
+        <div id="variable-list">
+            </div>
+
+        <div class="final-formula-display">
+            N (D)(K+M)° (B)(H+N).(J)(C-I)(A-L)’<br>
+            E 1° (E).(F+G)(M)’
+        </div>
+
+        <div class="final-check-zone">
+            <button id="final-validate-btn" onclick="checkFinalAnswer()">VÉRIFIER LES COORDONNÉES</button>
+            <div id="result-message"></div>
+        </div>
+
+        <div id="final-link-box">
+            <p>BRAVO ! La cache se trouve aux coordonnées suivantes :</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=43.61275,1.336183" target="_blank" class="gps-link">
+                N 43° 36.765′ E 1° 20.171′
+            </a>
+
+            <div class="support-box" style="margin-top: 30px; padding: 25px; background-color: #f9f9f9; border: 2px solid #ddd; border-radius: 10px; text-align: center;">
+
+                <div style="text-align: left; margin-bottom: 25px; font-size: 14px; color: #333; line-height: 1.5;">
+                    <strong>Si vous n’êtes pas familier du « géocaching » voici ce qu’il vous faut faire maintenant :</strong><br><br>
+                    1) Vous rendre aux coordonnées GPS indiquées (soyez discrets pour ne pas révéler la cache à des personnes moins bien intentionnées que vous).<br>
+                    2) Trouver le contenant (il est en plastique transparent, hermétique, et mesure à peu près 20 cm de haut). Attention, c'est la pointe du pointeur qui sert à déterminer la position sur Google Maps, pas le cercle !<br>
+                    3) Si vous le souhaitez, signer le « logbook » et indiquer la date de votre passage.<br>
+                    4) Si vous le souhaitez, prendre un des objets se trouvant dans le contenant. Pensez aux autres, n'en prenez qu'un par personne. Merci. <br>
+                    5) Redissimuler le contenant exactement à l’endroit où vous l’avez trouvé, en veillant à le refermer hermétiquement, 
+                    de manière à ce que d’autres puissent le trouver.<br><br>
+                    Si le contenant a besoin d’être enlevé, quelle qu’en soit la raison, merci de contacter le propriétaire à l’adresse suivante : kingluther@free.fr
+                    
+                    <button onclick="toggleHint()" class="hint-button">Besoin d'un indice ?</button>
+
+                    <div id="hint" style="display:none; margin-top: 10px; font-style: italic;">
+                        💡 Indice : Houx(ille), ça pique ! 
+                    </div>
+                </div>
+                  
+                <div style="margin: 20px auto;">
+                    <img src="Mix2.png" alt="Illustration" style="width: 160px; height: 160px; object-fit: cover; border-radius: 10px; border: 1px solid #ccc;">
+                </div>
+
+                <div class="support-box" style="margin-top: 30px; padding: 20px; background-color: #f9f9f9; border: 2px solid #ddd; border-radius: 10px; display: flex; align-items: center; gap: 20px;">
+                    <div style="flex-grow: 1;">
+                        <p style="font-size: 14px; color: #444; margin-top: 0;">
+                            Si vous avez aimé cette aventure et souhaitez/pouvez soutenir son créateur,
+                            n'hésitez pas à faire un don à la hauteur de vos moyens (ou de votre engouement).<br>
+                            <strong>Scénario, illustration, conception et entretien de la cache : Martin FEUILLERAC © 2026</strong>
+                        </p>
+
+                        <div id="paypal-container-QRBLL5TG5VCV8"></div>
+
+                        <script src="https://www.paypal.com/sdk/js?client-id=BAAUS3_NIDV8soA10_b5bKgMnexRFb8e5KeIbCj1SEfS6MR5cqf6U6p6PhCiRqAguCQ9hWXK5l5kl4UGRM&components=hosted-buttons&disable-funding=venmo&currency=EUR"></script>
+
+                        <script>
+                            paypal.HostedButtons({
+                              hostedButtonId: "QRBLL5TG5VCV8",
+                            }).render("#paypal-container-QRBLL5TG5VCV8");
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<script>
+    // ----------------------------------------------------------------------
+    // --- GESTION ET PERSISTANCE DES DONNÉES ---
+    // ----------------------------------------------------------------------
+
+    const ENIGMA_STORAGE_KEY = 'cabirol_enigma_answers';
+    // Ajout L, M, N
+    const DEFAULT_ANSWERS = {A: null, B: null, C: null, D: null, E: null, F: null, G: null, H: null, I: null, J: null, K: null, L: null, M: null, N: null};
+
+    // =================================================================================
+    // IMPORTANT : REMPLACER CES VALEURS PAR LES VRAIES RÉPONSES SUR LE TERRAIN
+    // =================================================================================
+    const CORRECT_ANSWERS = {
+        A: 6,   // Cyprès (Chauve ?) - A VERIFIER
+        B: 5,   // Nichoirs - A VERIFIER
+        C: 19,  // Altitude Mont Blanc (somme) - A VERIFIER
+        D: 4,   // Département (Gers ?) - A VERIFIER
+        E: 26,  // Boite aux lettres - A VERIFIER
+        F: 10,  // "Frontières" (10 lettres)
+        G: 5,   // Lettre sur tronc - A VERIFIER
+        H: 6,   // Blum décès (1+9+5+0=15 -> 1+5=6)
+        I: 3,   // Bancs fontaines - A VERIFIER
+        J: 1,   // Numéro maison (unités) - A VERIFIER
+        K: 2,   // Araucaria (A MODIFIER SELON LA REPONSE ATTENDUE : 1, 2 ou 3)
+        L: 1,   // Lettre Tennis (A COMPLETER, j'ai mis 1 par défaut)
+        M: 1,   // Ecorce (A COMPLETER, j'ai mis 1 par défaut)
+        N: 0    // Ecus (A COMPLETER, j'ai mis 0 par défaut)
+    };
+    
+    const REMINDERS = {
+        A: 'Cyprès', B: 'Nichoirs', C: 'Mt Blanc', D: 'Dépt', E: 'Lettre', 
+        F: 'Droits H.', G: 'Tronc', H: 'Blum', I: 'Bancs', J: 'Maison', 
+        K: 'Araucaria', L: 'Tennis', M: 'Ecorce', N: 'Ecus'
+    };
+
+    // --- RÈGLES DE VALIDATION STRICTES ---
+    const VALIDATION_RULES = {
+        A: { min: 0, max: 9 },
+        B: { min: 0, max: 9 },
+        C: { min: 0, max: 9 },
+        D: { min: 0, max: 99 }, 
+        E: { min: 1, max: 26 },
+        F: { min: 0, max: 99 }, 
+        G: { min: 1, max: 26 },
+        H: { min: 0, max: 9 },
+        I: { min: 0, max: 99 }, 
+        J: { min: 0, max: 9 },
+        L: { min: 1, max: 26 },
+        N: { min: 0, max: 9 }
+    };
+    // =================================================================================
+    
+    const SECRET_WORD = "QUERCUX";
+
+    function checkMagicWord() {
+        const input = document.getElementById("final-password");
+        const msg = document.getElementById("password-message");
+        const finalSection = document.getElementById("final-grid-section");
+
+        if(input.value.trim().toUpperCase() === SECRET_WORD) {
+            msg.style.color = "#2ecc71";
+            msg.textContent = "✨ CORRECT ! Le passage est ouvert.";
+            finalSection.style.display = "block";
+            // Initialiser le tableau final
+            displayCollectedVariables();
+            // Scroll vers la section finale
+            finalSection.scrollIntoView({behavior: "smooth"});
+        } else {
+            msg.style.color = "#e74c3c";
+            msg.textContent = "❌ Ce n'est pas le bon mot.";
+            finalSection.style.display = "none";
+        }
+    }
+
+    function toggleHint() {
+        var x = document.getElementById("hint");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+    function loadEnigmaAnswers() {
+        try {
+            const savedData = localStorage.getItem(ENIGMA_STORAGE_KEY);
+            if (!savedData) return DEFAULT_ANSWERS;
+            return {...DEFAULT_ANSWERS, ...JSON.parse(savedData)};
+        } catch (e) {
+            console.error("Erreur chargement données", e);
+            return DEFAULT_ANSWERS;
+        }
+    }
+
+    function saveEnigmaAnswers(vars) {
+        try {
+            localStorage.setItem(ENIGMA_STORAGE_KEY, JSON.stringify(vars));
+        } catch (e) {
+            console.error("Erreur sauvegarde données", e);
+        }
+    }
+    
+    function resetButtonToDefault(button) {
+        if (button) {
+            button.classList.remove('btn-validated');
+            button.classList.add('btn-default');
+            button.textContent = "Valider la réponse";
+        }
+    }
+
+    // ----------------------------------------------------------------------
+    // --- FONCTIONS STANDARDS ---
+    // ----------------------------------------------------------------------
+
+    function resetStandardInput(varKey) {
+        const inputElement = document.getElementById(varKey);
+        const button = document.getElementById('validate-button-' + varKey);
+        const validationMessage = document.getElementById('validation-message-' + varKey);
+        
+        if (button) resetButtonToDefault(button);
+        if (validationMessage) validationMessage.textContent = "";
+
+        if (inputElement) {
+            const rawValue = inputElement.value.trim();
+            if (rawValue === "") {
+                let currentVars = loadEnigmaAnswers();
+                currentVars[varKey] = null;
+                saveEnigmaAnswers(currentVars);
+            }
+        }
+    }
+
+    function handleStandardValidation(varKey) {
+        const inputElement = document.getElementById(varKey);
+        const button = document.getElementById('validate-button-' + varKey);
+        const validationMessage = document.getElementById('validation-message-' + varKey);
+        
+        if (!inputElement || !button || !validationMessage) return;
+
+        const rawValue = inputElement.value.trim();
+        const value = parseInt(rawValue);
+        let currentVars = loadEnigmaAnswers();
+        
+        validationMessage.textContent = "";
+
+        if (rawValue === "") {
+            validationMessage.textContent = "❌ Entrez une valeur.";
+            currentVars[varKey] = null;
+            saveEnigmaAnswers(currentVars);
+            resetButtonToDefault(button);
+            return;
+        }
+        
+        if (isNaN(value) || value < 0) {
+            validationMessage.textContent = "❌ Valeur incorrecte.";
+            currentVars[varKey] = null;
+            saveEnigmaAnswers(currentVars);
+            resetButtonToDefault(button);
+            return;
+        }
+
+        if (VALIDATION_RULES[varKey]) {
+            const rule = VALIDATION_RULES[varKey];
+            if (value < rule.min || value > rule.max) {
+                validationMessage.textContent = `❌ Impossible ! La réponse doit être comprise entre ${rule.min} et ${rule.max}.`;
+                currentVars[varKey] = null;
+                saveEnigmaAnswers(currentVars);
+                resetButtonToDefault(button);
+                return;
+            }
+        }
+        
+        currentVars[varKey] = value;
+        saveEnigmaAnswers(currentVars);
+        
+        button.classList.remove('btn-default');
+        button.classList.add('btn-validated');
+        button.textContent = `Réponse ${varKey} = ${value} Sauvegardée !`;
+    }
+    
+    function initStandardInput(varKey) {
+        const loadedVars = loadEnigmaAnswers();
+        
+        // Cas spécial pour K et M (Boutons)
+        if (varKey === 'K' || varKey === 'M') {
+            updateChoiceUI(varKey, loadedVars[varKey]);
+            return;
+        }
+
+        const inputElement = document.getElementById(varKey);
+        const button = document.getElementById('validate-button-' + varKey);
+        const savedValue = loadedVars[varKey];
+        
+        if (inputElement) inputElement.value = "";
+        
+        if (button && savedValue !== null) {
+            button.classList.remove('btn-default');
+            button.classList.add('btn-validated');
+            button.textContent = `Réponse ${varKey} = ${savedValue} Sauvegardée !`;
+        } else if (button) {
+            resetButtonToDefault(button);
+        }
+        
+        if(inputElement) inputElement.oninput = () => resetStandardInput(varKey);
+    };
+
+    // ----------------------------------------------------------------------
+    // --- GESTION DES CHOIX MULTIPLES (K & M) ---
+    // ----------------------------------------------------------------------
+    
+    function handleChoiceValidation(varKey, choiceValue) {
+        let currentVars = loadEnigmaAnswers();
+        currentVars[varKey] = choiceValue;
+        saveEnigmaAnswers(currentVars);
+        updateChoiceUI(varKey, choiceValue);
+    }
+
+    function updateChoiceUI(varKey, selectedValue) {
+        for (let i = 1; i <= 3; i++) {
+            const btn = document.getElementById(`choice-${varKey}-${i}`);
+            if (btn) btn.classList.remove('choice-selected');
+        }
+
+        const msgDiv = document.getElementById(`validation-message-${varKey}`);
+        
+        if (selectedValue !== null) {
+            const selectedBtn = document.getElementById(`choice-${varKey}-${selectedValue}`);
+            if (selectedBtn) selectedBtn.classList.add('choice-selected');
+            if (msgDiv) msgDiv.textContent = `Réponse enregistrée : Option ${selectedValue}`;
+        } else {
+            if (msgDiv) msgDiv.textContent = "";
+        }
+    }
+
+    // ----------------------------------------------------------------------
+    // --- PAGE FINALE ---
+    // ----------------------------------------------------------------------
+    
+    function handleVariableCorrection(varKey) {
+        const inputElement = document.getElementById(`input-${varKey}`);
+        let value = inputElement.value.trim();
+        let numericValue = parseInt(value);
+        let currentVars = loadEnigmaAnswers();
+        
+        if (value === "" || isNaN(numericValue)) {
+            currentVars[varKey] = null;
+        } else {
+            currentVars[varKey] = numericValue;
+        }
+        
+        localStorage.setItem(ENIGMA_STORAGE_KEY, JSON.stringify(currentVars));
+        displayCollectedVariables();
+    }
+    
+    function displayCollectedVariables() {
+        const vars = loadEnigmaAnswers();
+        const listDiv = document.getElementById('variable-list');
+        if (!listDiv) return 0;
+        listDiv.innerHTML = ''; 
+
+        const variableKeys = Object.keys(DEFAULT_ANSWERS);
+        let allCorrect = true;
+
+        variableKeys.forEach(key => {
+            const value = vars[key];
+            const correctValue = CORRECT_ANSWERS[key];
+            const reminder = REMINDERS[key];
+            const item = document.createElement('div');
+            item.className = 'variable-item';
+            
+            let dotClass = 'dot-red';
+            let inputValue = '';
+            
+            if (value !== null && !isNaN(value)) {
+                inputValue = value;
+                if (value === correctValue) {
+                    dotClass = 'dot-green'; 
+                } else {
+                    allCorrect = false;
+                }
+            } else {
+                allCorrect = false;
+            }
+
+            item.innerHTML = `
+                <div class="variable-reminder">${reminder}</div>
+                <div class="variable-input-row">
+                    <span class="status-dot ${dotClass}"></span>
+                    ${key} = 
+                    <input type="number" id="input-${key}" value="${inputValue}" oninput="handleVariableCorrection('${key}')">
+                </div>
+            `;
+            listDiv.appendChild(item);
+        });
+
+        const checkButton = document.querySelector('#final-grid-section .final-check-zone button');
+        if (checkButton) {
+            if (allCorrect) {
+                checkButton.style.backgroundColor = '#2ecc71';
+                checkButton.style.boxShadow = '0 4px #27ae60';
+            } else {
+                checkButton.style.backgroundColor = '#d35400';
+                checkButton.style.boxShadow = '0 4px #a04000';
+            }
+        }
+        return allCorrect;
+    }
+
+    function checkFinalAnswer() {
+        const messageDiv = document.getElementById('result-message');
+        const finalLinkBox = document.getElementById('final-link-box');
+        
+        const allVariablesCorrect = displayCollectedVariables(); 
+
+        if (allVariablesCorrect) {
+            messageDiv.style.color = '#2ecc71';
+            messageDiv.textContent = "✅ FÉLICITATIONS ! Tout est correct.";
+            if(finalLinkBox) finalLinkBox.style.display = 'block';
+        } else {
+            messageDiv.style.color = '#e74c3c';
+            messageDiv.textContent = "❌ Certaines réponses sont incorrectes (points rouges).";
+            if(finalLinkBox) finalLinkBox.style.display = 'none';
+        }
+    }
+
+    // ----------------------------------------------------------------------
+    // --- INIT ---
+    // ----------------------------------------------------------------------
+    document.addEventListener("DOMContentLoaded", function() {
+        // Init énigmes A-N
+        Object.keys(DEFAULT_ANSWERS).forEach(initStandardInput);
+        
+        // On ne vérifie plus le unlock global au chargement car c'est le mot de passe qui débloque la fin
+    });
+
+</script>
+
+</body>
+</html>
