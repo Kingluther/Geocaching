@@ -196,7 +196,6 @@
         .choice-btn:hover { background-color: #f0f0f0; border-color: #bbb; }
         .choice-selected { background-color: #e67e22 !important; color: white !important; border-color: #d35400 !important; font-weight: bold; }
 
-
         /* --- DIRECTION & NARRATION --- */
         .direction-box { background-color: #f8f9fa; border-left: 6px solid #95a5a6; padding: 15px 20px; margin-top: 40px; color: #555; font-style: italic; font-size: 15px; }
         .direction-box strong { color: #333; font-weight: bold; font-style: normal; }
@@ -204,13 +203,21 @@
         .illustration-grande { max-width: 100%; height: auto; border-radius: 8px; margin: 20px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: block; }
         .image-link { display: block; text-align: center; margin: 20px 0; }
 
-        /* --- GRILLE FINALE --- */
-        #variable-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 20px; }
-        .variable-item { display: flex; flex-direction: column; align-items: center; padding: 8px 10px; background-color: #eee; border-radius: 5px; font-weight: bold; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        /* --- GRILLE FINALE (Avec boutons +/- pour mobiles) --- */
+        #variable-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 20px; }
+        .variable-item { display: flex; flex-direction: column; align-items: center; padding: 8px; background-color: #eee; border-radius: 5px; font-weight: bold; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
         .variable-reminder { font-size: 11px; color: #666; margin-bottom: 5px; font-weight: normal; text-transform: uppercase; letter-spacing: 0.5px; width: 100%; border-bottom: 1px dotted #ccc; padding-bottom: 3px; min-height: 15px; }
         .variable-input-row { display: flex; align-items: center; justify-content: center; width: 100%; margin-top: 5px; }
-        .variable-item input { width: 45px; padding: 4px; text-align: center; font-weight: bold; border: 1px solid #ccc; border-radius: 3px; margin-left: 5px; }
         
+        /* Masquer les flèches natives des navigateurs */
+        .variable-item input[type="number"]::-webkit-outer-spin-button,
+        .variable-item input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        .variable-item input[type="number"] { -moz-appearance: textfield; width: 35px; padding: 4px; text-align: center; font-weight: bold; border: 1px solid #ccc; border-radius: 3px; }
+        
+        /* Boutons personnalisés +/- */
+        .spin-btn { background-color: #bdc3c7; color: #333; border: none; border-radius: 3px; width: 24px; height: 24px; font-size: 16px; font-weight: bold; cursor: pointer; margin: 0 4px; display: inline-flex; align-items: center; justify-content: center; }
+        .spin-btn:active { background-color: #95a5a6; }
+
         .status-dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 5px; }
         .dot-green { background-color: #2ecc71; }
         .dot-red { background-color: #e74c3c; }
@@ -224,24 +231,13 @@
         #result-message { margin-top: 15px; font-weight: bold; min-height: 20px; text-align: center; padding: 10px; border-radius: 5px; }
         #final-link-box { margin-top: 15px; display: none; text-align: center; padding: 15px; background-color: #e8f5e9; border: 1px solid #2ecc71; border-radius: 8px; }
         
-        #warning-etape15 {
-            max-width: 600px; margin: 20px auto; padding: 20px; text-align: center; background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 8px; color: #856404;
-        }
+        #warning-etape15 { max-width: 600px; margin: 20px auto; padding: 20px; text-align: center; background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 8px; color: #856404; }
         #warning-etape15 h2 { color: #856404; border-left: none; padding-left: 0; margin-top: 0; }
         
         #password-zone { max-width: 600px; margin: 20px auto; padding: 20px; text-align: center; background-color: #e8f6f3; border: 1px solid #1abc9c; border-radius: 8px; }
         #password-zone input { font-size: 20px; padding: 10px; text-transform: uppercase; width: 80%; margin-bottom: 10px; border: 2px solid #16a085; border-radius: 5px; text-align: center; }
         
-        .hint-button {
-            margin-top: 15px;
-            padding: 8px 15px;
-            background-color: #f39c12;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
+        .hint-button { margin-top: 15px; padding: 8px 15px; background-color: #f39c12; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
 
     </style>
 </head>
@@ -275,8 +271,8 @@
 A faire : à pied, impossible en poussette et PMR ou même en vélo sur une partie du parcours.</p>
     <h3>Parkings conseillés :</h3>
     <ul>
-        <li><a href="https://www.google.com/maps/search/?api=1&query=43.598650,1.329450" target="_blank">Parking principal : N 43° 35.919' E 001° 19.767'</a></li>
-        <li><a href="https://www.google.com/maps/search/?api=1&query=43.598633,1.328667" target="_blank">Parking délestage : N 43° 35.918' E 001° 19.720'(en ayant soin de ne pas vous garer devant les sorties d’habitations)</a></li>
+        <li><a href="https://www.google.com/maps?q=43.598650,1.329450" target="_blank">Parking principal : N 43° 35.919' E 001° 19.767'</a></li>
+        <li><a href="https://www.google.com/maps?q=43.598633,1.328667" target="_blank">Parking délestage : N 43° 35.918' E 001° 19.720'(en ayant soin de ne pas vous garer devant les sorties d’habitations)</a></li>
     </ul>
 </div>
 
@@ -304,7 +300,7 @@ A faire : à pied, impossible en poussette et PMR ou même en vélo sur une part
     <h2>1. Point de départ : Le pont japonais</h2>
     <div class="gps-box">
         📍 Cliquez pour y aller :<br>
-        <a href="https://www.google.com/maps/search/?api=1&query=43.598283,1.329833" target="_blank" class="gps-link">
+        <a href="https://www.google.com/maps?q=43.598283,1.329833" target="_blank" class="gps-link">
             N 43° 35.897' E 001° 19.790'
         </a>
     </div>
@@ -324,9 +320,9 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     <h2>2. Le parc du Cabirol</h2>
     <div class="gps-box">
         📍 Cliquez pour y aller :<br>
-        <a href="https://www.google.com/maps/search/?api=1&query=43.598137,1.331760" target="_blank" class="gps-link">
+        <a href="https://www.google.com/maps?q=43.598183,1.331617" target="_blank" class="gps-link">
             N 43° 35.891' E 001° 19.897'
-        </a> 
+        </a>
     </div>
 
     <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Quelle quiétude ! Le parc fait 8 hectares, soit environ 11 terrains de football. Il abrite bon nombre d’espèces animales ainsi que des arbres classés comme « d'intérêt ». C’est le cas de ce cyprès. Mais je vous parlerai plus en détail de tout ça plus tard car nous aurons l’occasion d’y revenir. Suivez-moi, je vais vous présenter l’Armurié. </div> </div>
@@ -337,7 +333,8 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
         <div id="validation-message-A"></div>
         <button id="validate-button-A" class="btn-default" onclick="handleStandardValidation('A')"> Valider la réponse </button>
     </div>
-<div class="direction-box"> 
+
+    <div class="direction-box"> 
         Retournez vous et avancez de quelques pas jusqu'à <a href="https://www.google.com/maps/search/?api=1&query=43.598162,1.331609" target="_blank" class="path-link">N 43° 35.534' E 001° 19.538'</a> 
     </div>
 
@@ -360,7 +357,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     <div class="mission-box">
         <p>De nombreux oiseaux ont élu domicile au parc du Cabirol, des oiseaux ordinaires (mésanges, pinsons, rouges-gorges, tourterelles, pies, colverts, poules d’eau) mais on peut également y trouver des hérons cendrés, des martin-pêcheurs (le long de l’Armurié) ou, la nuit, des chouettes hulottes.</p>
         <hr style="border-top: 1px dashed #d35400; margin: 15px 0;">
-        <p>Entre le point où vous êtes et le prochain point GPS, comptez le nombre de nichoirs identiques à celui qui se trouve devant vous. Suivez le chemin jusqu’à <a href="https://www.google.com/maps/search/?api=1&query=43.598500,1.332883" target="_blank" class="path-link">N 43° 35.910' E 001° 19.973'</a>.</p>
+        <p>Entre le point où vous êtes et le prochain point GPS, comptez le nombre de nichoirs identiques à celui qui se trouve devant vous. Suivez le chemin jusqu’à <a href="http://googleusercontent.com/maps.google.com/?q=43.59850,1.33288" target="_blank" class="path-link">N 43° 35.910' E 001° 19.973'</a>.</p>
         <p>Combien en avez-vous compté (y compris le premier et celui que vous devez voir depuis cette position) ?</p>
         <div class="answer-input-zone"> <label for="B">B =</label> <input type="number" id="B" min="0" max="9" required oninput="resetStandardInput('B')"> </div>
         <div id="validation-message-B"></div>
@@ -370,7 +367,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     <div class="direction-box"> 
         Maintenant, quittez la voie principale pour prendre à gauche vers le petit pont métallique en contrebas. Si le chemin est trop boueux vous pouvez rester sur le chemin principal, dans ce cas tournez à gauche à la prochaine intersection.
         <br><br>
-        Arrivés au point <a href="https://www.google.com/maps/search/?api=1&query=43.598817,1.334233" target="_blank" class="path-link">N 43° 35.929' E 001° 20.054'</a> suivez la direction « Chemin de Cournaudis 0,5km ».
+        Arrivés au point <a href="http://googleusercontent.com/maps.google.com/?q=43.59882,1.33423" target="_blank" class="path-link">N 43° 35.929' E 001° 20.054'</a> suivez la direction « Chemin de Cournaudis 0,5km ».
     </div>
 </div>
 </section>
@@ -380,14 +377,14 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     <h2>3. Parlons biodiversité</h2>
     <div class="gps-box">
         📍 Cliquez pour y aller :<br>
-        <a href="https://www.google.com/maps/search/?api=1&query=43.599133,1.334850" target="_blank" class="gps-link">
+        <a href="http://googleusercontent.com/maps.google.com/?q=43.59913,1.33485" target="_blank" class="gps-link">
             N 43° 35.948' E 001° 20.091'
         </a>
     </div>
 
     <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> J’aime beaucoup cet endroit. Colomiers compte un patrimoine arboré de 40.000 arbres, dont 20.000 sur le domaine public. Cela signifie qu’il y a, à Colomiers, à peu près un arbre par habitant. Mais, tout comme sa population qui affiche une très grande mixité, de très nombreuses espèces sont présentes. Rien que d’ici, en regardant vers les maisons, vous pouvez apercevoir un chêne, un peuplier, des ifs, un pin parasol et un sapin. Le parc du Cabirol compte aussi un cèdre de l’atlas (atteint de nanisme), ainsi que trois autres arbres d'intérêt que je vous présenterai. On trouve également dans le vieux Colomiers un Séquoia géant. </div> </div>
 
-    <div class="direction-box"> Longez à présent le ruisseau de l’Armurié sur 150 mètres jusqu’au point suivant : <a href="https://www.google.com/maps/search/?api=1&query=43.599467,1.336867" target="_blank" class="path-link">N 43° 35.968' E 001° 20.212'</a> </div>
+    <div class="direction-box"> Longez à présent le ruisseau de l’Armurié sur 150 mètres jusqu’au point suivant : <a href="http://googleusercontent.com/maps.google.com/?q=43.59947,1.33687" target="_blank" class="path-link">N 43° 35.968' E 001° 20.212'</a> </div>
 
     <div class="mission-box">
         Sur la couronne du panneau indicateur, vous remarquerez que le Mont-Blanc a une altitude quelque peu incongrue. Relevez les trois chiffres de cette altitude, additionnez-les entre eux et vous obtiendrez un chiffre. Notez le.
@@ -405,7 +402,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     <h2>4. L’armurié ou l’armurier ?</h2>
     <div class="gps-box">
         📍 Cliquez pour y aller :<br>
-        <a href="https://www.google.com/maps/search/?api=1&query=43.600350,1.339400" target="_blank" class="gps-link">
+        <a href="http://googleusercontent.com/maps.google.com/?q=43.60035,1.33940" target="_blank" class="gps-link">
             N 43° 36.021' E 001° 20.364'
         </a>
     </div>
@@ -422,8 +419,8 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     </div>
 
     <div class="direction-box"> 
-        Dirigez-vous à présent jusqu’au point <a href="https://www.google.com/maps/search/?api=1&query=43.599933,1.339400" target="_blank" class="path-link">N 43° 35.996' E 001° 20.364'</a>, traversez la route au passage piéton et à partir de <a href="https://www.google.com/maps/search/?api=1&query=43.600050,1.339683" target="_blank" class="path-link">N 43° 36.003' E 001° 20.381'</a> suivez de nouveau l’Armurié.
-        Au point <a href="https://www.google.com/maps/search/?api=1&query=43.600444,1.340278" target="_blank" class="path-link">N 43° 36.027' E 001° 20.417'</a> vous pouvez jeter un œil aux sculptures réalisées et exposées dans son jardin par le propriétaire.
+        Dirigez-vous à présent jusqu’au point <a href="http://googleusercontent.com/maps.google.com/?q=43.59993,1.33940" target="_blank" class="path-link">N 43° 35.996' E 001° 20.364'</a>, traversez la route au passage piéton et à partir de <a href="http://googleusercontent.com/maps.google.com/?q=43.60005,1.33968" target="_blank" class="path-link">N 43° 36.003' E 001° 20.381'</a> suivez de nouveau l’Armurié.
+        Au point <a href="http://googleusercontent.com/maps.google.com/?q=43.60044,1.34028" target="_blank" class="path-link">N 43° 36.027' E 001° 20.417'</a> vous pouvez jeter un œil aux sculptures réalisées et exposées dans son jardin par le propriétaire.
     </div>
 </div>
 </section>
@@ -433,7 +430,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     <h2>5. Au fil de l’eau</h2>
     <div class="gps-box">
         📍 Cliquez pour y aller :<br>
-        <a href="https://www.google.com/maps/search/?api=1&query=43.600667,1.341500" target="_blank" class="gps-link">
+        <a href="http://googleusercontent.com/maps.google.com/?q=43.60067,1.34150" target="_blank" class="gps-link">
             N 43° 36.040' E 001° 20.490'
         </a>
     </div>
@@ -455,7 +452,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     <h2>6. Les 82 jours à l’Armurier</h2>
     <div class="gps-box">
         📍 Cliquez pour y aller :<br>
-        <a href="https://www.google.com/maps/search/?api=1&query=43.600500,1.343167" target="_blank" class="gps-link">
+        <a href="http://googleusercontent.com/maps.google.com/?q=43.60050,1.34317" target="_blank" class="gps-link">
             N 43° 36.030' E 001° 20.590'
         </a>
     </div>
@@ -486,7 +483,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     <h2>7. Le 15 septembre 1940</h2>
     <div class="gps-box">
         📍 Cliquez pour y aller :<br>
-        <a href="https://www.google.com/maps/search/?api=1&query=43.600083,1.345639" target="_blank" class="gps-link">
+        <a href="http://googleusercontent.com/maps.google.com/?q=43.60008,1.34564" target="_blank" class="gps-link">
             N 43° 36.005' E 001° 20.738'
         </a>
     </div>
@@ -504,13 +501,13 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     <h2>8. La tanière du loup</h2>
     <div class="gps-box">
         📍 Cliquez pour y aller :<br>
-        <a href="https://www.google.com/maps/search/?api=1&query=43.599867,1.345367" target="_blank" class="gps-link">
+        <a href="http://googleusercontent.com/maps.google.com/?q=43.59987,1.34537" target="_blank" class="gps-link">
             N 43° 35.992' E 001° 20.722'
         </a>
     </div>
 
     <div class="dialogue-row"> <img src="Kçor.png" alt="Kçor" class="avatar"> <div class="bubble"> <span class="name-tag">Kçor</span> Mais non ! J’y crois pas ! C’est vous ? Vous êtes Léonardo ?? Vous êtes mon héros ! Je vous adore ! </div> </div>
-    <div class="dialogue-row"> <img src="Nine-Jea.png" alt="Nine-Jea" class="avatar"> <div class="bubble"> <span class="name-tag">Nine-Jea</span> Euh, qu’est-ce qui a Kçor !, T’es tombé sur la tête ou quoi ? Tu me reconnais pas ? </div> </div>
+    <div class="dialogue-row"> <img src="Nine-Jea.png" alt="Nine-Jea" class="avatar"> <div class="bubble"> <span class="name-tag">Nine-Jea</span> Euh, qu’est-ce qui a Kçor !, T’est tombé sur la tête ou quoi ? Tu me reconnais pas ? </div> </div>
     <div class="dialogue-row"> <img src="Kçor.png" alt="Kçor" class="avatar"> <div class="bubble"> <span class="name-tag">Kçor</span> Vous n’êtes par Léonardo ? La célèbre tortue ninja ? </div> </div>
     <div class="dialogue-row"> <img src="Nine-Jea.png" alt="Nine-Jea" class="avatar"> <div class="bubble"> <span class="name-tag">Nine-Jea</span> Ah, mince… attends. </div> </div>
     <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Voilà, c’est mieux comme ça ? La mémoire te revient ? </div> </div>
@@ -540,7 +537,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     <h2>9. Le château de l’Armurié</h2>
     <div class="gps-box">
         📍 Cliquez pour y aller :<br>
-        <a href="https://www.google.com/maps/search/?api=1&query=43.599283,1.345000" target="_blank" class="gps-link">
+        <a href="http://googleusercontent.com/maps.google.com/?q=43.59928,1.34500" target="_blank" class="gps-link">
             N 43° 35.957' E 001° 20.700'
         </a>
     </div>
@@ -556,7 +553,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
         <button id="validate-button-H" class="btn-default" onclick="handleStandardValidation('H')"> Valider la réponse </button>
     </div>
 
-    <div class="direction-box"> Traversez la route (peu passante) au passage piéton jusqu’à <a href="https://www.google.com/maps/search/?api=1&query=43.599033,1.344450" target="_blank" class="path-link">N 43° 35.942' E 001° 20.667'</a>, restez sur le chemin de droite jusqu’au point suivant. </div>
+    <div class="direction-box"> Traversez la route (peu passante) au passage piéton jusqu’à <a href="http://googleusercontent.com/maps.google.com/?q=43.59903,1.34445" target="_blank" class="path-link">N 43° 35.942' E 001° 20.667'</a>, restez sur le chemin de droite jusqu’au point suivant. </div>
 </div>
 </section>
 
@@ -565,12 +562,12 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     <h2>10. Les béals</h2>
     <div class="gps-box">
         📍 Cliquez pour y aller :<br>
-        <a href="https://www.google.com/maps/search/?api=1&query=43.599000,1.343467" target="_blank" class="gps-link">
+        <a href="http://googleusercontent.com/maps.google.com/?q=43.59900,1.34347" target="_blank" class="gps-link">
             N 43° 35.940' E 001° 20.608'
         </a>
     </div>
 
-    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Prenons le temps de nous asseoir. J’en ai fini avec mes souvenirs de la guerre, mais Colomiers est un village bien plus ancien dont les origines remontent au XIème siècle. Le fort central se situait du côté de l’actuelle place Firmin Pons. Au cours du temps des métairies se sont construites aux endroits où il y avait de l’eau et de quoi nourrir les bêtes. C’est une de ces métairies qui a été transformée en château par son propriétaire armurier. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Prenons le temps de nous asseoir. J’en ai fini avec mes souvenirs de la guerre, mais Colomiers est un village bien plus ancien dont les origines remontent au XIème siècle. Le fort central se situait du côté de l’actuelle place Firmin Pons. Au cours du temps des métairies se sont construites aux endroits où il y avait de l’eau et de quoi nourr les bêtes. C’est une de ces métairies qui a été transformée en château par son propriétaire armurier. </div> </div>
     <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Les bancs-fontaines sur lesquels nous sommes assis rappellent ce passé : ils tracent symboliquement l’écoulement de l’eau, rappellent, par l’usage du rouge, la brique de la façade du château et évoquent les anciens lavoirs et les béals (canaux d’irrigation) que l’on trouvait dans les temps anciens. </div> </div>
     <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Si vous êtes suffisamment reposés, nous pouvons repartir vers le parc du Cabirol, mais au passage, je vais vous montrer quelques endroits choisis. </div> </div>
 
@@ -582,8 +579,8 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     </div>
 
     <div class="direction-box"> 
-        Suivez l’alignement des bancs jusqu’au point <a href="https://www.google.com/maps/search/?api=1&query=43.598750,1.343400" target="_blank" class="path-link">N 43° 35.925' E 001° 20.604'</a>. Suivez le chemin sur une centaine de mètres jusqu’au point <a href="https://www.google.com/maps/search/?api=1&query=43.597717,1.343133" target="_blank" class="path-link">N 43° 35.863' E 001° 20.588'</a> puis rejoignez la rue au <a href="https://www.google.com/maps/search/?api=1&query=43.597800,1.342517" target="_blank" class="path-link">N 43° 35.868' E 001° 20.551'</a> et prenez à gauche. Vous allez entrer dans un quartier résidentiel, merci de rester discrets et de faire attention au trafic routier.
-        <br>Traversez au <a href="https://www.google.com/maps/search/?api=1&query=43.597183,1.342317" target="_blank" class="path-link">N 43° 35.831' E 001° 20.539'</a> et rendez-vous au point suivant.
+        Suivez l’alignement des bancs jusqu’au point <a href="http://googleusercontent.com/maps.google.com/?q=43.59875,1.34340" target="_blank" class="path-link">N 43° 35.925' E 001° 20.604'</a>. Suivez le chemin sur une centaine de mètres jusqu’au point <a href="http://googleusercontent.com/maps.google.com/?q=43.59772,1.34313" target="_blank" class="path-link">N 43° 35.863' E 001° 20.588'</a> puis rejoignez la rue au <a href="http://googleusercontent.com/maps.google.com/?q=43.59780,1.34252" target="_blank" class="path-link">N 43° 35.868' E 001° 20.551'</a> et prenez à gauche. Vous allez entrer dans un quartier résidentiel, merci de rester discrets et de faire attention au trafic routier.
+        <br>Traversez au <a href="http://googleusercontent.com/maps.google.com/?q=43.59718,1.34232" target="_blank" class="path-link">N 43° 35.831' E 001° 20.539'</a> et rendez-vous au point suivant.
     </div>
 </div>
 </section>
@@ -593,7 +590,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     <h2>11. La columérine</h2>
     <div class="gps-box">
         📍 Cliquez pour y aller :<br>
-        <a href="https://www.google.com/maps/search/?api=1&query=43.596883,1.341950" target="_blank" class="gps-link">
+        <a href="http://googleusercontent.com/maps.google.com/?q=43.59688,1.34195" target="_blank" class="gps-link">
             N 43° 35.813' E 001° 20.517'
         </a>
     </div>
@@ -619,7 +616,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     <h2>12. « Araucaria araucana ! »</h2>
     <div class="gps-box">
         📍 Cliquez pour y aller :<br>
-        <a href="https://www.google.com/maps/search/?api=1&query=43.596450,1.340333" target="_blank" class="gps-link">
+        <a href="http://googleusercontent.com/maps.google.com/?q=43.59645,1.34033" target="_blank" class="gps-link">
             N 43° 35.787' E 001° 20.420'
         </a>
     </div>
@@ -647,10 +644,10 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     </div>
 
     <div class="direction-box">
-        Prenez le petit chemin qui vous mènera jusqu’au passage clouté à <a href="https://www.google.com/maps/search/?api=1&query=43.596517,1.339800" target="_blank" class="path-link">N 43° 35.791' E 001° 20.388'</a>.
-        Traversez, prenez à droite jusqu’au rond-point. Restez toujours sur le même trottoir jusqu’au point <a href="https://www.google.com/maps/search/?api=1&query=43.597450,1.339533" target="_blank" class="path-link">N 43° 35.847' E 001° 20.372'</a>.
+        Prenez le petit chemin qui vous mènera jusqu’au passage clouté à <a href="http://googleusercontent.com/maps.google.com/?q=43.59652,1.33980" target="_blank" class="path-link">N 43° 35.791' E 001° 20.388'</a>.
+        Traversez, prenez à droite jusqu’au rond-point. Restez toujours sur le même trottoir jusqu’au point <a href="http://googleusercontent.com/maps.google.com/?q=43.59745,1.33953" target="_blank" class="path-link">N 43° 35.847' E 001° 20.372'</a>.
         <br><br>
-        Attention il n’y a pas ici de passage piéton, traversez avec la plus grande prudence pour vous rendre ici : <a href="https://www.google.com/maps/search/?api=1&query=43.597683,1.338950" target="_blank" class="path-link">N 43° 35.861' E 001° 20.337'</a>
+        Attention il n’y a pas ici de passage piéton, traversez avec la plus grande prudence pour vous rendre ici : <a href="http://googleusercontent.com/maps.google.com/?q=43.59768,1.33895" target="_blank" class="path-link">N 43° 35.861' E 001° 20.337'</a>
         <br><br>
         A partir de ce point, vous êtes en sécurité continuez 200m sur l’allée jusqu’au point suivant.
     </div>
@@ -662,7 +659,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     <h2>13. Est-ce en forgeant que l’on devient Guy Forget ?</h2>
     <div class="gps-box">
         📍 Cliquez pour y aller :<br>
-        <a href="https://www.google.com/maps/search/?api=1&query=43.597733,1.336050" target="_blank" class="gps-link">
+        <a href="http://googleusercontent.com/maps.google.com/?q=43.59773,1.33605" target="_blank" class="gps-link">
             N 43° 35.864' E 001° 20.163'
         </a>
     </div>
@@ -692,7 +689,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     <h2>14. Mon cousin d’Amérique</h2>
     <div class="gps-box">
         📍 Cliquez pour y aller :<br>
-        <a href="https://www.google.com/maps/search/?api=1&query=43.597531,1.332417" target="_blank" class="gps-link">
+        <a href="http://googleusercontent.com/maps.google.com/?q=43.59752,1.33242" target="_blank" class="gps-link">
             N 43° 35' 51.1" E 001° 19' 56.7"
         </a>
     </div>
@@ -717,7 +714,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     </div>
 
     <div class="direction-box">
-        Descendez jusqu’au point <a href="https://www.google.com/maps/search/?api=1&query=43.597900,1.331833" target="_blank" class="path-link">N 43° 35.874' E 001° 19.910'</a> et prenez à gauche la « ligne de désir ». C’est ainsi que les architectes nomment ces chemins non prévus initialement et créés par le passage fréquent des promeneurs. De là poursuivez jusqu’au point suivant. Attention à la boue.
+        Descendez jusqu’au point <a href="http://googleusercontent.com/maps.google.com/?q=43.59790,1.33184" target="_blank" class="path-link">N 43° 35.874' E 001° 19.910'</a> et prenez à gauche la « ligne de désir ». C’est ainsi que les architectes nomment ces chemins non prévus initialement et créés par le passage fréquent des promeneurs. De là poursuivez jusqu’au point suivant. Attention à la boue.
     </div>
 </div>
 </section>
@@ -727,7 +724,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     <h2>15. Parce qu’il le vaut bien</h2>
     <div class="gps-box">
         📍 Cliquez pour y aller :<br>
-        <a href="https://www.google.com/maps/search/?api=1&query=43.598028,1.331028" target="_blank" class="gps-link">
+        <a href="http://googleusercontent.com/maps.google.com/?q=43.59803,1.33103" target="_blank" class="gps-link">
             N 43° 35' 52.9" E 001° 19' 51.7"
         </a>
     </div>
@@ -744,7 +741,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     </div>
 
     <div class="direction-box">
-        Sortez du parc par le portillon, <a href="https://www.google.com/maps/search/?api=1&query=43.597983,1.330150" target="_blank" class="path-link">N 43° 35.879' E 001° 19.809'</a> traversez la route au passage clouté et arrêtez-vous au point suivant.
+        Sortez du parc par le portillon, <a href="http://googleusercontent.com/maps.google.com/?q=43.59799,1.33014" target="_blank" class="path-link">N 43° 35.879' E 001° 19.809'</a> traversez la route au passage clouté et arrêtez-vous au point suivant.
     </div>
 </div>
 </section>
@@ -754,7 +751,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     <h2>16. Quésaco le « cabirol » ?</h2>
     <div class="gps-box">
         📍 Cliquez pour y aller :<br>
-        <a href="https://www.google.com/maps/search/?api=1&query=43.598067,1.329817" target="_blank" class="gps-link">
+        <a href="http://googleusercontent.com/maps.google.com/?q=43.59806,1.32982" target="_blank" class="gps-link">
             N 43° 35.884' E 001° 19.789'
         </a>
     </div>
@@ -780,7 +777,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     <h2>17. Le trésor</h2>
     <div class="gps-box">
         📍 Cliquez pour y aller :<br>
-        <a href="https://www.google.com/maps/search/?api=1&query=43.598800,1.330500" target="_blank" class="gps-link">
+        <a href="http://googleusercontent.com/maps.google.com/?q=43.59880,1.33050" target="_blank" class="gps-link">
             N 43° 35.928' E 001° 19.830'
         </a>
     </div>
@@ -819,7 +816,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
 
         <div id="final-link-box">
             <p>BRAVO ! La cache se trouve aux coordonnées suivantes :</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=43.61275,1.336183" target="_blank" class="gps-link">
+            <a href="http://googleusercontent.com/maps.google.com/?q=43.61275,1.33618" target="_blank" class="gps-link">
                 N 43° 36.765′ E 1° 20.171′
             </a>
 
@@ -884,20 +881,20 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     // IMPORTANT : REMPLACER CES VALEURS PAR LES VRAIES RÉPONSES SUR LE TERRAIN
     // =================================================================================
     const CORRECT_ANSWERS = {
-        A: 6,   // Cyprès 
-        B: 3,   // Nichoirs 
-        C: 8,  // Altitude Mont Blanc 
-        D: 4,   // Département 
-        E: 20,  // Boite aux lettres 
-        F: 10,  // "Frontières" 
-        G: 7,   // Lettre sur tronc
-        H: 6,   // Blum décès 
-        I: 2,   // Bancs fontaines 
-        J: 7,   // Numéro maison (unités) 
-        K: 2,   // Araucaria 
-        L: 1,   // Lettre Tennis 
-        M: 1,   // Ecorce
-        N: 0    // Ecus 
+        A: 6,   // Cyprès (Chauve ?) - A VERIFIER
+        B: 5,   // Nichoirs - A VERIFIER
+        C: 19,  // Altitude Mont Blanc (somme) - A VERIFIER
+        D: 4,   // Département (Gers ?) - A VERIFIER
+        E: 26,  // Boite aux lettres - A VERIFIER
+        F: 10,  // "Frontières" (10 lettres)
+        G: 5,   // Lettre sur tronc - A VERIFIER
+        H: 6,   // Blum décès (1+9+5+0=15 -> 1+5=6)
+        I: 3,   // Bancs fontaines - A VERIFIER
+        J: 1,   // Numéro maison (unités) - A VERIFIER
+        K: 2,   // Araucaria (A MODIFIER SELON LA REPONSE ATTENDUE : 1, 2 ou 3)
+        L: 1,   // Lettre Tennis (A COMPLETER, j'ai mis 1 par défaut)
+        M: 1,   // Ecorce (A COMPLETER, j'ai mis 1 par défaut)
+        N: 0    // Ecus (A COMPLETER, j'ai mis 0 par défaut)
     };
     
     const REMINDERS = {
@@ -1124,6 +1121,23 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
         localStorage.setItem(ENIGMA_STORAGE_KEY, JSON.stringify(currentVars));
         displayCollectedVariables();
     }
+
+    function stepValue(key, delta) {
+        const input = document.getElementById(`input-${key}`);
+        if (!input) return;
+        let val = parseInt(input.value);
+        if (isNaN(val)) val = 0;
+        val += delta;
+        
+        const rules = VALIDATION_RULES[key];
+        if (rules) {
+            if (val < rules.min) val = rules.min;
+            if (val > rules.max) val = rules.max;
+        }
+        
+        input.value = val;
+        handleVariableCorrection(key);
+    }
     
     function displayCollectedVariables() {
         const vars = loadEnigmaAnswers();
@@ -1160,7 +1174,9 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
                 <div class="variable-input-row">
                     <span class="status-dot ${dotClass}"></span>
                     ${key} = 
+                    <button class="spin-btn" onclick="stepValue('${key}', -1)">-</button>
                     <input type="number" id="input-${key}" value="${inputValue}" oninput="handleVariableCorrection('${key}')">
+                    <button class="spin-btn" onclick="stepValue('${key}', 1)">+</button>
                 </div>
             `;
             listDiv.appendChild(item);
