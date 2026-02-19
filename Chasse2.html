@@ -196,6 +196,7 @@
         .choice-btn:hover { background-color: #f0f0f0; border-color: #bbb; }
         .choice-selected { background-color: #e67e22 !important; color: white !important; border-color: #d35400 !important; font-weight: bold; }
 
+
         /* --- DIRECTION & NARRATION --- */
         .direction-box { background-color: #f8f9fa; border-left: 6px solid #95a5a6; padding: 15px 20px; margin-top: 40px; color: #555; font-style: italic; font-size: 15px; }
         .direction-box strong { color: #333; font-weight: bold; font-style: normal; }
@@ -231,13 +232,24 @@
         #result-message { margin-top: 15px; font-weight: bold; min-height: 20px; text-align: center; padding: 10px; border-radius: 5px; }
         #final-link-box { margin-top: 15px; display: none; text-align: center; padding: 15px; background-color: #e8f5e9; border: 1px solid #2ecc71; border-radius: 8px; }
         
-        #warning-etape15 { max-width: 600px; margin: 20px auto; padding: 20px; text-align: center; background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 8px; color: #856404; }
+        #warning-etape15 {
+            max-width: 600px; margin: 20px auto; padding: 20px; text-align: center; background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 8px; color: #856404;
+        }
         #warning-etape15 h2 { color: #856404; border-left: none; padding-left: 0; margin-top: 0; }
         
         #password-zone { max-width: 600px; margin: 20px auto; padding: 20px; text-align: center; background-color: #e8f6f3; border: 1px solid #1abc9c; border-radius: 8px; }
         #password-zone input { font-size: 20px; padding: 10px; text-transform: uppercase; width: 80%; margin-bottom: 10px; border: 2px solid #16a085; border-radius: 5px; text-align: center; }
         
-        .hint-button { margin-top: 15px; padding: 8px 15px; background-color: #f39c12; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .hint-button {
+            margin-top: 15px;
+            padding: 8px 15px;
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
 
     </style>
 </head>
@@ -805,8 +817,8 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
             </div>
 
         <div class="final-formula-display">
-            N 43°(G-D)(B+K).((CxJ)-L)(H)’<br>
-            E 1°(M)(A+B).((ExI)+F)(N)’
+            N 43° (G-D)(B+K) . ((C*J)-L)(H)'<br>
+            E 1° (M)(A+B) . ((E*I)+F)(N)'
         </div>
 
         <div class="final-check-zone">
@@ -816,7 +828,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
 
         <div id="final-link-box">
             <p>BRAVO ! La cache se trouve aux coordonnées suivantes :</p>
-            <a href="http://googleusercontent.com/maps.google.com/?q= 43.598791,1.330560" target="_blank" class="gps-link">
+            <a href="http://googleusercontent.com/maps.google.com/?q=43.5926,1.325" target="_blank" class="gps-link">
                 N 43° 35.556′ E 1° 19.500′
             </a>
 
@@ -882,19 +894,19 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     // =================================================================================
     const CORRECT_ANSWERS = {
         A: 6,   // Cyprès 
-        B: 3,   // Nichoirs
-        C: 8, // Altitude Mont Blanc
-        D: 4,   // Département
-        E: 20,  // Boite aux lettres
+        B: 3,   // Nichoirs 
+        C: 8,  // Altitude Mont Blanc 
+        D: 4,   // Département 
+        E: 20,  // Boite aux lettres 
         F: 10,  // "Frontières" 
         G: 7,   // Lettre sur tronc 
         H: 6,   // Blum décès 
         I: 2,   // Bancs fontaines 
-        J: 7,   // Numéro maison (unités) 
-        K: 2,   // Araucaria (
-        L: 1,   // Lettre Tennis
+        J: 7,   // Numéro maison 
+        K: 2,   // Araucaria 
+        L: 1,   // Lettre Tennis 
         M: 1,   // Ecorce 
-        N: 0    // Ecus
+        N: 0    // Ecus 
     };
     
     const REMINDERS = {
