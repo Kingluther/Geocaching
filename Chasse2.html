@@ -1235,6 +1235,29 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     });
 
 </script>
-
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // On cible tous les liens Google Maps de la page
+    const mapLinks = document.querySelectorAll("a[href*='google.com/maps'], a[href*='maps.google.com'], a[href*='google.fr/maps']");
+    
+    mapLinks.forEach(link => {
+        const href = decodeURIComponent(link.href);
+        
+        // On cherche et extrait les coordonnées GPS décimales présentes dans tes liens (ex: 43.61225, 1.32138)
+        const coordsMatch = href.match(/([+-]?\d{1,2}\.\d+),\s*([+-]?\d{1,3}\.\d+)/);
+        
+        if (coordsMatch) {
+            const lat = coordsMatch[1];
+            const lng = coordsMatch[2];
+            
+            // On remplace discrètement par le lien "Deep Link" officiel pour application mobile
+            link.href = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+            
+            // On s'assure que ça s'ouvre dans une nouvelle fenêtre/application
+            link.setAttribute("target", "_blank");
+        }
+    });
+});
+</script>
 </body>
 </html>
