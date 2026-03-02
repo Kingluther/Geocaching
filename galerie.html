@@ -13,19 +13,17 @@
 
         body { margin: 0; font-family: 'Trebuchet MS', sans-serif; background-color: var(--brun-sombre); color: white; overflow-x: hidden; }
         
-        /* Navigation identique à l'accueil */
         nav { background-color: rgba(0,0,0,0.5); padding: 15px; display: flex; gap: 20px; justify-content: center; position: sticky; top: 0; z-index: 100; }
         nav a { color: #f5f5f5; text-decoration: none; font-weight: bold; padding: 8px 15px; border-radius: 4px; }
         nav a:hover { background: var(--brun-clair); }
 
-        /* Frise des personnages en haut */
         .frise-container {
             background: rgba(0,0,0,0.3);
             padding: 20px 0;
             display: flex;
             justify-content: center;
+            flex-wrap: wrap; /* Permet aux vignettes de passer à la ligne sur petit écran */
             gap: 15px;
-            overflow-x: auto;
             border-bottom: 2px solid var(--brun-clair);
         }
 
@@ -38,6 +36,7 @@
             transition: all 0.3s ease;
             border: 2px solid transparent;
             object-fit: cover;
+            background-color: white; /* Fond blanc si l'image est transparente */
         }
 
         .vignette-choix:hover, .vignette-choix.active {
@@ -46,7 +45,6 @@
             transform: scale(1.1);
         }
 
-        /* Zone d'affichage du personnage */
         .hero-display {
             display: flex;
             max-width: 1100px;
@@ -54,21 +52,21 @@
             padding: 20px;
             align-items: center;
             min-height: 500px;
-            background: url('fond-nature.jpg') center/cover; /* Optionnel : une image de fougères en fond */
             border-radius: 20px;
+            background: linear-gradient(135deg, rgba(62,39,35,1) 0%, rgba(141,110,99,1) 100%);
         }
 
-        .hero-info { flex: 1; padding: 40px; background: rgba(0,0,0,0.6); border-radius: 15px; border-left: 5px solid var(--brun-clair); }
+        .hero-info { flex: 1; padding: 40px; background: rgba(0,0,0,0.5); border-radius: 15px; border-left: 5px solid var(--brun-clair); }
         .hero-info h2 { color: #ffeb3b; font-size: 2.5em; margin-top: 0; }
         .hero-info p { line-height: 1.6; font-size: 1.1em; }
 
         .hero-image-container { flex: 1; text-align: center; }
-        .hero-large-img { max-width: 90%; max-height: 450px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); }
+        .hero-large-img { max-width: 90%; max-height: 400px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6)); border-radius: 10px; }
 
-        .tagline { font-style: italic; color: #ddd; margin-bottom: 20px; }
-        .likes-dislikes { display: flex; gap: 40px; margin-top: 30px; }
-        .likes h4 { color: #4caf50; margin-bottom: 5px; }
-        .dislikes h4 { color: #e74c3c; margin-bottom: 5px; }
+        .tagline { font-style: italic; color: #ddd; margin-bottom: 20px; font-size: 1.2em; }
+        .likes-dislikes { display: flex; gap: 40px; margin-top: 30px; flex-wrap: wrap; }
+        .likes h4 { color: #4caf50; margin-bottom: 5px; font-size: 1.2em; }
+        .dislikes h4 { color: #e74c3c; margin-bottom: 5px; font-size: 1.2em; }
 
         @media (max-width: 768px) {
             .hero-display { flex-direction: column-reverse; }
@@ -108,16 +106,53 @@
     </div>
 
     <script>
-        // Base de données des personnages (Ordre alphabétique)
+        // Base de données des personnages (Ordre alphabétique avec tes bios intégrées)
         const heros = [
-            { id: "al", name: "Al", img: "Al.png", tag: "L'expert du détail", bio: "Bio de Al à remplir...", likes: "Le calme", dislikes: "Le bruit" },
-            { id: "casso", name: "Casso, Cabia & Saro", img: "Casso-Cabia-Saro.png", tag: "Le trio inséparable", bio: "Ils ne vont jamais l'un sans l'autre...", likes: "L'aventure", dislikes: "La solitude" },
-            { id: "didier", name: "Didier", img: "Didier.png", tag: "Le pisteur", bio: "Didier connaît chaque recoin de Colomiers.", likes: "Les cartes", dislikes: "Se perdre" },
-            { id: "harry", name: "Harry", img: "Harry.png", tag: "Le magicien", bio: "Harry transforme chaque énigme en tour de magie.", likes: "Les chapeaux", dislikes: "Les lapins capricieux" },
-            { id: "jeanine", name: "Jeanine", img: "Jeanine.png", tag: "L'armurière du Cabirol", bio: "Gardienne de la mare, elle veille sur les trésors.", likes: "Le fer forgé", dislikes: "La rouille" },
-            { id: "kcor", name: "Kçor", img: "Kçor.png", tag: "Le mystère du Bassac", bio: "On dit qu'il apparaît quand la brume se lève.", likes: "L'ombre", dislikes: "La lumière directe" },
-            { id: "mala", name: "Mala", img: "Mala.png", tag: "La conteuse", bio: "Elle connaît toutes les légendes oubliées.", likes: "Les vieux livres", dislikes: "Les oublis" },
-            { id: "serge", name: "Serge & Bernard", img: "Serge-Bernard.png", tag: "Les compères du Bassac", bio: "Un duo de choc pour des énigmes corsées.", likes: "La rigolade", dislikes: "Les disputes" }
+            { 
+                id: "al", name: "Al", img: "Al.png", tag: "Le margouillat farceur", 
+                bio: "Gekko réunionnais, aussi surnommé « le margouillat », il adore raconter des blagues... pas toujours drôles il est vrai. Sa spécialité ? Monter aux murs, bien sûr !", 
+                likes: "Les bonnes blagues et l'escalade", dislikes: "Tomber d'un mur en plein fou rire" 
+            },
+            { 
+                id: "casso", name: "Saro, Cabia & Casso", img: "Casso-Cabia-Saro.png", tag: "Les trois pies artistes", 
+                bio: "Chacune avec son style différent, bien sûr. Férues d'art visuel et de paysages champêtres, elles vous guideront à la découverte de la peinture et des autres arts.", 
+                likes: "L'art visuel et les paysages champêtres", dislikes: "Les toiles blanches et le manque d'inspiration" 
+            },
+            { 
+                id: "didier", name: "Didier", img: "Didier.png", tag: "Le butineur tête en l'air", 
+                bio: "Son truc à lui, c'est butiner. Fin connaisseur de fleurs et de parfums, il est assez tête en l'air et volette à sa guise par monts et par vaux.", 
+                likes: "Les fleurs et les beaux parfums", dislikes: "Rester immobile" 
+            },
+            { 
+                id: "harry", name: "Harry", img: "Harry.png", tag: "Le yak expatrié", 
+                bio: "Harry a passé quelques années de sa vie aux Etats-Unis. Désabusé du « modèle américain », il est rentré il y a peu, ramenant avec lui son savoir d'expatrié.", 
+                likes: "Partager son savoir", dislikes: "Le modèle américain" 
+            },
+            { 
+                id: "jeanine", name: "Jeanine", img: "Jeanine.png", tag: "La tortue centenaire", 
+                bio: "Son savoir est aussi grand que sa générosité. Espiègle, elle n'hésite pas à entrainer ses visiteurs dans des récits inspirés et inspirants.", 
+                likes: "Raconter des histoires inspirantes", dislikes: "La précipitation" 
+            },
+            { 
+                id: "kcor", name: "Kçor", img: "Kçor.png", tag: "Le mystère du Bassac", 
+                bio: "Un personnage encore mystérieux qui arpente les environs du Bassac... (Histoire en cours d'écriture !)", 
+                likes: "Garder ses secrets", dislikes: "Qu'on dévoile la fin de l'histoire" 
+            },
+            { 
+                id: "loumpour", name: "Loumpour", img: "Loumpour.jpg", tag: "La jeune koala curieuse", 
+                bio: "Curieuse de tout, elle adore grimper aux arbres et apprendre de nouvelles choses. Elle est aussi très connaisseuse en matière de sport.", 
+                likes: "Grimper aux arbres, le sport et apprendre", dislikes: "L'ennui" 
+            },
+            { 
+                id: "mala", name: "Mala", img: "Mala.png", tag: "Le rat réfugié", 
+                bio: "Ce rat malheureux a fui la guerre dans son pays pour venir se réfugier dans la région. Fragile, il est en quête d'un abri de fortune pour améliorer son existence, et de nouveaux amis pour donner du sens à sa vie.", 
+                likes: "La sécurité et se faire de nouveaux amis", dislikes: "La guerre et la solitude" 
+            },
+            { 
+                id: "serge", name: "Serge & Bernard", img: "Serge-Bernard.png", tag: "Les lamas jumeaux", 
+                bio: "Bien que leur humour vole parfois au ras des pâquerettes qu'ils broutent, ils sont toujours intéressés par apprendre de nouvelles choses et adorent chercher des trésors.", 
+                likes: "Chercher des trésors et brouter les pâquerettes", dislikes: "L'humour trop sophistiqué" 
+            }
         ];
 
         const frise = document.getElementById('frise');
@@ -127,6 +162,7 @@
             const img = document.createElement('img');
             img.src = hero.img;
             img.className = 'vignette-choix';
+            img.alt = hero.name;
             img.onclick = () => showHero(index, img);
             frise.appendChild(img);
             
@@ -137,7 +173,7 @@
         function showHero(index, element) {
             const h = heros[index];
             
-            // Update UI
+            // Mise à jour de l'affichage
             document.getElementById('hero-name').innerText = h.name;
             document.getElementById('hero-tagline').innerText = h.tag;
             document.getElementById('hero-bio').innerText = h.bio;
@@ -145,7 +181,7 @@
             document.getElementById('hero-dislikes').innerText = h.dislikes;
             document.getElementById('hero-img').src = h.img;
 
-            // Update Active Class
+            // Gestion de la classe "active" pour l'effet visuel sur la frise
             document.querySelectorAll('.vignette-choix').forEach(v => v.classList.remove('active'));
             element.classList.add('active');
         }
