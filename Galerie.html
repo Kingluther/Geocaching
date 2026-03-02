@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie des Héros - Chasses aux trésors scénarisées</title>
+    <style>
+        :root {
+            --brun-sombre: #3e2723;
+            --brun-clair: #8d6e63;
+            --fond: #fdfaf4;
+        }
+
+        body { margin: 0; font-family: 'Trebuchet MS', sans-serif; background-color: var(--brun-sombre); color: white; overflow-x: hidden; }
+        
+        /* Navigation identique à l'accueil */
+        nav { background-color: rgba(0,0,0,0.5); padding: 15px; display: flex; gap: 20px; justify-content: center; position: sticky; top: 0; z-index: 100; }
+        nav a { color: #f5f5f5; text-decoration: none; font-weight: bold; padding: 8px 15px; border-radius: 4px; }
+        nav a:hover { background: var(--brun-clair); }
+
+        /* Frise des personnages en haut */
+        .frise-container {
+            background: rgba(0,0,0,0.3);
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            overflow-x: auto;
+            border-bottom: 2px solid var(--brun-clair);
+        }
+
+        .vignette-choix {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            cursor: pointer;
+            filter: grayscale(100%) brightness(0.7);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            object-fit: cover;
+        }
+
+        .vignette-choix:hover, .vignette-choix.active {
+            filter: grayscale(0%) brightness(1);
+            border-color: #ffeb3b;
+            transform: scale(1.1);
+        }
+
+        /* Zone d'affichage du personnage */
+        .hero-display {
+            display: flex;
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+            align-items: center;
+            min-height: 500px;
+            background: url('fond-nature.jpg') center/cover; /* Optionnel : une image de fougères en fond */
+            border-radius: 20px;
+        }
+
+        .hero-info { flex: 1; padding: 40px; background: rgba(0,0,0,0.6); border-radius: 15px; border-left: 5px solid var(--brun-clair); }
+        .hero-info h2 { color: #ffeb3b; font-size: 2.5em; margin-top: 0; }
+        .hero-info p { line-height: 1.6; font-size: 1.1em; }
+
+        .hero-image-container { flex: 1; text-align: center; }
+        .hero-large-img { max-width: 90%; max-height: 450px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); }
+
+        .tagline { font-style: italic; color: #ddd; margin-bottom: 20px; }
+        .likes-dislikes { display: flex; gap: 40px; margin-top: 30px; }
+        .likes h4 { color: #4caf50; margin-bottom: 5px; }
+        .dislikes h4 { color: #e74c3c; margin-bottom: 5px; }
+
+        @media (max-width: 768px) {
+            .hero-display { flex-direction: column-reverse; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">📍 Carte des Quêtes</a>
+        <a href="galerie.html" style="background: var(--brun-clair);">🎭 Galerie des Héros</a>
+    </nav>
+
+    <div class="frise-container" id="frise">
+        </div>
+
+    <div class="hero-display" id="hero-content">
+        <div class="hero-info">
+            <p id="hero-tagline" class="tagline"></p>
+            <h2 id="hero-name">Sélectionnez un héros</h2>
+            <p id="hero-bio">Cliquez sur un personnage dans la frise pour découvrir son histoire...</p>
+            
+            <div class="likes-dislikes">
+                <div class="likes">
+                    <h4>Aime</h4>
+                    <p id="hero-likes">-</p>
+                </div>
+                <div class="dislikes">
+                    <h4>N'aime pas</h4>
+                    <p id="hero-dislikes">-</p>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image-container">
+            <img src="" id="hero-img" class="hero-large-img" alt="">
+        </div>
+    </div>
+
+    <script>
+        // Base de données des personnages (Ordre alphabétique)
+        const heros = [
+            { id: "al", name: "Al", img: "Al.png", tag: "L'expert du détail", bio: "Bio de Al à remplir...", likes: "Le calme", dislikes: "Le bruit" },
+            { id: "casso", name: "Casso, Cabia & Saro", img: "Casso-Cabia-Saro.png", tag: "Le trio inséparable", bio: "Ils ne vont jamais l'un sans l'autre...", likes: "L'aventure", dislikes: "La solitude" },
+            { id: "didier", name: "Didier", img: "Didier.png", tag: "Le pisteur", bio: "Didier connaît chaque recoin de Colomiers.", likes: "Les cartes", dislikes: "Se perdre" },
+            { id: "harry", name: "Harry", img: "Harry.png", tag: "Le magicien", bio: "Harry transforme chaque énigme en tour de magie.", likes: "Les chapeaux", dislikes: "Les lapins capricieux" },
+            { id: "jeanine", name: "Jeanine", img: "Jeanine.png", tag: "L'armurière du Cabirol", bio: "Gardienne de la mare, elle veille sur les trésors.", likes: "Le fer forgé", dislikes: "La rouille" },
+            { id: "kcor", name: "Kçor", img: "Kçor.png", tag: "Le mystère du Bassac", bio: "On dit qu'il apparaît quand la brume se lève.", likes: "L'ombre", dislikes: "La lumière directe" },
+            { id: "mala", name: "Mala", img: "Mala.png", tag: "La conteuse", bio: "Elle connaît toutes les légendes oubliées.", likes: "Les vieux livres", dislikes: "Les oublis" },
+            { id: "serge", name: "Serge & Bernard", img: "Serge-Bernard.png", tag: "Les compères du Bassac", bio: "Un duo de choc pour des énigmes corsées.", likes: "La rigolade", dislikes: "Les disputes" }
+        ];
+
+        const frise = document.getElementById('frise');
+
+        // Génération de la frise
+        heros.forEach((hero, index) => {
+            const img = document.createElement('img');
+            img.src = hero.img;
+            img.className = 'vignette-choix';
+            img.onclick = () => showHero(index, img);
+            frise.appendChild(img);
+            
+            // Charger le premier par défaut
+            if(index === 0) showHero(0, img);
+        });
+
+        function showHero(index, element) {
+            const h = heros[index];
+            
+            // Update UI
+            document.getElementById('hero-name').innerText = h.name;
+            document.getElementById('hero-tagline').innerText = h.tag;
+            document.getElementById('hero-bio').innerText = h.bio;
+            document.getElementById('hero-likes').innerText = h.likes;
+            document.getElementById('hero-dislikes').innerText = h.dislikes;
+            document.getElementById('hero-img').src = h.img;
+
+            // Update Active Class
+            document.querySelectorAll('.vignette-choix').forEach(v => v.classList.remove('active'));
+            element.classList.add('active');
+        }
+    </script>
+</body>
+</html>
