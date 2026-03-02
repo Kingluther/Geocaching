@@ -1,1 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Enigmes de Colomiers</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+        body { margin: 0; font-family: 'Trebuchet MS', sans-serif; background-color: #fdfaf4; }
+        nav { background-color: #3e2723; padding: 15px; display: flex; gap: 20px; justify-content: center; }
+        nav a { color: #f5f5f5; text-decoration: none; font-weight: bold; padding: 8px 15px; border-radius: 4px; }
+        nav a.active { background-color: #8d6e63; }
+        header { text-align: center; padding: 20px; color: #3e2723; }
+        
+        #map { 
+            height: 600px; 
+            width: 95%; 
+            max-width: 1100px;
+            margin: 0 auto 40px auto; 
+            border: 4px solid #3e2723; 
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
 
+        /* Style des Pop-ups */
+        .popup-card { text-align: center; min-width: 200px; padding: 5px; }
+        
+        .vignette-perso {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 3px solid #8d6e63;
+            object-fit: cover;
+            margin: 0 auto 10px auto;
+            display: block;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .popup-card h3 { color: #8d6e63; margin: 5px 0; font-size: 1.1em; }
+        .stats { font-size: 0.85em; margin: 8px 0; color: #444; background: #f0f0f0; padding: 8px; border-radius: 8px; line-height: 1.4; }
+        
+        .btn-play {
+            display: inline-block;
+            background-color: #4caf50;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 5px;
+            font-size: 0.9em;
+        }
+
+        /* Style pour les avatars SUR la carte */
+        .map-avatar {
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            background-color: white;
+        }
+        .icon-coming-soon { filter: grayscale(100%) opacity(0.6); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="active">📍 Carte des Quêtes</a>
+        <a href="galerie.html">🎭 Galerie des Héros</a>
+    </nav>
+
+    <header>
+        <h1>Aventures Scénarisées à Colomiers</h1>
+        <p>Cliquez sur un héros pour découvrir sa mission</p>
+    </header>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        // Initialisation
+        var map = L.map('map').setView([43.611, 1.330], 14);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap'
+        }).addTo(map);
+
+        // --- DÉFINITION DES ICÔNES MARQUEURS ---
+        var IconLoumpour = L.icon({
+            iconUrl: 'Loumpour.png',
+            iconSize: [50, 50],
+            iconAnchor: [25, 25],
+            popupAnchor: [0, -25],
+            className: 'map-avatar'
+        });
+
+        var IconJeanine = L.icon({
+            iconUrl: 'Jeanine.png',
+            iconSize: [50, 50],
+            iconAnchor: [25, 25],
+            popupAnchor: [0, -25],
+            className: 'map-avatar'
+        });
+
+        var IconKcor = L.icon({
+            iconUrl: 'Kçor.png',
+            iconSize: [50, 50],
+            iconAnchor: [25, 25],
+            popupAnchor: [0, -25],
+            className: 'map-avatar icon-coming-soon'
+        });
+
+        // --- AJOUT DES PARCOURS ---
+
+        // 1. Firmin Pons
+        L.marker([43.6121, 1.3346], {icon: IconLoumpour}).addTo(map)
+            .bindPopup(`
+                <div class="popup-card">
+                    <img src="Loumpour.png" class="vignette-perso">
+                    <h3>Le trésor de Colomiers</h3>
+                    <div class="stats">
+                        <b>Difficulté :</b> 2/5 | <b>Terrain :</b> 1.5/5<br>
+                        ⏳ 60 à 90 mn
+                    </div>
+                    <a href="https://kingluther.github.io/Geocaching/Chasse.html" class="btn-play" target="_blank">Rejoindre Loumpour</a>
+                </div>
+            `);
+
+        // 2. Cabirol
+        L.marker([43.6067, 1.3197], {icon: IconJeanine}).addTo(map)
+            .bindPopup(`
+                <div class="popup-card">
+                    <img src="Jeanine.png" class="vignette-perso">
+                    <h3>L'armurier du Cabirol</h3>
+                    <div class="stats">
+                        <b>Difficulté :</b> 1.5/5 | <b>Terrain :</b> 2.5/5<br>
+                        ⏳ 1h15 à 1h45
+                    </div>
+                    <a href="https://kingluther.github.io/Geocaching/Chasse2.html" class="btn-play" target="_blank">Aider Jeanine</a>
+                </div>
+            `);
+
+        // 3. Le Bassac (Grisé)
+        L.marker([43.6215, 1.3160], {icon: IconKcor}).addTo(map)
+            .bindPopup(`
+                <div class="popup-card">
+                    <img src="Kçor.png" class="vignette-perso" style="filter: grayscale(100%)">
+                    <h3 style="color: #888;">Des hauts(sonelle) et des bas(sac)</h3>
+                    <div class="stats">🚧 En cours de préparation...</div>
+                </div>
+            `);
+    </script>
+</body>
+</html>
