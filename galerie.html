@@ -13,16 +13,18 @@
 
         body { margin: 0; font-family: 'Trebuchet MS', sans-serif; background-color: var(--brun-sombre); color: white; overflow-x: hidden; }
         
+        /* Navigation */
         nav { background-color: rgba(0,0,0,0.5); padding: 15px; display: flex; gap: 20px; justify-content: center; position: sticky; top: 0; z-index: 100; }
-        nav a { color: #f5f5f5; text-decoration: none; font-weight: bold; padding: 8px 15px; border-radius: 4px; }
+        nav a { color: #f5f5f5; text-decoration: none; font-weight: bold; padding: 8px 15px; border-radius: 4px; transition: background 0.3s; }
         nav a:hover { background: var(--brun-clair); }
 
+        /* Frise des personnages en haut */
         .frise-container {
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.4);
             padding: 20px 0;
             display: flex;
             justify-content: center;
-            flex-wrap: wrap; /* Permet aux vignettes de passer à la ligne sur petit écran */
+            flex-wrap: wrap; /* Permet le passage à la ligne sur les petits écrans */
             gap: 15px;
             border-bottom: 2px solid var(--brun-clair);
         }
@@ -32,19 +34,24 @@
             height: 70px;
             border-radius: 50%;
             cursor: pointer;
-            filter: grayscale(100%) brightness(0.7);
+            filter: grayscale(100%) brightness(0.6);
             transition: all 0.3s ease;
-            border: 2px solid transparent;
+            border: 3px solid transparent;
             object-fit: cover;
-            background-color: white; /* Fond blanc si l'image est transparente */
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
 
+        /* Effet quand la vignette est active ou survolée */
         .vignette-choix:hover, .vignette-choix.active {
             filter: grayscale(0%) brightness(1);
             border-color: #ffeb3b;
-            transform: scale(1.1);
+            transform: scale(1.15);
+            box-shadow: 0 0 15px rgba(255, 235, 59, 0.5);
+            z-index: 10;
         }
 
+        /* Zone d'affichage du personnage */
         .hero-display {
             display: flex;
             max-width: 1100px;
@@ -53,20 +60,21 @@
             align-items: center;
             min-height: 500px;
             border-radius: 20px;
+            /* Tu pourras remplacer cette couleur par une image de fond via "background: url('fond.jpg');" si tu le souhaites */
             background: linear-gradient(135deg, rgba(62,39,35,1) 0%, rgba(141,110,99,1) 100%);
         }
 
-        .hero-info { flex: 1; padding: 40px; background: rgba(0,0,0,0.5); border-radius: 15px; border-left: 5px solid var(--brun-clair); }
-        .hero-info h2 { color: #ffeb3b; font-size: 2.5em; margin-top: 0; }
+        .hero-info { flex: 1; padding: 40px; background: rgba(0,0,0,0.6); border-radius: 15px; border-left: 5px solid #ffeb3b; }
+        .hero-info h2 { color: #ffeb3b; font-size: 2.5em; margin-top: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
         .hero-info p { line-height: 1.6; font-size: 1.1em; }
 
         .hero-image-container { flex: 1; text-align: center; }
-        .hero-large-img { max-width: 90%; max-height: 400px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6)); border-radius: 10px; }
+        .hero-large-img { max-width: 90%; max-height: 450px; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.8)); transition: opacity 0.3s; }
 
         .tagline { font-style: italic; color: #ddd; margin-bottom: 20px; font-size: 1.2em; }
         .likes-dislikes { display: flex; gap: 40px; margin-top: 30px; flex-wrap: wrap; }
-        .likes h4 { color: #4caf50; margin-bottom: 5px; font-size: 1.2em; }
-        .dislikes h4 { color: #e74c3c; margin-bottom: 5px; font-size: 1.2em; }
+        .likes h4 { color: #4caf50; margin-bottom: 5px; font-size: 1.2em; text-transform: uppercase; }
+        .dislikes h4 { color: #e74c3c; margin-bottom: 5px; font-size: 1.2em; text-transform: uppercase; }
 
         @media (max-width: 768px) {
             .hero-display { flex-direction: column-reverse; }
@@ -87,16 +95,16 @@
         <div class="hero-info">
             <p id="hero-tagline" class="tagline"></p>
             <h2 id="hero-name">Sélectionnez un héros</h2>
-            <p id="hero-bio">Cliquez sur un personnage dans la frise pour découvrir son histoire...</p>
+            <p id="hero-bio"></p>
             
             <div class="likes-dislikes">
                 <div class="likes">
                     <h4>Aime</h4>
-                    <p id="hero-likes">-</p>
+                    <p id="hero-likes"></p>
                 </div>
                 <div class="dislikes">
                     <h4>N'aime pas</h4>
-                    <p id="hero-dislikes">-</p>
+                    <p id="hero-dislikes"></p>
                 </div>
             </div>
         </div>
@@ -106,85 +114,13 @@
     </div>
 
     <script>
-        // Base de données des personnages (Ordre alphabétique avec tes bios intégrées)
-        const heros = [
-            { 
-                id: "al", name: "Al", img: "Al.png", tag: "Le margouillat farceur", 
+        // 1. Dictionnaire des Profils (les données à afficher)
+        // C'est ici que l'on définit la grande image ("bioImg") : Al bio.png, Lama.png, Pies.png, etc.
+        const profils = {
+            al: { 
+                name: "Al", bioImg: "Al bio.png", tag: "Le margouillat farceur", 
                 bio: "Gekko réunionnais, aussi surnommé « le margouillat », il adore raconter des blagues... pas toujours drôles il est vrai. Sa spécialité ? Monter aux murs, bien sûr !", 
                 likes: "Les bonnes blagues et l'escalade", dislikes: "Tomber d'un mur en plein fou rire" 
             },
-            { 
-                id: "casso", name: "Saro, Cabia & Casso", img: "Casso-Cabia-Saro.png", tag: "Les trois pies artistes", 
-                bio: "Chacune avec son style différent, bien sûr. Férues d'art visuel et de paysages champêtres, elles vous guideront à la découverte de la peinture et des autres arts.", 
-                likes: "L'art visuel et les paysages champêtres", dislikes: "Les toiles blanches et le manque d'inspiration" 
-            },
-            { 
-                id: "didier", name: "Didier", img: "Didier.png", tag: "Le butineur tête en l'air", 
-                bio: "Son truc à lui, c'est butiner. Fin connaisseur de fleurs et de parfums, il est assez tête en l'air et volette à sa guise par monts et par vaux.", 
-                likes: "Les fleurs et les beaux parfums", dislikes: "Rester immobile" 
-            },
-            { 
-                id: "harry", name: "Harry", img: "Harry.png", tag: "Le yak expatrié", 
-                bio: "Harry a passé quelques années de sa vie aux Etats-Unis. Désabusé du « modèle américain », il est rentré il y a peu, ramenant avec lui son savoir d'expatrié.", 
-                likes: "Partager son savoir", dislikes: "Le modèle américain" 
-            },
-            { 
-                id: "jeanine", name: "Jeanine", img: "Jeanine.png", tag: "La tortue centenaire", 
-                bio: "Son savoir est aussi grand que sa générosité. Espiègle, elle n'hésite pas à entrainer ses visiteurs dans des récits inspirés et inspirants.", 
-                likes: "Raconter des histoires inspirantes", dislikes: "La précipitation" 
-            },
-            { 
-                id: "kcor", name: "Kçor", img: "Kçor.png", tag: "Le mystère du Bassac", 
-                bio: "Un personnage encore mystérieux qui arpente les environs du Bassac... (Histoire en cours d'écriture !)", 
-                likes: "Garder ses secrets", dislikes: "Qu'on dévoile la fin de l'histoire" 
-            },
-            { 
-                id: "loumpour", name: "Loumpour", img: "Loumpour.jpg", tag: "La jeune koala curieuse", 
-                bio: "Curieuse de tout, elle adore grimper aux arbres et apprendre de nouvelles choses. Elle est aussi très connaisseuse en matière de sport.", 
-                likes: "Grimper aux arbres, le sport et apprendre", dislikes: "L'ennui" 
-            },
-            { 
-                id: "mala", name: "Mala", img: "Mala.png", tag: "Le rat réfugié", 
-                bio: "Ce rat malheureux a fui la guerre dans son pays pour venir se réfugier dans la région. Fragile, il est en quête d'un abri de fortune pour améliorer son existence, et de nouveaux amis pour donner du sens à sa vie.", 
-                likes: "La sécurité et se faire de nouveaux amis", dislikes: "La guerre et la solitude" 
-            },
-            { 
-                id: "serge", name: "Serge & Bernard", img: "Serge-Bernard.png", tag: "Les lamas jumeaux", 
-                bio: "Bien que leur humour vole parfois au ras des pâquerettes qu'ils broutent, ils sont toujours intéressés par apprendre de nouvelles choses et adorent chercher des trésors.", 
-                likes: "Chercher des trésors et brouter les pâquerettes", dislikes: "L'humour trop sophistiqué" 
-            }
-        ];
-
-        const frise = document.getElementById('frise');
-
-        // Génération de la frise
-        heros.forEach((hero, index) => {
-            const img = document.createElement('img');
-            img.src = hero.img;
-            img.className = 'vignette-choix';
-            img.alt = hero.name;
-            img.onclick = () => showHero(index, img);
-            frise.appendChild(img);
-            
-            // Charger le premier par défaut
-            if(index === 0) showHero(0, img);
-        });
-
-        function showHero(index, element) {
-            const h = heros[index];
-            
-            // Mise à jour de l'affichage
-            document.getElementById('hero-name').innerText = h.name;
-            document.getElementById('hero-tagline').innerText = h.tag;
-            document.getElementById('hero-bio').innerText = h.bio;
-            document.getElementById('hero-likes').innerText = h.likes;
-            document.getElementById('hero-dislikes').innerText = h.dislikes;
-            document.getElementById('hero-img').src = h.img;
-
-            // Gestion de la classe "active" pour l'effet visuel sur la frise
-            document.querySelectorAll('.vignette-choix').forEach(v => v.classList.remove('active'));
-            element.classList.add('active');
-        }
-    </script>
-</body>
-</html>
+            pies: { 
+                name: "Saro, Cabia et Casso", bioImg: "P
