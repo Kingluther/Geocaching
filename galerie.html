@@ -24,7 +24,7 @@
             padding: 20px 0;
             display: flex;
             justify-content: center;
-            flex-wrap: wrap; /* Permet le passage à la ligne sur les petits écrans */
+            flex-wrap: wrap; 
             gap: 15px;
             border-bottom: 2px solid var(--brun-clair);
         }
@@ -60,7 +60,6 @@
             align-items: center;
             min-height: 500px;
             border-radius: 20px;
-            /* Tu pourras remplacer cette couleur par une image de fond via "background: url('fond.jpg');" si tu le souhaites */
             background: linear-gradient(135deg, rgba(62,39,35,1) 0%, rgba(141,110,99,1) 100%);
         }
 
@@ -109,13 +108,12 @@
             </div>
         </div>
         <div class="hero-image-container">
-            <img src="" id="hero-img" class="hero-large-img" alt="">
+            <img src="" id="hero-img" class="hero-large-img" alt="Illustration du personnage">
         </div>
     </div>
 
     <script>
-        // 1. Dictionnaire des Profils (les données à afficher)
-        // C'est ici que l'on définit la grande image ("bioImg") : Al bio.png, Lama.png, Pies.png, etc.
+        // 1. Dictionnaire des Profils
         const profils = {
             al: { 
                 name: "Al", bioImg: "Al bio.png", tag: "Le margouillat farceur", 
@@ -164,8 +162,7 @@
             }
         };
 
-        // 2. Liste des vignettes de la frise (Ordre alphabétique des prénoms)
-        // Chaque vignette pointe vers un "profil" défini au-dessus.
+        // 2. Liste des vignettes de la frise (Ordre alphabétique)
         const friseIcons = [
             { id: "al", img: "Al.png", profilCible: "al" },
             { id: "bernard", img: "Bernard.png", profilCible: "lamas" },
@@ -183,19 +180,19 @@
 
         const friseContainer = document.getElementById('frise');
 
-        // 3. Génération dynamique de la frise
+        // 3. Génération de la frise
         friseIcons.forEach((icon) => {
             const imgElement = document.createElement('img');
             imgElement.src = icon.img;
             imgElement.className = 'vignette-choix';
             imgElement.alt = icon.id;
-            imgElement.dataset.profil = icon.profilCible; // On stocke l'info du profil lié dans le HTML
+            imgElement.dataset.profil = icon.profilCible; 
             
             imgElement.onclick = () => showHero(icon.profilCible);
             friseContainer.appendChild(imgElement);
         });
 
-        // 4. Fonction pour afficher les infos
+        // 4. Fonction d'affichage
         function showHero(idProfil) {
             const data = profils[idProfil];
             
@@ -207,18 +204,18 @@
             document.getElementById('hero-dislikes').innerText = data.dislikes;
             document.getElementById('hero-img').src = data.bioImg;
 
-            // Effet visuel dans la frise : on allume toutes les vignettes qui partagent ce profil
+            // Mise en surbrillance des vignettes correspondantes
             const toutesLesVignettes = document.querySelectorAll('.vignette-choix');
             toutesLesVignettes.forEach(vignette => {
                 if (vignette.dataset.profil === idProfil) {
-                    vignette.classList.add('active'); // S'allume (les jumeaux ou les pies s'allumeront ensemble)
+                    vignette.classList.add('active');
                 } else {
-                    vignette.classList.remove('active'); // S'éteint
+                    vignette.classList.remove('active');
                 }
             });
         }
 
-        // On charge "Al" par défaut au démarrage de la page
+        // Chargement du premier profil par défaut
         showHero("al");
     </script>
 </body>
