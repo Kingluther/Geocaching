@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signaler un problème - Colomiers</title>
+    <style>
+        body { margin: 0; font-family: 'Trebuchet MS', sans-serif; background-color: #fdfaf4; color: #333; }
+        nav { background-color: #3e2723; padding: 15px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        nav a { color: #f5f5f5; text-decoration: none; font-weight: bold; padding: 8px 15px; border-radius: 4px; transition: background 0.3s; }
+        nav a:hover { background-color: #8d6e63; }
+        nav a.active { background-color: #8d6e63; }
+        
+        .content {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 40px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 5px solid #e74c3c;
+        }
+
+        h1 { color: #3e2723; text-align: center; margin-bottom: 10px; }
+        p.intro { text-align: center; color: #666; margin-bottom: 30px; }
+
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: bold; margin-bottom: 8px; color: #555; }
+        input[type="text"], input[type="email"], select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+        select option:disabled { color: #aaa; font-style: italic; }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-submit:hover { background-color: #c0392b; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">📍 Carte des Quêtes</a>
+        <a href="galerie.html">🎭 Galerie des Héros</a>
+        <a href="geocaching.html">🧭 Qu'est-ce que le géocaching scénarisé ?</a>
+        <a href="probleme.html" class="active">⚠️ Un problème avec une cache ?</a>
+    </nav>
+
+    <div class="content">
+        <h1>Signaler un problème</h1>
+        <p class="intro">Utilisez ce formulaire pour m'avertir si un parcours nécessite une maintenance (vous pouvez aussi m'écrire directement à <b>kingluther@free.fr</b>).</p>
+
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="prenom">Prénom (Facultatif)</label>
+                <input type="text" id="prenom" placeholder="Votre prénom">
+            </div>
+
+            <div class="form-group">
+                <label for="nom">Nom (Facultatif)</label>
+                <input type="text" id="nom" placeholder="Votre nom">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Votre adresse e-mail (Facultatif - pour vous répondre)</label>
+                <input type="email" id="email" placeholder="exemple@mail.com">
+            </div>
+
+            <div class="form-group">
+                <label for="parcours">Quel est le parcours concerné ? *</label>
+                <select id="parcours" required>
+                    <option value="" disabled selected>-- Sélectionnez un parcours --</option>
+                    <option value="Le trésor de Colomiers">Le trésor de Colomiers</option>
+                    <option value="L'armurier du Cabirol">L'armurier du Cabirol</option>
+                    <option value="Des hauts(sonnelle) et des bas(sac)" disabled>Des hauts(sonnelle) et des bas(sac) (En cours)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="typeProbleme">Nature du problème *</label>
+                <select id="typeProbleme" required>
+                    <option value="" disabled selected>-- Sélectionnez un problème --</option>
+                    <option value="Cache vandalisée">Cache vandalisée</option>
+                    <option value="Cache disparue">Cache disparue</option>
+                    <option value="Cache non trouvée">Cache non trouvée / Bloqué sur une énigme</option>
+                    <option value="Autre">Autre problème...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Détails / Précisions (Facultatif mais utile !)</label>
+                <textarea id="message" rows="5" placeholder="Décrivez le problème que vous avez rencontré..."></textarea>
+            </div>
+
+            <button type="button" class="btn-submit" onclick="preparerEmail()">Préparer mon message</button>
+        </form>
+    </div>
+
+    <script>
+        function preparerEmail() {
+            var parcours = document.getElementById("parcours").value;
+            var typeProbleme = document.getElementById("typeProbleme").value;
+            
+            if(!parcours || !typeProbleme) {
+                alert("Merci de sélectionner au moins le parcours et la nature du problème !");
+                return;
+            }
+
+            var prenom = document.getElementById("prenom").value;
+            var nom = document.getElementById("nom").value;
+            var email = document.getElementById("email").value;
+            var message = document.getElementById("message").value;
+
+            // Construction de l'objet du mail
+            var subject = encodeURIComponent("[Geocaching] " + typeProbleme + " - " + parcours);
+            
+            // Construction du corps du mail
+            var body = "Bonjour,\n\nJe vous signale le problème suivant sur l'une de vos caches :\n\n";
+            body += "Parcours : " + parcours + "\n";
+            body += "Problème : " + typeProbleme + "\n";
+            if(message) body += "\nDétails : \n" + message + "\n";
+            
+            body += "\n----------------------\n";
+            if(prenom || nom) body += "Signalé par : " + prenom + " " + nom + "\n";
+            if(email) body += "Me recontacter à : " + email + "\n";
+
+            // Ouverture du logiciel de messagerie de l'utilisateur
+            window.location.href = "mailto:kingluther@free.fr?subject=" + subject + "&body=" + encodeURIComponent(body);
+        }
+    </script>
+</body>
+</html>
