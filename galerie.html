@@ -71,9 +71,8 @@
         .hero-large-img { max-width: 90%; max-height: 450px; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.8)); transition: opacity 0.3s; }
 
         .tagline { font-style: italic; color: #ddd; margin-bottom: 20px; font-size: 1.2em; }
-        .likes-dislikes { display: flex; gap: 40px; margin-top: 30px; flex-wrap: wrap; }
-        .likes h4 { color: #4caf50; margin-bottom: 5px; font-size: 1.2em; text-transform: uppercase; }
-        .dislikes h4 { color: #e74c3c; margin-bottom: 5px; font-size: 1.2em; text-transform: uppercase; }
+        .rencontrer { margin-top: 30px; }
+        .rencontrer h4 { color: #4caf50; margin-bottom: 5px; font-size: 1.2em; text-transform: uppercase; }
 
         @media (max-width: 768px) {
             .hero-display { flex-direction: column-reverse; }
@@ -84,9 +83,7 @@
 
     <nav>
         <a href="index.html">📍 Carte des Quêtes</a>
-        <a href="galerie.html" class="active" style="background: var(--brun-clair);">🎭 Galerie des Héros</a>
-        <a href="geocaching.html">🧭 Qu'est-ce que le géocaching scénarisé ?</a>
-        <a href="probleme.html">⚠️ Un problème avec une cache ?</a>
+        <a href="galerie.html" style="background: var(--brun-clair);">🎭 Galerie des Héros</a>
     </nav>
 
     <div class="frise-container" id="frise">
@@ -98,19 +95,30 @@
             <h2 id="hero-name">Sélectionnez un héros</h2>
             <p id="hero-bio"></p>
             
-            <div class="likes-dislikes">
-                <div class="likes">
-                    <h4>Aime</h4>
-                    <p id="hero-likes"></p>
-                </div>
-                <div class="dislikes">
-                    <h4>N'aime pas</h4>
-                    <p id="hero-dislikes"></p>
-                </div>
+            <div class="rencontrer">
+                <h4>Où les rencontrer</h4>
+                <p id="hero-rencontrer"></p>
             </div>
         </div>
         <div class="hero-image-container">
             <img src="" id="hero-img" class="hero-large-img" alt="Illustration du personnage">
+        </div>
+    </div>
+
+    <div class="container" style="max-width: 1100px; margin: 0 auto; width: 95%; padding-bottom: 40px;">
+        <div class="support-box" style="margin-top: 30px; padding: 20px; background-color: #f9f9f9; border: 2px solid #ddd; border-radius: 10px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+            <div style="flex-grow: 1;">
+                <p style="font-size: 15px; color: #444; margin-top: 0; line-height: 1.5;">
+                    Tous ces parcours sont réalisés à titre bénévole et offerts généreusement. Si vous souhaitez et pouvez soutenir son créateur, n'hésitez pas à faire un don à la hauteur de vos moyens (ou de votre engouement).
+                </p>
+                <div id="paypal-container-QRBLL5TG5VCV8" style="max-width: 300px; margin: 15px auto 0 auto;"></div>
+                <script src="https://www.paypal.com/sdk/js?client-id=BAAUS3_NIDV8soA10_b5bKgMnexRFb8e5KeIbCj1SEfS6MR5cqf6U6p6PhCiRqAguCQ9hWXK5l5kl4UGRM&components=hosted-buttons&disable-funding=venmo&currency=EUR"></script>
+                <script>
+                    paypal.HostedButtons({
+                        hostedButtonId: "QRBLL5TG5VCV8",
+                    }).render("#paypal-container-QRBLL5TG5VCV8");
+                </script>
+            </div>
         </div>
     </div>
 
@@ -120,64 +128,71 @@
             al: { 
                 name: "Al", bioImg: "Al bio.png", tag: "Le margouillat farceur", 
                 bio: "Gekko réunionnais, aussi surnommé « le margouillat », il adore raconter des blagues... pas toujours drôles il est vrai. Sa spécialité ? Monter aux murs, bien sûr !", 
-                likes: "Les bonnes blagues et l'escalade", dislikes: "Tomber d'un mur en plein fou rire" 
+                rencontrer: "Des hauts(sonelle) et des bas(sac)" 
             },
             pies: { 
                 name: "Saro, Cabia et Casso", bioImg: "Pies.png", tag: "Les trois pies artistes", 
                 bio: "Chacune avec son style différent, bien sûr. Férues d'art visuel et de paysages champêtres, elles vous guideront à la découverte de la peinture et des autres arts.", 
-                likes: "L'art visuel et les paysages champêtres", dislikes: "Les toiles blanches et le manque d'inspiration" 
+                rencontrer: "L'armurier du Cabirol" "Chats Perget"
             },
             didier: { 
                 name: "Didier", bioImg: "Didier bio.png", tag: "Le butineur tête en l'air", 
                 bio: "Son truc à lui, c'est butiner. Fin connaisseur de fleurs et de parfums, il est assez tête en l'air et volette à sa guise par monts et par vaux.", 
-                likes: "Les fleurs et les beaux parfums", dislikes: "Rester immobile et la grisaille" 
+                rencontrer: "Le trésor de Colomiers" 
             },
             harry: { 
                 name: "Harry", bioImg: "Harry bio.png", tag: "Le yak expatrié", 
                 bio: "Harry a passé quelques années de sa vie aux Etats-Unis. Désabusé du « modèle américain », il est rentré il y a peu, ramenant avec lui son savoir d'expatrié.", 
-                likes: "Partager son savoir et les grands espaces", dislikes: "Le modèle américain" 
+                rencontrer: "Des hauts(sonelle) et des bas(sac)" 
             },
             jeanine: { 
                 name: "Jeanine", bioImg: "Jeanine bio.png", tag: "La tortue centenaire", 
                 bio: "Son savoir est aussi grand que sa générosité. Espiègle, elle n'hésite pas à entrainer ses visiteurs dans des récits inspirés et inspirants.", 
-                likes: "Raconter des histoires inspirantes", dislikes: "La précipitation" 
+                rencontrer: "L'Armurier du Cabirol" "Chats Perget"
             },
             kcor: { 
                 name: "Kçor", bioImg: "Kçor bio.png", tag: "Le mystère du Bassac", 
                 bio: "Un personnage encore mystérieux qui arpente les environs du Bassac... (Histoire en cours d'écriture !)", 
-                likes: "Garder ses secrets", dislikes: "Qu'on dévoile la fin de l'histoire avant l'heure" 
+                rencontrer: "Des hauts(sonelle) et des bas(sac)" "L'Armurier du Cabirol" 
             },
             loumpour: { 
                 name: "Loumpour", bioImg: "Loumpour bio.png", tag: "La jeune koala curieuse", 
                 bio: "Curieuse de tout, elle adore grimper aux arbres et apprendre de nouvelles choses. Elle est aussi très connaisseuse en matière de sport.", 
-                likes: "Grimper aux arbres, le sport et apprendre", dislikes: "L'ennui et rester au sol" 
+                rencontrer: "Le trésor de Colomiers" 
             },
             mala: { 
                 name: "Mala", bioImg: "Mala bio.png", tag: "Le rat réfugié", 
                 bio: "Ce rat malheureux a fui la guerre dans son pays pour venir se réfugier dans la région. Fragile, il est en quête d'un abri de fortune pour améliorer son existence, et de nouveaux amis pour donner du sens à sa vie.", 
-                likes: "La sécurité et se faire de nouveaux amis", dislikes: "La guerre, la solitude et le danger" 
+                rencontrer: "Des hauts(sonelle) et des bas(sac)" 
             },
             lamas: { 
-                name: "Serge et Bernard", bioImg: "Lamas.png.png", tag: "Les lamas jumeaux", 
+                name: "Serge et Bernard", bioImg: "Lama.png", tag: "Les lamas jumeaux", 
                 bio: "Bien que leur humour vole parfois au ras des pâquerettes qu'ils broutent, ils sont toujours intéressés par apprendre de nouvelles choses et adorent chercher des trésors.", 
-                likes: "Chercher des trésors et brouter les pâquerettes", dislikes: "L'humour trop sophistiqué" 
+                rencontrer: "Le trésor de Colomiers" 
+            },
+            chats: {
+                name: "Malo et Gris-nez", bioImg: "Chats bio.png", tag: "À compléter",
+                bio: "À compléter",
+                rencontrer: "Chats Perget"
             }
         };
 
-       // 2. Liste des vignettes de la frise (Ordre alphabétique)
+      // 2. Liste des vignettes de la frise (Ordre alphabétique)
         const friseIcons = [
             { id: "al", img: "Al.png", profilCible: "al" },
-            { id: "bernard", img: "Bernard.jpg", profilCible: "lamas" },
+            { id: "bernard", img: "Bernard.jpg", profilCible: "lamas" }, // Correction appliquée ici
             { id: "cabia", img: "Cabia.png", profilCible: "pies" },
             { id: "casso", img: "Casso.png", profilCible: "pies" },
-            { id: "didier", img: "Didier.jpg", profilCible: "didier" }, 
+            { id: "didier", img: "Didier.jpg", profilCible: "didier" }, // Vérifie bien l'extension .JPG ou .jpg de ton fichier
+            { id: "grisnez", img: "Grisnez.png", profilCible: "chats" },
             { id: "harry", img: "Harry.png", profilCible: "harry" },
             { id: "jeanine", img: "Jeanine.png", profilCible: "jeanine" },
             { id: "kcor", img: "Kçor.png", profilCible: "kcor" },
             { id: "loumpour", img: "Loumpour.jpg", profilCible: "loumpour" },
             { id: "mala", img: "Mala.png", profilCible: "mala" },
+            { id: "malo", img: "Malo.png", profilCible: "chats" },
             { id: "saro", img: "Saro.png", profilCible: "pies" },
-            { id: "serge", img: "Serge.jpg", profilCible: "lamas" }
+            { id: "serge", img: "Serge.jpg", profilCible: "lamas" } // Idem, à vérifier
         ];
 
         const friseContainer = document.getElementById('frise');
@@ -202,8 +217,7 @@
             document.getElementById('hero-name').innerText = data.name;
             document.getElementById('hero-tagline').innerText = data.tag;
             document.getElementById('hero-bio').innerText = data.bio;
-            document.getElementById('hero-likes').innerText = data.likes;
-            document.getElementById('hero-dislikes').innerText = data.dislikes;
+            document.getElementById('hero-rencontrer').innerText = data.rencontrer;
             document.getElementById('hero-img').src = data.bioImg;
 
             // Mise en surbrillance des vignettes correspondantes
@@ -222,8 +236,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-

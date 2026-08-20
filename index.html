@@ -60,7 +60,7 @@
                 <p style="font-size: 15px; color: #444; margin-top: 0; line-height: 1.5;">
                     Tous ces parcours sont réalisés à titre bénévole et offerts généreusement. Si vous souhaitez et pouvez soutenir son créateur, n'hésitez pas à faire un don à la hauteur de vos moyens (ou de votre engouement).
                 </p>
-                <div id="paypal-container-QRBLL5TG5VCV8"></div>
+                <div id="paypal-container-QRBLL5TG5VCV8" style="max-width: 300px; margin: 15px auto 0 auto;"></div>
                 <script src="https://www.paypal.com/sdk/js?client-id=BAAUS3_NIDV8soA10_b5bKgMnexRFb8e5KeIbCj1SEfS6MR5cqf6U6p6PhCiRqAguCQ9hWXK5l5kl4UGRM&components=hosted-buttons&disable-funding=venmo&currency=EUR"></script>
                 <script>
                     paypal.HostedButtons({
@@ -83,6 +83,8 @@
         var IconLoumpour = L.icon({ iconUrl: 'Loumpour.jpg', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar' });
         var IconJeanine = L.icon({ iconUrl: 'Jeanine.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar' });
         var IconKcor = L.icon({ iconUrl: 'Kçor.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar icon-coming-soon' });
+        var IconMalo = L.icon({ iconUrl: 'Malo.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar icon-coming-soon' });
+        var IconMalo = L.icon({ iconUrl: 'Malo.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar icon-coming-soon' });
 
         // 1. Firmin Pons (Nouvelles coordonnées)
         L.marker([43.613568947270736, 1.3370833396104178], {icon: IconLoumpour}).addTo(map)
@@ -112,6 +114,16 @@
                 <div class="popup-card">
                     <img src="Kçor.png" class="vignette-perso" style="filter: grayscale(100%)">
                     <h3 style="color: #888;">Des hauts(sonelle) et des bas(sac)</h3>
+                    <div class="stats">🚧 En cours de préparation...</div>
+                </div>
+            `);
+
+        // 4. Chats Perget
+        L.marker([43.61209987445217, 1.3200188312046506], {icon: IconMalo}).addTo(map)
+            .bindPopup(`
+                <div class="popup-card">
+                    <img src="Malo.png" class="vignette-perso" style="filter: grayscale(100%)">
+                    <h3 style="color: #888;">Chats Perget</h3>
                     <div class="stats">🚧 En cours de préparation...</div>
                 </div>
             `);
