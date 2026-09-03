@@ -25,7 +25,6 @@
             padding-bottom: 40px;
         }
 
-        /* Titre H1 supprimé des sections, H2 devient le titre de l'étape */
         h2 {
             font-size: 20px;
             color: #2980b9;
@@ -35,7 +34,6 @@
             padding-left: 10px;
         }
         
-        /* --- NOUVEAU : CADRE D'INFORMATION (HEADER) --- */
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
         
         .info-box-header {
@@ -82,19 +80,19 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 8px; /* Resserré */
+            gap: 8px;
         }
         .info-icon {
-            font-size: 20px; /* Taille de l'émoji */
+            font-size: 20px;
             cursor: help;
-            background-color: #333; /* Fond noir */
-            color: #fff; /* Symbole blanc */
-            width: 32px; /* Carré */
-            height: 32px; /* Carré */
+            background-color: #333;
+            color: #fff;
+            width: 32px;
+            height: 32px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            border-radius: 4px; /* Coins légèrement arrondis */
+            border-radius: 4px;
             line-height: 1;
         }
         .info-col-right {
@@ -103,13 +101,12 @@
             line-height: 1.6;
             font-weight: 500;
             min-width: 90px;
-            white-space: nowrap; /* Empêche le saut de ligne */
+            white-space: nowrap;
         }
         .info-col-right strong {
             color: #000;
         }
         
-        /* --- NOUVEAU : INFO PARKING --- */
         .parking-info {
             max-width: 600px;
             margin: 20px auto;
@@ -146,7 +143,6 @@
             font-size: 1.1em;
         }
 
-        /* --- STYLE : PRÉSENTATION DES PERSONNAGES (Étape 1) --- */
         .character-presentation {
             text-align: center;
             margin-bottom: 30px;
@@ -160,7 +156,6 @@
         .badge-icon { width: 91px; height: 91px; border-radius: 50%; object-fit: cover; border: 3px solid #d35400; margin: 0 3px; }
         .character-label { font-size: 0.85em; color: #d35400; font-weight: bold; margin-top: 5px; }
         
-        /* --- STYLE DES DIALOGUES (IDENTIQUE) --- */
         .dialogue-row { display: flex; align-items: flex-start; margin-bottom: 15px; }
         .avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #ccc; flex-shrink: 0; margin-right: 15px; }
         img[alt="Didier"] { border: 2px solid #2ecc71; }
@@ -168,25 +163,20 @@
         .bubble::before { content: ""; position: absolute; top: 0; left: -10px; width: 0; height: 0; border-top: 10px solid #e9eff5; border-left: 10px solid transparent; }
         .name-tag { font-size: 11px; font-weight: bold; color: #666; margin-bottom: 4px; display: block; text-transform: uppercase; }
 
-        /* --- COORDONNÉES GPS --- */
         .gps-box { text-align: center; margin: 20px 0; padding: 15px; background-color: #fff3cd; border-radius: 8px; border: 1px solid #ffeeba; }
         .gps-link { display: inline-block; margin-top: 5px; color: #856404; font-weight: bold; text-decoration: none; border-bottom: 2px dotted #856404; font-family: 'Courier New', monospace; font-size: 1.1em; }
         .gps-link:hover { background-color: #856404; color: white; }
 
-        /* --- ENCART "MISSION" (ORANGE - A à N) --- */
         .mission-box { border: 3px dashed #d35400; background-color: #fffaf0; padding: 20px; margin: 30px 0; text-align: left; font-size: 15px; border-radius: 10px; color: #333; }
         
-        /* --- ENCART "MISSION" (VERT - Etape 15) --- */
         #etape15 .mission-box { border: 3px dashed #2ecc71; background-color: #f6fff6; }
         #etape15 .mission-box h3 { color: #2ecc71; margin-top: 0; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 15px; }
         
-        /* Zone de saisie du résultat (Style unifié) */
         .answer-input-zone { display: flex; align-items: center; justify-content: center; margin: 15px 0 5px 0; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f8f9fa; }
         .answer-input-zone label { font-weight: bold; margin-right: 10px; color: #d35400; }
         #A-label, #B-label, #C-label, #D-label, #E-label, #F-label { color: #333; }
         .answer-input-zone input { width: 50px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-size: 18px; font-weight: bold; }
         
-        /* Boutons de validation (Spécifiques A-J) */
         #validate-button-A, #validate-button-B, #validate-button-C,
         #validate-button-D, #validate-button-E, #validate-button-F,
         #validate-button-G, #validate-button-H, #validate-button-I,
@@ -195,19 +185,15 @@
             font-weight: bold; font-size: 16px; cursor: pointer; transition: background-color 0.2s, color 0.2s;
         }
         
-        /* Bouton de validation (Générique L, M, N) */
-        /* Etape 13 et 14 utilisent un ID unique pour le bouton */
         #validate-button-M, #validate-button-N {
             display: block; width: 100%; padding: 12px; margin-top: 15px; border: none; border-radius: 5px;
             font-weight: bold; font-size: 16px; cursor: pointer; transition: background-color 0.2s, color 0.2s;
         }
 
-        /* Styles du bouton (Unifiés) */
         .btn-default { background-color: #bdc3c7; color: #34495e; }
         .btn-validated { background-color: #e67e22; color: white; }
         .btn-default:hover { background-color: #ccd1d1; }
 
-        /* Messages de validation (Spécifiques A-J) */
         #validation-message-A, #validation-message-B, #validation-message-C,
         #validation-message-D, #validation-message-E, #validation-message-F,
         #validation-message-G, #validation-message-H, #validation-message-I,
@@ -215,37 +201,30 @@
             margin-top: 5px; font-size: 14px; font-weight: bold; color: #e74c3c; min-height: 20px; text-align: center;
         }
 
-        /* Message de validation (Générique L, M, N) */
         #validation-message-L, #validation-message-M, #validation-message-N {
             margin-top: 5px; font-size: 14px; font-weight: bold; color: #e74c3c; min-height: 20px; text-align: center;
         }
 
-        /* --- ENCART "DIRECTION" (GRIS/NEUTRE) --- */
         .direction-box { background-color: #f8f9fa; border-left: 6px solid #95a5a6; padding: 15px 20px; margin-top: 40px; color: #555; font-style: italic; font-size: 15px; }
         .direction-box strong { color: #333; font-weight: bold; font-style: normal; }
         .direction-box .path-option { margin-top: 10px; }
         .direction-box .path-link { color: #2980b9; text-decoration: none; border-bottom: 1px dotted #2980b9; }
         
-        /* Petite classe pour les descriptions narratives (actions, sons) */
         .narrative-note { text-align: center; font-style: italic; color: #888; font-size: 13px; margin: 15px 0; }
 
-        /* --- IMAGE D'ILLUSTRATION (Spécifique aux étapes 2, 6, 7, 8) --- */
         .illustration-grande { max-width: 100%; height: auto; border-radius: 8px; margin: 20px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: block; }
         .image-link { display: block; text-align: center; margin: 20px 0; }
         
-        /* --- Styles spécifiques (Etape 10, 11, 13) --- */
         .stacked-avatars-visible { position: relative; width: 80px; height: 50px; flex-shrink: 0; margin-right: 15px; }
         .stacked-avatars-visible .avatar-left { position: absolute; top: 0; left: 0; z-index: 2; width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #ccc; }
         .stacked-avatars-visible .avatar-right { position: absolute; top: 0; left: 30px; z-index: 1; width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #ccc; }
 
-        /* Styles pour les options à choix multiple (Etape 11) */
         .mission-options { margin-top: 15px; font-weight: normal; }
         .mission-options label { display: block; margin: 5px 0; font-weight: normal; cursor: pointer; }
         .mission-options input[type="radio"] { margin-right: 8px; }
         #validation-message-K { margin-top: 10px; font-size: 14px; font-weight: bold; color: #2ecc71; min-height: 20px; text-align: center; }
         #validation-message-K.error { color: #e74c3c; }
         
-        /* --- STYLES ETAPE 15 --- */
         #variable-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 20px; }
         .variable-item { display: flex; flex-direction: column; align-items: center; padding: 8px 10px; background-color: #eee; border-radius: 5px; font-weight: bold; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
         .variable-reminder { font-size: 11px; color: #666; margin-bottom: 5px; font-weight: normal; text-transform: uppercase; letter-spacing: 0.5px; width: 100%; border-bottom: 1px dotted #ccc; padding-bottom: 3px; min-height: 15px; }
@@ -265,7 +244,6 @@
         #result-message { margin-top: 15px; font-weight: bold; min-height: 20px; text-align: center; padding: 10px; border-radius: 5px; }
         #final-link-box { margin-top: 15px; display: none; text-align: center; padding: 15px; background-color: #e8f5e9; border: 1px solid #2ecc71; border-radius: 8px; }
         
-        /* Message d'avertissement pour l'Etape 15 */
         #warning-etape15 {
             max-width: 600px;
             margin: 20px auto;
@@ -645,7 +623,13 @@
 
     <div class="dialogue-row"> <img src="Loumpour.jpg" alt="Loumpour" class="avatar"> <div class="bubble"> <span class="name-tag">Loumpour</span> C’est quoi ce bâtiment étrange devant lequel on vient de passer ? </div> </div>
     <div class="dialogue-row"> <img src="Bernard.jpg" alt="Bernard" class="avatar"> <div class="bubble"> <span class="name-tag">Bernard</span> Le pavillon blanc. D’après le site de la Mairie, il a été conçu par Rudy Riccioti en 2011. Il permet de réunir un espace médiathèque (plus de 110.000 ouvrages) et un espace dédié à l’art contemporain. Je me souviens que Colomiers a toujours été une ville motrice en termes d’art contemporain. Il y avait une galerie à quelques pas d’ici qui s’appelait « l’espace des arts » où étaient présentées des expositions temporaires. Elle est aujourd’hui occupée par une compagnie de théâtre qui fait aussi de la création contemporaine. </div> </div>
-    <div class="dialogue-row"> <img src="Serge.jpg" alt="Serge" class="avatar"> <div class="bubble"> <span class="name-tag">Serge</span> Et ça date pas d'hier. En 1982, Pierre Debeaux, connu pour être l’architecte de la caserne Vion à Toulouse, avait été choisi pour construire sur le rond-point de Flandres-Dunkerke une structure métallique gigantesque en trois dimensions. Un peu à la façon d’un mobile de Calder, elle bougeait au gré du vent. Elle s’est malheureusement écroulée 5 ans après son installation tuant deux personnes, qui étaient venues pour tenter de la réparer car elle ne bougeait plus. </div> </div>
+    <div class="dialogue-row"> <img src="Serge.jpg" alt="Serge" class="avatar"> <div class="bubble"> <span class="name-tag">Serge</span> Et ça date pas d'hier. En 1982, Pierre Debeaux, connu pour être l’architecte de la caserne Vion à Toulouse, avait été choisi pour construire sur le rond-point de Flandres-Dunkerke une structure métallique gigantesque en trois dimensions nommée « Zétos ». Un peu à la façon d’un mobile de Calder, elle bougeait au gré du vent. </div> </div>
+
+    <div class="gps-box">
+        <a href="zetos.png" target="_blank" class="gps-link">Cliquer ici pour voir Zétos</a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Serge.jpg" alt="Serge" class="avatar"> <div class="bubble"> <span class="name-tag">Serge</span> Elle s’est malheureusement écroulée 5 ans après son installation tuant deux personnes, qui étaient venues pour tenter de la réparer car elle ne bougeait plus. </div> </div>
     <div class="dialogue-row"> <img src="Loumpour.jpg" alt="Loumpour" class="avatar"> <div class="bubble"> <span class="name-tag">Loumpour</span> Gloups… Euh, vous avez rien de plus joyeux ? </div> </div>
     <div class="dialogue-row"> <img src="Bernard.jpg" alt="Bernard" class="avatar"> <div class="bubble"> <span class="name-tag">Bernard</span> Ah, ben si ! Colomiers est également labélisée “ville amie des enfants” par l’UNICEF depuis 2009 et renouvelé au moins jusqu’en 2026. Elle s’engage au bien-être, à la non-discrimination et à la participation des enfants dans la vie culturelle, politique et sportive. </div> </div>
     <div class="dialogue-row"> <img src="Loumpour.jpg" alt="Loumpour" class="avatar"> <div class="bubble"> <span class="name-tag">Loumpour</span> Eh, mais voilà ! On l’a notre trésor : les enfants ! C’est vieux comme le monde, et ils sont tellement mignons… </div> </div>
@@ -905,26 +889,18 @@
 </section>
 
 <script>
-    // ----------------------------------------------------------------------
-    // --- GESTION ET PERSISTANCE DES DONNÉES (UNIFIÉ 1-15) ---
-    // ----------------------------------------------------------------------
-
     const ENIGMA_STORAGE_KEY = 'colomiers_enigma_answers';
     const DEFAULT_ANSWERS = {A: null, B: null, C: null, D: null, E: null, F: null, G: null, H: null, I: null, J: null, K: null, L: null, M: null, N: null};
 
-    // =================================================================================
-    // VALEURS CORRECTES (Pour Etape 15)
     const CORRECT_ANSWERS = {
         A: 2, B: 7, C: 1, D: 13, E: 6, F: 9, G: 5, H: 2, I: 2, J: 8, K: 2, L: 3, M: 11, N: 6
     };
     
-    // RAPPELS (Pour Etape 15)
     const REMINDERS = {
         A: 'tours', B: 'losanges', C: 'centaines', D: '"Jean"', E: 'arches', 
         F: 'lettres', G: 'juillet', H: 'dents', I: 'non potable', J: 'enfants', 
         K: 'toboggan', L: 'gare', M: 'topiaires', N: 'prénoms'
     };
-    // =================================================================================
     
     function loadEnigmaAnswers() {
         try {
@@ -954,10 +930,6 @@
         }
     }
 
-    // ----------------------------------------------------------------------
-    // --- VÉRIFICATION DE DÉVERROUILLAGE (Etape 15) ---
-    // ----------------------------------------------------------------------
-    
     function checkUnlockCondition() {
         const vars = loadEnigmaAnswers();
         let allAnswered = true;
@@ -981,10 +953,6 @@
             if (etape15Div) etape15Div.style.display = 'none';
         }
     }
-
-    // ----------------------------------------------------------------------
-    // --- FONCTIONS POUR ÉNIGMES STANDARD (A-J) ---
-    // ----------------------------------------------------------------------
 
     function resetStandardInput(varKey) {
         const inputElement = document.getElementById(varKey);
@@ -1075,10 +1043,6 @@
         if(inputElement) inputElement.oninput = () => resetStandardInput(varKey);
     };
 
-    // ----------------------------------------------------------------------
-    // --- FONCTIONS POUR ÉNIGMES QCM (K) ---
-    // ----------------------------------------------------------------------
-
     function handleQCMInput(varKey) {
         const inputElement = document.getElementById(varKey);
         const validationMessage = document.getElementById('validation-message-' + varKey);
@@ -1121,10 +1085,6 @@
             if(inputElement) inputElement.value = "";
         }
     };
-
-    // ----------------------------------------------------------------------
-    // --- FONCTIONS POUR ÉNIGME (L) - (Sauvegarde auto) ---
-    // ----------------------------------------------------------------------
     
     function handleEnigmaInput_L(varKey) {
         const inputElement = document.getElementById(varKey);
@@ -1168,9 +1128,6 @@
         }
     };
     
-    // ----------------------------------------------------------------------
-    // --- FONCTIONS POUR ÉNIGME (M) - (Bouton restauré) ---
-    // ----------------------------------------------------------------------
     function resetValidation_M(varKey) {
         const inputElement = document.getElementById(varKey);
         const button = document.getElementById('validate-button-M');
@@ -1249,9 +1206,6 @@
         if(inputElement) inputElement.oninput = () => resetValidation_M(varKey); 
     };
     
-    // ----------------------------------------------------------------------
-    // --- FONCTIONS POUR ÉNIGME (N) - (Bouton restauré) ---
-    // ----------------------------------------------------------------------
     function resetValidation_N(varKey) {
         const inputElement = document.getElementById(varKey);
         const button = document.getElementById('validate-button-N');
@@ -1314,11 +1268,6 @@
         if(inputElement) inputElement.oninput = () => resetValidation_N(varKey); 
     };
 
-    
-    // ----------------------------------------------------------------------
-    // --- FONCTIONS POUR ÉNIGME FINALE (15) ---
-    // ----------------------------------------------------------------------
-    
     function validateConstraint(key, value) {
         if (value === null) return false;
         const numValue = parseInt(value);
@@ -1445,25 +1394,13 @@
         }
     }
 
-    // ----------------------------------------------------------------------
-    // --- INITIALISATION DE TOUTES LES PAGES (UNIFIÉ) ---
-    // ----------------------------------------------------------------------
     document.addEventListener("DOMContentLoaded", function() {
-        // Init énigmes standard (A-J)
         ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'].forEach(initStandardInput);
-        
-        // Init énigmes QCM (K)
         initQCMInput('K');
-        
-        // Init énigmes (L, M, N)
         initEnigmaPage_L('L');
         initEnigmaPage_M('M');
         initEnigmaPage_N('N');
-        
-        // Init Etape 15 (Grille)
         initFinalPage();
-        
-        // Vérification du verrou au chargement de la page
         checkUnlockCondition();
     });
 
