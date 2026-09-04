@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang='fr'>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le trésor de Colomiers - Étapes 1-15</title>
     
     <style>
-        /* --- DESIGN GÉNÉRAL (IDENTIQUE) --- */
+        /* --- DESIGN GÉNÉRAL --- */
         body {
             font-family: 'Verdana', sans-serif;
             background-color: #f0f2f5;
@@ -209,6 +209,71 @@
         .direction-box strong { color: #333; font-weight: bold; font-style: normal; }
         .direction-box .path-option { margin-top: 10px; }
         .direction-box .path-link { color: #2980b9; text-decoration: none; border-bottom: 1px dotted #2980b9; }
+
+        /* --- NOUVEAU STYLE LECTEUR AUDIO --- */
+        .audio-box {
+            background-color: #f0f7f9;
+            border: 1px solid #bce0fd;
+            border-left: 5px solid #2980b9;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .audio-box p {
+            margin: 0 0 12px 0;
+            font-size: 14px;
+            font-weight: bold;
+            color: #2980b9;
+            line-height: 1.4;
+        }
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .audio-btn {
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 14px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .audio-btn:hover {
+            background-color: #1f6391;
+        }
+        .audio-progress-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0 5px 0;
+        }
+        .audio-progress {
+            flex-grow: 1;
+            cursor: pointer;
+            height: 6px;
+            accent-color: #2980b9;
+        }
+        .audio-time {
+            font-size: 12px;
+            color: #555;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            min-width: 80px;
+        }
+        .audio-caption {
+            font-size: 10px;
+            color: #777;
+            font-style: italic;
+            margin-top: 6px;
+            line-height: 1.3;
+        }
         
         .narrative-note { text-align: center; font-style: italic; color: #888; font-size: 13px; margin: 15px 0; }
 
@@ -356,6 +421,7 @@
     <div class="direction-box"> Descendez à présent la rue du Couderc sur une centaine de mètres en direction de la place Firmin Pons. </div>
 </div>
 </section>
+
 <section id="etape2" class="etape">
 <div class="container">
     <h2>2. Place Firmin Pons, terminus, tout le monde descend !</h2>
@@ -386,6 +452,7 @@
     <div class="direction-box"> Remontez la rue de l'église sur 100m en passant par la passerelle. Profitez-en pour jeter un oeil à votre gauche sur le rond-point "Flandres-Dunkerke" dont nous reparlerons ultérieurement. </div>
 </div>
 </section>
+
 <section id="etape3" class="etape">
 <div class="container">
     <h2>3. Les reliques de Sainte Radegonde</h2>
@@ -423,6 +490,7 @@
     <div class="direction-box"> Dirigez vous vers la droite de l'église pour aller jusqu'au Monument aux morts. </div>
 </div>
 </section>
+
 <section id="etape4" class="etape">
 <div class="container">
     <h2>4. Le Monument aux Morts</h2>
@@ -452,6 +520,7 @@
     <div class="direction-box"> Remontez la rue Gilet sur quelques mètres. Vous pouvez entrer dans le parc par la porte monumentale ou par n'importe quel endroit. </div>
 </div>
 </section>
+
 <section id="etape5" class="etape">
 <div class="container">
     <h2>5. Le parc Duroch</h2>
@@ -487,6 +556,7 @@
     <div class="direction-box"> Poursuivez sur la rue Gilet en laissant la rue Chrestias à votre gauche. Quelques mètres plus loin tournez à gauche sur la place Joseph Verseille. </div>
 </div>
 </section>
+
 <section id="etape6" class="etape">
 <div class="container">
     <h2>6. Place Joseph Verseille</h2>
@@ -517,6 +587,7 @@
     <div class="direction-box"> En poursuivant de nouveau sur la rue Gilet vous arriverez au bout de la rue à votre prochaine étape. </div>
 </div>
 </section>
+
 <section id="etape7" class="etape">
 <div class="container">
     <h2>7. Place de la bascule</h2>
@@ -549,8 +620,26 @@
     </div>
 
     <div class="direction-box"> Quittez la place de la bascule en prenant la rue d'Auch en direction de la cabane du pêcheur (poissonnier) puis continuez jusqu'à l'abri bus et retournez vous vers l'endroit d'où vous venez. </div>
+
+    <div class="audio-box">
+        <p>Si vous désirez en savoir plus sur François Larieu, vous pouvez écouter ce fichier audio tout en cheminant</p>
+        <audio id="audio-larieu" src="francois_larieu.mp3" preload="metadata" ontimeupdate="updateAudioProgress('audio-larieu')" onloadedmetadata="updateAudioProgress('audio-larieu')" onended="resetAudioBtn('btn-play-larieu')"></audio>
+        <div class="audio-controls">
+            <button id="btn-play-larieu" class="audio-btn" onclick="togglePlay('audio-larieu', this)">▶ Lecture</button>
+            <button class="audio-btn" onclick="seekAudio('audio-larieu', -5)">-5s</button>
+            <button class="audio-btn" onclick="seekAudio('audio-larieu', 5)">+5s</button>
+        </div>
+        <div class="audio-progress-container">
+            <input type="range" id="audio-larieu-seek" value="0" min="0" max="100" step="0.1" class="audio-progress" oninput="onSeekChange('audio-larieu', this.value)">
+            <span id="audio-larieu-time" class="audio-time">0:00 / 0:00</span>
+        </div>
+        <div class="audio-caption">
+            Texte extrait du livre « Colomiers de 1940 à 2000 » édité par la Société d'Archéologie et d'Histoire Locale de Colomiers
+        </div>
+    </div>
 </div>
 </section>
+
 <section id="etape8" class="etape">
 <div class="container">
     <h2>8. Fresque murale</h2>
@@ -561,7 +650,7 @@
         </a>
     </div>
 
-        <div class="dialogue-row"> <img src="Loumpour.jpg" alt="Loumpour" class="avatar"> <div class="bubble"> <span class="name-tag">Loumpour</span> Ouhaou. Retournez-vous et regardez ça ! </div> </div>
+    <div class="dialogue-row"> <img src="Loumpour.jpg" alt="Loumpour" class="avatar"> <div class="bubble"> <span class="name-tag">Loumpour</span> Ouhaou. Retournez-vous et regardez ça ! </div> </div>
     <div class="dialogue-row"> <img src="Serge.jpg" alt="Serge" class="avatar"> <div class="bubble"> <span class="name-tag">Serge</span> Génial. C’est trop rigolo. </div> </div>
     <div class="dialogue-row"> <img src="Bernard.jpg" alt="Bernard" class="avatar"> <div class="bubble"> <span class="name-tag">Bernard</span> Ah, ben, c’est pas ça notre trésor ? L’art ! Ca a toujours existé. Et des fresques comme ça il y en a plein dans Colomiers, sur les immeubles, les transformateurs électriques, dans les écoles… </div> </div>
     <div class="dialogue-row"> <img src="Serge.jpg" alt="Serge" class="avatar"> <div class="bubble"> <span class="name-tag">Serge</span> Et il y a aussi le salon de la Bande Dessinée tous les mois de novembre à Colomiers depuis plus de 40 ans. C’est le troisième plus grand festival de France derrière Angoulème et Quai des Bulles à Saint Malo. </div> </div>
@@ -578,6 +667,7 @@
     <div class="direction-box"> Continuez la route d'Auch jusqu'àu rond-point, en suivant le passage aménagé qui descend. Attention, ne traversez pas le rond-point par la voie des voitures. Prenez le passage souterrain qui vous amènera au bon endroit en sécurité. <br> <br> Si vous êtes en vélo, merci de descendre de vélo pour quelques mètres. </div>
 </div>
 </section>
+
 <section id="etape9" class="etape">
 <div class="container">
     <h2>9. Rond-point fontaine</h2>
@@ -611,6 +701,7 @@
     <div class="direction-box"> Continuez votre route en ressortant de l'autre côté du rond-point et continuez sur l'allée des droits de l'enfant jusqu'au point suivant. </div>
 </div>
 </section>
+
 <section id="etape10" class="etape">
 <div class="container">
     <h2>10. Le pavillon blanc</h2>
@@ -654,6 +745,7 @@
     <div class="direction-box"> Prenez le premier chemin à gauche, traversez la mare aux canards, passez devant l’espace nautique et poursuivez jusqu’au fond de la place des fêtes pour mieux voir le toboggan. </div>
 </div>
 </section>
+
 <section id="etape11" class="etape">
 <div class="container">
     <h2>11. L’espace nautique</h2>
@@ -827,6 +919,23 @@
     </div>
 
     <div class="direction-box"> Poursuivez sur la rue des garibaldiens, au bout de la rue prenez à droite et descendez la rue du Prat en direction de la place Firmin Pons. Arrêtez-vous au point GPS défini. </div>
+
+    <div class="audio-box">
+        <p>Si vous désirez en savoir plus sur l'accident du Junker88, vous pouvez écouter ce fichier audio tout en cheminant</p>
+        <audio id="audio-junker" src="junker88.mp3" preload="metadata" ontimeupdate="updateAudioProgress('audio-junker')" onloadedmetadata="updateAudioProgress('audio-junker')" onended="resetAudioBtn('btn-play-junker')"></audio>
+        <div class="audio-controls">
+            <button id="btn-play-junker" class="audio-btn" onclick="togglePlay('audio-junker', this)">▶ Lecture</button>
+            <button class="audio-btn" onclick="seekAudio('audio-junker', -5)">-5s</button>
+            <button class="audio-btn" onclick="seekAudio('audio-junker', 5)">+5s</button>
+        </div>
+        <div class="audio-progress-container">
+            <input type="range" id="audio-junker-seek" value="0" min="0" max="100" step="0.1" class="audio-progress" oninput="onSeekChange('audio-junker', this.value)">
+            <span id="audio-junker-time" class="audio-time">0:00 / 0:00</span>
+        </div>
+        <div class="audio-caption">
+            Texte extrait du livre « Colomiers de 1940 à 2000 » édité par la Société d'Archéologie et d'Histoire Locale de Colomiers
+        </div>
+    </div>
 </div>
 </section>
 
@@ -917,7 +1026,7 @@
         try {
             localStorage.setItem(ENIGMA_STORAGE_KEY, JSON.stringify(vars));
         } catch (e) {
-            console.error("Impossible de sauvegarder les réponses. Le stockage local est bloqué.", e);
+            console.error("Impossible de sauvegarder les réponses.", e);
         }
         checkUnlockCondition();
     }
@@ -1041,7 +1150,7 @@
         }
         
         if(inputElement) inputElement.oninput = () => resetStandardInput(varKey);
-    };
+    }
 
     function handleQCMInput(varKey) {
         const inputElement = document.getElementById(varKey);
@@ -1084,7 +1193,7 @@
         } else if (validationMessage) {
             if(inputElement) inputElement.value = "";
         }
-    };
+    }
     
     function handleEnigmaInput_L(varKey) {
         const inputElement = document.getElementById(varKey);
@@ -1120,290 +1229,153 @@
         const loadedVars = loadEnigmaAnswers();
         const inputElement = document.getElementById(varKey);
         const savedValue = loadedVars[varKey];
-        
         if (inputElement && savedValue !== null) {
             inputElement.value = savedValue;
         } else if (inputElement) {
             inputElement.value = "";
         }
-    };
-    
-    function resetValidation_M(varKey) {
-        const inputElement = document.getElementById(varKey);
-        const button = document.getElementById('validate-button-M');
-        const validationMessage = document.getElementById('validation-message-M');
-        
-        resetButtonToDefault(button);
-        validationMessage.textContent = "";
-
-        const rawValue = inputElement.value.trim();
-        if (rawValue === "") {
-            let currentVars = loadEnigmaAnswers();
-            currentVars[varKey] = null;
-            saveEnigmaAnswers(currentVars);
-        }
     }
 
-    function handleValidation_M(varKey) {
-        const inputElement = document.getElementById(varKey);
-        const button = document.getElementById('validate-button-M');
-        const validationMessage = document.getElementById('validation-message-M');
-        
-        const rawValue = inputElement.value.trim();
-        const value = parseInt(rawValue);
-        let currentVars = loadEnigmaAnswers();
-        
-        validationMessage.textContent = "";
+    function resetValidation_M(varKey) { resetStandardInput(varKey); }
+    function handleValidation_M(varKey) { handleStandardValidation(varKey); }
+    function initValidation_M(varKey) { initStandardInput(varKey); }
 
-        if (rawValue === "") {
-            validationMessage.textContent = "❌ Veuillez entrer une valeur numérique.";
-            currentVars[varKey] = null;
-            saveEnigmaAnswers(currentVars);
-            resetButtonToDefault(button);
-            return;
-        }
-        
-        if (isNaN(value) || value < 0 || value > 99 || rawValue.includes('.')) {
-            validationMessage.textContent = "❌ Valeur incorrecte. Veuillez entrer un nombre entier positif entre 0 et 99.";
-            currentVars[varKey] = null;
-            saveEnigmaAnswers(currentVars);
-            resetButtonToDefault(button);
-            return;
-        }
+    function resetValidation_N(varKey) { resetStandardInput(varKey); }
+    function handleValidation_N(varKey) { handleStandardValidation(varKey); }
+    function initValidation_N(varKey) { initStandardInput(varKey); }
 
-        if (varKey === 'M' && value % 2 === 0) {
-            validationMessage.textContent = "❌ Ce nombre doit être impair, vérifiez votre décompte !";
-            currentVars[varKey] = null;
-            saveEnigmaAnswers(currentVars);
-            resetButtonToDefault(button);
-            return;
-        }
-
-        currentVars[varKey] = value;
-        saveEnigmaAnswers(currentVars);
-        
-        button.classList.remove('btn-default');
-        button.classList.add('btn-validated');
-        button.textContent = `Réponse ${varKey} = ${value} Sauvegardée !`;
-    }
-
-    function initEnigmaPage_M(varKey) {
-        const loadedVars = loadEnigmaAnswers();
-        const inputElement = document.getElementById(varKey);
-        const button = document.getElementById('validate-button-M');
-        const savedValue = loadedVars[varKey];
-        
-        if (inputElement) inputElement.value = "";
-        
-        if (button && savedValue !== null) {
-            button.classList.remove('btn-default');
-            button.classList.add('btn-validated');
-            button.textContent = `Réponse ${varKey} = ${savedValue} Sauvegardée !`;
-        } else if (button) {
-            resetButtonToDefault(button);
-        }
-        
-        if(inputElement) inputElement.oninput = () => resetValidation_M(varKey); 
-    };
-    
-    function resetValidation_N(varKey) {
-        const inputElement = document.getElementById(varKey);
-        const button = document.getElementById('validate-button-N');
-        const validationMessage = document.getElementById('validation-message-N');
-        
-        resetButtonToDefault(button);
-        validationMessage.textContent = "";
-
-        const rawValue = inputElement.value.trim();
-        if (rawValue === "") {
-            let currentVars = loadEnigmaAnswers();
-            currentVars[varKey] = null;
-            saveEnigmaAnswers(currentVars);
-        }
-    }
-
-    function handleValidation_N(varKey) {
-        const inputElement = document.getElementById(varKey);
-        const button = document.getElementById('validate-button-N');
-        const validationMessage = document.getElementById('validation-message-N');
-        
-        const rawValue = inputElement.value.trim();
-        const value = parseInt(rawValue);
-        let currentVars = loadEnigmaAnswers();
-        
-        validationMessage.textContent = "";
-        
-        if (rawValue === "" || isNaN(value) || value < 0 || value > 99 || rawValue.includes('.')) {
-            validationMessage.textContent = "❌ Veuillez entrer un nombre entier positif.";
-            currentVars[varKey] = null;
-            saveEnigmaAnswers(currentVars);
-            resetButtonToDefault(button);
-            return;
-        }
-
-        currentVars[varKey] = value;
-        saveEnigmaAnswers(currentVars);
-        
-        button.classList.remove('btn-default');
-        button.classList.add('btn-validated');
-        button.textContent = `Réponse ${varKey} = ${value} Sauvegardée !`;
-    }
-
-    function initEnigmaPage_N(varKey) {
-        const loadedVars = loadEnigmaAnswers();
-        const inputElement = document.getElementById(varKey);
-        const button = document.getElementById('validate-button-N');
-        const savedValue = loadedVars[varKey];
-        
-        if (inputElement) inputElement.value = "";
-        
-        if (button && savedValue !== null) {
-            button.classList.remove('btn-default');
-            button.classList.add('btn-validated');
-            button.textContent = `Réponse ${varKey} = ${savedValue} Sauvegardée !`;
-        } else if (button) {
-            resetButtonToDefault(button);
-        }
-        
-        if(inputElement) inputElement.oninput = () => resetValidation_N(varKey); 
-    };
-
-    function validateConstraint(key, value) {
-        if (value === null) return false;
-        const numValue = parseInt(value);
-        if (isNaN(numValue)) return false;
-
-        switch (key) {
-            case 'K': return [1, 2, 3].includes(numValue);
-            case 'D': return numValue % 2 !== 0;
-            case 'I': return numValue % 2 === 0;
-            case 'M': return numValue % 2 !== 0;
-            case 'L': return numValue >= 0 && numValue <= 9;
-            default: return true;
-        }
-    }
-    
-    function handleVariableCorrection(varKey) {
-        const inputElement = document.getElementById(`input-${varKey}`);
-        let value = inputElement.value.trim();
-        let numericValue = parseInt(value);
-        let currentVars = loadEnigmaAnswers();
-        
-        if (value === "" || isNaN(numericValue) || numericValue < 0) {
-            inputElement.value = ''; 
-            currentVars[varKey] = null;
+    /* --- FONCTIONS DE GESTION AUDIO --- */
+    function togglePlay(id, btn) {
+        const audio = document.getElementById(id);
+        if (!audio) return;
+        if (audio.paused) {
+            document.querySelectorAll('audio').forEach(a => {
+                if (a !== audio) {
+                    a.pause();
+                    const otherBtnId = a.id === 'audio-larieu' ? 'btn-play-larieu' : 'btn-play-junker';
+                    resetAudioBtn(otherBtnId);
+                }
+            });
+            audio.play();
+            btn.textContent = '⏸ Pause';
         } else {
-            currentVars[varKey] = numericValue;
+            audio.pause();
+            btn.textContent = '▶ Lecture';
         }
-        
-        localStorage.setItem(ENIGMA_STORAGE_KEY, JSON.stringify(currentVars));
-        displayCollectedVariables();
     }
-    
-    function displayCollectedVariables() {
+
+    function resetAudioBtn(btnId) {
+        const btn = document.getElementById(btnId);
+        if (btn) btn.textContent = '▶ Lecture';
+    }
+
+    function seekAudio(id, seconds) {
+        const audio = document.getElementById(id);
+        if (!audio) return;
+        const target = audio.currentTime + seconds;
+        audio.currentTime = Math.max(0, Math.min(audio.duration || 0, target));
+    }
+
+    function updateAudioProgress(id) {
+        const audio = document.getElementById(id);
+        const slider = document.getElementById(id + '-seek');
+        const timeDisplay = document.getElementById(id + '-time');
+        if (!audio || !slider || !timeDisplay) return;
+
+        if (audio.duration && !isNaN(audio.duration)) {
+            slider.value = (audio.currentTime / audio.duration) * 100;
+            timeDisplay.textContent = formatAudioTime(audio.currentTime) + ' / ' + formatAudioTime(audio.duration);
+        } else {
+            timeDisplay.textContent = formatAudioTime(audio.currentTime) + ' / 0:00';
+        }
+    }
+
+    function onSeekChange(id, value) {
+        const audio = document.getElementById(id);
+        if (audio && audio.duration && !isNaN(audio.duration)) {
+            audio.currentTime = (value / 100) * audio.duration;
+        }
+    }
+
+    function formatAudioTime(sec) {
+        if (isNaN(sec) || sec < 0) return "0:00";
+        const m = Math.floor(sec / 60);
+        const s = Math.floor(sec % 60);
+        return m + ":" + (s < 10 ? "0" : "") + s;
+    }
+
+    /* --- INITIALISATION ET VÉRIFICATION FINALE --- */
+    function initFinalPage() {
+        const grid = document.getElementById('variable-list');
+        if (!grid) return;
         const vars = loadEnigmaAnswers();
-        const listDiv = document.getElementById('variable-list');
-        if (!listDiv) return 0;
-        listDiv.innerHTML = ''; 
+        grid.innerHTML = '';
 
-        const variableKeys = Object.keys(DEFAULT_ANSWERS);
-        let allCorrect = true;
-
-        variableKeys.forEach(key => {
-            const value = vars[key];
-            const correctValue = CORRECT_ANSWERS[key];
-            const reminder = REMINDERS[key];
+        for (const key in DEFAULT_ANSWERS) {
+            const val = vars[key];
+            const isCorrect = val !== null && val === CORRECT_ANSWERS[key];
             const item = document.createElement('div');
             item.className = 'variable-item';
-            
-            let dotClass = 'dot-red';
-            let inputValue = '';
-            
-            if (value !== null && !isNaN(value)) {
-                inputValue = value;
-                const constraintValid = validateConstraint(key, value);
-                const valueCorrect = (value === correctValue);
-
-                if (valueCorrect && constraintValid) {
-                    dotClass = 'dot-green'; 
-                } else {
-                    allCorrect = false;
-                }
-            } else {
-                allCorrect = false;
-            }
-
             item.innerHTML = `
-                <div class="variable-reminder">${reminder}</div>
+                <div class="variable-reminder">${REMINDERS[key]}</div>
                 <div class="variable-input-row">
-                    <span class="status-dot ${dotClass}"></span>
-                    ${key} = 
-                    <input type="number" id="input-${key}" value="${inputValue}" oninput="handleVariableCorrection('${key}')" placeholder="?">
+                    <span class="status-dot ${isCorrect ? 'dot-green' : 'dot-red'}"></span>
+                    <span>${key} = </span>
+                    <input type="number" value="${val !== null ? val : ''}" onchange="updateGridVariable('${key}', this.value)">
                 </div>
             `;
-            listDiv.appendChild(item);
-        });
-
-        const checkButton = document.querySelector('#etape15 .final-check-zone button');
-        if (checkButton) {
-            if (allCorrect) {
-                checkButton.style.backgroundColor = '#2ecc71';
-                checkButton.style.boxShadow = '0 4px #27ae60';
-            } else {
-                checkButton.style.backgroundColor = '#d35400';
-                checkButton.style.boxShadow = '0 4px #a04000';
-            }
+            grid.appendChild(item);
         }
-        return allCorrect ? 1 : 0;
+    }
+
+    function updateGridVariable(key, valStr) {
+        let currentVars = loadEnigmaAnswers();
+        const raw = valStr.trim();
+        if (raw === "") {
+            currentVars[key] = null;
+        } else {
+            const num = parseInt(raw);
+            currentVars[key] = isNaN(num) ? null : num;
+        }
+        saveEnigmaAnswers(currentVars);
+        initFinalPage();
     }
 
     function checkFinalAnswer() {
-        const messageDiv = document.getElementById('result-message');
-        const finalLinkBox = document.getElementById('final-link-box');
-        if (!messageDiv || !finalLinkBox) return;
-        
-        const allVariablesCorrect = displayCollectedVariables(); 
-
-        finalLinkBox.style.display = 'none';
-
-        if (allVariablesCorrect) {
-            messageDiv.style.color = '#2ecc71';
-            messageDiv.textContent = "✅ FÉLICITATIONS ! Les 14 variables sont validées. Le Trésor est révélé ci-dessous.";
-            finalLinkBox.style.display = 'block';
-        } else {
-            messageDiv.style.color = '#e74c3c';
-            messageDiv.textContent = "❌ Attention ! Toutes les variables n'ont pas le statut VERT. Veuillez corriger la grille ci-dessus pour débloquer le Trésor.";
-        }
-    }
-
-    function initFinalPage() {
-        if (document.getElementById('etape15').style.display !== 'none') {
-            const allCorrect = displayCollectedVariables();
-            const messageDiv = document.getElementById('result-message');
-            const finalLinkBox = document.getElementById('final-link-box');
-
-            if (allCorrect) {
-                if (finalLinkBox) finalLinkBox.style.display = 'block';
-                if (messageDiv) {
-                    messageDiv.style.color = '#2ecc71';
-                    messageDiv.textContent = "✅ Toutes les variables sont validées.";
-                }
-            } else {
-                if (finalLinkBox) finalLinkBox.style.display = 'none';
+        const vars = loadEnigmaAnswers();
+        let allCorrect = true;
+        for (const key in CORRECT_ANSWERS) {
+            if (vars[key] !== CORRECT_ANSWERS[key]) {
+                allCorrect = false;
+                break;
             }
         }
+        const resultMsg = document.getElementById('result-message');
+        const finalBox = document.getElementById('final-link-box');
+
+        if (allCorrect) {
+            if (resultMsg) {
+                resultMsg.style.color = '#2ecc71';
+                resultMsg.textContent = '🎉 Félicitations ! Toutes les réponses sont correctes !';
+            }
+            if (finalBox) finalBox.style.display = 'block';
+        } else {
+            if (resultMsg) {
+                resultMsg.style.color = '#e74c3c';
+                resultMsg.textContent = '❌ Certaines réponses sont incorrectes ou manquantes. Vérifiez les voyants rouges ci-dessus.';
+            }
+            if (finalBox) finalBox.style.display = 'none';
+        }
     }
 
-    document.addEventListener("DOMContentLoaded", function() {
+    window.onload = function() {
         ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'].forEach(initStandardInput);
         initQCMInput('K');
         initEnigmaPage_L('L');
-        initEnigmaPage_M('M');
-        initEnigmaPage_N('N');
-        initFinalPage();
+        initValidation_M('M');
+        initValidation_N('N');
         checkUnlockCondition();
-    });
-
+    };
 </script>
 
 </body>
