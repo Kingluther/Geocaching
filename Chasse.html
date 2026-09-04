@@ -585,6 +585,23 @@
         <button id="validate-button-F" class="btn-default" onclick="handleStandardValidation('F')"> Valider la réponse </button>
     </div>
     <div class="direction-box"> En poursuivant de nouveau sur la rue Gilet vous arriverez au bout de la rue à votre prochaine étape. </div>
+
+    <div class="audio-box">
+        <p>Si vous désirez en savoir plus sur Joseph Verseille, vous pouvez écouter ce fichier audio tout en cheminant</p>
+        <audio id="audio-verseilles" src="verseilles.mp3" preload="metadata" ontimeupdate="updateAudioProgress('audio-verseilles')" onloadedmetadata="updateAudioProgress('audio-verseilles')" onended="resetAudioBtn('btn-play-verseilles')"></audio>
+        <div class="audio-controls">
+            <button id="btn-play-verseilles" class="audio-btn" onclick="togglePlay('audio-verseilles', this)">▶ Lecture</button>
+            <button class="audio-btn" onclick="seekAudio('audio-verseilles', -5)">-5s</button>
+            <button class="audio-btn" onclick="seekAudio('audio-verseilles', 5)">+5s</button>
+        </div>
+        <div class="audio-progress-container">
+            <input type="range" id="audio-verseilles-seek" value="0" min="0" max="100" step="0.1" class="audio-progress" oninput="onSeekChange('audio-verseilles', this.value)">
+            <span id="audio-verseilles-time" class="audio-time">0:00 / 0:00</span>
+        </div>
+        <div class="audio-caption">
+            Texte extrait du livre « Colomiers de 1940 à 2000 » édité par la Société d'Archéologie et d'Histoire Locale de Colomiers
+        </div>
+    </div>
 </div>
 </section>
 
@@ -949,7 +966,7 @@
 <div class="container">
     <h2>15. Le trésor</h2>
     <div class="gps-box">
-        📍 Lieu de la révélation (à proximité du trésor) :<br>
+        📍 Lieu de la révélation :<br>
         <a href="https://www.google.com/maps/search/?api=1&query=43.613672,1.335429" target="_blank" class="gps-link">
             N 43° 36.820' E 001° 20.126'
         </a>
