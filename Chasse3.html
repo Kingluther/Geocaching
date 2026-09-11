@@ -368,7 +368,7 @@
         </a>
     </div>
 
-    <div class="dialogue-row"> <img src="Gris-nez.png" alt="gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Vous êtes qui ? Vous faites quoi ? Pourquoi vous êtes là ? </div> </div>
+    <div class="dialogue-row"> <img src="gris-nez.png" alt="gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Vous êtes qui ? Vous faites quoi ? Pourquoi vous êtes là ? </div> </div>
     <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Voyons Gris-nez, arrête de les importuner. Excusez-le, c'est mon petit frère, il est encore un peu jeune. Moi je m'appelle Malo. Je suppose que vous êtes venus jouer à « Chats Perget » avec nous ? Vous allez voir, c'est très amusant. </div> </div>
     <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Allez ne perdons pas de temps, suivez-nous, c'est par ici. </div> </div>
 
@@ -388,12 +388,12 @@
     <h2>2. Le tunnel secret</h2>
     <div class="gps-box">
         📍 Cliquez pour y aller :<br>
-        <a href="https://www.google.com/maps?q=43.612417,1.317583" target="_blank" class="gps-link">
-            N 43° 36.755' E 001° 19.055'
+        <a href="https://www.google.com/maps?q=43.614389,1.316611" target="_blank" class="gps-link">
+            N 43° 36.863' E 001° 18.997'
         </a>
     </div>
 
-    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Et voilà ! Notre petit passage secret à tous deux. Le Perget est un quartier qui a énormément évolué ces dernières années, mais il y a aussi des choses qui n'ont pas bougé depuis des siècles. C'est le cas de ce croisement entre nature et industrialisation. Quand la voie ferrée est apparue à Colomiers en 1887, il a fallu qu'elle franchisse le Bassac. Alors les ingénieurs de l'époque ont créé un petit tunnel pour que le Bassac puisse continuer à sinuer au même endroit. Et aujourd'hui, même s'il a été rénové depuis, ce même tunnel est toujours en place. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Et voilà ! Notre petit passage secret à tous deux. Le Perget est un quartier qui a énormément évolué ces dernières années, mais il y a aussi des choses qui n'ont pas bougé depuis des siècles. C'est le cas de ce croisement entre nature et industrialisation. Quand la voie ferrée est apparue à Colomiers en 1877, il a fallu qu'elle franchisse le Bassac. Alors les ingénieurs de l'époque ont créé un petit tunnel pour que le Bassac puisse continuer à sinuer au même endroit. Et aujourd'hui, même s'il a été rénové depuis, ce même tunnel est toujours en place. </div> </div>
     <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Et nous on s'amuse à jouer dedans ! </div> </div>
     <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Chut ! C'est pas une bonne idée pour les enfants ! </div> </div>
 
@@ -414,11 +414,17 @@
     </div>
 
     <div class="info-note-box">
-        Dans le jardin de ce particulier se trouve une plante assez fréquente dans le Sud-Est de la France, mais plus rare à Colomiers. Comment se nomme cette plante (le nom générique, pas la variété en particulier) ? Inscrivez ce nom quelque part, il vous servira peut-être pour vous aider dans quelques minutes.
+        Dans le jardin de ce particulier se trouve une plante assez fréquente dans le Sud-Est de la France, mais plus rare à Colomiers. Comment se nomme cette plante (le nom générique, pas la variété en particulier) ? Saisissez ce mot ci-dessous :
+        <div class="answer-input-zone">
+            <label for="plant-word">Mot :</label>
+            <input type="text" id="plant-word" oninput="resetPlantWord()">
+        </div>
+        <div id="validation-message-plant"></div>
+        <button id="validate-button-plant" class="btn-default" onclick="checkPlantWord()"> Valider la réponse </button>
     </div>
 
     <div class="direction-box">
-        Poursuivez dans le quartier résidentiel. Prenez en face de vous <a href="https://www.google.com/maps?q=43.61428609729216,1.3159860041474354" target="_blank" class="path-link">N 43° 36.857' E 001° 18.959'</a> puis poursuivez à gauche en montant la rue du pigeonnier jusqu'aux escaliers <a href="https://www.google.com/maps?q=43.613611,1.318722" target="_blank" class="path-link">N 43° 36.817' E 001° 18.957'</a>.
+        Poursuivez dans le quartier résidentiel. Prenez en face de vous <a href="https://www.google.com/maps?q=43.61428609729216,1.3159860041474354" target="_blank" class="path-link">N 43° 36.857' E 001° 18.959'</a> puis poursuivez à gauche en montant la rue du pigeonnier jusqu'aux escaliers <a href="https://www.google.com/maps?q=43.613611,1.315944" target="_blank" class="path-link">N 43° 36.817' E 001° 18.957'</a>.
     </div>
 
     <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Au début des années 1980 il n'y avait à l'emplacement de tout ce quartier résidentiel que 4 belles maisons. Avec le développement du quartier, les promoteurs ont bâti tout un ensemble de pavillons pour pouvoir héberger les nouvelles populations. Sous l'influence de l'économie aéronautique grandissante, Colomiers a lancé un grand projet qui incluait un Science Park, la création du premier lycée public de la ville qui a ouvert à la rentrée 1984, et l'aménagement de zones boisées et naturelles. </div> </div>
@@ -473,7 +479,7 @@
             <div class="choice-img-btn" id="choice-img-B-4" onclick="handleImageChoice(4)"> <img src="pommier.jpg" alt="Pommier"> <span>Pommier</span> </div>
         </div>
         <div id="validation-message-B" style="color: #2ecc71; font-weight: bold; margin-top: 10px; text-align: center;"></div>
-        <p style="margin-top: 15px; font-style: italic;"><em>Indice :</em> Si notre arbre n'a plus de feuilles, reprenez l'indice de la question subsidiaire précédente.</p>
+        <p style="margin-top: 15px; font-style: italic;"><em>Indice :</em> Si notre arbre n'a plus de feuilles, reprenez l'indice précédent. Dans le nom de la plante, une lettre se répète 2 fois. Quelle est cette lettre, à quelle place se trouve-t-elle dans l'alphabet ? C'est le numéro de la bonne réponse.</p>
     </div>
 
     <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Allez, si vous n'avez pas eu de chance avec les mûres, vous pourrez peut-être déguster quelques fruits de cet arbre, il est d'une variété tardive et donne du fruit au mois de septembre. </div> </div>
@@ -499,7 +505,11 @@
     <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Et les peintures aussi elles étaient d'origine ? </div> </div>
     <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Oh, non ! Elles sont toutes récentes. Elles ont été réalisées en juin 2025 par l'artiste Azek. Il faut dire que jusque-là les fenêtres étaient murées avec du béton pour solidifier l'ensemble, et ce n'était pas très esthétique. Regardez-moi ces deux photos, vous verrez la différence ! </div> </div>
 
-    <a href="Borde.gif" target="_blank" class="image-link"> <img src="Borde.gif" alt="Restauration du corps de ferme" class="illustration-grande"> </a>
+    <a href="Borde.gif" target="_blank" class="image-link">
+        <div style="max-width:100%; aspect-ratio: 4 / 3; overflow:hidden; border-radius:8px; margin:20px auto; box-shadow:0 4px 8px rgba(0,0,0,0.1); display:flex; align-items:center; justify-content:center;">
+            <img src="Borde.gif" alt="Restauration du corps de ferme" style="width:100%; height:100%; object-fit:cover; object-position:center; display:block;">
+        </div>
+    </a>
 
     <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Moi j'aime beaucoup les trompe l'œil. De loin on croirait vraiment que la porte en bas est une vraie. </div> </div>
     <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Qu'est-ce qu'on fait maintenant ? </div> </div>
@@ -697,12 +707,12 @@
     <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> J'en ai pas tout à fait fini avec la famille Gélis, car il y a une petite anecdote qu'il faut absolument que je vous raconte ! </div> </div>
     <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> En 1972, lors d'excavation à la pelle mécanique, Monsieur Gélis est appelé par un de ses employés qui vient de faire une découverte étrange : il y a des fragments de poteries à l'endroit où il creuse. Le patron se rend immédiatement sur place et l'excavation est stoppée. On découvre alors qu'il s'agit de morceaux d'amphores qui comblent une cavité circulaire d'un mètre de diamètre environ. </div> </div>
     <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> C'est le puits avec la vierge en or !! </div> </div>
-    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Rhaa, ces jeunes ! Non ! Pas du tout ! Ce puits était probablement un puits funéraire gaulois. La tradition voulait qu'une fois le corps enseveli la sépulture soit recouverte de terres, puis de quelques amphores posées soigneusement, puis par la suite d'autres amphores qui pouvaient elles être jetées depuis 3 mètres de haut et qui se brisaient sur les premières. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Rhaa, ces jeunes ! Non ! Pas du tout ! Ce puits était probablement un puits funéraire gaulois. La tradition voulait qu'une fois le corps enseveli la sépulture soit recouverte de terre, puis de quelques amphores posées soigneusement, puis par la suite d'autres amphores qui pouvaient elles être jetées depuis 3 mètres de haut et qui se brisaient sur les premières. </div> </div>
     <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Et ça nous apprend quoi ? </div> </div>
     <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Oh, plein de choses ! D'abord ces amphores ont une forme particulière, elles font environ un mètre de haut, et sont répertoriées sous le nom Dressel 1. Mais ce que ça veut surtout dire, c'est qu'elles étaient fabriquées bien loin d'ici. Elles arrivaient à Toulouse par Narbonne depuis l'Italie ! On en a retrouvé plus de 12.000 de ce type dans l'épave d'un bateau. On buvait du vin italien à Colomiers il y a 2.000 ans. </div> </div>
     <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Et ça me permet de vous dire aussi qu'outre la villa gallo-romaine de Gramont, on a aussi retrouvé dans le secteur d'En Jacca des racloirs et des choppers qui datent de l'acheuléen ! </div> </div>
     <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> T'avais quel âge à l'époque ! </div> </div>
-    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Petit insolent ! C'était il y a 200.000 ans ! On est sur du prénéanderthalien là ! En tout cas, on sait que Colomiers a accueilli des habitants bien avant de s'appeler Colomiers… </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Petit insolent ! C'était entre -50.000 et -200.000 ans ! On est sur du prénéanderthalien là ! En tout cas, on sait que Colomiers a accueilli des habitants bien avant de s'appeler Colomiers… </div> </div>
     <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Allez, venez avec moi je vous amène voir un dernier endroit et après je vous laisse rentrer tous seuls. </div> </div>
 
     <div class="mission-box">
@@ -902,13 +912,6 @@
         </div>
     </div>
 
-    <div id="final-link-box">
-        <p>🎉 Bravo ! Vous avez débloqué l'emplacement final !</p>
-        <p><strong>Position de la cache :</strong></p>
-        <a href="https://www.google.com/maps?q=43.611333,1.320217" target="_blank" class="gps-link">
-            N 43° 36.680' E 001° 19.213'
-        </a>
-    </div>
 
 </div>
 </section>
@@ -919,7 +922,7 @@
     // ----------------------------------------------------------------------
 
     const ENIGMA_STORAGE_KEY = 'perget_enigma_answers';
-    const DEFAULT_ANSWERS = {A: null, B: null, C: null, D: null, E: null, F: null, G: null, H: null, I: null, J: null};
+    const DEFAULT_ANSWERS = {A: null, B: null, C: null, D: null, E: null, F: null, G: null, H: null, I: null, J: null, K: null};
 
     function loadEnigmaAnswers() {
         try {
@@ -1116,21 +1119,122 @@
     // ----------------------------------------------------------------------
 
     const SECRET_WORD = "FALCOU";
+    const PLANT_WORD = "CACTUS";
+
+    // =================================================================================
+    // IMPORTANT : REMPLACER CES VALEURS PAR LES VRAIES RÉPONSES SUR LE TERRAIN
+    // =================================================================================
+    const CORRECT_ANSWERS = {
+        A: 1, B: 3, C: 4, D: 3, E: 17,
+        F: 15, G: 2, H: 10, I: 3, J: 27, K: 22
+    };
+    const REMINDERS = {
+        A: 'Tunnel', B: 'Fruitier', C: 'Animal', D: 'Saules',
+        E: 'Parcours santé', F: 'Barreaux', G: 'Enseigne', H: 'Cheminées',
+        I: 'Marronnier', J: 'Boulins', K: 'Date'
+    };
+    // =================================================================================
+
+    function checkPlantWord() {
+        const input = document.getElementById("plant-word");
+        const button = document.getElementById("validate-button-plant");
+        const validationMessage = document.getElementById("validation-message-plant");
+
+        if (input.value.trim().toUpperCase() === PLANT_WORD) {
+            validationMessage.style.color = "#2ecc71";
+            validationMessage.textContent = "✅ Bonne réponse !";
+            button.classList.remove('btn-default');
+            button.classList.add('btn-validated');
+            button.textContent = "Réponse validée";
+        } else {
+            validationMessage.style.color = "#e74c3c";
+            validationMessage.textContent = "❌ Ce n'est pas le bon mot.";
+            resetButtonToDefault(button);
+        }
+    }
+
+    function resetPlantWord() {
+        const button = document.getElementById("validate-button-plant");
+        const validationMessage = document.getElementById("validation-message-plant");
+        if (validationMessage) validationMessage.textContent = "";
+        resetButtonToDefault(button);
+    }
+
+    function displayCollectedVariables() {
+        const vars = loadEnigmaAnswers();
+        const listDiv = document.getElementById('variable-list');
+        if (!listDiv) return false;
+
+        listDiv.style.cssText = "display:grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap:10px; margin-bottom:20px;";
+        listDiv.innerHTML = '';
+
+        const variableKeys = Object.keys(DEFAULT_ANSWERS);
+        let allCorrect = true;
+
+        variableKeys.forEach(key => {
+            const value = vars[key];
+            const correctValue = CORRECT_ANSWERS[key];
+            const reminder = REMINDERS[key] || '';
+            const item = document.createElement('div');
+            item.style.cssText = "border:1px solid #ddd; border-radius:6px; padding:8px; text-align:center; background-color:#fff;";
+
+            let dotColor = '#e74c3c';
+            const displayValue = (value !== null && value !== undefined) ? value : '?';
+
+            if (value !== null && value !== undefined && !isNaN(value) && correctValue !== null && value === correctValue) {
+                dotColor = '#2ecc71';
+            } else {
+                allCorrect = false;
+            }
+
+            item.innerHTML = `
+                <div style="font-size:12px; color:#666; margin-bottom:4px;">${reminder}</div>
+                <div style="font-weight:bold;">
+                    <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background-color:${dotColor}; margin-right:6px;"></span>
+                    ${key} = ${displayValue}
+                </div>
+            `;
+            listDiv.appendChild(item);
+        });
+
+        return allCorrect;
+    }
+
+    function checkFinalAnswer() {
+        const messageDiv = document.getElementById('result-message');
+        const finalLinkBox = document.getElementById('final-link-box');
+
+        const allVariablesCorrect = displayCollectedVariables();
+
+        if (allVariablesCorrect) {
+            messageDiv.style.color = '#2ecc71';
+            messageDiv.textContent = "✅ FÉLICITATIONS ! Tout est correct.";
+            if (finalLinkBox) {
+                finalLinkBox.style.display = 'block';
+                finalLinkBox.scrollIntoView({behavior: "smooth"});
+            }
+        } else {
+            messageDiv.style.color = '#e74c3c';
+            messageDiv.textContent = "❌ Certaines réponses sont incorrectes (points rouges).";
+            if (finalLinkBox) finalLinkBox.style.display = 'none';
+        }
+    }
 
     function checkMagicWord() {
         const input = document.getElementById("final-password");
         const msg = document.getElementById("password-message");
-        const finalBox = document.getElementById("final-link-box");
+        const finalSection = document.getElementById("final-grid-section");
 
         if (input.value.trim().toUpperCase() === SECRET_WORD) {
             msg.style.color = "#2ecc71";
             msg.textContent = "✨ CORRECT ! Le trésor est révélé.";
-            finalBox.style.display = "block";
-            finalBox.scrollIntoView({behavior: "smooth"});
+            finalSection.style.display = "block";
+            displayCollectedVariables();
+            finalSection.scrollIntoView({behavior: "smooth"});
         } else {
             msg.style.color = "#e74c3c";
             msg.textContent = "❌ Ce n'est pas le bon mot.";
-            finalBox.style.display = "none";
+            finalSection.style.display = "none";
         }
     }
 
@@ -1138,7 +1242,7 @@
     // --- INIT ---
     // ----------------------------------------------------------------------
     document.addEventListener("DOMContentLoaded", function() {
-        ['C', 'D', 'E', 'F', 'G', 'H', 'J'].forEach(initStandardInput);
+        ['C', 'D', 'E', 'F', 'G', 'H', 'J', 'K'].forEach(initStandardInput);
         initChoiceInput('A');
         initChoiceInput('I');
         initImageChoiceInput();
