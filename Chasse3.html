@@ -1,0 +1,1234 @@
+<!doctype html>
+<html lang='fr'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chats Perget</title>
+
+    <style>
+        /* --- DESIGN GÉNÉRAL --- */
+        body {
+            font-family: 'Verdana', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            min-height: 100vh;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            padding-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: #2980b9;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            border-left: 5px solid #2980b9;
+            padding-left: 10px;
+        }
+
+        /* --- HEADER --- */
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+        .info-box-header {
+            background-color: #fdfdfa;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin: 20px auto 0;
+            max-width: 600px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .info-box-header .main-title {
+            font-family: 'Dancing Script', 'Brush Script MT', 'cursive';
+            font-size: 36px;
+            color: #d35400;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .info-box-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+        .info-col-left img {
+            width: 130px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #ccc;
+        }
+        .info-col-middle {
+            text-align: center;
+            flex-grow: 1;
+        }
+        .info-col-middle .distance {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 12px;
+        }
+        .info-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .info-icon {
+            font-size: 20px;
+            cursor: help;
+            background-color: #333;
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            line-height: 1;
+        }
+        .info-col-right {
+            text-align: right;
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 500;
+            min-width: 110px;
+            white-space: nowrap;
+        }
+        .info-col-right strong {
+            color: #000;
+        }
+
+        /* --- INFO PARKING --- */
+        .parking-info {
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: center;
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .parking-info p { margin-top: 0; margin-bottom: 15px; line-height: 1.5; }
+        .parking-info h3 { margin-top: 0; margin-bottom: 10px; color: #333; font-size: 16px; }
+        .parking-info ul { list-style-type: none; padding: 0; margin: 0; }
+        .parking-info ul li { margin: 5px 0; }
+        .parking-info ul li a {
+            color: #2980b9;
+            font-weight: bold;
+            text-decoration: none;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+        }
+
+        /* --- PRÉSENTATION DES PERSONNAGES --- */
+        .character-presentation {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 15px 0;
+            border-bottom: 2px solid #eee;
+        }
+        .character-presentation p { font-size: 1.1em; color: #666; margin: 0 0 15px 0; font-weight: bold; }
+        .character-group { display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap; }
+        .character-item { display: flex; flex-direction: column; align-items: center; margin: 10px 5px; flex-basis: 30%; }
+        .character-icons { display: flex; margin-bottom: 5px; }
+        .badge-icon { width: 91px; height: 91px; border-radius: 50%; object-fit: cover; border: 3px solid #d35400; margin: 0 3px; }
+        .character-label { font-size: 0.85em; color: #d35400; font-weight: bold; margin-top: 5px; }
+
+        /* --- DIALOGUES --- */
+        .dialogue-row { display: flex; align-items: flex-start; margin-bottom: 15px; }
+        .avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #ccc; flex-shrink: 0; margin-right: 15px; }
+        img[alt="Jeanine"] { border: 2px solid #2ecc71; }
+        img[alt="Cabia"] { border: 2px solid #34495e; }
+
+        .bubble { background-color: #e9eff5; padding: 12px 15px; border-radius: 0 15px 15px 15px; position: relative; font-size: 15px; line-height: 1.4; }
+        .bubble::before { content: ""; position: absolute; top: 0; left: -10px; width: 0; height: 0; border-top: 10px solid #e9eff5; border-left: 10px solid transparent; }
+        .name-tag { font-size: 11px; font-weight: bold; color: #666; margin-bottom: 4px; display: block; text-transform: uppercase; }
+
+        /* --- COORDONNÉES GPS --- */
+        .gps-box { text-align: center; margin: 20px 0; padding: 15px; background-color: #fff3cd; border-radius: 8px; border: 1px solid #ffeeba; }
+        .gps-link, .path-link {
+            display: inline-block; margin-top: 5px; color: #856404; font-weight: bold; text-decoration: none;
+            border-bottom: 2px dotted #856404; font-family: 'Courier New', monospace; font-size: 1.1em;
+        }
+        .gps-link:hover, .path-link:hover { background-color: #856404; color: white; }
+
+        /* --- ENCARTS --- */
+        .mission-box { border: 3px dashed #d35400; background-color: #fffaf0; padding: 20px; margin: 30px 0; text-align: left; font-size: 15px; border-radius: 10px; color: #333; }
+        .info-note-box { border: 2px solid #1abc9c; background-color: #e8f6f3; padding: 15px 20px; margin: 20px 0; border-radius: 8px; font-size: 15px; color: #333; }
+
+        #etape14 .mission-box { border: 3px dashed #2ecc71; background-color: #f6fff6; }
+        #etape14 .mission-box h3 { color: #2ecc71; margin-top: 0; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 15px; }
+
+        /* INPUTS & BOUTONS */
+        .answer-input-zone { display: flex; align-items: center; justify-content: center; margin: 15px 0 5px 0; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f8f9fa; }
+        .answer-input-zone label { font-weight: bold; margin-right: 10px; color: #d35400; }
+        .answer-input-zone input { width: 100px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-size: 18px; font-weight: bold; }
+
+        button[id^="validate-button-"], .btn-action {
+            display: block; width: 100%; padding: 12px; margin-top: 15px; border: none; border-radius: 5px;
+            font-weight: bold; font-size: 16px; cursor: pointer; transition: background-color 0.2s, color 0.2s;
+            text-align: center; text-decoration: none; box-sizing: border-box;
+        }
+
+        .btn-default, .btn-action { background-color: #bdc3c7; color: #34495e; }
+        .btn-validated { background-color: #e67e22; color: white; }
+        .btn-default:hover, .btn-action:hover { background-color: #ccd1d1; }
+
+        div[id^="validation-message-"] { margin-top: 5px; font-size: 14px; font-weight: bold; color: #e74c3c; min-height: 20px; text-align: center; }
+
+        /* BOUTONS DE CHOIX (texte) */
+        .choice-btn {
+            display: block; width: 100%; padding: 15px; margin-bottom: 10px; border: 2px solid #ccc; border-radius: 8px;
+            background-color: white; font-size: 15px; cursor: pointer; text-align: left; transition: all 0.2s;
+        }
+        .choice-btn:hover { background-color: #f0f0f0; border-color: #bbb; }
+        .choice-selected { background-color: #e67e22 !important; color: white !important; border-color: #d35400 !important; font-weight: bold; }
+
+        /* BOUTONS DE CHOIX (images) */
+        .choice-img-group { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+        .choice-img-btn { display: flex; flex-direction: column; align-items: center; width: 90px; padding: 8px; border: 3px solid #ccc; border-radius: 10px; background-color: white; cursor: pointer; transition: all 0.2s; }
+        .choice-img-btn img { width: 70px; height: 70px; object-fit: cover; border-radius: 6px; margin-bottom: 6px; }
+        .choice-img-btn span { font-size: 0.8em; font-weight: bold; color: #34495e; text-align: center; }
+        .choice-img-btn:hover { border-color: #bbb; background-color: #f0f0f0; }
+        .choice-img-selected { border-color: #d35400 !important; background-color: #fdebd0 !important; }
+        .choice-img-selected span { color: #d35400 !important; }
+
+        /* --- DIRECTION & NARRATION --- */
+        .direction-box { background-color: #f8f9fa; border-left: 6px solid #95a5a6; padding: 15px 20px; margin-top: 40px; color: #555; font-style: italic; font-size: 15px; }
+        .direction-box strong { color: #333; font-weight: bold; font-style: normal; }
+        .narrative-note { text-align: center; font-style: italic; color: #888; font-size: 13px; margin: 15px 0; }
+        .illustration-grande { max-width: 100%; height: auto; border-radius: 8px; margin: 20px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: block; }
+        .image-link { display: block; text-align: center; margin: 20px 0; }
+
+        /* --- FICHIERS AUDIO --- */
+        .audio-block { background-color: #efebe9; border: 2px solid #d7ccc8; border-radius: 10px; padding: 20px; margin: 25px 0; }
+        .audio-block p.audio-intro { margin-top: 0; }
+        .audio-item { margin-bottom: 15px; }
+        .audio-item:last-child { margin-bottom: 0; }
+        .audio-item label { font-weight: bold; color: #d35400; display: block; margin-bottom: 5px; }
+        audio { width: 100%; margin-top: 5px; }
+
+        /* --- COMPARATEUR D'IMAGES (Le Perget hier / aujourd'hui) --- */
+        .compare-container {
+            position: relative;
+            max-width: 100%;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border: 4px solid #3e2723;
+            aspect-ratio: 2114 / 1189;
+        }
+        .compare-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            user-select: none;
+            pointer-events: none;
+        }
+        .img-after {
+            clip-path: inset(0 0 0 50%);
+        }
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background-color: #ffeb3b;
+            transform: translateX(-50%);
+            cursor: ew-resize;
+            z-index: 5;
+        }
+        .slider-handle::after {
+            content: "↔";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px;
+            height: 44px;
+            background-color: #ffeb3b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #3e2723;
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+        }
+        .compare-container input[type="range"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            opacity: 0;
+            cursor: ew-resize;
+            z-index: 10;
+        }
+        .compare-label {
+            position: absolute;
+            top: 15px;
+            padding: 5px 12px;
+            background-color: rgba(0,0,0,0.6);
+            color: white;
+            border-radius: 5px;
+            font-size: 0.9em;
+            font-weight: bold;
+            z-index: 4;
+        }
+        .compare-label-before { left: 15px; }
+        .compare-label-after { right: 15px; }
+
+        /* --- ÉNIGME FINALE --- */
+        #password-zone { max-width: 600px; margin: 20px auto; padding: 20px; text-align: center; background-color: #e8f6f3; border: 1px solid #1abc9c; border-radius: 8px; }
+        #password-zone input { font-size: 20px; padding: 10px; text-transform: uppercase; width: 80%; margin-bottom: 10px; border: 2px solid #16a085; border-radius: 5px; text-align: center; }
+        #final-link-box { margin-top: 15px; display: none; text-align: center; padding: 15px; background-color: #e8f5e9; border: 1px solid #2ecc71; border-radius: 8px; }
+
+    </style>
+</head>
+<body>
+
+<div class="info-box-header">
+    <h1 class="main-title">Chats Perget</h1>
+    <div class="info-box-content">
+        <div class="info-col-left">
+            <img src="Perget.jpg" alt="Le Perget">
+        </div>
+        <div class="info-col-middle">
+            <div class="distance">3,3 km</div>
+            <div class="info-icons">
+                <span class="info-icon" title="Faisable à pied">🚶</span>
+                <span class="info-icon" title="Possible en VTT">🚵</span>
+                <span class="info-icon" title="Difficile en poussette">❌🛒</span>
+                <span class="info-icon" title="Attention, 4 marches en début de parcours">🪜</span>
+            </div>
+        </div>
+        <div class="info-col-right">
+            <strong>Difficulté :</strong> 2 / 5<br>
+            <strong>Terrain :</strong> 2 / 5<br>
+            <strong>Durée :</strong> 45mn à 1h15
+        </div>
+    </div>
+</div>
+
+<div class="parking-info">
+    <p>Ce parcours est « mixte » : il alterne des zones naturelles et des zones urbaines où les véhicules circulent. Merci de respecter la tranquillité des résidents dans les quartiers résidentiels et soyez prudents au bord des routes.</p>
+    <h3>Parking conseillé :</h3>
+    <ul>
+        <li><a href="https://www.google.com/maps?q=43.61205,1.32003" target="_blank">Boulodrome : N 43° 36.723' E 001° 19.202'</a></li>
+        <li>L'entrée du parking a été équipée de mobilier qui empêche l'usage par les gros véhicules (camping-cars et camionnettes). Si vous possédez un tel véhicule, vous pouvez vous garer dans la zone de Catchère en face :<br>
+        <a href="https://www.google.com/maps?q=43.61283119301744,1.3197498525615112" target="_blank">N 43° 36.770' E 001° 19.185'</a></li>
+    </ul>
+</div>
+
+<section id="etape1" class="etape">
+<div class="container">
+
+    <div class="character-presentation">
+        <p>Une aventure avec :</p>
+        <div class="character-group">
+            <div class="character-item">
+                <div class="character-icons"> <img src="Badge Malo.png" alt="Malo" class="badge-icon"> <img src="Badge Gris-nez.png" alt="Gris-nez" class="badge-icon"> </div>
+                <span class="character-label">Les chats</span>
+            </div>
+            <div class="character-item">
+                <div class="character-icons"> <img src="Badge Cabia.png" alt="Cabia" class="badge-icon"> </div>
+                <span class="character-label">La pie</span>
+            </div>
+            <div class="character-item">
+                <div class="character-icons"> <img src="Badge Jeanine.png" alt="Jeanine" class="badge-icon"> </div>
+                <span class="character-label">La tortue</span>
+            </div>
+        </div>
+    </div>
+
+    <h2>1. Point de départ : Le bois du Piquemil</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps?q=43.612138369099064,1.3188631153932433" target="_blank" class="gps-link">
+            N 43° 36.728' E 001° 19.132'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="gris-nez.png" alt="gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Vous êtes qui ? Vous faites quoi ? Pourquoi vous êtes là ? </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Voyons Gris-nez, arrête de les importuner. Excusez-le, c'est mon petit frère, il est encore un peu jeune. Moi je m'appelle Malo. Je suppose que vous êtes venus jouer à « Chats Perget » avec nous ? Vous allez voir, c'est très amusant. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Allez ne perdons pas de temps, suivez-nous, c'est par ici. </div> </div>
+
+    <div class="direction-box">
+        Dirigez-vous jusqu'au premier passage clouté <a href="https://www.google.com/maps?q=43.61202640200705,1.3182811066839286" target="_blank" class="path-link">N 43° 36.722' E 001° 19.097'</a>, poursuivez jusqu'au deuxième passage clouté <a href="https://www.google.com/maps?q=43.612301276362004,1.3176700172284876" target="_blank" class="path-link">N 43° 36.738' E 001° 19.060'</a> puis traversez pour atteindre le point <a href="https://www.google.com/maps?q=43.61263027492407,1.3173511966223097" target="_blank" class="path-link">N 43° 36.758' E 001° 19.041'</a> (repérable aux trois grosses pierres qui ornent l'entrée).
+    </div>
+
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> On est quel jour ? </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Et oui, ami randonneur, nous, nous sommes bloqués dans cette application et le temps ne défile pas pour nous comme pour vous… Mais si vous avez eu la bonne idée de venir en août-septembre, alors nous avons une très bonne nouvelle pour vous : les 200 prochains mètres vont être remplis de bonnes mûres sauvages bien juteuses ! Vous pourrez même en ramener chez vous tant il y en a. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Et si ce n'est pas la saison, tant pis, vous aurez peut-être une autre chance de vous régaler plus tard. En attendant en avant, marche. Longeons le Bassac. </div> </div>
+
+</div>
+</section>
+
+<section id="etape2" class="etape">
+<div class="container">
+    <h2>2. Le tunnel secret</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps?q=43.612417,1.317583" target="_blank" class="gps-link">
+            N 43° 36.755' E 001° 19.055'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Et voilà ! Notre petit passage secret à tous deux. Le Perget est un quartier qui a énormément évolué ces dernières années, mais il y a aussi des choses qui n'ont pas bougé depuis des siècles. C'est le cas de ce croisement entre nature et industrialisation. Quand la voie ferrée est apparue à Colomiers en 1887, il a fallu qu'elle franchisse le Bassac. Alors les ingénieurs de l'époque ont créé un petit tunnel pour que le Bassac puisse continuer à sinuer au même endroit. Et aujourd'hui, même s'il a été rénové depuis, ce même tunnel est toujours en place. </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Et nous on s'amuse à jouer dedans ! </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Chut ! C'est pas une bonne idée pour les enfants ! </div> </div>
+
+    <div class="mission-box">
+        Le tunnel à l'heure actuelle est réalisé avec quel type de matériau ?
+        <div id="choice-container-A" style="margin-top: 15px;">
+            <button class="choice-btn" id="choice-A-1" onclick="handleChoiceValidation('A', 1)"><strong>1.</strong> De la brique</button>
+            <button class="choice-btn" id="choice-A-2" onclick="handleChoiceValidation('A', 2)"><strong>2.</strong> Du béton</button>
+            <button class="choice-btn" id="choice-A-3" onclick="handleChoiceValidation('A', 3)"><strong>3.</strong> Du métal</button>
+            <button class="choice-btn" id="choice-A-4" onclick="handleChoiceValidation('A', 4)"><strong>4.</strong> De la pierre</button>
+            <button class="choice-btn" id="choice-A-5" onclick="handleChoiceValidation('A', 5)"><strong>5.</strong> Du bois</button>
+        </div>
+        <div id="validation-message-A" style="color: #2ecc71; font-weight: bold; margin-top: 10px; text-align: center;"></div>
+    </div>
+
+    <div class="direction-box">
+        Poursuivez jusqu'au bout du chemin en direction des résidences. Au point suivant <a href="https://www.google.com/maps?q=43.61433601656474,1.3164506113898662" target="_blank" class="path-link">N 43° 36.860' E 001° 18.987'</a>, répondez à la question subsidiaire.
+    </div>
+
+    <div class="info-note-box">
+        Dans le jardin de ce particulier se trouve une plante assez fréquente dans le Sud-Est de la France, mais plus rare à Colomiers. Comment se nomme cette plante (le nom générique, pas la variété en particulier) ? Inscrivez ce nom quelque part, il vous servira peut-être pour vous aider dans quelques minutes.
+    </div>
+
+    <div class="direction-box">
+        Poursuivez dans le quartier résidentiel. Prenez en face de vous <a href="https://www.google.com/maps?q=43.61428609729216,1.3159860041474354" target="_blank" class="path-link">N 43° 36.857' E 001° 18.959'</a> puis poursuivez à gauche en montant la rue du pigeonnier jusqu'aux escaliers <a href="https://www.google.com/maps?q=43.613611,1.318722" target="_blank" class="path-link">N 43° 36.817' E 001° 18.957'</a>.
+    </div>
+
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Au début des années 1980 il n'y avait à l'emplacement de tout ce quartier résidentiel que 4 belles maisons. Avec le développement du quartier, les promoteurs ont bâti tout un ensemble de pavillons pour pouvoir héberger les nouvelles populations. Sous l'influence de l'économie aéronautique grandissante, Colomiers a lancé un grand projet qui incluait un Science Park, la création du premier lycée public de la ville qui a ouvert à la rentrée 1984, et l'aménagement de zones boisées et naturelles. </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Et l'installation massive de la zone commerciale ! </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Non, ça c'était dans les années 2000. Et nous, c'est pas ce qu'on préfère. Pour autant, les maires successifs ont tenu à conserver une partie des lieux à l'identique. Vous imaginez des grands champs à perte de vue avec un immense corps de ferme et un pigeonnier en brique rouge ? </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Non ? Et bien on vous y amène. </div> </div>
+
+    <div class="direction-box">
+        Poursuivez le chemin ascendant jusqu'au <a href="https://www.google.com/maps?q=43.61350784336543,1.3151407331078733" target="_blank" class="path-link">N 43° 36.810' E 001° 18.908'</a> et profitez de la vue sur le Colomiers d'autrefois.
+    </div>
+
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> La ville de Colomiers est née vers 1080, du côté de l'ancien fort, pas loin de la place Firmin Pons. Il est fort probable que le Perget ait commencé à être utilisé comme terres agricoles entre le XIIIè et le XVIè siècle. Les Capitouls toulousains rachetaient progressivement les terres columérines pour en faire des résidences de campagne. La ferme que vous avez devant vous (ou ce qu'il en reste) doit, elle, dater du XVIIè et le pigeonnier du début du XVIIIè. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Les archives judiciaires de Toulouse nous disent qu'en 1730 un certain Jacques de Lespinasse et son épouse Laurence de Gimbal étaient alors "Seigneur et seigneuresse du Perget et de Colomiers". </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Chat alors ! Bon, ça y est, t'as fini ? On peut jouer à Chats Perget maintenant ? </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Si tu veux. Je te laisse leur expliquer la règle du jeu. </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Alors c'est très simple, on va s'approcher à pattes de loup du pigeonnier, et quand on arrive au ras du premier pilier, on crie "Bouh !" et là tous les pigeons ont une crise cardiaque ou s'envolent ! </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Ouais, alors petite précision, si vous êtes ornithophobes : le pigeonnier est encore copieusement habité aujourd'hui. Donc vous n'êtes pas obligés de suivre les conseils du petit ! </div> </div>
+
+    <div class="direction-box">
+        Dirigez-vous vers le pigeonnier.
+    </div>
+</div>
+</section>
+
+<section id="etape3" class="etape">
+<div class="container">
+    <h2>3. Le pigeonnier</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps?q=43.61357481516744,1.3147196924417535" target="_blank" class="gps-link">
+            N 43° 36.814' E 001° 18.883'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Non mais ça va pas de faire sursauter les gens comme ça ! </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> T'es pas un pigeon toi ! </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Ah ça non ! Une pie jaune, à la limite, avec les taches de peinture. </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Pourquoi t'es là ? T'es qui ? </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Je me nomme Cabia, je suis une pie, et je suis venu chercher ici la quiétude et l'inspiration pour mes prochaines œuvres picturales. Mais tout ça c'était avant que tu arrives. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Pardonnez-le il est un peu "chat-huteur". </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Sais-tu jeune impertinent, que tu contemples ici les restes d'une demeure fortunée ? Car ce n'est pas un, mais bien deux pigeonniers que comptait cette ferme. Le premier que voici, et le deuxième tout en haut à gauche de la construction. </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> A une époque où la colombine (qui a donné son nom à Colomiers) était l'engrais naturel le plus efficace pour cultiver la terre, imagine la richesse de ce domaine. </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Je vois surtout qu'il y a de la fiente partout par terre ! Beurk. </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Il vaut toujours mieux ça que des grosses usines d'engrais industriel. Non ? </div> </div>
+
+    <div class="mission-box">
+        La fiente de pigeon semble avoir été appréciée par un arbre qui a élu domicile depuis quelques années au ras du pigeonnier. D'après la forme de ses feuilles, cet arbre est un ? Sélectionnez la bonne réponse qui vaut B :
+        <div class="choice-img-group">
+            <div class="choice-img-btn" id="choice-img-B-1" onclick="handleImageChoice(1)"> <img src="pêcher.jpg" alt="Pêcher"> <span>Pêcher</span> </div>
+            <div class="choice-img-btn" id="choice-img-B-2" onclick="handleImageChoice(2)"> <img src="poirier.jpg" alt="Poirier"> <span>Poirier</span> </div>
+            <div class="choice-img-btn" id="choice-img-B-3" onclick="handleImageChoice(3)"> <img src="figuier.jpg" alt="Figuier"> <span>Figuier</span> </div>
+            <div class="choice-img-btn" id="choice-img-B-4" onclick="handleImageChoice(4)"> <img src="pommier.jpg" alt="Pommier"> <span>Pommier</span> </div>
+        </div>
+        <div id="validation-message-B" style="color: #2ecc71; font-weight: bold; margin-top: 10px; text-align: center;"></div>
+        <p style="margin-top: 15px; font-style: italic;"><em>Indice :</em> Si notre arbre n'a plus de feuilles, reprenez l'indice de la question subsidiaire précédente.</p>
+    </div>
+
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Allez, si vous n'avez pas eu de chance avec les mûres, vous pourrez peut-être déguster quelques fruits de cet arbre, il est d'une variété tardive et donne du fruit au mois de septembre. </div> </div>
+
+    <div class="direction-box">
+        Avancez jusqu'aux deux pans de murs de la ferme.
+    </div>
+</div>
+</section>
+
+<section id="etape4" class="etape">
+<div class="container">
+    <h2>4. Le corps de ferme</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps?q=43.61350,1.31419" target="_blank" class="gps-link">
+            N 43° 36.810' E 001° 18.852'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Vous savez ce qui me plait ici ? C'est que l'art a aussi réussi à trouver sa place. </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Quand la ville a décidé de repenser complètement tout le quartier, la ferme était alors dans un état de grand délabrement et dangereuse pour les passants. Il a été décidé de la détruire et de ne conserver que ces deux pans qui donnaient un très bel aperçu de l'édifice. Le pigeonnier a lui aussi été conservé et restauré. </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Et les peintures aussi elles étaient d'origine ? </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Oh, non ! Elles sont toutes récentes. Elles ont été réalisées en juin 2025 par l'artiste Azek. Il faut dire que jusque-là les fenêtres étaient murées avec du béton pour solidifier l'ensemble, et ce n'était pas très esthétique. Regardez-moi ces deux photos, vous verrez la différence ! </div> </div>
+
+    <a href="Borde.gif" target="_blank" class="image-link"> <img src="Borde.gif" alt="Restauration du corps de ferme" class="illustration-grande"> </a>
+
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Moi j'aime beaucoup les trompe l'œil. De loin on croirait vraiment que la porte en bas est une vraie. </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Qu'est-ce qu'on fait maintenant ? </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> On va aller au bord de l'eau continuer la balade. </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Bon, moi je vais rester là. J'ai un super perchoir juste derrière ce mur. De là je peux observer toute la zone. Et j'ai l'impression que je suis pas le seul ! </div> </div>
+
+    <div class="mission-box">
+        Avant de partir, répondez à cette question. Sur le mur de droite, au premier étage, à la fenêtre de droite, un animal a trouvé place devant le bac de fleurs jaunes. Quel est cet animal ? De combien de lettres se compose son nom ?
+        <div class="answer-input-zone"> <label for="C">C =</label> <input type="number" id="C" min="0" max="20" required oninput="resetStandardInput('C')"> </div>
+        <div id="validation-message-C"></div>
+        <button id="validate-button-C" class="btn-default" onclick="handleStandardValidation('C')"> Valider la réponse </button>
+    </div>
+
+    <div class="direction-box">
+        Traversez maintenant ce qui reste du corps de ferme soit par la porte de gauche (dans ce cas pensez à faire un petit coucou à Cabia et à la caméra de télésurveillance), soit par celle de droite. Descendez jusqu'au point <a href="https://www.google.com/maps?q=43.61423141002701,1.31351155381451" target="_blank" class="path-link">N 43° 36.854' E 001° 18.811'</a> puis continuez à longer l'étendue d'eau jusqu'au point suivant.
+    </div>
+</div>
+</section>
+
+<section id="etape5" class="etape">
+<div class="container">
+    <h2>5. Ce petit coin de nature est l'endroit idéal…</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps?q=43.6142918293022,1.3128304049170025" target="_blank" class="gps-link">
+            N 43° 36.858' E 001° 18.770'
+        </a>
+    </div>
+
+    <div class="narrative-note">« Plop »</div>
+
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Ah, tiens, les jeunes loups ! Encore en train de faire peur aux pigeons ? </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Ben oui, tu sais bien, on est toujours prisonniers du même scénario, donc forcément… Je suppose que tu vas encore nous raconter plein de trucs sur le vieux Colomiers, comme d'habitude. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Et oui ! Car il y a 100 ans, la ville ne ressemblait pas du tout à cela. Figurez-vous qu'il n'y avait ici que des champs à perte de vue. Des champs, des champs, une ferme, et une petite usine qui fabriquait des briques. Mais on y reviendra tout à l'heure. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Mais il y a bien plus de temps que ce bâtiment se trouve ici. Le lieu "Perget" est déjà mentionné dans un acte de 1274, et en 1573 un Raspaud, (du même nom que le "château de Raspaud" dans le vieux centre de Colomiers) Seigneur du Perget et capitoul de Toulouse, marie sa fille à un Goyrans (du nom de la ville au Sud-Est de Toulouse). Au siècle suivant c'est le Seigneur de Lespinasse (du nom de la ville au Nord de Toulouse), également capitoul de Toulouse, qui devient propriétaire. </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> En gros, Colomiers appartenait aux Capitouls toulousains. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Eh oui ! C'est assez anachronique, mais Colomiers a TOUJOURS été la banlieue de Toulouse. En 1096, l'église de Colomiers est donnée à l'abbaye de Saint-Sernin. En 1192 une partie des biens et des droits issus de la seigneurie de Colomiers passe aux mains des Villeneuves, Capitouls. Vers 1200, Raymond Guillaume Durand, capitoul de Toulouse, achète la part qui reste à Saint-Sernin, puis acquiert quelques années plus tard la part des Villeneuve. À son décès, il possède ainsi la moitié de la seigneurie de Colomiers. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Et ça s'arrête quand ? </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Jamais ! Enfin, si à la Révolution, le 4 août 1789. En 1313, on sait que les possessions appartiennent pour moitié au Roi et que le reste est divisable, vendable, transmissible, comme dans une copropriété, en autant de parties que l'on souhaite et qui seront toutes des co-seigneuries. Chaque acquéreur de terre obtient sa part de seigneurie. En 1725, Colomiers compte 21 coseigneurs et un certain Bousquet dénommé "engagiste", c'est-à-dire que le Roi lui-même a décidé d'engager ses droits seigneuriaux auprès d'un particulier. </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Je comprends plus rien !!! </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Rassure-toi pour les gens de l'époque le système fonctionnait, mais il pouvait devenir franchement pénible à gérer. Ce qu'il faut retenir, c'est que d'une part il y avait un certain prestige à avoir une terre à Colomiers. On n'achetait pas une ferme, on achetait une situation sociale. Et d'autre part, au bout d'un certain temps, n'importe qui avec de l'argent pouvait acquérir cette part de prestige, y compris un certain Bacqué, descendant de forgerons de Colomiers, qui achète un denier de justice et obtient ainsi certains privilèges de coseigneur ou encore Jean Noguiès maître boulanger toulousain qui deviendra propriétaire du Perget. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Et quand on comprend cela, on ne regarde plus du tout Colomiers pareil : le château de l'Armurier, le château du Cabirol, celui du Falcou, d'En Jacca, de Franc… La ville porte encore des centaines d'années après la trace de ce fonctionnement. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> D'accord, mais il n'y a plus de chatelains qui donnent des ordres aux autres depuis longtemps, non ? </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> En sommes-nous vraiment si sûrs ? Emile Calvet a été maire de Colomiers de 1934 à 1944. Il était propriétaire du Château des Tourelles, rue du Prat. Son successeur Eugène Montel, maire de 1944 à 1966 résidait chez son gendre au château de l'Armurié, et Alex Raymond, maire de 1966 à 2001 était propriétaire du château du Falcou… Alors les jeunes, qu'est-ce que vous en dites ? </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Ouahou ! J'avais jamais fait attention à tout ça moi. </div> </div>
+
+    <div class="mission-box">
+        Pour vous remettre de toutes ces informations, vous pouvez vous asseoir sur un banc. Profitez-en pour regarder la nature autour de vous, et plus particulièrement les saules pleureurs qui bordent cette partie du lac, combien y en a-t-il regroupés juste devant vous ?
+        <div class="answer-input-zone"> <label for="D">D =</label> <input type="number" id="D" min="0" max="20" required oninput="resetStandardInput('D')"> </div>
+        <div id="validation-message-D"></div>
+        <button id="validate-button-D" class="btn-default" onclick="handleStandardValidation('D')"> Valider la réponse </button>
+    </div>
+
+    <div class="direction-box">
+        Continuez le tour du lac sur 100m environ jusqu'au prochain point.
+    </div>
+</div>
+</section>
+
+<section id="etape6" class="etape">
+<div class="container">
+    <h2>6. Les souterrains de Colomiers</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps?q=43.61338850628443,1.312101215655082" target="_blank" class="gps-link">
+            N 43° 36.803' E 001° 18.726'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Et alors il est où le tunnel ? </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Le tunnel ? </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Le tunnel qui relie le Perget à Pibrac ? Il paraît qu'il y a un trésor dedans ! </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Oui, c'est ça ! Un tunnel et une vierge en or aussi, jetée dans un puits à la Révolution pour la mettre à l'abri des révolutionnaires ! </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Mais alors c'est vrai ces histoires ?? </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Absolument pas ! Ou en tout cas il y a très peu de chances que ce soit le cas. Mais alors me direz-vous, pourquoi certains columérins parlent encore de ces histoires ? Allez, je vais vous raconter tout ça ! </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> En 1962, un certain Robert Charroux publie un livre intitulé "Trésors du monde enterrés, emmurés, engloutis". </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Chat roux ! J'aime bien ce nom. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> C'est même pas son vrai nom ! Il se nommait Robert Grugeau, et il est aujourd'hui considéré comme ayant diffusé des théories pseudo-scientifiques, pseudo-historiques et suprémacistes blanches. Pas vraiment recommandable le petit Robert. Bref dans son bouquin de 1962, il a listé à la fin 192 des plus beaux trésors de France, dont on pense encore aujourd'hui qu'aucun n'a réellement existé. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> En 135ème position, il a noté "Perjet : souterrains du château. Entre Pibrac et Colomiers", et en 136ème position : "Pérouze : vierge en or. Abbaye en Dordogne". De là est née une légende urbaine : il y aurait une vierge en or cachée quelque part dans un souterrain de l'ancienne ferme du Perget… </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Ah, et c'est pas le cas ? </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Il y a peu de chances, non. Mais Colomiers bénéficiait déjà d'un terreau important pour les légendes autour des souterrains. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Les anciens columérins se souviennent qu'avant la destruction du château des Raspaud, il y avait un escalier qui descendait dans le sol vers on ne sait trop quoi. Il avait été muré pour des raisons de sécurité mais certains pensaient que c'était peut-être pour cacher quelque chose. Et comme par ailleurs quelques centaines de mètres plus loin au niveau du parc Duroch, on retrouvait également ce même type d'escaliers qui s'enfonçaient dans le sol, la légende courait que les deux lieux étaient reliés par des souterrains. </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Ah, et c'est pas non plus le cas ? </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Je veux pas t'empêcher de rêver, mais quand en 1976 la mairie a décaissé la terre sur plus de 10 mètres de hauteur pour mettre en place la trémie qui mène au bas de la ville, on n'a jamais retrouvé quoi que ce soit qui relie les deux endroits. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Et quand tu penses au ballet des bulldozers qui se sont succédés ici pendant des mois, s'il y avait eu un souterrain, il y a de fortes chances que les travaux se soient cassé le bec dessus à un moment donné… </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Dommage. Moi j'aimais bien l'idée qu'il y avait un trésor caché quelque part… </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Et bien respire un grand coup et tu verras ! Il y a un trésor autour de toi, ça s'appelle la nature. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Allez, suivez-moi j'en ai pas fini avec la visite. </div> </div>
+
+    <div class="mission-box">
+        Avant de poursuivre plus loin, il pourrait vous prendre l'envie de faire un peu d'exercice. Si vous suivez les instructions sur le panneau du parcours santé, quel genre d'exercice devriez-vous faire à cet endroit précis (activité en 6 lettres, qui commence et finit par la même lettre) ? Dans l'alphabet, à quelle place se trouve la deuxième lettre du mot ?
+        <div class="answer-input-zone"> <label for="E">E =</label> <input type="number" id="E" min="1" max="26" required oninput="resetStandardInput('E')"> </div>
+        <div id="validation-message-E"></div>
+        <button id="validate-button-E" class="btn-default" onclick="handleStandardValidation('E')"> Valider la réponse </button>
+    </div>
+
+    <div class="direction-box">
+        Dirigez-vous à présent jusqu'au point suivant.
+    </div>
+</div>
+</section>
+
+<section id="etape7" class="etape">
+<div class="container">
+    <h2>7. Le lac du Perget</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps?q=43.61283384417139,1.3118153195558666" target="_blank" class="gps-link">
+            N 43° 36.770' E 001° 18.709'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> C'est quoi cet endroit ? </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Ça, c'est la canalisation qui permet aux eaux du secteur de venir remplir le lac. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Tu veux dire que c'est pas un lac naturel ? </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Oui, et non. En fait c'est un peu plus compliqué que ça. La ferme du Perget disposait d'une mare originelle. Ce n'était pas un "lac" naturel au sens géologique du terme, mais plutôt une réserve d'eau agricole, plutôt un lac "collinaire" récupérant naturellement l'écoulement des eaux de pluie. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> La quasi-totalité des grandes fermes et domaines agricoles possédaient ce type de point d'eau. Il était situé dans la déclivité naturelle du terrain et servait à l'irrigation des cultures, à l'abreuvement des bêtes, ou de vivier. Il faisait partie intégrante du fonctionnement de la ferme. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Ce que vous voyez là est le résultat de l'urbanisation de la zone après la destruction de la ferme. A la fin des années 1990, les urbanistes en charge du projet ont réutilisé la topographie existante. Au lieu de reboucher l'étang de la ferme, ils se sont servi de ce point bas naturel. Ils ont surcreusé, reprofilé et considérablement agrandi l'ancien point d'eau agricole. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> L'objectif de cet agrandissement massif était de le transformer en un "bassin d'orage" moderne. Avec la construction de la zone commerciale et des centaines de logements de la ZAC, les sols ont été imperméabilisés par le béton. Il fallait un réceptacle géant pour recueillir les eaux de pluie et éviter les inondations. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Et ça, ça en fait de l'eau qui s'écoule. </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Ouais, c'est cool… </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Tenez, j'ai des vieilles photos d'il y a 60 ans. Vous voyez la différence de taille entre avant et après ? On voit aussi l'urbanisation qui s'est installée, et on voit aussi que la voie de chemin de fer a été déviée pour passer plus au sud de la ville. </div> </div>
+
+ <h2>Le Perget, hier et aujourd'hui</h2>
+    <p style="text-align:center; color:#666; margin-bottom: 10px;">Faites glisser le curseur pour comparer les deux époques</p>
+    <div class="compare-container">
+        <img src="perget01.png" alt="Le Perget en 1965">
+        <img src="perget02.png" class="img-after" id="imgAfter" alt="Le Perget aujourd'hui">
+        <div class="slider-handle" id="sliderHandle"></div>
+        <span class="compare-label compare-label-before">1965</span>
+        <span class="compare-label compare-label-after">Aujourd'hui</span>
+        <input type="range" min="0" max="100" value="50" id="sliderRange">
+    </div>
+
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Et les bâtiments en bas qui s'agrandissent, c'est quoi ? </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Ça c'est la briqueterie ! Je vais vous expliquer tout ça un peu plus loin. </div> </div>
+
+    <div class="mission-box">
+        Avant de partir, saurez-vous compter les barreaux métalliques qui sont face au lac ? Juste ceux devant vous, pas les côtés.
+        <div class="answer-input-zone"> <label for="F">F =</label> <input type="number" id="F" min="0" max="50" required oninput="resetStandardInput('F')"> </div>
+        <div id="validation-message-F"></div>
+        <button id="validate-button-F" class="btn-default" onclick="handleStandardValidation('F')"> Valider la réponse </button>
+    </div>
+
+    <div class="direction-box">
+        Dirigez-vous à présent jusqu'au point <a href="https://www.google.com/maps?q=43.61244886339171,1.3116495872106608" target="_blank" class="path-link">N 43° 36.747' E 001° 18.699'</a>. Traversez prudemment la voie cycliste, puis la route au passage clouté. Arrivés à <a href="https://www.google.com/maps?q=43.61225371925592,1.3116360544493226" target="_blank" class="path-link">N 43° 36.735' E 001° 18.698'</a>, prenez le chemin de gauche, celui qui monte, et poursuivez jusqu'au point suivant.
+    </div>
+</div>
+</section>
+
+<section id="etape8" class="etape">
+<div class="container">
+    <h2>8. La briqueterie Gélis</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps?q=43.61087924462094,1.3113182865260222" target="_blank" class="gps-link">
+            N 43° 36.653' E 001° 18.679'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> J'étais une toute petite tortue quand Paul Gélis a racheté en 1924 une petite briqueterie artisanale avec sa femme, elle-même fille de briquetier. Pendant 3 générations, avec leur fils Elie d'abord, puis les trois fils d'Elie dans les années 1960, l'exploitation de molasse argileuse va se poursuivre inlassablement. Il faut dire que la construction des logements d'une ville qui a multiplié sa population par 40 a forcément amené à consommer de la brique et des tuiles ! </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Mais pourquoi ici précisément ? </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Si le premier briquetier s'était mis là, il y avait une bonne raison : le sous-sol est idéal pour produire des briques. Toute cette zone, ainsi que les quatre autres sites qui seront achetés par la suite de l'autre côté de la nationale 124 (Dumaine I, II, III et IV) fournissent de l'argile d'excellente qualité. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Mais pourquoi on ne voit pas de machines qui creusent ou de fours qui chauffent ? </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Parce que l'extraction sur ce site a cessé depuis bien longtemps. La loi ne permet pas de creuser à plus de 60 mètres de profondeur. En 1925, la carrière extrayait 1.200 tonnes par an. En 1984, on était déjà à 457.000 tonnes ! Il a fallu aller creuser ailleurs. Le site ici sert simplement au stockage des matériaux et à la présentation des produits. Les pelleteuses creusent désormais à quelques kilomètres d'ici. </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Et c'est toujours M. Gélis qui travaille ? </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Non, la famille a tout revendu en 1989 à Imérys. Mais il y a un détail que j'aime beaucoup : Jean-Pierre Gélis, un des trois fils, a recréé ensuite une petite entreprise à Empeaux, à la frontière du Gers afin de fabriquer de nouveau les briques foraines traditionnelles que fabriquaient ses grands-parents. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> La boucle est bouclée. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Exactement. Mais nous n'avons pas encore bouclé la nôtre, alors on repart sans trainer ! </div> </div>
+
+    <div class="mission-box">
+        Si vous tournez le dos à la briqueterie, la zone industrielle s'étend devant vous. Parmi toutes les enseignes de magasins que vous pouvez voir, une seule d'entre elles est écrite « à l'envers » pour vous. Quel est le nom de cette enseigne qui est aussi un métier ? Quelle est la première lettre de ce métier ? Quelle est la place de cette lettre dans l'alphabet ?
+        <div class="answer-input-zone"> <label for="G">G =</label> <input type="number" id="G" min="1" max="26" required oninput="resetStandardInput('G')"> </div>
+        <div id="validation-message-G"></div>
+        <button id="validate-button-G" class="btn-default" onclick="handleStandardValidation('G')"> Valider la réponse </button>
+        <p style="margin-top: 15px; font-style: italic;"><em>Indice :</em> vous avez du mal à trouver ? Pensez à Jean Noguiès.</p>
+    </div>
+
+    <div class="direction-box">
+        Continuez sur le chemin jusqu'au point suivant. Attention si vous êtes en vélo (ou même à pied) les arbustes sont assez resserrés par endroits et peuvent se montrer griffants.
+    </div>
+</div>
+</section>
+
+<section id="etape9" class="etape">
+<div class="container">
+    <h2>9. La butte du Perget</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps?q=43.60931923193836,1.313417115159679" target="_blank" class="gps-link">
+            N 43° 36.559' E 001° 18.805'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> J'en ai pas tout à fait fini avec la famille Gélis, car il y a une petite anecdote qu'il faut absolument que je vous raconte ! </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> En 1972, lors d'excavation à la pelle mécanique, Monsieur Gélis est appelé par un de ses employés qui vient de faire une découverte étrange : il y a des fragments de poteries à l'endroit où il creuse. Le patron se rend immédiatement sur place et l'excavation est stoppée. On découvre alors qu'il s'agit de morceaux d'amphores qui comblent une cavité circulaire d'un mètre de diamètre environ. </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> C'est le puits avec la vierge en or !! </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Rhaa, ces jeunes ! Non ! Pas du tout ! Ce puits était probablement un puits funéraire gaulois. La tradition voulait qu'une fois le corps enseveli la sépulture soit recouverte de terres, puis de quelques amphores posées soigneusement, puis par la suite d'autres amphores qui pouvaient elles être jetées depuis 3 mètres de haut et qui se brisaient sur les premières. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Et ça nous apprend quoi ? </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Oh, plein de choses ! D'abord ces amphores ont une forme particulière, elles font environ un mètre de haut, et sont répertoriées sous le nom Dressel 1. Mais ce que ça veut surtout dire, c'est qu'elles étaient fabriquées bien loin d'ici. Elles arrivaient à Toulouse par Narbonne depuis l'Italie ! On en a retrouvé plus de 12.000 de ce type dans l'épave d'un bateau. On buvait du vin italien à Colomiers il y a 2.000 ans. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Et ça me permet de vous dire aussi qu'outre la villa gallo-romaine de Gramont, on a aussi retrouvé dans le secteur d'En Jacca des racloirs et des choppers qui datent de l'acheuléen ! </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> T'avais quel âge à l'époque ! </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Petit insolent ! C'était il y a 200.000 ans ! On est sur du prénéanderthalien là ! En tout cas, on sait que Colomiers a accueilli des habitants bien avant de s'appeler Colomiers… </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Allez, venez avec moi je vous amène voir un dernier endroit et après je vous laisse rentrer tous seuls. </div> </div>
+
+    <div class="mission-box">
+        Un bâtiment se trouve près de vous. Son toit est orné de quatre « cheminées » métalliques étranges. Imaginez un instant que ces cheminées soient des lettres mises tête en bas. Si c'était le cas, quelle lettre cela pourrait-il être ? Et à quelle place dans l'alphabet se trouve cette lettre ?
+        <div class="answer-input-zone"> <label for="H">H =</label> <input type="number" id="H" min="1" max="26" required oninput="resetStandardInput('H')"> </div>
+        <div id="validation-message-H"></div>
+        <button id="validate-button-H" class="btn-default" onclick="handleStandardValidation('H')"> Valider la réponse </button>
+    </div>
+
+    <div class="direction-box">
+        Descendez à présent la butte jusqu'à <a href="https://www.google.com/maps?q=43.60874923399109,1.3131376141680007" target="_blank" class="path-link">N 43° 36.525' E 001° 18.788'</a>. Traversez le pont, tournez immédiatement à droite et remontez jusqu'au point suivant.
+    </div>
+</div>
+</section>
+
+<section id="etape10" class="etape">
+<div class="container">
+    <h2>10. Une naissance discrète</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps?q=43.60705444343618,1.3121000165866419" target="_blank" class="gps-link">
+            N 43° 36.423' E 001° 18.726'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Stop ! Vous entendez ? </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Euh, ben avec le bruit des voitures, on n'entend pas grand-chose. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> C'est parfait ! C'est justement ça qu'il fallait entendre. </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Euh, je vois pas l'intérêt, c'est pas comme si c'était occasionnel ! Il passe des milliers de voitures tous les jours ici. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Mais ça, ça veut dire qu'on est juste à côté de la nationale 124. Et ça veut dire que juste derrière se trouve… le triangle magique ! C'est peut-être le fait d'être une tortue, mais tout ça m'émeut toujours. Rendez-vous compte, à quelques dizaines de mètres d'ici nait un petit ruisseau qui vient s'écouler ici juste devant nous ! </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> ??!! </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Le Bassac. Un cours d'eau 100% columérin ! Oh, il était là bien avant la voie rapide. Mais tout comme le lac du Pigeonnier, il a profité de l'activité humaine pour se refaire une nouvelle jeunesse. Rendez-vous compte, vu du ciel, c'est juste un bassin de rétention triangulaire, mais en fait, il combine deux mécanismes très subtils. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> D'abord, toutes les eaux de pluie des lotissements environnants viennent s'y jeter pour l'aider à se remplir. Et ensuite, comme les couches d'argile sont perméables en surface, mais bloquantes en profondeur, les nappes souterraines viennent également le remplir par en dessous. Et il n'est donc jamais à sec, même en périodes de canicules ! </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Mais, il est tout petit ton ruisseau ! </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Oui, et il ne grandira jamais. Il se jette dans l'Aussonnelle dans 3 kilomètres à peine. Mais la balade est magnifique. Si vous allez là-bas, vous croiserez sûrement mon ami Kçor. C'est un loup égyptien. Il est très gentil et ressemble à s'y méprendre à un gentil chien comme tous les "Canis Lupaster". </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Euh, ouais, mais nous on est des chats… alors les "canis machin" c'est pas trop notre truc. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Allez-y, et vous changerez d'avis ! Et puis de toute façon, moi c'est ici que je vous quitte. Je vais redescendre en longeant le Bassac, mais vous ne pourrez pas me suivre, il y a toute une partie qui s'écoule sur le site de la briqueterie et l'accès est interdit. Et puis il y a une famille de ragondins qui vit après le pont, je dois passer les voir. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Bon retour à vous ! Et merci pour ce bout de balade. </div> </div>
+
+    <div class="narrative-note">« Plop »</div>
+
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Bon, il ne nous reste plus qu'à rentrer. Venez, on va passer par la grange. </div> </div>
+
+    <div class="mission-box">
+        Devant vous se dresse un très grand marronnier, vous allez devoir estimer approximativement sa hauteur. Selon vous, il fait :
+        <div id="choice-container-I" style="margin-top: 15px;">
+            <button class="choice-btn" id="choice-I-1" onclick="handleChoiceValidation('I', 1)"><strong>1.</strong> Moins de 3 mètres</button>
+            <button class="choice-btn" id="choice-I-2" onclick="handleChoiceValidation('I', 2)"><strong>2.</strong> Environ 5 mètres</button>
+            <button class="choice-btn" id="choice-I-3" onclick="handleChoiceValidation('I', 3)"><strong>3.</strong> Plus de 10 mètres</button>
+        </div>
+        <div id="validation-message-I" style="color: #2ecc71; font-weight: bold; margin-top: 10px; text-align: center;"></div>
+    </div>
+
+    <div class="direction-box">
+        Continuez sur le chemin (allée du Médoc) qui longe la N124, jusqu'au point <a href="https://www.google.com/maps?q=43.607360472764725,1.3129030927900234" target="_blank" class="path-link">N 43° 36.442' E 001° 18.774'</a>. Là suivez le panneau indicateur dans la direction de "Tournefeuille / Place des Marots" jusqu'au point suivant.
+    </div>
+</div>
+</section>
+
+<section id="etape11" class="etape">
+<div class="container">
+    <h2>11. La grange du Piquemil</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps?q=43.607335890501396,1.313838034000458" target="_blank" class="gps-link">
+            N 43° 36.440' E 001° 18.830'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Nous y voilà ! La grange du Piquemil. Entièrement restaurée en conservant les techniques anciennes. Vous voyez ces trous carrés ? Ce sont des trous de boulins. C'est le nom qu'on donne à ces trous qui ont servi à accrocher les échafaudages le temps de la construction. On enfonçait des grosses poutres sur lesquelles on montait des planches pour pouvoir accéder au niveau au-dessus. </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Ça c'est parce que les humains ne savent pas sauter comme les chats. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Exactement. Quand les constructions étaient utilitaires, comme les granges ouvertes aux quatre vents, on ne prenait pas la peine de reboucher les trous et ici on peut voir exactement comment tout ça a été construit. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Et… vas-y Gris-nez dis-leur… </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Les trous de boulins existaient bien avant qu'on utilise cette technique, parce que ce sont précisément ces noms là qu'on utilisait pour désigner les trous des pigeonniers ! </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Exactement. Ce sont les trous aménagés dans un pigeonnier pour que les pigeons puissent y nicher. Mais comme les trous dans les murs ressemblaient aux trous que l'on trouvait dans les pigeonniers, le mot "trou de boulin" a été appliqué pour ces reliquats de construction. </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Et c'est de là que vient l'expression "se faire pigeonner". </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Alors ça, c'est pas certain. Mais ce qui est vrai c'est que pour paraitre plus riches certains propriétaires faisaient percer de faux trous dans leurs pigeonniers pour faire croire qu'ils avaient plus de pigeons que la réalité. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Et donc "se faire pigeonner" pourrait venir de là. </div> </div>
+
+    <div class="mission-box">
+        Jouons un peu avec votre patience : imaginons que cette grange soit un pigeonnier et que vous en soyez le propriétaire. De combien de trous de boulins disposeriez-vous ? Attention, la grange n'est pas symétrique, et certains trous ont été bouchés et ne doivent pas être comptés. Par ailleurs la réponse est impaire.
+        <div class="answer-input-zone"> <label for="J">J =</label> <input type="number" id="J" min="0" max="99" required oninput="resetStandardInput('J')"> </div>
+        <div id="validation-message-J"></div>
+        <button id="validate-button-J" class="btn-default" onclick="handleStandardValidation('J')"> Valider la réponse </button>
+    </div>
+
+    <div class="direction-box">
+        Restez sur l'allée du Médoc jusqu'au point <a href="https://www.google.com/maps?q=43.60807887319428,1.3148169469244666" target="_blank" class="path-link">N 43° 36.485' E 001° 18.889'</a> puis tournez à droite et continuez sur l'allée de la côte d'argent jusqu'au point <a href="https://www.google.com/maps?q=43.60775784040972,1.3156622179683988" target="_blank" class="path-link">N 43° 36.465' E 001° 18.940'</a> et là quittez la rue pour le chemin enherbé à droite qui vous amènera jusqu'au point suivant.
+    </div>
+</div>
+</section>
+
+<section id="etape12" class="etape">
+<div class="container">
+    <h2>12. La nationale 124</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps?q=43.6071365562536,1.316890253252129" target="_blank" class="gps-link">
+            N 43° 36.428' E 001° 19.013'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> On va pas se le cacher, même si elle est très pratique, il est un peu difficile de s'extasier devant la Nationale 124. Pourtant, il y a une histoire passionnante derrière l'apparition de cette route. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Colomiers a toujours été une étape sur une route qui reliait Toulouse à Auch et à la Gascogne, depuis la voie romaine (qui passait probablement plus au Sud que la N124) jusqu'à aujourd'hui. Mais globalement il faut considérer qu'il y avait plutôt trois routes un peu biscornues pour accéder à l'Ouest de Colomiers où se trouvait le bois de Sauvegarde qui était le bois communal. </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Quand Catherine de Médicis est passée par Colomiers en 1579 elle est forcément passée par une de ces trois routes là. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Mais les parcelles de terres de la ville n'étaient pas orientées de façon parallèle ou perpendiculaire, plutôt de façon oblique, ce qui rallongeait donc le chemin. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> En 1768, Louis XV décide de moderniser la France : il a besoin de gagner du temps pour l'économie (les marchandises), les relais de postes (courriers et chevaux) et les déplacements militaires. Il va donc faire passer sa « Voie Royale » de Toulouse à Auch par les Tricheries (actuellement la place de la Bascule) au sud du village et tracer un trait tout droit jusqu'au point de convergence du bois de Sauvegarde. </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Un gros coup de règle qui balafre toutes les parcelles existantes. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Et c'est probablement ce qui fait que la grange que nous avons vue tout à l'heure n'est plus reliée aux autres bâtiments d'En Jacca qui sont eux au Sud de la Nationale 124. </div> </div>
+
+    <div class="audio-block">
+        <p class="audio-intro">Vous n'avez pas à répondre de questions ici, mais en attendant de rejoindre le prochain point qui est un peu loin, n'hésitez pas à écouter les deux fichiers audio suivants :</p>
+        <div class="audio-item">
+            <label>La topographie de Cassini :</label>
+            <audio controls src="cassini.mp3"></audio>
+        </div>
+        <div class="audio-item">
+            <label>Le devenir de la Voie Royale :</label>
+            <audio controls src="124.mp3"></audio>
+        </div>
+    </div>
+
+    <div class="direction-box">
+        Rendez-vous au point <a href="https://www.google.com/maps?q=43.60745297314488,1.3172187925597834" target="_blank" class="path-link">N 43° 36.447' E 001° 19.033'</a>. Prenez le petit chemin entre les maisons pour sortir à <a href="https://www.google.com/maps?q=43.60789872550342,1.3174356922968753" target="_blank" class="path-link">N 43° 36.474' E 001° 19.046'</a>. Tournez à droite et continuez tout droit jusqu'à l'allée de la Rhune, et suivez l'allée de la Rhune presque jusqu'au bout.
+        <br><br>
+        Arrivée au point <a href="https://www.google.com/maps?q=43.60857774090681,1.3217354106529147" target="_blank" class="path-link">N 43° 36.515' E 001° 19.304'</a> tournez à gauche jusqu'au prochain point.
+    </div>
+</div>
+</section>
+
+<section id="etape13" class="etape">
+<div class="container">
+    <h2>13. Inspiration Orwellienne ?</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps?q=43.60918515293045,1.320899708724707" target="_blank" class="gps-link">
+            N 43° 36.551' E 001° 19.254'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Nous sommes presque au terme de notre balade, mais avant, une dernière petite histoire qui va nous permettre de récapituler histoire ancienne et histoire moderne. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Sur votre droite s'étend un très grand domaine qui est le château du Falcou. Il est aujourd'hui la propriété de Jean Raymond, le fils d'Alex Raymond, ancien maire de Colomiers pendant 36 ans. </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> 6X6 = 36, ça veut dire qu'il a été maire 6 fois d'affilée ? </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Exactement. Il a succédé à Eugène Montel, celui qui avait hébergé Léon Blum à Colomiers avant son arrestation, qui avait voté contre l'attribution des pleins pouvoirs à Pétain, et qui a fait deux ans de prison plutôt que de renier ses croyances républicaines. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Alex Raymond de son côté avait 25 ans pendant l'Occupation, il travaillait alors au service des cartes d'identité et créait des faux documents pour les résistants. Autant dire que les deux hommes, malgré leur différence d'âge, avaient beaucoup en commun. </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> C'est vrai que c'est plus facile d'acheter un château quand tu connais le maire… </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Et non, pas du tout. Ça aussi c'est une rumeur. Le château a été acheté par les parents d'Alex Raymond en 1934, il avait à peine 18 ans à l'époque. Sous l'Occupation sa famille a fui pour passer en zone libre et s'installer définitivement plus près de Toulouse où une autre partie de la famille habitait. </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Et aujourd'hui, en plus de faire chambre d'hôtes et location de salle, le lieu accueille aussi des événements culturels et des concerts façon « guinguette ». </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Allez, dernière ligne droite, on ramène tout le monde à bon port. </div> </div>
+
+    
+    <div class="mission-box">
+        Sur votre gauche se trouve une maison. Le propriétaire, comme cela se fait parfois, a décidé de graver à côté du numéro de la rue la date de réalisation de la maison. Quelle est cette date ? Ajoutez les 4 chiffres qui la composent pour trouver un nombre.
+        <div class="answer-input-zone">
+            <label for="K">K =</label>
+            <input type="number" id="K" min="0" max="99" required oninput="resetStandardInput('K')">
+        </div>
+        <div id="validation-message-K"></div>
+        <button id="validate-button-K" class="btn-default" onclick="handleStandardValidation('K')"> Valider la réponse </button>
+    </div>
+
+    <div class="direction-box">
+        Laissez la maison sur votre gauche et continuez toujours tout droit sur le chemin jusqu'à arriver sur l'allée de la chênaie et l'entrée du château <a href="https://www.google.com/maps?q=43.61057086085321,1.3193686517521468" target="_blank" class="path-link">N 43° 36.634' E 001° 19.162'</a>, puis tournez à droite pour rejoindre le parking.
+    </div>
+
+    <div class="audio-block">
+        <p class="audio-intro">En attendant de rejoindre le prochain point n'hésitez pas à écouter le fichier audio suivant :</p>
+        <div class="audio-item">
+            <audio controls src="rabastens.mp3"></audio>
+        </div>
+    </div>
+
+</div>
+</section>
+
+<section id="etape14" class="etape">
+<div class="container">
+    <h2>14. Le trésor</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps?q=43.611117,1.320250" target="_blank" class="gps-link">
+            N 43° 36.667' E 001° 19.215'
+        </a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Il vous reste une dernière énigme à résoudre, et on vous laisse trouver notre trésor. Ça vous va ? </div> </div>
+    <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> En plus, elle est super facile ! </div> </div>
+    <div class="dialogue-row"> <img src="Malo.png" alt="Malo" class="avatar"> <div class="bubble"> <span class="name-tag">Malo</span> Sur la flèche verte visible depuis là où vous êtes est inscrit un mot de 6 lettres. Vous avez appris beaucoup de choses dernièrement sur ce mot. Saisissez-le dans l'encart ci-dessous et le lieu de la cache se révélera. </div> </div>
+
+    <div class="mission-box">
+        <h3>Le mot mystère</h3>
+        <p>Tapez ici les 6 lettres magiques :</p>
+        <div id="password-zone">
+            <input type="text" id="final-password" maxlength="6" placeholder="MOT MYSTÈRE">
+            <button class="btn-action" onclick="checkMagicWord()">Valider</button>
+            <div id="password-message" style="margin-top: 10px; font-weight: bold;"></div>
+        </div>
+    </div>
+
+    <div id="final-link-box">
+        <p>🎉 Bravo ! Vous avez débloqué l'emplacement final !</p>
+        <p><strong>Position de la cache :</strong></p>
+        <a href="https://www.google.com/maps?q=43.611333,1.320217" target="_blank" class="gps-link">
+            N 43° 36.680' E 001° 19.213'
+        </a>
+    </div>
+
+</div>
+</section>
+
+<script>
+    // ----------------------------------------------------------------------
+    // --- GESTION ET PERSISTANCE DES DONNÉES ---
+    // ----------------------------------------------------------------------
+
+    const ENIGMA_STORAGE_KEY = 'perget_enigma_answers';
+    const DEFAULT_ANSWERS = {A: null, B: null, C: null, D: null, E: null, F: null, G: null, H: null, I: null, J: null};
+
+    function loadEnigmaAnswers() {
+        try {
+            const savedData = localStorage.getItem(ENIGMA_STORAGE_KEY);
+            if (!savedData) return DEFAULT_ANSWERS;
+            return {...DEFAULT_ANSWERS, ...JSON.parse(savedData)};
+        } catch (e) {
+            console.error("Erreur chargement données", e);
+            return DEFAULT_ANSWERS;
+        }
+    }
+
+    function saveEnigmaAnswers(vars) {
+        try {
+            localStorage.setItem(ENIGMA_STORAGE_KEY, JSON.stringify(vars));
+        } catch (e) {
+            console.error("Erreur sauvegarde données", e);
+        }
+    }
+
+    function resetButtonToDefault(button) {
+        if (button) {
+            button.classList.remove('btn-validated');
+            button.classList.add('btn-default');
+            button.textContent = "Valider la réponse";
+        }
+    }
+
+    // ----------------------------------------------------------------------
+    // --- FONCTIONS STANDARDS (numériques) ---
+    // ----------------------------------------------------------------------
+
+    function resetStandardInput(varKey) {
+        const inputElement = document.getElementById(varKey);
+        const button = document.getElementById('validate-button-' + varKey);
+        const validationMessage = document.getElementById('validation-message-' + varKey);
+
+        if (button) resetButtonToDefault(button);
+        if (validationMessage) validationMessage.textContent = "";
+
+        if (inputElement) {
+            const rawValue = inputElement.value.trim();
+            if (rawValue === "") {
+                let currentVars = loadEnigmaAnswers();
+                currentVars[varKey] = null;
+                saveEnigmaAnswers(currentVars);
+            }
+        }
+    }
+
+    function handleStandardValidation(varKey) {
+        const inputElement = document.getElementById(varKey);
+        const button = document.getElementById('validate-button-' + varKey);
+        const validationMessage = document.getElementById('validation-message-' + varKey);
+
+        if (!inputElement || !button || !validationMessage) return;
+
+        const rawValue = inputElement.value.trim();
+        const value = parseInt(rawValue);
+        let currentVars = loadEnigmaAnswers();
+
+        validationMessage.textContent = "";
+
+        if (rawValue === "" || isNaN(value) || value < 0 || rawValue.includes('.')) {
+            validationMessage.textContent = "❌ Veuillez entrer un nombre entier positif.";
+            currentVars[varKey] = null;
+            saveEnigmaAnswers(currentVars);
+            resetButtonToDefault(button);
+            return;
+        }
+
+        if (varKey === 'J' && value % 2 === 0) {
+            validationMessage.textContent = "❌ La réponse doit être un chiffre impair.";
+            currentVars[varKey] = null;
+            saveEnigmaAnswers(currentVars);
+            resetButtonToDefault(button);
+            return;
+        }
+
+        currentVars[varKey] = value;
+        saveEnigmaAnswers(currentVars);
+
+        button.classList.remove('btn-default');
+        button.classList.add('btn-validated');
+        button.textContent = `Réponse ${varKey} = ${value} Sauvegardée !`;
+    }
+
+    function initStandardInput(varKey) {
+        const loadedVars = loadEnigmaAnswers();
+        const inputElement = document.getElementById(varKey);
+        const button = document.getElementById('validate-button-' + varKey);
+        const savedValue = loadedVars[varKey];
+
+        if (inputElement) inputElement.value = "";
+
+        if (button && savedValue !== null) {
+            button.classList.remove('btn-default');
+            button.classList.add('btn-validated');
+            button.textContent = `Réponse ${varKey} = ${savedValue} Sauvegardée !`;
+        } else if (button) {
+            resetButtonToDefault(button);
+        }
+
+        if (inputElement) inputElement.oninput = () => resetStandardInput(varKey);
+    }
+
+    // ----------------------------------------------------------------------
+    // --- GESTION DES CHOIX MULTIPLES (A & I) ---
+    // ----------------------------------------------------------------------
+
+    function handleChoiceValidation(varKey, choiceValue) {
+        let currentVars = loadEnigmaAnswers();
+        currentVars[varKey] = choiceValue;
+        saveEnigmaAnswers(currentVars);
+        updateChoiceUI(varKey, choiceValue);
+    }
+
+    function updateChoiceUI(varKey, selectedValue) {
+        for (let i = 1; i <= 5; i++) {
+            const btn = document.getElementById(`choice-${varKey}-${i}`);
+            if (btn) btn.classList.remove('choice-selected');
+        }
+
+        const msgDiv = document.getElementById(`validation-message-${varKey}`);
+
+        if (selectedValue !== null) {
+            const selectedBtn = document.getElementById(`choice-${varKey}-${selectedValue}`);
+            if (selectedBtn) selectedBtn.classList.add('choice-selected');
+            if (msgDiv) msgDiv.textContent = `Réponse enregistrée : Option ${selectedValue}`;
+        } else {
+            if (msgDiv) msgDiv.textContent = "";
+        }
+    }
+
+    function initChoiceInput(varKey) {
+        const loadedVars = loadEnigmaAnswers();
+        updateChoiceUI(varKey, loadedVars[varKey]);
+    }
+
+    // ----------------------------------------------------------------------
+    // --- GESTION DU CHOIX PAR IMAGES (B) ---
+    // ----------------------------------------------------------------------
+
+    function handleImageChoice(choiceValue) {
+        let currentVars = loadEnigmaAnswers();
+        currentVars['B'] = choiceValue;
+        saveEnigmaAnswers(currentVars);
+        updateImageChoiceUI(choiceValue);
+    }
+
+    function updateImageChoiceUI(selectedValue) {
+        for (let i = 1; i <= 4; i++) {
+            const btn = document.getElementById(`choice-img-B-${i}`);
+            if (btn) btn.classList.remove('choice-img-selected');
+        }
+
+        const msgDiv = document.getElementById('validation-message-B');
+
+        if (selectedValue !== null) {
+            const selectedBtn = document.getElementById(`choice-img-B-${selectedValue}`);
+            if (selectedBtn) selectedBtn.classList.add('choice-img-selected');
+            if (msgDiv) msgDiv.textContent = `Réponse enregistrée : Option ${selectedValue}`;
+        } else {
+            if (msgDiv) msgDiv.textContent = "";
+        }
+    }
+
+    function initImageChoiceInput() {
+        const loadedVars = loadEnigmaAnswers();
+        updateImageChoiceUI(loadedVars['B']);
+    }
+
+    // ----------------------------------------------------------------------
+    // --- COMPARATEUR D'IMAGES ---
+    // ----------------------------------------------------------------------
+
+    const slider = document.getElementById('sliderRange');
+    const imgAfter = document.getElementById('imgAfter');
+    const handle = document.getElementById('sliderHandle');
+
+    function updateSlider() {
+        const value = slider.value;
+        imgAfter.style.clipPath = `inset(0 0 0 ${value}%)`;
+        handle.style.left = value + '%';
+    }
+
+    if (slider) {
+        slider.addEventListener('input', updateSlider);
+        updateSlider();
+    }
+
+    // ----------------------------------------------------------------------
+    // --- ÉNIGME FINALE : MOT MYSTÈRE ---
+    // ----------------------------------------------------------------------
+
+    const SECRET_WORD = "FALCOU";
+
+    function checkMagicWord() {
+        const input = document.getElementById("final-password");
+        const msg = document.getElementById("password-message");
+        const finalBox = document.getElementById("final-link-box");
+
+        if (input.value.trim().toUpperCase() === SECRET_WORD) {
+            msg.style.color = "#2ecc71";
+            msg.textContent = "✨ CORRECT ! Le trésor est révélé.";
+            finalBox.style.display = "block";
+            finalBox.scrollIntoView({behavior: "smooth"});
+        } else {
+            msg.style.color = "#e74c3c";
+            msg.textContent = "❌ Ce n'est pas le bon mot.";
+            finalBox.style.display = "none";
+        }
+    }
+
+    // ----------------------------------------------------------------------
+    // --- INIT ---
+    // ----------------------------------------------------------------------
+    document.addEventListener("DOMContentLoaded", function() {
+        ['C', 'D', 'E', 'F', 'G', 'H', 'J'].forEach(initStandardInput);
+        initChoiceInput('A');
+        initChoiceInput('I');
+        initImageChoiceInput();
+    });
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const mapLinks = document.querySelectorAll("a[href*='google.com/maps'], a[href*='maps.google.com'], a[href*='maps.app.goo.gl'], a[href*='google.fr/maps']");
+
+    mapLinks.forEach(link => {
+        const href = decodeURIComponent(link.href);
+        const coordsMatch = href.match(/([+-]?\d{1,2}\.\d+),\s*([+-]?\d{1,3}\.\d+)/);
+
+        if (coordsMatch) {
+            const lat = coordsMatch[1];
+            const lng = coordsMatch[2];
+            link.href = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+            link.setAttribute("target", "_blank");
+        }
+    });
+});
+</script>
+<section id="final-grid-section" class="etape" style="display: none;">
+<div class="container">
+    <div class="mission-box">
+        <h3>Tableau récapitulatif des indices</h3>
+        <div id="variable-list"></div>
+
+        <div class="final-formula-display" style="text-align: center; font-weight: bold; font-size: 1.2em; margin: 20px 0;">
+            N 43°(G-D)(B+K).((CxJ)-L)(H)E 1°(M)(A+B).((ExI)+F)(N)
+        </div>
+
+        <div class="final-check-zone" style="text-align: center;">
+            <button class="btn-validated" id="final-validate-btn" onclick="checkFinalAnswer()" style="width: 100%; padding: 15px; font-size: 16px; border:none; border-radius: 5px; cursor: pointer;">VÉRIFIER LES COORDONNÉES</button>
+            <div id="result-message" style="margin-top: 15px; font-weight: bold; font-size: 1.1em;"></div>
+        </div>
+
+        <div id="final-link-box" style="display:none; margin-top: 20px;">
+            <p style="text-align: center; font-size: 1.1em;"><strong>BRAVO ! La cache se trouve aux coordonnées suivantes :</strong></p>
+            <div style="text-align: center; margin: 15px 0;">
+                <a href="https://www.google.com/maps?q=43.598778,1.330556" target="_blank" class="gps-link" style="font-size: 1.4em;">
+                    N43°36.680’ E001°19.213’
+                </a>
+            </div>
+
+            <div class="support-box" style="margin-top: 30px; padding: 25px; background-color: #f9f9f9; border: 2px solid #ddd; border-radius: 10px; text-align: center;">
+                <div style="text-align: left; margin-bottom: 25px; font-size: 14px; color: #333; line-height: 1.5;">
+                    <strong>Si vous n’êtes pas familier du « géocaching » voici ce qu’il vous faut faire maintenant :</strong><br><br>
+                    1) Vous rendre aux coordonnées GPS indiquées (soyez discrets pour ne pas révéler la cache à des personnes moins bien intentionnées que vous).<br>
+                    2) Trouver le contenant (il est en plastique transparent, hermétique, et mesure à peu près 20 cm de haut). Attention, c'est la pointe du pointeur qui sert à déterminer la position sur Google Maps, pas le cercle !<br>
+                    3) Si vous le souhaitez, signer le « logbook » et indiquer la date de votre passage.<br>
+                    4) Si vous le souhaitez, prendre un des objets se trouvant dans le contenant. Pensez aux autres, n'en prenez qu'un par personne. Merci. <br>
+                    5) Redissimuler le contenant exactement à l’endroit où vous l’avez trouvé, en veillant à le refermer hermétiquement, de manière à ce que d’autres puissent le trouver.<br><br>
+                    Si le contenant a besoin d’être enlevé, quelle qu’en soit la raison, merci de contacter le propriétaire à l’adresse suivante : kingluther@free.fr
+                    
+                    <button onclick="toggleHint()" class="btn-default" style="margin-top: 15px; width: auto; padding: 10px 20px; font-size: 14px;">Besoin d'un indice ?</button>
+                    <div id="hint" style="display:none; margin-top: 10px; font-style: italic; color: #d35400;">
+                        💡 Indice : Le pilier près de l'arbre ! 
+                    </div>
+                </div>
+                  
+                <div style="margin: 20px auto;">
+                    <img src="Mix2.png" alt="Illustration" style="width: 160px; height: 160px; object-fit: cover; border-radius: 10px; border: 1px solid #ccc;">
+                </div>
+
+                <div class="support-box" style="margin-top: 30px; padding: 20px; background-color: #f9f9f9; border: 2px solid #ddd; border-radius: 10px; display: flex; align-items: center; gap: 20px;">
+                    <div style="flex-grow: 1;">
+                        <p style="font-size: 14px; color: #444; margin-top: 0;">
+                            Si vous avez aimé cette aventure et souhaitez/pouvez soutenir son créateur, n'hésitez pas à faire un don à la hauteur de vos moyens (ou de votre engouement).<br>
+                            <strong>Scénario, illustration, conception et entretien de la cache : Martin FEUILLERAC © 2026</strong>
+                        </p>
+                        <div id="paypal-container-QRBLL5TG5VCV8"></div>
+                        <script src="https://www.paypal.com/sdk/js?client-id=BAAUS3_NIDV8soA10_b5bKgMnexRFb8e5KeIbCj1SEfS6MR5cqf6U6p6PhCiRqAguCQ"></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<script>
+    // Fonction d'affichage de l'indice
+    function toggleHint() {
+        const hint = document.getElementById('hint');
+        if (hint.style.display === 'none') {
+            hint.style.display = 'block';
+        } else {
+            hint.style.display = 'none';
+        }
+    }
+</script>
+</body>
+</html>
