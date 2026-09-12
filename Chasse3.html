@@ -310,7 +310,7 @@
     <h1 class="main-title">Chats Perget</h1>
     <div class="info-box-content">
         <div class="info-col-left">
-            <img src="perget.jpg" alt="Le Perget">
+            <img src="Perget.jpg" alt="Le Perget">
         </div>
         <div class="info-col-middle">
             <div class="distance">3,3 km</div>
@@ -324,7 +324,7 @@
         <div class="info-col-right">
             <strong>Difficulté :</strong> 2 / 5<br>
             <strong>Terrain :</strong> 2 / 5<br>
-            <strong>Durée :</strong> 1h à 2h
+            <strong>Durée :</strong> 45mn à 1h15
         </div>
     </div>
 </div>
@@ -505,9 +505,9 @@
     <div class="dialogue-row"> <img src="Gris-nez.png" alt="Gris-nez" class="avatar"> <div class="bubble"> <span class="name-tag">Gris-nez</span> Et les peintures aussi elles étaient d'origine ? </div> </div>
     <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Oh, non ! Elles sont toutes récentes. Elles ont été réalisées en juin 2025 par l'artiste Azek. Il faut dire que jusque-là les fenêtres étaient murées avec du béton pour solidifier l'ensemble, et ce n'était pas très esthétique. Regardez-moi ces deux photos, vous verrez la différence ! </div> </div>
 
-    <a href="borde.gif" target="_blank" class="image-link">
+    <a href="Borde.gif" target="_blank" class="image-link">
         <div style="max-width:100%; aspect-ratio: 4 / 3; overflow:hidden; border-radius:8px; margin:20px auto; box-shadow:0 4px 8px rgba(0,0,0,0.1); display:flex; align-items:center; justify-content:center;">
-            <img src="borde.gif" alt="Restauration du corps de ferme" style="width:100%; height:100%; object-fit:cover; object-position:center; display:block;">
+            <img src="Borde.gif" alt="Restauration du corps de ferme" style="width:100%; height:100%; object-fit:cover; object-position:center; display:block;">
         </div>
     </a>
 
@@ -518,7 +518,7 @@
 
     <div class="mission-box">
         Avant de partir, répondez à cette question. Sur le mur de droite, au premier étage, à la fenêtre de droite, un animal a trouvé place devant le bac de fleurs jaunes. Quel est cet animal ? De combien de lettres se compose son nom ?
-        <div class="answer-input-zone"> <label for="C">C =</label> <input type="number" id="C" min="0" max="20" required oninput="resetStandardInput('C')"> </div>
+        <div class="answer-input-zone"> <label for="C">C =</label> <input type="number" id="C" min="1" max="99" required oninput="resetStandardInput('C')"> </div>
         <div id="validation-message-C"></div>
         <button id="validate-button-C" class="btn-default" onclick="handleStandardValidation('C')"> Valider la réponse </button>
     </div>
@@ -558,7 +558,7 @@
 
     <div class="mission-box">
         Pour vous remettre de toutes ces informations, vous pouvez vous asseoir sur un banc. Profitez-en pour regarder la nature autour de vous, et plus particulièrement les saules pleureurs qui bordent cette partie du lac, combien y en a-t-il regroupés juste devant vous ?
-        <div class="answer-input-zone"> <label for="D">D =</label> <input type="number" id="D" min="0" max="20" required oninput="resetStandardInput('D')"> </div>
+        <div class="answer-input-zone"> <label for="D">D =</label> <input type="number" id="D" min="1" max="99" required oninput="resetStandardInput('D')"> </div>
         <div id="validation-message-D"></div>
         <button id="validate-button-D" class="btn-default" onclick="handleStandardValidation('D')"> Valider la réponse </button>
     </div>
@@ -649,7 +649,7 @@
 
     <div class="mission-box">
         Avant de partir, saurez-vous compter les barreaux métalliques qui sont face au lac ? Juste ceux devant vous, pas les côtés.
-        <div class="answer-input-zone"> <label for="F">F =</label> <input type="number" id="F" min="0" max="50" required oninput="resetStandardInput('F')"> </div>
+        <div class="answer-input-zone"> <label for="F">F =</label> <input type="number" id="F" min="1" max="99" required oninput="resetStandardInput('F')"> </div>
         <div id="validation-message-F"></div>
         <button id="validate-button-F" class="btn-default" onclick="handleStandardValidation('F')"> Valider la réponse </button>
     </div>
@@ -794,7 +794,7 @@
 
     <div class="mission-box">
         Jouons un peu avec votre patience : imaginons que cette grange soit un pigeonnier et que vous en soyez le propriétaire. De combien de trous de boulins disposeriez-vous ? Attention, la grange n'est pas symétrique, et certains trous ont été bouchés et ne doivent pas être comptés. Par ailleurs la réponse est impaire.
-        <div class="answer-input-zone"> <label for="J">J =</label> <input type="number" id="J" min="0" max="99" required oninput="resetStandardInput('J')"> </div>
+        <div class="answer-input-zone"> <label for="J">J =</label> <input type="number" id="J" min="1" max="99" required oninput="resetStandardInput('J')"> </div>
         <div id="validation-message-J"></div>
         <button id="validate-button-J" class="btn-default" onclick="handleStandardValidation('J')"> Valider la réponse </button>
     </div>
@@ -868,7 +868,7 @@
         Sur votre gauche se trouve une maison. Le propriétaire, comme cela se fait parfois, a décidé de graver à côté du numéro de la rue la date de réalisation de la maison. Quelle est cette date ? Ajoutez les 4 chiffres qui la composent pour trouver un nombre.
         <div class="answer-input-zone">
             <label for="K">K =</label>
-            <input type="number" id="K" min="0" max="99" required oninput="resetStandardInput('K')">
+            <input type="number" id="K" min="10" max="99" required oninput="resetStandardInput('K')">
         </div>
         <div id="validation-message-K"></div>
         <button id="validate-button-K" class="btn-default" onclick="handleStandardValidation('K')"> Valider la réponse </button>
@@ -923,6 +923,20 @@
 
     const ENIGMA_STORAGE_KEY = 'perget_enigma_answers';
     const DEFAULT_ANSWERS = {A: null, B: null, C: null, D: null, E: null, F: null, G: null, H: null, I: null, J: null, K: null};
+
+    const VALIDATION_RULES = {
+        A: { min: 1, max: 5 },
+        B: { min: 1, max: 4 },
+        C: { min: 1, max: 99 },
+        D: { min: 1, max: 99 },
+        E: { min: 1, max: 26 },
+        F: { min: 1, max: 99 },
+        G: { min: 1, max: 26 },
+        H: { min: 1, max: 26 },
+        I: { min: 1, max: 3 },
+        J: { min: 1, max: 99 },
+        K: { min: 10, max: 99 }
+    };
 
     function loadEnigmaAnswers() {
         try {
@@ -988,6 +1002,15 @@
 
         if (rawValue === "" || isNaN(value) || value < 0 || rawValue.includes('.')) {
             validationMessage.textContent = "❌ Veuillez entrer un nombre entier positif.";
+            currentVars[varKey] = null;
+            saveEnigmaAnswers(currentVars);
+            resetButtonToDefault(button);
+            return;
+        }
+
+        const rule = VALIDATION_RULES[varKey];
+        if (rule && (value < rule.min || value > rule.max)) {
+            validationMessage.textContent = `❌ Impossible ! La réponse doit être comprise entre ${rule.min} et ${rule.max}.`;
             currentVars[varKey] = null;
             saveEnigmaAnswers(currentVars);
             resetButtonToDefault(button);
@@ -1160,12 +1183,56 @@
         resetButtonToDefault(button);
     }
 
+    function handleVariableCorrection(varKey) {
+        const inputElement = document.getElementById(`input-${varKey}`);
+        if (!inputElement) return;
+        const value = inputElement.value.trim();
+        const numericValue = parseInt(value);
+        let currentVars = loadEnigmaAnswers();
+
+        currentVars[varKey] = (value === "" || isNaN(numericValue)) ? null : numericValue;
+        saveEnigmaAnswers(currentVars);
+        displayCollectedVariables();
+    }
+
+    function stepValue(key, delta) {
+        const input = document.getElementById(`input-${key}`);
+        if (!input) return;
+        let val = parseInt(input.value);
+        if (isNaN(val)) val = 0;
+        val += delta;
+
+        const rules = VALIDATION_RULES[key];
+        if (rules) {
+            if (val < rules.min) val = rules.min;
+            if (val > rules.max) val = rules.max;
+        } else if (val < 0) {
+            val = 0;
+        }
+
+        input.value = val;
+        handleVariableCorrection(key);
+    }
+
+    function resetAllAnswers() {
+        localStorage.removeItem(ENIGMA_STORAGE_KEY);
+        displayCollectedVariables();
+        const messageDiv = document.getElementById('result-message');
+        if (messageDiv) messageDiv.textContent = "";
+        const finalLinkBox = document.getElementById('final-link-box');
+        if (finalLinkBox) finalLinkBox.style.display = 'none';
+        ['C', 'D', 'E', 'F', 'G', 'H', 'J', 'K'].forEach(initStandardInput);
+        initChoiceInput('A');
+        initChoiceInput('I');
+        initImageChoiceInput();
+    }
+
     function displayCollectedVariables() {
         const vars = loadEnigmaAnswers();
         const listDiv = document.getElementById('variable-list');
         if (!listDiv) return false;
 
-        listDiv.style.cssText = "display:grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap:10px; margin-bottom:20px;";
+        listDiv.style.cssText = "display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:10px; margin-bottom:20px;";
         listDiv.innerHTML = '';
 
         const variableKeys = Object.keys(DEFAULT_ANSWERS);
@@ -1179,19 +1246,27 @@
             item.style.cssText = "border:1px solid #ddd; border-radius:6px; padding:8px; text-align:center; background-color:#fff;";
 
             let dotColor = '#e74c3c';
-            const displayValue = (value !== null && value !== undefined) ? value : '?';
+            let inputValue = '';
 
-            if (value !== null && value !== undefined && !isNaN(value) && correctValue !== null && value === correctValue) {
-                dotColor = '#2ecc71';
+            if (value !== null && value !== undefined && !isNaN(value)) {
+                inputValue = value;
+                if (correctValue !== null && value === correctValue) {
+                    dotColor = '#2ecc71';
+                } else {
+                    allCorrect = false;
+                }
             } else {
                 allCorrect = false;
             }
 
             item.innerHTML = `
                 <div style="font-size:12px; color:#666; margin-bottom:4px;">${reminder}</div>
-                <div style="font-weight:bold;">
-                    <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background-color:${dotColor}; margin-right:6px;"></span>
-                    ${key} = ${displayValue}
+                <div style="font-weight:bold; display:flex; align-items:center; justify-content:center; gap:4px;">
+                    <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background-color:${dotColor}; margin-right:4px;"></span>
+                    ${key} =
+                    <button type="button" onclick="stepValue('${key}', -1)" style="width:24px; height:24px; border:1px solid #ccc; border-radius:4px; background:#f2f2f2; cursor:pointer;">-</button>
+                    <input type="number" id="input-${key}" value="${inputValue}" oninput="handleVariableCorrection('${key}')" style="width:50px; text-align:center; border:1px solid #ccc; border-radius:4px;">
+                    <button type="button" onclick="stepValue('${key}', 1)" style="width:24px; height:24px; border:1px solid #ccc; border-radius:4px; background:#f2f2f2; cursor:pointer;">+</button>
                 </div>
             `;
             listDiv.appendChild(item);
@@ -1270,7 +1345,7 @@ document.addEventListener("DOMContentLoaded", function() {
     <div class="mission-box">
         <h3>Tableau récapitulatif des indices</h3>
         <div id="variable-list"></div>
-
+        
         <div class="final-formula-display" style="text-align: center; font-weight: bold; font-size: 1.2em; margin: 20px 0;">
             N 43°(G-D)(B+K).((CxJ)-L)(H)E 1°(M)(A+B).((ExI)+F)(N)
         </div>
@@ -1283,7 +1358,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <div id="final-link-box" style="display:none; margin-top: 20px;">
             <p style="text-align: center; font-size: 1.1em;"><strong>BRAVO ! La cache se trouve aux coordonnées suivantes :</strong></p>
             <div style="text-align: center; margin: 15px 0;">
-                <a href="https://www.google.com/maps?q=43.598778,1.330556" target="_blank" class="gps-link" style="font-size: 1.4em;">
+                <a href="https://www.google.com/maps?q=43.611333,1.320217" target="_blank" class="gps-link" style="font-size: 1.4em;">
                     N43°36.680’ E001°19.213’
                 </a>
             </div>
@@ -1315,7 +1390,12 @@ document.addEventListener("DOMContentLoaded", function() {
                             <strong>Scénario, illustration, conception et entretien de la cache : Martin FEUILLERAC © 2026</strong>
                         </p>
                         <div id="paypal-container-QRBLL5TG5VCV8"></div>
-                        <script src="https://www.paypal.com/sdk/js?client-id=BAAUS3_NIDV8soA10_b5bKgMnexRFb8e5KeIbCj1SEfS6MR5cqf6U6p6PhCiRqAguCQ"></script>
+                        <script src="https://www.paypal.com/sdk/js?client-id=BAAUS3_NIDV8soA10_b5bKgMnexRFb8e5KeIbCj1SEfS6MR5cqf6U6p6PhCiRqAguCQ9hWXK5l5kl4UGRM&components=hosted-buttons&disable-funding=venmo&currency=EUR"></script>
+                        <script>
+                            paypal.HostedButtons({
+                              hostedButtonId: "QRBLL5TG5VCV8",
+                            }).render("#paypal-container-QRBLL5TG5VCV8");
+                        </script>
                     </div>
                 </div>
             </div>
