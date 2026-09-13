@@ -1,1 +1,77 @@
+# Licences
+
+## 1. Contenus créatifs
+
+Sauf indication contraire, les contenus originaux présents dans ce dépôt et créés par Martin Feuillerac sont mis à disposition sous licence :
+
+**Creative Commons Attribution 4.0 International (CC BY 4.0)**
+
+https://creativecommons.org/licenses/by/4.0/
+
+Cette licence autorise notamment la copie, la redistribution, la modification et l'adaptation des contenus, y compris à des fins commerciales, à condition de créditer correctement leur auteur.
+
+Toute réutilisation doit mentionner, dans la mesure du raisonnable :
+
+**Martin Feuillerac — https://github.com/Kingluther/Geocaching**
+
+et inclure un lien vers la licence CC BY 4.0.
+
+## 2. Code
+
+Les fichiers de code originaux présents dans ce dépôt et créés par Martin Feuillerac sont mis à disposition sous licence :
+
+**MIT License**
+
+Copyright (c) Martin Feuillerac
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+## 3. Contenus exclus
+
+Les fichiers suivants ne sont pas des créations de Martin Feuillerac et **ne sont couverts ni par la licence CC BY 4.0 ni par la licence MIT** :
+
+* `Cabirol.png`
+* `Chateau.jpg`
+* `Colomiers.jpg`
+* `Pons.jpg`
+* `Verseille.jpg`
+* `bascule.jpg`
+* `borde.gif`
+* `figuier.jpg`
+* `perget.jpg`
+* `perget01.png`
+* `perget02.png`
+* `poirier.jpg`
+* `pommier.jpg`
+* `pêcher.jpg`
+* `raspaud.png`
+* `zetos.png`
+
+Les droits applicables à ces fichiers restent ceux de leurs auteurs ou ayants droit respectifs. Ils ne doivent pas être réutilisés, modifiés ou redistribués sur la seule base des licences indiquées ci-dessus.
+
+## 4. Portée des licences
+
+La licence **CC BY 4.0** s'applique aux contenus créatifs originaux créés par Martin Feuillerac.
+
+La **MIT License** s'applique au code original créé par Martin Feuillerac.
+
+Lorsqu'un fichier ou un contenu est explicitement identifié comme provenant d'un tiers, les droits de ce tiers prévalent et le contenu est exclu des licences ci-dessus.
+
+Pour toute question concernant les droits d'utilisation d'un fichier particulier, se référer aux indications éventuellement présentes dans le fichier concerné.
 
