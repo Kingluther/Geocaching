@@ -687,7 +687,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     <div class="direction-box"> Continuez à suivre l’allée des Algudes. </div>
 
     <div class="audio-box">
-        <p>En attendant de rejoindre le point suivant, vous pouvez écouter le fichier audio suivant</p>
+        <p>En attendant de rejoindre le point suivant, vous pouvez en apprendre plus sur ce quartier pavillonaire</p>
         <audio id="audio-cabirol" src="cabirol.mp3" preload="metadata" ontimeupdate="updateAudioProgress('audio-cabirol')" onloadedmetadata="updateAudioProgress('audio-cabirol')" onended="resetAudioBtn('btn-play-cabirol')"></audio>
         <div class="audio-controls">
             <button id="btn-play-cabirol" class="audio-btn" onclick="togglePlay('audio-cabirol', this)">▶ Lecture</button>
@@ -698,7 +698,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
             <input type="range" id="audio-cabirol-seek" value="0" min="0" max="100" step="0.1" class="audio-progress" oninput="onSeekChange('audio-cabirol', this.value)">
             <span id="audio-cabirol-time" class="audio-time">0:00 / 0:00</span>
         </div>
-        <div class="audio-caption">Un quartier pavillonnaire</div>
+        
     </div>
 </div>
 </section>
@@ -741,11 +741,11 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
         <br><br>
         Attention il n’y a pas ici de passage piéton, traversez avec la plus grande prudence pour vous rendre ici : <a href="https://www.google.com/maps?q=43.59768,1.33895" target="_blank" class="path-link">N 43° 35.861' E 001° 20.337'</a>
         <br><br>
-        A partir de ce point, vous êtes en sécurité continuez 200m sur l’allée jusqu’au point suivant. Profitez-en pour en apprendre plus sur le centre aéré du Cabirol
+        A partir de ce point, vous êtes en sécurité continuez 200m sur l’allée jusqu’au point suivant. 
     </div>
 
     <div class="audio-box">
-        <p>En attendant de rejoindre le point suivant, vous pouvez écouter le fichier audio suivant</p>
+        <p>Profitez-en pour en apprendre plus sur le centre aéré du Cabirol en écoutant le fichier audio</p>
         <audio id="audio-battage" src="battage.mp3" preload="metadata" ontimeupdate="updateAudioProgress('audio-battage')" onloadedmetadata="updateAudioProgress('audio-battage')" onended="resetAudioBtn('btn-play-battage')"></audio>
         <div class="audio-controls">
             <button id="btn-play-battage" class="audio-btn" onclick="togglePlay('audio-battage', this)">▶ Lecture</button>
