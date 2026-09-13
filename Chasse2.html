@@ -204,6 +204,71 @@
         .illustration-grande { max-width: 100%; height: auto; border-radius: 8px; margin: 20px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: block; }
         .image-link { display: block; text-align: center; margin: 20px 0; }
 
+        /* --- LECTEUR AUDIO --- */
+        .audio-box {
+            background-color: #f0f7f9;
+            border: 1px solid #bce0fd;
+            border-left: 5px solid #2980b9;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .audio-box p {
+            margin: 0 0 12px 0;
+            font-size: 14px;
+            font-weight: bold;
+            color: #2980b9;
+            line-height: 1.4;
+        }
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .audio-btn {
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 14px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .audio-btn:hover {
+            background-color: #1f6391;
+        }
+        .audio-progress-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0 5px 0;
+        }
+        .audio-progress {
+            flex-grow: 1;
+            cursor: pointer;
+            height: 6px;
+            accent-color: #2980b9;
+        }
+        .audio-time {
+            font-size: 12px;
+            color: #555;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            min-width: 80px;
+        }
+        .audio-caption {
+            font-size: 10px;
+            color: #777;
+            font-style: italic;
+            margin-top: 6px;
+            line-height: 1.3;
+        }
+
         /* --- GRILLE FINALE (Avec boutons +/- pour mobiles) --- */
         #variable-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 20px; }
         .variable-item { display: flex; flex-direction: column; align-items: center; padding: 8px; background-color: #eee; border-radius: 5px; font-weight: bold; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
@@ -347,7 +412,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     </div>
 
     <div class="direction-box"> 
-        Retournez vous et avancez de quelques pas jusqu'à <a href="https://maps.google.com/?q=43.598179258568244,1.3316007024657057" target="_blank" class="path-link">43°35'32.0"N 1°19'32.3"E</a> 
+        Retournez vous et avancez de quelques pas jusqu'à <a href="https://www.google.com/maps?q=43.592233,1.325633" target="_blank" class="path-link">N 43° 35.534' E 001° 19.538'</a> 
     </div>
 
     <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Jeanine ? Jeanine ! </div> </div>
@@ -487,8 +552,6 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     
     <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Allez, on ne rigole plus. Fini la balade tranquille on passe en mode camouflage ! </div> </div>
     <div class="dialogue-row"> <img src="Nine-Jea.png" alt="Nine-Jea" class="avatar"> <div class="bubble"> <span class="name-tag">Nine-Jea</span> Et voilà, désormais, appelez-moi Nine-Jea la tortue ! Venez, je vais vous raconter la suite de l’histoire. </div> </div>
-    
- 
 </div>
 </section>
 
@@ -521,7 +584,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     </div>
 
     <div class="dialogue-row"> <img src="Kçor.png" alt="Kçor" class="avatar"> <div class="bubble"> <span class="name-tag">Kçor</span> Mais non ! J’y crois pas ! C’est vous ? Vous êtes Léonardo ?? Vous êtes mon héros ! Je vous adore ! </div> </div>
-    <div class="dialogue-row"> <img src="Nine-Jea.png" alt="Nine-Jea" class="avatar"> <div class="bubble"> <span class="name-tag">Nine-Jea</span> Euh, qu’est-ce qui a Kçor !, T’es tombé sur la tête ou quoi ? Tu me reconnais pas ? </div> </div>
+    <div class="dialogue-row"> <img src="Nine-Jea.png" alt="Nine-Jea" class="avatar"> <div class="bubble"> <span class="name-tag">Nine-Jea</span> Euh, qu’est-ce qui a Kçor !, T’est tombé sur la tête ou quoi ? Tu me reconnais pas ? </div> </div>
     <div class="dialogue-row"> <img src="Kçor.png" alt="Kçor" class="avatar"> <div class="bubble"> <span class="name-tag">Kçor</span> Vous n’êtes par Léonardo ? La célèbre tortue ninja ? </div> </div>
     <div class="dialogue-row"> <img src="Nine-Jea.png" alt="Nine-Jea" class="avatar"> <div class="bubble"> <span class="name-tag">Nine-Jea</span> Ah, mince… attends. </div> </div>
     <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Voilà, c’est mieux comme ça ? La mémoire te revient ? </div> </div>
@@ -542,7 +605,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
         <button id="validate-button-G" class="btn-default" onclick="handleStandardValidation('G')"> Valider la réponse </button>
     </div>
 
-    <div class="direction-box"> Revenez sur vos pas, puis arrivés aux deux rondins de bois initiaux, prenez la montée sur votre droite. </div>
+    <div class="direction-box"> Continuez votre descente, puis arrivés aux deux rondins de bois initiaux, prenez la montée sur votre droite. </div>
 </div>
 </section>
 
@@ -567,7 +630,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
         <button id="validate-button-H" class="btn-default" onclick="handleStandardValidation('H')"> Valider la réponse </button>
     </div>
 
-    <div class="direction-box"> Traversez la route niveau du portail jusqu’à <a href="https://www.google.com/maps?q=43.59903,1.34445" target="_blank" class="path-link">N 43° 35.942' E 001° 20.667'</a>, restez sur le chemin de droite jusqu’au point suivant. </div>
+    <div class="direction-box"> Traversez la route (peu passante) au passage piéton jusqu’à <a href="https://www.google.com/maps?q=43.59903,1.34445" target="_blank" class="path-link">N 43° 35.942' E 001° 20.667'</a>, restez sur le chemin de droite jusqu’au point suivant. </div>
 </div>
 </section>
 
@@ -581,7 +644,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
         </a>
     </div>
 
-    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Prenons le temps de nous asseoir. J’en ai fini avec mes souvenirs de la guerre, mais Colomiers est un village bien plus ancien dont les origines remontent au XIème siècle. Le fort central se situait du côté de l’actuelle place Firmin Pons. Au cours du temps des métairies se sont construites aux endroits où il y avait de l’eau et de quoi nourrir les bêtes. C’est une de ces métairies qui a été transformée en château par son propriétaire armurier. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Prenons le temps de nous asseoir. J’en ai fini avec mes souvenirs de la guerre, mais Colomiers est un village bien plus ancien dont les origines remontent au XIème siècle. Le fort central se situait du côté de l’actuelle place Firmin Pons. Au cours du temps des métairies se sont construites aux endroits où il y avait de l’eau et de quoi nourr les bêtes. C’est une de ces métairies qui a été transformée en château par son propriétaire armurier. </div> </div>
     <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Les bancs-fontaines sur lesquels nous sommes assis rappellent ce passé : ils tracent symboliquement l’écoulement de l’eau, rappellent, par l’usage du rouge, la brique de la façade du château et évoquent les anciens lavoirs et les béals (canaux d’irrigation) que l’on trouvait dans les temps anciens. </div> </div>
     <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Si vous êtes suffisamment reposés, nous pouvons repartir vers le parc du Cabirol, mais au passage, je vais vous montrer quelques endroits choisis. </div> </div>
 
@@ -593,7 +656,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     </div>
 
     <div class="direction-box"> 
-        Suivez l’alignement des bancs jusqu’au point <a href="https://www.google.com/maps?q=43.59875,1.34340" target="_blank" class="path-link">N 43° 35.925' E 001° 20.604'</a>. Suivez le chemin sur votre droite sur une centaine de mètres jusqu’au point <a href="https://www.google.com/maps?q=43.59772,1.34313" target="_blank" class="path-link">N 43° 35.863' E 001° 20.588'</a> puis rejoignez la rue au <a href="https://www.google.com/maps?q=43.59780,1.34252" target="_blank" class="path-link">N 43° 35.868' E 001° 20.551'</a> et prenez à gauche. Vous allez entrer dans un quartier résidentiel, merci de rester discrets et de faire attention au trafic routier.
+        Suivez l’alignement des bancs jusqu’au point <a href="https://www.google.com/maps?q=43.59875,1.34340" target="_blank" class="path-link">N 43° 35.925' E 001° 20.604'</a>. Suivez le chemin sur une centaine de mètres jusqu’au point <a href="https://www.google.com/maps?q=43.59772,1.34313" target="_blank" class="path-link">N 43° 35.863' E 001° 20.588'</a> puis rejoignez la rue au <a href="https://www.google.com/maps?q=43.59780,1.34252" target="_blank" class="path-link">N 43° 35.868' E 001° 20.551'</a> et prenez à gauche. Vous allez entrer dans un quartier résidentiel, merci de rester discrets et de faire attention au trafic routier.
         <br>Traversez au <a href="https://www.google.com/maps?q=43.59718,1.34232" target="_blank" class="path-link">N 43° 35.831' E 001° 20.539'</a> et rendez-vous au point suivant.
     </div>
 </div>
@@ -609,7 +672,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
         </a>
     </div>
 
-    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Nous y voilà. Regardez cette maison et le parement utilisé pour la façade. C’est un magnifique hommage à ce que l’on nomme ici les « columérines ». C’est un style reconnu officiellement par les architectes des bâtiments de France, assez proche de ce que l’on nomme aussi la « toulousaine », mais avec des différences notables. </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Nous y voilà. Regardez cette maison et le parement utilisé pour la façade. C’est un magnifique hommage à ce que l’on nomme ici les « columérines ». C’est un style reconnu officiellement par les architectes de bâtiments de France, assez proche de ce que l’on nomme aussi la « toulousaine », mais avec des différences notables. </div> </div>
     <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> La structure alterne matériau gratuit : les galets de la Garonne, et le matériau noble et coûteux : la brique foraine. Dans ce type de bâtisse, la brique est utilisée pour les chaînages d'angles (les coins), les encadrements de fenêtres et pour créer des lits horizontaux qui "assoient" les galets. Ce mélange n'est pas qu'esthétique : les galets apportent de l'inertie thermique et la brique permet au mur de "respirer" et de rester stable. </div> </div>
     <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Vous noterez que les galets sont posés en "arête de poisson" (opus spicatum) : inclinés à 45°, changeant de sens à chaque rangée pour former des épis. Dans une vraie "columérine" ancienne, cette technique servait à bloquer les galets ronds entre eux. Ici, c'est purement esthétique. L’usage du terme « Columérine » permet en fait de distinguer la ferme de plaine (la Columérine) de la maison de ville (la Toulousaine, qui utilisera plus de brique). Mais les techniques sont identiques. </div> </div>
     <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Pendant notre trajet jusqu’au parc, vous verrez une grande quantité de murs de maisons, ou même de murets utilisant cette technique. </div> </div>
@@ -622,6 +685,21 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     </div>
 
     <div class="direction-box"> Continuez à suivre l’allée des Algudes. </div>
+
+    <div class="audio-box">
+        <p>En attendant de rejoindre le point suivant, vous pouvez écouter le fichier audio suivant</p>
+        <audio id="audio-cabirol" src="cabirol.mp3" preload="metadata" ontimeupdate="updateAudioProgress('audio-cabirol')" onloadedmetadata="updateAudioProgress('audio-cabirol')" onended="resetAudioBtn('btn-play-cabirol')"></audio>
+        <div class="audio-controls">
+            <button id="btn-play-cabirol" class="audio-btn" onclick="togglePlay('audio-cabirol', this)">▶ Lecture</button>
+            <button class="audio-btn" onclick="seekAudio('audio-cabirol', -5)">-5s</button>
+            <button class="audio-btn" onclick="seekAudio('audio-cabirol', 5)">+5s</button>
+        </div>
+        <div class="audio-progress-container">
+            <input type="range" id="audio-cabirol-seek" value="0" min="0" max="100" step="0.1" class="audio-progress" oninput="onSeekChange('audio-cabirol', this.value)">
+            <span id="audio-cabirol-time" class="audio-time">0:00 / 0:00</span>
+        </div>
+        <div class="audio-caption">Un quartier pavillonnaire</div>
+    </div>
 </div>
 </section>
 
@@ -659,9 +737,25 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
 
     <div class="direction-box">
         Prenez le petit chemin qui vous mènera jusqu’au passage clouté à <a href="https://www.google.com/maps?q=43.59652,1.33980" target="_blank" class="path-link">N 43° 35.791' E 001° 20.388'</a>.
-        Traversez, prenez à droite jusqu’au rond-point. Restez toujours sur le même trottoir jusqu’au point <a href="https://www.google.com/maps/search/?api=1&query=43%C2%B035'50.3%22N,1%C2%B020'20.9%22E" target="_blank" class="path-link">43°35'50.3"N 1°20'20.9"E</a> traversez au passage piéton pour vous rendre ici : <a href="https://www.google.com/maps?q=43.59768,1.33895" target="_blank" class="path-link">N 43° 35.861' E 001° 20.337'</a>
+        Traversez, prenez à droite jusqu’au rond-point. Restez toujours sur le même trottoir jusqu’au point <a href="https://www.google.com/maps?q=43.59745,1.33953" target="_blank" class="path-link">N 43° 35.847' E 001° 20.372'</a>.
         <br><br>
-        A partir de ce point, vous êtes en sécurité continuez 200m sur l’allée jusqu’au point suivant.
+        Attention il n’y a pas ici de passage piéton, traversez avec la plus grande prudence pour vous rendre ici : <a href="https://www.google.com/maps?q=43.59768,1.33895" target="_blank" class="path-link">N 43° 35.861' E 001° 20.337'</a>
+        <br><br>
+        A partir de ce point, vous êtes en sécurité continuez 200m sur l’allée jusqu’au point suivant. Profitez-en pour en apprendre plus sur le centre aéré du Cabirol
+    </div>
+
+    <div class="audio-box">
+        <p>En attendant de rejoindre le point suivant, vous pouvez écouter le fichier audio suivant</p>
+        <audio id="audio-battage" src="battage.mp3" preload="metadata" ontimeupdate="updateAudioProgress('audio-battage')" onloadedmetadata="updateAudioProgress('audio-battage')" onended="resetAudioBtn('btn-play-battage')"></audio>
+        <div class="audio-controls">
+            <button id="btn-play-battage" class="audio-btn" onclick="togglePlay('audio-battage', this)">▶ Lecture</button>
+            <button class="audio-btn" onclick="seekAudio('audio-battage', -5)">-5s</button>
+            <button class="audio-btn" onclick="seekAudio('audio-battage', 5)">+5s</button>
+        </div>
+        <div class="audio-progress-container">
+            <input type="range" id="audio-battage-seek" value="0" min="0" max="100" step="0.1" class="audio-progress" oninput="onSeekChange('audio-battage', this.value)">
+            <span id="audio-battage-time" class="audio-time">0:00 / 0:00</span>
+        </div>
     </div>
 </div>
 </section>
@@ -1112,6 +1206,70 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
         } else {
             if (msgDiv) msgDiv.textContent = "";
         }
+    }
+
+    // ----------------------------------------------------------------------
+    // --- GESTION AUDIO ---
+    // ----------------------------------------------------------------------
+
+    function togglePlay(id, btn) {
+        const audio = document.getElementById(id);
+        if (!audio) return;
+        if (audio.paused) {
+            document.querySelectorAll('audio').forEach(a => {
+                if (a !== audio) {
+                    a.pause();
+                }
+            });
+            document.querySelectorAll('.audio-btn').forEach(b => {
+                if (b !== btn && b.id.startsWith('btn-play-')) b.textContent = '▶ Lecture';
+            });
+            audio.play();
+            btn.textContent = '⏸ Pause';
+        } else {
+            audio.pause();
+            btn.textContent = '▶ Lecture';
+        }
+    }
+
+    function resetAudioBtn(btnId) {
+        const btn = document.getElementById(btnId);
+        if (btn) btn.textContent = '▶ Lecture';
+    }
+
+    function seekAudio(id, seconds) {
+        const audio = document.getElementById(id);
+        if (!audio) return;
+        const target = audio.currentTime + seconds;
+        audio.currentTime = Math.max(0, Math.min(audio.duration || 0, target));
+    }
+
+    function updateAudioProgress(id) {
+        const audio = document.getElementById(id);
+        const slider = document.getElementById(id + '-seek');
+        const timeDisplay = document.getElementById(id + '-time');
+        if (!audio || !slider || !timeDisplay) return;
+
+        if (audio.duration && !isNaN(audio.duration)) {
+            slider.value = (audio.currentTime / audio.duration) * 100;
+            timeDisplay.textContent = formatAudioTime(audio.currentTime) + ' / ' + formatAudioTime(audio.duration);
+        } else {
+            timeDisplay.textContent = formatAudioTime(audio.currentTime) + ' / 0:00';
+        }
+    }
+
+    function onSeekChange(id, value) {
+        const audio = document.getElementById(id);
+        if (audio && audio.duration && !isNaN(audio.duration)) {
+            audio.currentTime = (value / 100) * audio.duration;
+        }
+    }
+
+    function formatAudioTime(sec) {
+        if (isNaN(sec) || sec < 0) return "0:00";
+        const m = Math.floor(sec / 60);
+        const s = Math.floor(sec % 60);
+        return m + ":" + (s < 10 ? "0" : "") + s;
     }
 
     // ----------------------------------------------------------------------
