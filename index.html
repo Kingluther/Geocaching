@@ -45,6 +45,7 @@
         <a href="galerie.html">🎭 Galerie des Héros</a>
         <a href="geocaching.html">🧭 Qu'est-ce que le géocaching scénarisé ?</a>
         <a href="probleme.html">⚠️ Un problème avec une cache ?</a>
+        <a href="faq.html">❓ FAQ</a>
     </nav>
 
     <header>
@@ -83,8 +84,7 @@
         var IconLoumpour = L.icon({ iconUrl: 'Loumpour.jpg', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar' });
         var IconJeanine = L.icon({ iconUrl: 'Jeanine.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar' });
         var IconKcor = L.icon({ iconUrl: 'Kçor.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar icon-coming-soon' });
-        var IconMalo = L.icon({ iconUrl: 'Malo.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar icon-coming-soon' });
-        var IconMalo = L.icon({ iconUrl: 'Malo.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar icon-coming-soon' });
+        var IconMalo = L.icon({ iconUrl: 'Malo.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar' });
 
         // 1. Firmin Pons (Nouvelles coordonnées)
         L.marker([43.613568947270736, 1.3370833396104178], {icon: IconLoumpour}).addTo(map)
@@ -122,9 +122,10 @@
         L.marker([43.61209987445217, 1.3200188312046506], {icon: IconMalo}).addTo(map)
             .bindPopup(`
                 <div class="popup-card">
-                    <img src="Malo.png" class="vignette-perso" style="filter: grayscale(100%)">
-                    <h3 style="color: #888;">Chats Perget</h3>
-                    <div class="stats">🚧 En cours de préparation...</div>
+                    <img src="Malo.png" class="vignette-perso">
+                    <h3>Chats Perget</h3>
+                    <div class="stats"><b>Difficulté :</b> 2/5 | <b>Terrain :</b> 2/5<br>⏳ 1 à 2h</div>
+                    <a href="https://kingluther.github.io/Geocaching/Chasse3.html" class="btn-play" target="_blank">Rejoindre Gris-nez</a>
                 </div>
             `);
     </script>

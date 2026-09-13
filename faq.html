@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Colomiers</title>
+    <style>
+        body { margin: 0; font-family: 'Trebuchet MS', sans-serif; background-color: #fdfaf4; color: #333; }
+        nav { background-color: #3e2723; padding: 15px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        nav a { color: #f5f5f5; text-decoration: none; font-weight: bold; padding: 8px 15px; border-radius: 4px; transition: background 0.3s; }
+        nav a:hover { background-color: #8d6e63; }
+        nav a.active { background-color: #8d6e63; }
+
+        .content {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 40px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            line-height: 1.6;
+            font-size: 1.1em;
+            border-top: 5px solid #d35400;
+        }
+
+        h1 { color: #3e2723; text-align: center; margin-bottom: 30px; font-size: 2.2em; }
+
+        .faq-item { margin-bottom: 30px; border-bottom: 2px solid #eee; padding-bottom: 20px; }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-question { color: #d35400; font-weight: bold; font-size: 1.15em; margin-bottom: 10px; }
+        .faq-answer { color: #333; }
+        .faq-answer a { color: #2980b9; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">📍 Carte des Quêtes</a>
+        <a href="galerie.html">🎭 Galerie des Héros</a>
+        <a href="geocaching.html">🧭 Qu'est-ce que le géocaching scénarisé ?</a>
+        <a href="probleme.html">⚠️ Un problème avec une cache ?</a>
+        <a href="faq.html" class="active">❓ FAQ</a>
+    </nav>
+
+    <div class="content">
+        <h1>Foire aux questions</h1>
+
+        <div class="faq-item">
+            <div class="faq-question">Quand ouvrira le parcours du Bassac ?</div>
+            <div class="faq-answer">Actuellement la municipalité de Colomiers a prévu de rénover entièrement la passerelle qui était en très mauvais état. 6 mois de travaux minimum sont prévu. Le parcours est presque achevé mais n'ouvrira certainement pas avant 2027.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Puis-je moi aussi créer des parcours ? Comment faire ?</div>
+            <div class="faq-answer">La création de géocaching scénarisé prend beaucoup de temps (choix des caches, des points de passage, des énigmes, de l'intrigue éventuelle, puis programmation et mise en ligne). C'est une activité que je mène avec beaucoup de plaisir, mais ce n'est pas aisé.
+            <br><br>
+            La seule chose que je puisse faire pour vous aider en ce domaine est de vous préciser que l'intégralité de mes parcours sont en open source sur le site github. Vous pouvez donc télécharger le code et le modifier ou l'améliorer à votre guise sur <a href="https://github.com/Kingluther/Geocaching" target="_blank">https://github.com/Kingluther/Geocaching</a>. Merci de vous reporter au fichier LICENSE.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Je suis membre d'une municipalité et je souhaite créer de tels parcours chez moi. Pouvez-vous m'aider ? A quel prix ?</div>
+            <div class="faq-answer">À compléter</div>
+        </div>
+    </div>
+
+</body>
+</html>
