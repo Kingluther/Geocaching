@@ -1011,6 +1011,99 @@
         </div>
     </div>
     <div class="direction-box"> Finissez de descendre la rue du Prat pour retrouver la place Firmin Pons d’où vous avez commencé ce périple. </div>
+<!-- ========================= -->
+<!--  ENCARt GÉOCACHING + PAYPAL -->
+<!-- ========================= -->
+
+<div class="support-box" style="
+    margin-top: 30px;
+    padding: 25px;
+    background-color: #f9f9f9;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+">
+
+    <!-- Instructions géocaching -->
+    <div style="text-align: left; margin-bottom: 25px; font-size: 14px; color: #333; line-height: 1.5;">
+        <strong>Si vous n’êtes pas familier du « géocaching » voici ce qu’il vous faut faire maintenant :</strong><br><br>
+        1) Vous rendre aux coordonnées GPS indiquées (soyez discrets pour ne pas révéler la cache à des personnes moins bien intentionnées que vous).<br>
+        2) Trouver le contenant (il est en plastique transparent, hermétique, et mesure à peu près 20 cm de haut). Attention, c'est la pointe du pointeur qui sert à déterminer la position sur Google Maps, pas le cercle !<br>
+        3) Si vous le souhaitez, signer le « logbook » et indiquer la date de votre passage.<br>
+        4) Si vous le souhaitez, prendre un des objets se trouvant dans le contenant. Pensez aux autres, n'en prenez qu'un par personne. Merci. <br>
+        5) Redissimuler le contenant exactement à l’endroit où vous l’avez trouvé, en veillant à le refermer hermétiquement, 
+        de manière à ce que d’autres puissent le trouver.<br><br>
+        Si le contenant a besoin d’être enlevé, quelle qu’en soit la raison, merci de contacter le propriétaire à l’adresse suivante : kingluther@free.fr
+       
+       <button onclick="toggleHint()" class="hint-button">
+    Besoin d'un indice ?
+</button>
+
+<div id="hint" style="display:none; margin-top: 10px; font-style: italic;">
+    💡 Indice : ²2πR (= carré de pierres)
+</div>
+
+        </div>
+        </div>
+  
+<!-- IMAGE AU MILIEU -->
+    <div style="margin: 20px auto;">
+        <img src="Mix.png" alt="Illustration" style="
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        ">
+    </div>
+
+<!-- ========================= -->
+<!--  ENCARt SOUTIEN / PAYPAL -->
+<!-- ========================= -->
+
+<div class="support-box" style="
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+">
+
+
+    <!-- Texte + bouton -->
+    <div style="flex-grow: 1;">
+
+        <p style="font-size: 14px; color: #444; margin-top: 0;">
+            Si vous avez aimé cette aventure et souhaitez/pouvez soutenir son créateur,
+            n'hésitez pas à faire un don à la hauteur de vos moyens (ou de votre engouement).<br>
+            <strong>Scénario, illustration, conception et entretien de la cache : Martin FEUILLERAC © 2025</strong>
+        </p>
+
+        <!-- Zone d'intégration PayPal -->
+        <div id="paypal-container-QRBLL5TG5VCV8"></div>
+
+        <!-- SCRIPT PAYPAL -->
+        <script 
+            src="https://www.paypal.com/sdk/js?client-id=BAAUS3_NIDV8soA10_b5bKgMnexRFb8e5KeIbCj1SEfS6MR5cqf6U6p6PhCiRqAguCQ9hWXK5l5kl4UGRM&components=hosted-buttons&disable-funding=venmo&currency=EUR">
+        </script>
+
+        <script>
+            paypal.HostedButtons({
+              hostedButtonId: "QRBLL5TG5VCV8",
+            }).render("#paypal-container-QRBLL5TG5VCV8");
+        </script>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+
+
+
 </div>
 </section>
 
