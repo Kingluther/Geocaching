@@ -35,6 +35,15 @@
 
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
+        .header-banner-img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
         .info-box-header {
             background-color: #fdfdfa;
             border: 2px solid #e0e0e0;
@@ -196,11 +205,51 @@
         #final-link-box { margin-top: 20px; display: none; text-align: center; padding: 15px; background-color: #e8f5e9; border: 1px solid #2ecc71; border-radius: 8px; }
 
         .support-box { margin-top: 30px; padding: 20px; background-color: #f9f9f9; border: 2px solid #ddd; border-radius: 10px; }
+
+        .btn-center { display: block; margin: 20px auto 0 auto; width: auto; min-width: 220px; padding: 14px 24px; }
+
+        #paypal-container-QRBLL5TG5VCV8 {
+            width: 280px;
+            max-width: 100%;
+            margin: 15px auto 0 auto;
+        }
+
+        /* --- ECRAN INTERMEDIAIRE "BRAVO" --- */
+        .bravo-box {
+            max-width: 420px;
+            margin: 20px auto;
+            padding: 30px 25px;
+            text-align: center;
+            background-color: #eaf4fb;
+            border: 3px solid #2980b9;
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        .bravo-box h3 { color: #2980b9; font-size: 28px; margin: 0 0 10px 0; }
+        .bravo-box p { margin: 8px 0; font-size: 15px; color: #333; }
+
+        /* --- CARTES DE CORRECTION --- */
+        .story-card {
+            max-width: 420px;
+            margin: 20px auto;
+            padding: 30px 25px;
+            text-align: center;
+            background-color: white;
+            border: 3px solid #e74c3c;
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .story-card.card-true { border-color: #2ecc71; }
+        .card-number { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #999; font-weight: bold; margin-bottom: 12px; }
+        .card-title { font-size: 24px; font-weight: bold; margin: 5px 0 10px 0; color: #333; }
+        .card-verdict { font-weight: bold; margin-bottom: 12px; }
+        .card-text { font-size: 15px; line-height: 1.5; color: #333; text-align: left; }
     </style>
 </head>
 <body>
 
 <div class="info-box-header">
+    <img src="centre.jpg" alt="Centre-ville de Colomiers" class="header-banner-img">
     <h1 class="main-title">Concours d'anecdotes</h1>
     <div class="info-box-content">
         <div class="info-col-middle">
@@ -330,7 +379,7 @@
 
     <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Ce que vous avez sous les yeux est l'ancienne gare de Colomiers. Quand le plan d'urbanisation a été mis en place, il a fallu repenser absolument tout : voies de circulation, habitations, et même la voie de chemin de fer qui a dû être déplacée plus au Sud. </div> </div>
     <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Les rails passaient ici devant ce qui est aujourd'hui la maison citoyenne Saint Exupéry. </div> </div>
-    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Quand la nouvelle gare a été achevée, il a fallu l'inaugurer. Nous étions alors sous la première mandature d'Alex Raymond (qui a été élu 6 fois !). Le 17 février 1967 Alex Raymond devient donc le premier client de la nouvelle gare en achetant un ticket Colomiers-Pibrac à 0,90 francs. </div> </div>
+    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Quand la nouvelle gare a été achevée, il a fallu l'inaugurer. Nous étions alors sous la première mandature d'Alex Raymond (mais comme il a été élu 6 fois, c'est arrivé souvent !). Le 17 février 1967 Alex Raymond devient donc le premier client de la nouvelle gare en achetant un ticket Colomiers-Pibrac à 0,90 francs. </div> </div>
     <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Le ticket qui lui est délivré porte le numéro 7425, et le maire déclare alors « Je compte jouer ces 4 chiffres au P.M.U. ouvert il y a juste un an au Vieux Logis ! » (qui se trouvait place Firmin Pons dans le vieux centre). Alors, Vrai ou Faux ? </div> </div>
 
     <div class="mission-box">
@@ -614,9 +663,9 @@
 
     <div class="dialogue-row">
         <div class="trio-badges">
-            <img src="Cabia.png" alt="Cabia">
-            <img src="Casso.png" alt="Casso">
-            <img src="Saro.png" alt="Saro">
+            <img src="Badge Cabia.png" alt="Cabia">
+            <img src="Badge Casso.png" alt="Casso">
+            <img src="Badge Saro.png" alt="Saro">
         </div>
         <div class="bubble"> <span class="name-tag">Cabia, Casso &amp; Saro</span> Vaz-y ! </div>
     </div>
@@ -640,7 +689,7 @@
     <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Mais si vous êtes un peu joueurs, vous allez pouvoir utiliser vos jokers gagnés. Nous vous proposons 3 types de joker :<br> Le petit joker : on vous indique une mauvaise réponse au hasard.<br> Le moyen joker : on vous indique deux réponses justes au hasard.<br> Le grand joker : on vous indique exactement combien il y a de bonnes et de mauvaises réponses. </div> </div>
     <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Rien ne vous empêche d'essayer le reste « à tâtons » en réappuyant sur chaque énigme et en revalidant tout, tout dépendra du temps que vous souhaitez y consacrer. Allez, on regarde votre score ? </div> </div>
 
-    <button class="giveup-btn" style="background-color:#2980b9;" onclick="goToRecap()">Découvrir mon score</button>
+    <button class="giveup-btn" style="background-color:#2980b9;" onclick="goToRecap()">VÉRIFIER MES RÉPONSES</button>
 </div>
 </section>
 
@@ -653,7 +702,7 @@
 
     <div class="recap-grid" id="recap-grid"></div>
 
-    <button id="validate-button-recap" class="btn-default" onclick="validateRecap()">Valider</button>
+    <button id="validate-button-recap" class="btn-default" onclick="validateRecap()">DÉCOUVRIR MON SCORE</button>
     <div id="validation-message-recap"></div>
 
     <div class="joker-group">
@@ -685,7 +734,7 @@
     <div id="final-link-box">
         <p style="text-align: center; font-size: 1.1em;"><strong>BRAVO ! La cache se trouve aux coordonnées suivantes :</strong></p>
         <div style="text-align: center; margin: 15px 0;">
-            <a href="https://www.google.com/maps/search/?api=1&query=N 43°36.597′ E 1°19.711′" target="_blank" class="gps-link" style="font-size: 1.3em;">N 43°36.597′ E 1°19.711′</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=43.61023,1.32897" target="_blank" class="gps-link" style="font-size: 1.3em;">43.61023, 1.32897</a>
         </div>
 
         <div class="support-box">
@@ -704,9 +753,6 @@
             </p>
             <div id="paypal-container-QRBLL5TG5VCV8"></div>
             <script src="https://www.paypal.com/sdk/js?client-id=BAAUS3_NIDV8soA10_b5bKgMnexRFb8e5KeIbCj1SEfS6MR5cqf6U6p6PhCiRqAguCQ9hWXK5l5kl4UGRM&components=hosted-buttons&disable-funding=venmo&currency=EUR"></script>
-            <script>
-                paypal.HostedButtons({ hostedButtonId: "QRBLL5TG5VCV8" }).render("#paypal-container-QRBLL5TG5VCV8");
-            </script>
         </div>
     </div>
 </div>
@@ -1095,29 +1141,40 @@
         const container = document.getElementById('ending-card');
         const step = gameState.endingStep;
 
-        if (step >= 1 && step <= 4) {
-            const anecdote = FALSE_ANECDOTES[step - 1];
+        if (step === 1) {
             container.innerHTML = `
-                <div class="mission-box" style="border-color:#e74c3c; background-color:#fdf2f2;">
-                    <h3 style="margin-top:0; color:#e74c3c;">${anecdote.titre}</h3>
-                    <p><strong>C'était FAUX.</strong></p>
-                    <p>${anecdote.explication}</p>
+                <div class="bravo-box">
+                    <h3>BRAVO !</h3>
+                    <p>Vous avez trouvé toutes les bonnes réponses !</p>
+                    <p><strong>Quelques explications à présent…</strong></p>
                 </div>
-                <button class="btn-default" style="background-color:#2980b9; color:white;" onclick="nextEndingStep()">Suivant</button>
+                <button class="btn-default btn-center" style="background-color:#2980b9; color:white;" onclick="nextEndingStep()">CONTINUER</button>
             `;
-        } else if (step === 5) {
+        } else if (step >= 2 && step <= 5) {
+            const anecdote = FALSE_ANECDOTES[step - 2];
             container.innerHTML = `
-                <div class="mission-box" style="border-color:#2ecc71; background-color:#f6fff6; text-align:center;">
-                    <h3 style="margin-top:0; color:#2ecc71;">Tout le reste est vrai !</h3>
+                <div class="story-card card-false">
+                    <div class="card-number">Carte ${step - 1} / 5</div>
+                    <div class="card-title">${anecdote.titre}</div>
+                    <div class="card-verdict" style="color:#e74c3c;">C'était FAUX.</div>
+                    <div class="card-text">${anecdote.explication}</div>
                 </div>
-                <button class="btn-default" style="background-color:#2980b9; color:white;" onclick="nextEndingStep()">Continuer</button>
+                <button class="btn-default btn-center" style="background-color:#2980b9; color:white;" onclick="nextEndingStep()">CARTE SUIVANTE</button>
             `;
         } else if (step === 6) {
+            container.innerHTML = `
+                <div class="story-card card-true">
+                    <div class="card-number">Carte 5 / 5</div>
+                    <div class="card-title" style="color:#2ecc71;">Tout le reste est vrai !</div>
+                </div>
+                <button class="btn-default btn-center" style="background-color:#2980b9; color:white;" onclick="nextEndingStep()">CARTE SUIVANTE</button>
+            `;
+        } else if (step === 7) {
             container.innerHTML = `
                 <div class="mission-box" style="border-color:#f39c12; background-color:#fff8e6;">
                     <strong>Attention :</strong> la cache se trouve dans l'hypercentre de Colomiers. Pour éviter les actes de vandalisme et préserver la cache, soyez le plus discrets possible et veillez à ne pas dévoiler le lieu de la cache aux personnes qui ne participent pas au jeu.
                 </div>
-                <button class="btn-default" style="background-color:#2980b9; color:white;" onclick="revealCacheCoordinates()">J'ai compris</button>
+                <button class="btn-default btn-center" style="background-color:#2980b9; color:white;" onclick="revealCacheCoordinates()">J'ai compris</button>
             `;
         }
         saveState(gameState);
@@ -1129,12 +1186,19 @@
         renderEndingStep();
     }
 
+    function mountPaypalButton() {
+        if (window.paypal && paypal.HostedButtons) {
+            paypal.HostedButtons({ hostedButtonId: "QRBLL5TG5VCV8" }).render("#paypal-container-QRBLL5TG5VCV8");
+        }
+    }
+
     function revealCacheCoordinates() {
-        gameState.endingStep = 7;
+        gameState.endingStep = 8;
         saveState(gameState);
         document.getElementById('ending-section').style.display = 'none';
         document.getElementById('final-link-box').style.display = 'block';
         formatAllCoordLinks();
+        setTimeout(mountPaypalButton, 50);
         document.getElementById('final-link-box').scrollIntoView({ behavior: 'smooth' });
     }
 
@@ -1149,9 +1213,10 @@
 
         if (gameState.endingStep && gameState.endingStep > 0) {
             document.getElementById('recap-section').style.display = 'none';
-            if (gameState.endingStep >= 7) {
+            if (gameState.endingStep >= 8) {
                 document.getElementById('ending-section').style.display = 'none';
                 document.getElementById('final-link-box').style.display = 'block';
+                setTimeout(mountPaypalButton, 50);
             } else {
                 document.getElementById('ending-section').style.display = 'block';
                 renderEndingStep();
