@@ -50,7 +50,7 @@
 
     <header>
         <h1>Aventures Scénarisées à Colomiers</h1>
-        <p>Cliquez sur un personnage pour découvrir sa mission</p>
+        <p>Cliquez sur un héros pour découvrir sa mission</p>
     </header>
 
     <div id="map"></div>
@@ -85,6 +85,7 @@
         var IconJeanine = L.icon({ iconUrl: 'Jeanine.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar' });
         var IconKcor = L.icon({ iconUrl: 'Kçor.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar icon-coming-soon' });
         var IconMalo = L.icon({ iconUrl: 'Malo.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar' });
+        var IconGrisNez = L.icon({ iconUrl: 'gris-nez.jpg', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar icon-coming-soon' });
 
         // 1. Firmin Pons (Nouvelles coordonnées)
         L.marker([43.613568947270736, 1.3370833396104178], {icon: IconLoumpour}).addTo(map)
@@ -125,7 +126,17 @@
                     <img src="Malo.png" class="vignette-perso">
                     <h3>Chats Perget</h3>
                     <div class="stats"><b>Difficulté :</b> 2/5 | <b>Terrain :</b> 2/5<br>⏳ 1 à 2h</div>
-                    <a href="https://kingluther.github.io/Geocaching/Chasse3.html" class="btn-play" target="_blank">Rejoindre Malo</a>
+                    <a href="https://kingluther.github.io/Geocaching/Chasse3.html" class="btn-play" target="_blank">Rejoindre Gris-nez</a>
+                </div>
+            `);
+
+        // 5. Concours d'anecdotes
+        L.marker([43.610325395433065, 1.3309818637125792], {icon: IconGrisNez}).addTo(map)
+            .bindPopup(`
+                <div class="popup-card">
+                    <img src="gris-nez.jpg" class="vignette-perso" style="filter: grayscale(100%)">
+                    <h3 style="color: #888;">Concours d'anecdotes</h3>
+                    <div class="stats">Bientôt publié</div>
                 </div>
             `);
     </script>

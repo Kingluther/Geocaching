@@ -95,11 +95,11 @@
     <div class="hero-display" id="hero-content">
         <div class="hero-info">
             <p id="hero-tagline" class="tagline"></p>
-            <h2 id="hero-name">Sélectionnez un pesronnage</h2>
+            <h2 id="hero-name">Sélectionnez un personnage</h2>
             <p id="hero-bio"></p>
             
             <div class="rencontrer">
-                <h4>Où les rencontrer</h4>
+                <h4 id="hero-rencontrer-label">Où les rencontrer</h4>
                 <p id="hero-rencontrer"></p>
             </div>
         </div>
@@ -131,52 +131,62 @@
             al: { 
                 name: "Al", bioImg: "Al bio.png", tag: "Le margouillat farceur", 
                 bio: "Gekko réunionnais, aussi surnommé « le margouillat », il adore raconter des blagues... pas toujours drôles il est vrai. Sa spécialité ? Monter aux murs, bien sûr !", 
-                rencontrer: "À compléter" 
+                rencontrer: "Concours d'anecdotes\nDes hauts(sonelle) et des bas(sac)",
+                rencontrerLabel: "Où les rencontrer"
             },
             pies: { 
                 name: "Saro, Cabia et Casso", bioImg: "Pies.png", tag: "Les trois pies artistes", 
-                bio: "Chacune avec son style différent, bien sûr. Férues d'art visuel et de paysages champêtres, elles vous guideront à la découverte de la peinture et des autres arts.", 
-                rencontrer: "À compléter" 
+                bio: "Férues d'art visuel et de paysages champêtres, elles vous guideront à la découverte de la peinture et des autres arts. Vous les trouverez également dans le cœur de la ville, comme beaucoup de volatiles.", 
+                rencontrer: "Concours d'anecdotes\nCasso : L'armurier du Cabirol\nCabia : Chats Perget",
+                rencontrerLabel: "Où les rencontrer"
             },
             didier: { 
                 name: "Didier", bioImg: "Didier bio.png", tag: "Le butineur tête en l'air", 
                 bio: "Son truc à lui, c'est butiner. Fin connaisseur de fleurs et de parfums, il est assez tête en l'air et volette à sa guise par monts et par vaux.", 
-                rencontrer: "À compléter" 
+                rencontrer: "Le trésor de Colomiers",
+                rencontrerLabel: "Où les rencontrer"
             },
             harry: { 
                 name: "Harry", bioImg: "Harry bio.png", tag: "Le yak expatrié", 
                 bio: "Harry a passé quelques années de sa vie aux Etats-Unis. Désabusé du « modèle américain », il est rentré il y a peu, ramenant avec lui son savoir d'expatrié.", 
-                rencontrer: "À compléter" 
+                rencontrer: "Des hauts(sonelle) et des bas(sac)",
+                rencontrerLabel: "Où les rencontrer"
             },
             jeanine: { 
                 name: "Jeanine", bioImg: "Jeanine bio.png", tag: "La tortue centenaire", 
                 bio: "Son savoir est aussi grand que sa générosité. Espiègle, elle n'hésite pas à entrainer ses visiteurs dans des récits inspirés et inspirants.", 
-                rencontrer: "Le trésor de l'Armurier" 
+                rencontrer: "Le trésor de l'Armurier\nChats Perget",
+                rencontrerLabel: "Où les rencontrer"
             },
             kcor: { 
                 name: "Kçor", bioImg: "Kçor bio.png", tag: "Le mystère du Bassac", 
                 bio: "Un personnage encore mystérieux qui arpente les environs du Bassac... (Histoire en cours d'écriture !)", 
-                rencontrer: "À compléter" 
+                rencontrer: "L'armurier du Cabirol\nDes hauts(sonelle) et des bas(sac)",
+                rencontrerLabel: "Où les rencontrer"
             },
             loumpour: { 
                 name: "Loumpour", bioImg: "Loumpour bio.png", tag: "La jeune koala curieuse", 
                 bio: "Curieuse de tout, elle adore grimper aux arbres et apprendre de nouvelles choses. Elle est aussi très connaisseuse en matière de sport.", 
-                rencontrer: "Le trésor de Colomiers" 
+                rencontrer: "Le trésor de Colomiers",
+                rencontrerLabel: "Où la rencontrer"
             },
             mala: { 
                 name: "Mala", bioImg: "Mala bio.png", tag: "Le rat réfugié", 
                 bio: "Ce rat malheureux a fui la guerre dans son pays pour venir se réfugier dans la région. Fragile, il est en quête d'un abri de fortune pour améliorer son existence, et de nouveaux amis pour donner du sens à sa vie.", 
-                rencontrer: "À compléter" 
+                rencontrer: "Des hauts(sonelle) et des bas(sac)",
+                rencontrerLabel: "Où le rencontrer"
             },
             lamas: { 
                 name: "Serge et Bernard", bioImg: "Lama.png", tag: "Les lamas jumeaux", 
                 bio: "Bien que leur humour vole parfois au ras des pâquerettes qu'ils broutent, ils sont toujours intéressés par apprendre de nouvelles choses et adorent chercher des trésors.", 
-                rencontrer: "Le trésor de Colomiers" 
+                rencontrer: "Le trésor de Colomiers",
+                rencontrerLabel: "Où les rencontrer"
             },
             chats: {
-                name: "Malo et Gris-nez", bioImg: "Chats bio.png", tag: "À compléter",
-                bio: "À compléter",
-                rencontrer: "À compléter"
+                name: "Malo et Gris-nez", bioImg: "Chats bio.png", tag: "Les chats",
+                bio: "Les deux frères nyctalopes aiment se promener dans les quartiers résidentiels et y pourchasser les oiseaux et parfois les lézards. En revanche il n'aiment pas tout ce qui s'apparente à un chien, de près ou de loin.",
+                rencontrer: "Chats Perget",
+                rencontrerLabel: "Où les rencontrer"
             }
         };
 
@@ -220,6 +230,7 @@
             document.getElementById('hero-name').innerText = data.name;
             document.getElementById('hero-tagline').innerText = data.tag;
             document.getElementById('hero-bio').innerText = data.bio;
+            document.getElementById('hero-rencontrer-label').innerText = data.rencontrerLabel;
             document.getElementById('hero-rencontrer').innerText = data.rencontrer;
             document.getElementById('hero-img').src = data.bioImg;
 
