@@ -1,0 +1,1355 @@
+<!doctype html>
+<html lang='fr'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concours d'anecdotes</title>
+
+    <style>
+        body {
+            font-family: 'Verdana', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            min-height: 100vh;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            padding-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: #2980b9;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            border-left: 5px solid #2980b9;
+            padding-left: 10px;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+        .header-banner-img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .info-box-header {
+            background-color: #fdfdfa;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin: 20px auto 0;
+            max-width: 600px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .info-box-header .main-title {
+            font-family: 'Dancing Script', 'Brush Script MT', 'cursive';
+            font-size: 36px;
+            color: #d35400;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .info-box-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+        .info-col-middle {
+            text-align: center;
+            flex-grow: 1;
+        }
+        .info-col-right {
+            text-align: right;
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 500;
+            min-width: 110px;
+            white-space: nowrap;
+        }
+        .info-col-right strong { color: #000; }
+
+        .parking-info {
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: center;
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .parking-info p { margin-top: 0; margin-bottom: 15px; line-height: 1.5; }
+        .parking-info h3 { margin-top: 0; margin-bottom: 10px; color: #333; font-size: 16px; }
+        .parking-info ul { list-style-type: none; padding: 0; margin: 0; }
+        .parking-info ul li { margin: 5px 0; }
+        .parking-info ul li a {
+            color: #2980b9;
+            font-weight: bold;
+            text-decoration: none;
+            font-family: 'Courier New', monospace;
+            font-size: 1.05em;
+        }
+
+        /* --- PRESENTATION DES PERSONNAGES (2 groupes) --- */
+        .character-presentation {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 15px 0;
+            border-bottom: 2px solid #eee;
+        }
+        .character-presentation p { font-size: 1.1em; color: #666; margin: 0 0 20px 0; font-weight: bold; }
+        .groups-row { display: flex; justify-content: center; align-items: flex-start; gap: 50px; flex-wrap: wrap; }
+        .group-block { display: flex; flex-direction: column; align-items: center; }
+        .pies-group, .gecko-group { display: flex; }
+        .pies-group img, .gecko-group img {
+            width: 80px; height: 80px; border-radius: 50%; object-fit: cover;
+            border: 3px solid #d35400; background-color: white; box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+        .pies-group img:not(:first-child) { margin-left: -28px; }
+        .group-label { display: block; margin-top: 8px; font-size: 0.85em; color: #d35400; font-weight: bold; text-transform: uppercase; }
+
+        .dialogue-row { display: flex; align-items: flex-start; margin-bottom: 15px; }
+        .avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #ccc; flex-shrink: 0; margin-right: 15px; }
+        img[alt="Al"] { border: 2px solid #2ecc71; }
+
+        .bubble { background-color: #e9eff5; padding: 12px 15px; border-radius: 0 15px 15px 15px; position: relative; font-size: 15px; line-height: 1.4; }
+        .bubble::before { content: ""; position: absolute; top: 0; left: -10px; width: 0; height: 0; border-top: 10px solid #e9eff5; border-left: 10px solid transparent; }
+        .name-tag { font-size: 11px; font-weight: bold; color: #666; margin-bottom: 4px; display: block; text-transform: uppercase; }
+
+        /* --- TRIO DE BADGES (étape 12) --- */
+        .trio-badges { display: flex; align-items: center; flex-shrink: 0; margin-right: 15px; }
+        .trio-badges img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #d35400; background-color: white; }
+        .trio-badges img:not(:first-child) { margin-left: -18px; }
+
+        .gps-box { text-align: center; margin: 20px 0; padding: 15px; background-color: #fff3cd; border-radius: 8px; border: 1px solid #ffeeba; }
+        .gps-link, .path-link {
+            display: inline-block; margin-top: 5px; color: #856404; font-weight: bold; text-decoration: none;
+            border-bottom: 2px dotted #856404; font-family: 'Courier New', monospace; font-size: 1.05em;
+        }
+        .gps-link:hover, .path-link:hover { background-color: #856404; color: white; }
+
+        .mission-box { border: 3px dashed #d35400; background-color: #fffaf0; padding: 20px; margin: 30px 0; text-align: left; font-size: 15px; border-radius: 10px; color: #333; }
+
+        .direction-box { background-color: #f8f9fa; border-left: 6px solid #95a5a6; padding: 15px 20px; margin-top: 40px; color: #555; font-style: italic; font-size: 15px; }
+
+        .answer-input-zone { display: flex; align-items: center; justify-content: center; margin: 15px 0 5px 0; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f8f9fa; }
+        .answer-input-zone label { font-weight: bold; margin-right: 10px; color: #d35400; }
+        .answer-input-zone input { width: 120px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-size: 16px; font-weight: bold; text-transform: uppercase; }
+
+        button[id^="validate-button-"] {
+            display: block; width: 100%; padding: 12px; margin-top: 15px; border: none; border-radius: 5px;
+            font-weight: bold; font-size: 16px; cursor: pointer; transition: background-color 0.2s, color 0.2s;
+        }
+        .btn-default { background-color: #bdc3c7; color: #34495e; }
+        .btn-validated { background-color: #e67e22; color: white; }
+        .btn-default:hover { background-color: #ccd1d1; }
+        .btn-default:disabled { background-color: #e0e0e0; color: #999; cursor: not-allowed; }
+
+        div[id^="validation-message-"] { margin-top: 5px; font-size: 14px; font-weight: bold; color: #e74c3c; min-height: 20px; text-align: center; }
+
+        /* --- BOUTONS VRAI / FAUX --- */
+        .tf-group { display: flex; gap: 15px; margin-top: 15px; }
+        .tf-btn {
+            flex: 1; padding: 16px; border: 2px solid #ccc; border-radius: 8px; background-color: white;
+            font-size: 16px; font-weight: bold; cursor: pointer; text-align: center; transition: all 0.2s;
+        }
+        .tf-btn:hover { background-color: #f0f0f0; border-color: #bbb; }
+        .tf-btn.tf-true-selected { background-color: #2ecc71 !important; color: white !important; border-color: #27ae60 !important; }
+        .tf-btn.tf-false-selected { background-color: #e74c3c !important; color: white !important; border-color: #c0392b !important; }
+        .tf-btn:disabled { cursor: not-allowed; opacity: 0.85; }
+        .tf-status { margin-top: 10px; font-size: 14px; font-weight: bold; text-align: center; min-height: 18px; }
+
+        .narrative-note { text-align: center; font-style: italic; color: #888; font-size: 13px; margin: 15px 0; }
+
+        /* --- ECRAN RECAP --- */
+        #recap-section { display: none; }
+        .recap-legend { text-align: center; font-size: 14px; color: #555; margin-bottom: 15px; line-height: 1.5; }
+        .recap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0; }
+        .recap-btn {
+            padding: 14px 6px; border-radius: 8px; border: none; font-size: 13px; font-weight: bold;
+            color: white; cursor: pointer; text-align: center; line-height: 1.3;
+        }
+        .recap-true { background-color: #2ecc71; }
+        .recap-false { background-color: #e74c3c; }
+        .recap-unanswered { background-color: #bdc3c7; color: #444; }
+        .recap-locked { cursor: not-allowed; box-shadow: inset 0 0 0 3px rgba(255,255,255,0.6); }
+
+        .score-display { text-align: center; font-size: 22px; font-weight: bold; color: #d35400; margin: 20px 0; }
+
+        .joker-group { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+        .joker-btn {
+            flex: 1; min-width: 100px; padding: 12px; border: none; border-radius: 5px; background-color: #2980b9;
+            color: white; font-weight: bold; cursor: pointer; font-size: 14px;
+        }
+        .joker-btn:disabled { background-color: #bdc3c7; cursor: not-allowed; }
+        .joker-count { text-align: center; margin-top: 10px; font-size: 14px; color: #555; }
+        .joker-reveal-box { margin-top: 15px; padding: 12px; background-color: #e8f6f3; border: 1px solid #1abc9c; border-radius: 8px; font-size: 14px; }
+
+        .giveup-btn { display: block; width: 100%; margin-top: 25px; padding: 12px; background-color: #7f8c8d; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; }
+
+        /* --- SEQUENCE DE FIN --- */
+        #ending-section { display: none; }
+
+        #final-link-box { margin-top: 20px; display: none; text-align: center; padding: 15px; background-color: #e8f5e9; border: 1px solid #2ecc71; border-radius: 8px; }
+
+        .support-box { margin-top: 30px; padding: 20px; background-color: #f9f9f9; border: 2px solid #ddd; border-radius: 10px; }
+
+        .btn-center { display: block; margin: 20px auto 0 auto; width: auto; min-width: 220px; padding: 14px 24px; }
+
+        #paypal-container-QRBLL5TG5VCV8 {
+            width: 280px;
+            max-width: 100%;
+            margin: 15px auto 0 auto;
+        }
+
+        /* --- ECRAN INTERMEDIAIRE "BRAVO" --- */
+        .bravo-box {
+            max-width: 420px;
+            margin: 20px auto;
+            padding: 30px 25px;
+            text-align: center;
+            background-color: #eaf4fb;
+            border: 3px solid #2980b9;
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        .bravo-box h3 { color: #2980b9; font-size: 28px; margin: 0 0 10px 0; }
+        .bravo-box p { margin: 8px 0; font-size: 15px; color: #333; }
+
+        /* --- CARTES DE CORRECTION --- */
+        .story-card {
+            max-width: 420px;
+            margin: 20px auto;
+            padding: 30px 25px;
+            text-align: center;
+            background-color: white;
+            border: 3px solid #e74c3c;
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .story-card.card-true { border-color: #2ecc71; }
+        .card-number { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #999; font-weight: bold; margin-bottom: 12px; }
+        .card-title { font-size: 24px; font-weight: bold; margin: 5px 0 10px 0; color: #333; }
+        .card-verdict { font-weight: bold; margin-bottom: 12px; }
+        .card-text { font-size: 15px; line-height: 1.5; color: #333; text-align: left; }
+
+        /* --- SCENE DE CARTES 3D (paquet + retournement) --- */
+        .deck-caption { text-align: center; font-weight: bold; color: #555; margin-bottom: 5px; }
+        .deck-legend { text-align: center; font-size: 14px; color: #666; margin: 5px 0 20px 0; }
+        .mini-deck {
+            display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+            gap: 10px; padding: 15px 10px 20px 10px;
+        }
+        .mini-card {
+            width: 46px; height: 66px; border-radius: 7px; color: white; font-size: 20px; font-weight: bold;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            animation: cardAppear 0.45s ease backwards;
+        }
+        .mini-card.mini-true { background: linear-gradient(160deg, #2ecc71, #1e8449); }
+        .mini-card.mini-false { background: linear-gradient(160deg, #e74c3c, #a93226); }
+        @keyframes cardAppear {
+            from { opacity: 0; transform: translateY(18px) scale(0.7); }
+        }
+
+        .flip-scene {
+            perspective: 1200px;
+            width: min(320px, 88vw);
+            height: min(430px, 66vh);
+            margin: 15px auto 20px auto;
+        }
+        .flip-card {
+            position: relative; width: 100%; height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.7s cubic-bezier(.4,.2,.2,1);
+        }
+        .flip-card.is-flipped { transform: rotateY(180deg); }
+        .flip-face {
+            position: absolute; inset: 0; backface-visibility: hidden;
+            border-radius: 18px; padding: 25px 20px; box-sizing: border-box;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.28);
+        }
+        .flip-front { background: linear-gradient(160deg, #ff7b6b, #c0392b); color: white; text-align: center; }
+        .flip-card-title { font-size: 24px; font-weight: 800; margin: 12px 0; }
+        .flip-hint { font-size: 13px; opacity: 0.85; margin-top: 15px; }
+        .flip-back {
+            background: linear-gradient(160deg, #ffffff, #f4f4f4);
+            color: #333; text-align: left; transform: rotateY(180deg);
+            border: 3px solid #e74c3c; overflow-y: auto;
+        }
+        .flip-back-verdict { font-weight: 800; color: #e74c3c; text-align: center; margin-bottom: 10px; font-size: 16px; }
+        .flip-back-text { font-size: 14px; line-height: 1.5; }
+
+        /* --- CARTE RECOMPENSE (5/5) --- */
+        .reward-card {
+            position: relative; overflow: hidden;
+            max-width: min(360px, 90vw); margin: 20px auto; padding: 40px 25px;
+            text-align: center; border-radius: 22px; color: white;
+            background: linear-gradient(160deg, #2ecc71, #159a72);
+            box-shadow: 0 20px 40px rgba(46,204,113,0.4);
+            animation: rewardPulse 1.8s ease-in-out infinite;
+        }
+        .reward-card::before {
+            content: ""; position: absolute; top: -60%; left: -60%; width: 40%; height: 220%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.55), transparent);
+            transform: rotate(20deg); animation: shineSweep 2.6s ease-in-out infinite;
+        }
+        .reward-title { font-size: 26px; font-weight: 800; margin-top: 10px; text-shadow: 0 2px 6px rgba(0,0,0,0.3); }
+        @keyframes rewardPulse {
+            0%, 100% { box-shadow: 0 20px 40px rgba(46,204,113,0.3); }
+            50% { box-shadow: 0 26px 55px rgba(46,204,113,0.6); }
+        }
+        @keyframes shineSweep {
+            0% { left: -60%; }
+            100% { left: 140%; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .flip-card { transition: none; }
+            .mini-card { animation: none; }
+            .reward-card { animation: none; }
+            .reward-card::before { animation: none; display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="info-box-header">
+    <img src="centre.jpg" alt="Centre-ville de Colomiers" class="header-banner-img">
+    <h1 class="main-title">Concours d'anecdotes</h1>
+    <div class="info-box-content">
+        <div class="info-col-middle">
+            <div style="font-size:20px; font-weight:bold; color:#333;">2,3 km</div>
+        </div>
+        <div class="info-col-right">
+            <strong>Difficulté :</strong> 4.5 / 5<br>
+            <strong>Terrain :</strong> 1 / 5<br>
+            <strong>Durée :</strong> 1h à 2h
+        </div>
+    </div>
+</div>
+
+<div class="parking-info">
+    <p>Ce parcours est 100% urbain, vous allez vous déplacer dans des zones urbaines où les véhicules circulent. Merci de respecter la tranquillité des résidents dans les quartiers résidentiels et soyez prudents au bord des routes.<br>A faire : à pied, en poussette, en VTT (merci de mettre pied à terre dans la zone commerciale).</p>
+    <p>Les jeudis matin et samedis matins, le marché a lieu sur la place du Languedoc. Il est assez difficile de se garer. Essayez d'éviter ces deux demi-journées ou garez-vous plus loin.</p>
+    <h3>Parkings conseillés et gratuits :</h3>
+    <ul>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=43.610374436658134,1.331186944131821" target="_blank">À ciel ouvert : place du Languedoc</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=43.610167736580394,1.3317435471376247" target="_blank">Couvert (397 places) : Parking du Rouergue</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=43.60878487470255,1.3321059933708805" target="_blank">À ciel ouvert : Hall Comminges</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=43.61023124784585,1.3289701012153512" target="_blank">Toilettes publiques en fin de parcours</a></li>
+    </ul>
+</div>
+
+<section id="etape1" class="etape">
+<div class="container">
+
+    <div class="character-presentation">
+        <p>Une aventure de :</p>
+        <div class="groups-row">
+            <div class="group-block">
+                <div class="pies-group">
+                    <img src="Badge Cabia.png" alt="Cabia">
+                    <img src="Badge Casso.png" alt="Casso">
+                    <img src="Badge Saro.png" alt="Saro">
+                </div>
+                <span class="group-label">Les pies</span>
+            </div>
+            <div class="group-block">
+                <div class="gecko-group">
+                    <img src="Badge Al.png" alt="Al">
+                </div>
+                <span class="group-label">Le gecko</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="mission-box" style="border-color:#2980b9; background-color:#f0f7fa;">
+        <strong>À savoir avant de commencer :</strong>
+        <ol>
+            <li>Ce parcours est court en distance, mais sa durée dépend du temps passé sur les énigmes.</li>
+            <li>Toutes les dates citées sont justes, s'il y a des pièges, c'est dans les énoncés.</li>
+            <li>Il y a au moins 4 réponses justes et au moins 4 réponses fausses.</li>
+            <li>Vous pourrez récupérer deux jokers pendant l'aventure pour vous aider à la fin.</li>
+        </ol>
+    </div>
+
+    <h2>1. Point de départ : Place du marché</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.610325395433065,1.3309818637125792" target="_blank" class="gps-link">43.610325, 1.330982</a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Bonjour à vous et bienvenu(e)s sur la place du marché de Colomiers. Aujourd'hui nous avons un superbe défi pour vous : un concours d'anecdotes. </div> </div>
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Vous connaissez le principe ? Oui ? Non ? Allez, on vous résume ça très simplement. Nous allons vous raconter des anecdotes sur la ville de Colomiers, et majoritairement sur son expansion entre 1960 et 2000. </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> C'est à cette période qu'est apparu et s'est développé le « Plein Centre » dont nous allons faire le tour aujourd'hui. A chacune de ces anecdotes, il vous faudra répondre par « Vrai » ou par « Faux ». Vos réponses seront stockées, et à la fin de notre balade, si vous avez tout juste, à vous le trésor ! </div> </div>
+    <div class="dialogue-row"> <img src="Al.png" alt="Al" class="avatar"> <div class="bubble"> <span class="name-tag">Al</span> Pas de panique, vous aurez bien sûr la possibilité de tenter de corriger vos réponses, jusqu'à la fin, et il existe également une option « J'en ai marre » si vous voulez obtenir toutes les réponses à la fin. Alors, prêts à relever le challenge ? C'est parti ! Qui commence ? </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Moi ! Vous êtes ici sur un très bel espace dégagé, mais savez-vous qu'en réalité, quand l'urbanisation de Colomiers a été pensée par l'architecte Viguier en 1960, il n'était pas du tout prévu de laisser ce grand espace vide. </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> En réalité le cahier des charges prévoyait ici un « parc des sports » de plus de 5 hectares avec notamment un stade de rugby, entouré d'une piste d'athlétisme de 6 couloirs et de 400 mètres de long. Et puis aussi des tribunes de 5.000 places, six courts de tennis, des terrains de basket, de volley et une piscine ! </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Finalement, le projet a été abandonné : les différents équipements sportifs ont été répartis dans plusieurs secteurs de la ville, notamment au Cabirol et à Sélery, tandis que la piscine a bien trouvé sa place ici. Alors, les petits malins : Vrai ou Faux ? </div> </div>
+
+    <div class="mission-box">
+        <div class="tf-group">
+            <button class="tf-btn" id="tf-1-true" onclick="handleAnswer(1, true)">VRAI</button>
+            <button class="tf-btn" id="tf-1-false" onclick="handleAnswer(1, false)">FAUX</button>
+        </div>
+        <div class="tf-status" id="tf-status-1"></div>
+    </div>
+
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Ah ah ! Bien joué Cabia ! Tous ces chiffres, ça parait très vrai. Mais en même temps, on imagine mal tout ça ici ! J'aimerais pas être à votre place ! </div> </div>
+    <div class="dialogue-row"> <img src="Al.png" alt="Al" class="avatar"> <div class="bubble"> <span class="name-tag">Al</span> Et si je peux vous donner un conseil pour toute cette aventure : le diable se cache souvent dans les détails, et le vrai et le faux vont être très difficilement démêlables. Allez, filons vers la prochaine étape, il me tarde de vous poser ma colle. </div> </div>
+
+    <div class="direction-box">
+        Suivez l'allée du Rouergue en partant vers la poste, laissez le Temple Beer à votre gauche jusqu'au point <a href="https://www.google.com/maps/search/?api=1&query=43.60941636345406,1.3305422109692937" target="_blank" class="path-link">43.609416, 1.330542</a>. Là vous pouvez traverser au passage piéton pour répondre à la question suivante.
+    </div>
+</div>
+</section>
+
+<section id="etape2" class="etape">
+<div class="container">
+    <h2>2. N'est pas Voltaire qui veut</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.609401589948476,1.329890985625186" target="_blank" class="gps-link">43.609402, 1.329891</a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Al.png" alt="Al" class="avatar"> <div class="bubble"> <span class="name-tag">Al</span> C'est à mon tour. Vous vous trouvez devant les terrains de sports du Collège Voltaire. L'un des quatre collèges publics de la ville, auxquels il faut ajouter le collège privé Sainte-Thérèse. </div> </div>
+    <div class="dialogue-row"> <img src="Al.png" alt="Al" class="avatar"> <div class="bubble"> <span class="name-tag">Al</span> Il a été ouvert en 1971, trois ans après le collège Jean Jaurès pour absorber le nombre grandissant d'élèves. Suivront le collège Léon Blum 4 ans plus tard et enfin le collège Victor Hugo en 1984. </div> </div>
+    <div class="dialogue-row"> <img src="Al.png" alt="Al" class="avatar"> <div class="bubble"> <span class="name-tag">Al</span> Autant de constructions en si peu de temps, ça démontre bien que la population était en train de croître de manière excessivement rapide. Alors voici l'anecdote sur laquelle je vous demande de plancher : </div> </div>
+    <div class="dialogue-row"> <img src="Al.png" alt="Al" class="avatar"> <div class="bubble"> <span class="name-tag">Al</span> Le 25 septembre 1967 a lieu la rentrée des classes dans les écoles publiques de Colomiers. Les différents directeurs et directrices d'école considèrent que la situation n'est pas trop mauvaise, malgré des effectifs de 33 à 36 élèves par classe dans le 1er cycle. </div> </div>
+    <div class="dialogue-row"> <img src="Al.png" alt="Al" class="avatar"> <div class="bubble"> <span class="name-tag">Al</span> Madame Mathis, directrice de l'école maternelle Jean Macé, annonce 230 élèves pour 4 classes soit 58 élèves par classe en moyenne. Elle précise cependant : « Je pense qu'il faudra créer une classe de plus l'an prochain ». Et maintenant, c'est à vous de jouer ! Vrai ou Faux ? </div> </div>
+
+    <div class="mission-box">
+        <div class="tf-group">
+            <button class="tf-btn" id="tf-2-true" onclick="handleAnswer(2, true)">VRAI</button>
+            <button class="tf-btn" id="tf-2-false" onclick="handleAnswer(2, false)">FAUX</button>
+        </div>
+        <div class="tf-status" id="tf-status-2"></div>
+    </div>
+
+    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> 58 élèves par classe en moyenne ! Ca parait trop évident ton truc ! Laissez-moi le prochain, vous allez voir, ils vont bien galérer à le trouver celui-là ! </div> </div>
+
+    <div class="direction-box">
+        Continuez sur le trottoir puis traversez au passage piéton <a href="https://www.google.com/maps/search/?api=1&query=43.60919461800583,1.3310672693562082" target="_blank" class="path-link">43.609195, 1.331067</a>. Traversez de nouveau à <a href="https://www.google.com/maps/search/?api=1&query=43.60939385477392,1.3313492018468984" target="_blank" class="path-link">43.609394, 1.331349</a> puis encore à <a href="https://www.google.com/maps/search/?api=1&query=43.60991807295863,1.332560383836031" target="_blank" class="path-link">43.609918, 1.332560</a> et vous êtes au point suivant.
+    </div>
+</div>
+</section>
+
+<section id="etape3" class="etape">
+<div class="container">
+    <h2>3. Gare de pari</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.60979099843621,1.3328349433166091" target="_blank" class="gps-link">43.609791, 1.332835</a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Ce que vous avez sous les yeux est l'ancienne gare de Colomiers. Quand le plan d'urbanisation a été mis en place, il a fallu repenser absolument tout : voies de circulation, habitations, et même la voie de chemin de fer qui a dû être déplacée plus au Sud. </div> </div>
+    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Les rails passaient ici devant ce qui est aujourd'hui la maison citoyenne Saint Exupéry. </div> </div>
+    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Quand la nouvelle gare a été achevée, il a fallu l'inaugurer. Nous étions alors sous la première mandature d'Alex Raymond (mais comme il a été élu 6 fois, c'est arrivé souvent !). Le 17 février 1967 Alex Raymond devient donc le premier client de la nouvelle gare en achetant un ticket Colomiers-Pibrac à 0,90 francs. </div> </div>
+    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Le ticket qui lui est délivré porte le numéro 7425, et le maire déclare alors « Je compte jouer ces 4 chiffres au P.M.U. ouvert il y a juste un an au Vieux Logis ! » (qui se trouvait place Firmin Pons dans le vieux centre). Alors, Vrai ou Faux ? </div> </div>
+
+    <div class="mission-box">
+        <div class="tf-group">
+            <button class="tf-btn" id="tf-3-true" onclick="handleAnswer(3, true)">VRAI</button>
+            <button class="tf-btn" id="tf-3-false" onclick="handleAnswer(3, false)">FAUX</button>
+        </div>
+        <div class="tf-status" id="tf-status-3"></div>
+    </div>
+
+    <div class="dialogue-row"> <img src="Al.png" alt="Al" class="avatar"> <div class="bubble"> <span class="name-tag">Al</span> Ben oui, mais comment tu veux qu'on sache ? S'il le faut t'as juste changé le numéro du billet, ou le prix, ou alors l'histoire n'a jamais existé ! </div> </div>
+    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> C'est pas toi qui disais : le diable se cache dans les détails ? Alors va savoir ? </div> </div>
+
+    <div class="direction-box">
+        Suivez le trottoir jusqu'au point suivant puis traversez à <a href="https://www.google.com/maps/search/?api=1&query=43.609321346215594,1.3342384333790898" target="_blank" class="path-link">43.609321, 1.334238</a>.
+    </div>
+</div>
+</section>
+
+<section id="etape4" class="etape">
+<div class="container">
+    <h2>4. Ciel ma Mairie</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.60968388508906,1.3343901620323795" target="_blank" class="gps-link">43.609684, 1.334390</a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Allez Casso, fais-nous rêver. A ton tour ! </div> </div>
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Ok, voilà une bonne anecdote. L'hôtel de ville que vous avez devant vous a été construit en 1991. Il fait sept niveaux de haut. Mais savez-vous qu'en fait son emplacement précis ici, au bout de cette esplanade avait été décidé depuis le départ par l'architecte Viguier ? Et qu'il était déjà question qu'il fasse exactement 7 niveaux ? </div> </div>
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Pour rappel, et pour vous embrouiller un peu, en 1960 Colomiers comptait moins de 5.000 habitants, en 1990 il y en avait plus de 26.000 habitants. Croyez-vous que Viguier ait réellement su estimer les besoins précis en termes de bureaux et de personnel 30 ans à l'avance ? Ou peut-être que pour lui rendre hommage on a construit exactement comme il le souhaitait ? </div> </div>
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Ou peut-être que tout cela est faux ? Alors, d'après vous, est-ce que Viguier avait tout planifié jusqu'à l'emplacement et la hauteur et que tout a été réalisé selon ses plans 30 ans après ? </div> </div>
+
+    <div class="mission-box">
+        <div class="tf-group">
+            <button class="tf-btn" id="tf-4-true" onclick="handleAnswer(4, true)">VRAI</button>
+            <button class="tf-btn" id="tf-4-false" onclick="handleAnswer(4, false)">FAUX</button>
+        </div>
+        <div class="tf-status" id="tf-status-4"></div>
+    </div>
+
+    <div class="direction-box">
+        Prenez à droite en direction de <a href="https://www.google.com/maps/search/?api=1&query=43.60970860357417,1.3350312156004571" target="_blank" class="path-link">43.609709, 1.335031</a>, longez le centre des finances publiques.
+    </div>
+
+    <div class="mission-box" style="border-color:#1abc9c; background-color:#e8f6f3;">
+        <strong>🃏 Premier joker à gagner !</strong><br><br>
+        Combien d'énormes piliers métalliques à patte d'éléphant permettent de soutenir la devanture du centre des impôts de Colomiers ? Comptez tous ceux que vous voyez, même ceux qui donnent sur le Boulevard Montel.
+        <div class="answer-input-zone"> <label for="joker1-input">Réponse :</label> <input type="text" id="joker1-input" oninput="resetJokerInput('joker1')"> </div>
+        <div id="validation-message-joker1"></div>
+        <button id="validate-button-joker1" class="btn-default" onclick="checkJokerMission('joker1')">Valider la réponse</button>
+    </div>
+
+    <div class="direction-box">
+        Traversez à présent le boulevard à <a href="https://www.google.com/maps/search/?api=1&query=43.60949574966315,1.336273493959841" target="_blank" class="path-link">43.609496, 1.336273</a> jusqu'au point suivant.
+    </div>
+</div>
+</section>
+
+<section id="etape5" class="etape">
+<div class="container">
+    <h2>5. Montel là-dessus</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.60943395322403,1.3366585054240778" target="_blank" class="gps-link">43.609434, 1.336659</a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Ok, ça va, j'ai compris ! Y a du level ! Faut pas que je baisse ma garde ! Alors en voilà une autre qui devrait vous tordre les méninges ! </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Le grand plan d'urbanisation de Viguier n'a pas été décidé seul. A l'époque de sa conception, Eugène Montel, qui a laissé son nom à ce boulevard à côté de nous, était maire de Colomiers. </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Il avait en tête un véritable projet social derrière le projet architectural, et il savait que l'accroissement rapide de la population allait forcément amener des problématiques nouvelles. </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Montel était connu pour être protestant et franc-maçon, il va donc se soucier, en plus de mixité sociale, de mixité religieuse. Le plan de Viguier prévoit donc une seconde chapelle catholique (il estime nécessaire d'avoir une église par tranche de 10.000 habitants) un temple protestant, ainsi que la construction d'une synagogue. </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> La chapelle Sainte Bernadette sera construite, la communauté juive pour sa part ne manifestera pas alors d'intérêt pour la mise en place d'une Synagogue, et le temple Protestant sera finalement réaffecté à l'Eglise évangélique. </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> En revanche, Montel, pour contrebalancer le poids de l'école catholique Sainte Thérèse constituée par les Filles de la Croix soutiendra Maurice Grynfogel, Président de la Communauté juive de Toulouse, afin qu'il puisse effectuer le transfert à Colomiers du lycée ORT. </div> </div>
+    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Yeah ! Bien montée ton anecdote… Alors les érudits, est-ce que Viguier avait aussi prévu une église, un temple et une synagogue ? Oui, ou non ? </div> </div>
+
+    <div class="mission-box">
+        <div class="tf-group">
+            <button class="tf-btn" id="tf-5-true" onclick="handleAnswer(5, true)">OUI</button>
+            <button class="tf-btn" id="tf-5-false" onclick="handleAnswer(5, false)">NON</button>
+        </div>
+        <div class="tf-status" id="tf-status-5"></div>
+    </div>
+
+    <div class="direction-box">
+        Poursuivez à présent jusqu'à <a href="https://www.google.com/maps/search/?api=1&query=43.60949849616779,1.3376314654140384" target="_blank" class="path-link">43.609498, 1.337631</a> puis jusqu'à <a href="https://www.google.com/maps/search/?api=1&query=43.61001225678926,1.3381398590181903" target="_blank" class="path-link">43.610012, 1.338140</a>. Là prenez sur la gauche le petit chemin qui part en diagonale. Il vous mènera jusqu'aux marches à <a href="https://www.google.com/maps/search/?api=1&query=43.61046668660407,1.3378508584094444" target="_blank" class="path-link">43.610467, 1.337851</a>. Avancez ensuite jusqu'au point suivant.
+    </div>
+</div>
+</section>
+
+<section id="etape6" class="etape">
+<div class="container">
+    <h2>6. Est-ce que mentent les religieuses ?</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.61082290552494,1.3377419464659537" target="_blank" class="gps-link">43.610823, 1.337742</a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Al.png" alt="Al" class="avatar"> <div class="bubble"> <span class="name-tag">Al</span> Allez, c'est à moi. Si vous êtes columérin ou columérine, vous savez qu'ici la vue était différente il y a quelques années. En 2005, une route a été créée qui permet de relier directement la place du Cantal où nous sommes à la rue Gilet, en passant par l'allée du Lot. </div> </div>
+    <div class="dialogue-row"> <img src="Al.png" alt="Al" class="avatar"> <div class="bubble"> <span class="name-tag">Al</span> Avant ce lieu était une impasse qui permettait aux habitants des immeubles d'accéder au parking et aux parents de déposer leurs enfants à l'école et au collège. Mais dernièrement, la voirie a encore été réaménagée afin d'avoir des parkings plus nombreux et des trottoirs plus larges pour mieux répondre aux besoins des usagers. </div> </div>
+    <div class="dialogue-row"> <img src="Al.png" alt="Al" class="avatar"> <div class="bubble"> <span class="name-tag">Al</span> Ces aménagements ont été rendus possibles en rognant sur le terrain du groupe scolaire qui a été récupéré auprès des Filles de la Croix. Sauf que… ces parcelles de terrain correspondaient en fait au cimetière où étaient enterrées certaines sœurs de la communauté présente depuis presque deux siècles. </div> </div>
+    <div class="dialogue-row"> <img src="Al.png" alt="Al" class="avatar"> <div class="bubble"> <span class="name-tag">Al</span> Lorsque les engins de chantiers sont venus creuser, plusieurs tombes très anciennes ont été mises à jour et il a alors fallu conduire les corps vers un autre cimetière appartenant à la congrégation. Ce nouveau rond-point sur lequel nous nous trouvons a donc été construit sur une partie du cimetière des religieuses. Alors, vrai ou faux ? </div> </div>
+
+    <div class="mission-box">
+        <div class="tf-group">
+            <button class="tf-btn" id="tf-6-true" onclick="handleAnswer(6, true)">VRAI</button>
+            <button class="tf-btn" id="tf-6-false" onclick="handleAnswer(6, false)">FAUX</button>
+        </div>
+        <div class="tf-status" id="tf-status-6"></div>
+    </div>
+
+    <div class="direction-box">
+        Il va vous falloir à présent rejoindre la passerelle piétonne au-dessus du boulevard Montel. La façon la plus simple de s'y rendre est de passer au milieu des immeubles au niveau de <a href="https://www.google.com/maps/search/?api=1&query=43.61044443746617,1.3374761016166976" target="_blank" class="path-link">43.610444, 1.337476</a>, puis de descendre la rampe à <a href="https://www.google.com/maps/search/?api=1&query=43.61034213160969,1.3371394536672114" target="_blank" class="path-link">43.610342, 1.337139</a>.
+        <br><br>
+        Si pour une raison quelconque vous ne le souhaitez pas (mobilité réduite, vélo, etc.), vous pouvez également longer l'immeuble jusqu'à <a href="https://www.google.com/maps/search/?api=1&query=43.61054468330439,1.3369194471199415" target="_blank" class="path-link">43.610545, 1.336919</a>, là vous trouverez une rampe qui monte <a href="https://www.google.com/maps/search/?api=1&query=43.61037028290298,1.337097728287557" target="_blank" class="path-link">43.610370, 1.337098</a> et qui vous mènera sur la passerelle.
+    </div>
+</div>
+</section>
+
+<section id="etape7" class="etape">
+<div class="container">
+    <h2>7. Estimation de population</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.61044686203555,1.3364608979484307" target="_blank" class="gps-link">43.610447, 1.336461</a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Ah ah ! Saurez-vous démêler le vrai du faux dans cette histoire. Puisqu'on en parlait : en 1836, trois religieuses des Filles de la Croix quittent Tarbes pour rejoindre Colomiers. Le voyage n'a rien d'une promenade : elles empruntent la mauvaise route par L'Isle-Jourdain et, à l'approche du village, il leur faut pousser la diligence dans la montée. </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> En plus elles arrivent plus tôt que prévu et aucun local n'est prêt pour les accueillir. Le maire et le curé s'affrontent pendant deux années pour revendiquer tel ou tel terrain. Elles seront hébergées dans un premier temps au château de Raspaud. </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> L'affrontement requiert l'intervention du préfet, de l'archevêque, du maire et des prêtres. Le préfet finit par donner raison au prêtre sur la question de l'école, mais autorise en contrepartie le maire à construire une nouvelle mairie-école au cœur du village. </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Grâce à des aides financières, notamment de l'impératrice Eugénie, les sœurs agrandissent progressivement l'école, font construire une chapelle, et deviennent une institution en dispensant des soins, et en prenant soin des indigents. </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> En 1911, elles sont au nombre de 73 recensées à Colomiers. Ce qui signifie que - la population étant d'environ 1.800 habitants - elles représentent à peu près 4% de la population columérine. Si l'on considère une population féminine proche de la moitié de la population totale, cela signifie qu'à Colomiers environ une Columérine sur treize était religieuse… </div> </div>
+    <div class="dialogue-row"> <img src="Al.png" alt="Al" class="avatar"> <div class="bubble"> <span class="name-tag">Al</span> Alors, vous en dites quoi ? 1 sur 13 ça vous parait vrai ou faux ? </div> </div>
+
+    <div class="mission-box">
+        <div class="tf-group">
+            <button class="tf-btn" id="tf-7-true" onclick="handleAnswer(7, true)">VRAI</button>
+            <button class="tf-btn" id="tf-7-false" onclick="handleAnswer(7, false)">FAUX</button>
+        </div>
+        <div class="tf-status" id="tf-status-7"></div>
+    </div>
+
+    <div class="direction-box">
+        Descendez de la passerelle et prenez la première rue à droite jusqu'au 23 de l'allée du Roussillon.
+    </div>
+</div>
+</section>
+
+<section id="etape8" class="etape">
+<div class="container">
+    <h2>8. Incroyable mais vrai (ou pas) ?</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.6103625321489,1.3355882222935807" target="_blank" class="gps-link">43.610363, 1.335588</a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Ok, ok pas mal ! Mais pas incroyable ! Moi j'ai un truc vraiment incroyable, et je suis sûr que très peu de columérins sont au courant de ce que je vais vous raconter ! </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> C'est sûrement parce que c'est faux ! </div> </div>
+    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Qui pourrait penser le grand secret qui se cache derrière cette porte ? Le saviez-vous, à Colomiers au numéro 23 de cette rue, exerce en tant que néphrologue une certaine Dr Estelle MACRON, et il s'agit en réalité de la sœur d'Emmanuel MACRON, président de la République de 2017 à 2027. Tout comme son autre frère Laurent MACRON qui est radiologue - et leurs parents qui sont médecins - elle a opté pour le domaine de la médecine. </div> </div>
+    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> D'ailleurs cette particularité valait à Emmanuel MACRON d'être désigné dans les repas de famille comme « vilain petit canard ». Expression que sa famille a probablement dû abandonner depuis son accession aux plus hautes fonctions de la République. </div> </div>
+    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Ah, et évidemment, je vous vois tiquer ! Mais ne cherchez pas sa plaque parmi celles de ses confrères et consœurs, pour des raisons de discrétion évidente, elle l'a fait ôter dès les premières années du mandat de son grand frère. Ce qui se repère facilement sur le poteau. </div> </div>
+    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Oui, je sais, ça vous parait un peu trop gros, mais, méfiez-vous ! Faites vos recherches, et vous verrez ! </div> </div>
+
+    <div class="mission-box">
+        <div class="tf-group">
+            <button class="tf-btn" id="tf-8-true" onclick="handleAnswer(8, true)">VRAI</button>
+            <button class="tf-btn" id="tf-8-false" onclick="handleAnswer(8, false)">FAUX</button>
+        </div>
+        <div class="tf-status" id="tf-status-8"></div>
+    </div>
+
+    <div class="direction-box">
+        Dirigez-vous à présent vers l'Hôtel de Ville (demi-tour sur 10m puis à gauche).
+    </div>
+</div>
+</section>
+
+<section id="etape9" class="etape">
+<div class="container">
+    <h2>9. « Mon nom » est un palindrome</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.610659989364635,1.3347000211450095" target="_blank" class="gps-link">43.610660, 1.334700</a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Ah ouais ! Vachement mieux à mon avis que celle du PMU ! Va falloir que j'assure après celle-là ! </div> </div>
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Bon, alors je vous explique. Eugène Montel, maire de 1944 à 1966 était originaire de Narbonne, et Alex Raymond, maire de 1966 à 2001, était originaire de Chambéry. Donc aucun des deux n'était natif de Colomiers. </div> </div>
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> En 1961, le jeune Henri Molina (qui a donné son nom à la médiathèque qui est sur cette place) fait des recherches car quelque chose le chagrine : il n'arrive pas à trouver le nom que l'on donne aux habitants de Colomiers. Il va consulter Montel, alors maire, et Raymond premier adjoint, mais aucun des deux n'est capable de répondre. </div> </div>
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Henri Molina demande donc la permission de préparer un référendum communal dans les colonnes du quotidien la Dépêche du Midi afin que les habitants décident du nom qu'ils veulent prendre. </div> </div>
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Alors que la ville existe depuis presque 900 ans, ses habitants sont invités en juillet 1963 à choisir entre Columérins et Colomiérois. C'est finalement Columérins et Columérines qui l'emporte avec 72% des voix contre 28% pour Colomiérois. Alors, vrai ou faux ? </div> </div>
+
+    <div class="mission-box">
+        <div class="tf-group">
+            <button class="tf-btn" id="tf-9-true" onclick="handleAnswer(9, true)">VRAI</button>
+            <button class="tf-btn" id="tf-9-false" onclick="handleAnswer(9, false)">FAUX</button>
+        </div>
+        <div class="tf-status" id="tf-status-9"></div>
+    </div>
+
+    <div class="direction-box">
+        Traversez maintenant le passage clouté à <a href="https://www.google.com/maps/search/?api=1&query=43.610785852884376,1.3338381071462293" target="_blank" class="path-link">43.610786, 1.333838</a> pour prendre la rue du centre, puis continuez toujours tout droit jusqu'au point suivant.
+    </div>
+
+    <div class="mission-box" style="border-color:#1abc9c; background-color:#e8f6f3;">
+        <strong>🃏 Dernier joker à gagner !</strong><br><br>
+        En 2008, le collectif Citoyens pour la paix, en collaboration avec la Mairie, a mis en place dans la rue du Plein Centre un aménagement en faveur de la non-violence. Trouvez la citation du général Jacques de Bollardière (en hauteur dans l'axe de la rue) et recopiez le mot de 9 lettres manquant dans la phrase, sans le déterminant : « La non-violence s'enracine dans … »
+        <div class="answer-input-zone"> <label for="joker2-input">Mot :</label> <input type="text" id="joker2-input" oninput="resetJokerInput('joker2')"> </div>
+        <div id="validation-message-joker2"></div>
+        <button id="validate-button-joker2" class="btn-default" onclick="checkJokerMission('joker2')">Valider la réponse</button>
+    </div>
+</div>
+</section>
+
+<section id="etape10" class="etape">
+<div class="container">
+    <h2>10. Dans mon pays d'Espagne</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.61120150336983,1.3318249284179782" target="_blank" class="gps-link">43.611202, 1.331825</a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Ok, je prends le relai. Et là on va être sur du concret, n'est-ce pas mon cher Casso ? </div> </div>
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Je ne sais pas encore ce que tu vas leur dire, donc je ne peux pas commenter. </div> </div>
+    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Bien, vous voyez ce dessin au sol. On comprend bien que c'est une carte ultra-simplifiée. Quatre flèches dans des directions différentes. Elles vous indiquent comment vous rendre dans les différents lieux. </div> </div>
+    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Evidemment comme tout un chacun, vous comprenez bien que la flèche « cinéma » indique le cinéma, la flèche « parkings » indique les parkings, et vous en déduisez que la flèche « Val d'Aran » indique la direction du quartier du Val d'Aran. </div> </div>
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Oui, jusque-là c'est du bon sens ! </div> </div>
+    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Mais savez-vous que la flèche qui indique la direction « Val d'Aran » indique aussi la direction du Val d'Aran en Espagne ? Là où la Garonne elle-même prend sa source. C'est même la raison pour laquelle ce dessin a été positionné ici-même et non pas ailleurs : l'alignement y est parfait entre le quartier du Val d'Aran et le Val d'Aran lui-même. </div> </div>
+    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Là, on est sur quelque chose de vraiment concret ! Alors, est-ce vrai, ou faux ? </div> </div>
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Effectivement, même moi j'ai un doute ! </div> </div>
+
+    <div class="mission-box">
+        <div class="tf-group">
+            <button class="tf-btn" id="tf-10-true" onclick="handleAnswer(10, true)">VRAI</button>
+            <button class="tf-btn" id="tf-10-false" onclick="handleAnswer(10, false)">FAUX</button>
+        </div>
+        <div class="tf-status" id="tf-status-10"></div>
+    </div>
+
+    <div class="direction-box">
+        Tournez à droite dans le passage du Périgord juste après l'escalier qui monte. Poursuivez tout droit sur l'allée du Périgord.
+    </div>
+</div>
+</section>
+
+<section id="etape11" class="etape">
+<div class="container">
+    <h2>11. Fraternité interreligieuse</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.61250474903759,1.33186355261983" target="_blank" class="gps-link">43.612505, 1.331864</a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Puisque tu es venu me chercher sur l'Espagne, terre qui a connu pas mal de brassage au cours de l'histoire, parlons un peu religion. </div> </div>
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Cabia tout à l'heure nous a parlé du plan de Viguier qui comprenait la construction d'une chapelle, d'un temple et d'une synagogue. L'absence d'une mosquée dans ce décor peut paraitre un peu suspecte. Pour autant, il n'y avait chez Viguier aucune préférence religieuse. </div> </div>
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Les premiers musulmans résidant à Colomiers sont en fait arrivés à Colomiers au début des années 1970, soit 10 ans après l'élaboration de ce plan d'urbanisation. Si Viguier ne les a pas pris en compte c'est parce qu'il ne pouvait pas deviner si une communauté musulmane, ou bouddhiste allait s'installer un jour sur Colomiers. </div> </div>
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Mais toujours est-il qu'une fois la communauté installée, elle s'est retrouvée sans lieu de prière propre à son culte. Et il y a ici, à Sainte Bernadette, un geste d'accueil qui a été porté par la communauté que je trouve très beau. </div> </div>
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> En effet à partir de 1977, et jusqu'à l'ouverture de la mosquée de Colomiers en 1996, une petite salle de la chapelle Sainte Bernadette a été prêtée à la communauté musulmane pour qu'elle puisse avoir un lieu de prière. </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Wouahou, on aimerait que ce soit vrai tellement c'est positif ton histoire… Bon alors, à vos votes. Vrai ou faux ? </div> </div>
+
+    <div class="mission-box">
+        <div class="tf-group">
+            <button class="tf-btn" id="tf-11-true" onclick="handleAnswer(11, true)">VRAI</button>
+            <button class="tf-btn" id="tf-11-false" onclick="handleAnswer(11, false)">FAUX</button>
+        </div>
+        <div class="tf-status" id="tf-status-11"></div>
+    </div>
+
+    <div class="direction-box">
+        Poursuivez sur l'allée du Périgord en laissant la gendarmerie à votre droite jusqu'au point <a href="https://www.google.com/maps/search/?api=1&query=43.61169839248336,1.3306178396684125" target="_blank" class="path-link">43.611698, 1.330618</a>. Là prenez le petit passage qui mène jusqu'au point suivant.
+    </div>
+</div>
+</section>
+
+<section id="etape12" class="etape">
+<div class="container">
+    <h2>12. Touchons du boa</h2>
+    <div class="gps-box">
+        📍 Cliquez pour y aller :<br>
+        <a href="https://www.google.com/maps/search/?api=1&query=43.61056619432007,1.3292150443541946" target="_blank" class="gps-link">43.610566, 1.329215</a>
+    </div>
+
+    <div class="dialogue-row"> <img src="Al.png" alt="Al" class="avatar"> <div class="bubble"> <span class="name-tag">Al</span> C'est la dernière, et celle-là elle est forcément pour moa ! J'espère que vous êtes bien accrochés ! </div> </div>
+
+    <div class="dialogue-row">
+        <div class="trio-badges">
+            <img src="Badge Cabia.png" alt="Cabia">
+            <img src="Badge Casso.png" alt="Casso">
+            <img src="Badge Saro.png" alt="Saro">
+        </div>
+        <div class="bubble"> <span class="name-tag">Cabia, Casso &amp; Saro</span> Vaz-y ! </div>
+    </div>
+
+    <div class="dialogue-row"> <img src="Al.png" alt="Al" class="avatar"> <div class="bubble"> <span class="name-tag">Al</span> En 2026, un habitant des immeubles du boulevard du Général de Gaulle décide de changer la batterie de sa voiture immobilisée depuis 1 mois. Il ouvre le capot et oh surprise tombe nez à nez avec… un boa constrictor d'environ 1,50m logé dans son moteur ! </div> </div>
+    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> J'espère qu'il a su garder son sang-froid ! </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Qui, le serpent ? </div> </div>
+    <div class="dialogue-row"> <img src="Al.png" alt="Al" class="avatar"> <div class="bubble"> <span class="name-tag">Al</span> Cinq pompiers se sont rendus sur place équipés de matériel spécifique et le serpent a pu être délicatement retiré sain et sauf sans mise en danger des intervenants. Il a été remis ensuite à l'école vétérinaire de Toulouse. </div> </div>
+    <div class="dialogue-row"> <img src="Al.png" alt="Al" class="avatar"> <div class="bubble"> <span class="name-tag">Al</span> Alors, elle parait pas sacrément vraie mon histoire ? Probablement parce qu'elle l'est ! </div> </div>
+    <div class="dialogue-row"> <img src="Casso.png" alt="Casso" class="avatar"> <div class="bubble"> <span class="name-tag">Casso</span> Bon, et bien c'est à vous de clôturer avec ce vote. Vrai ou faux ? </div> </div>
+
+    <div class="mission-box">
+        <div class="tf-group">
+            <button class="tf-btn" id="tf-12-true" onclick="handleAnswer(12, true)">VRAI</button>
+            <button class="tf-btn" id="tf-12-false" onclick="handleAnswer(12, false)">FAUX</button>
+        </div>
+        <div class="tf-status" id="tf-status-12"></div>
+    </div>
+
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Bien il est temps maintenant de vous expliquer le principe des jokers que vous avez collectés. Votre score va s'afficher et vous allez savoir combien de bonnes réponses vous avez données. Vous pouvez abandonner à tout moment avec le bouton « J'en ai marre » et vous obtiendrez les coordonnées du trésor. </div> </div>
+    <div class="dialogue-row"> <img src="Cabia.png" alt="Cabia" class="avatar"> <div class="bubble"> <span class="name-tag">Cabia</span> Mais si vous êtes un peu joueurs, vous allez pouvoir utiliser vos jokers gagnés. Nous vous proposons 3 types de joker :<br> Le petit joker : on vous indique une mauvaise réponse au hasard.<br> Le moyen joker : on vous indique deux réponses justes au hasard.<br> Le grand joker : on vous indique exactement combien il y a de bonnes et de mauvaises réponses. </div> </div>
+    <div class="dialogue-row"> <img src="Saro.png" alt="Saro" class="avatar"> <div class="bubble"> <span class="name-tag">Saro</span> Rien ne vous empêche d'essayer le reste « à tâtons » en réappuyant sur chaque énigme et en revalidant tout, tout dépendra du temps que vous souhaitez y consacrer. Allez, on regarde votre score ? </div> </div>
+
+    <button class="giveup-btn" style="background-color:#2980b9;" onclick="goToRecap()">VÉRIFIER MES RÉPONSES</button>
+</div>
+</section>
+
+<section id="recap-section" class="etape">
+<div class="container">
+    <h2>Récapitulatif</h2>
+    <div class="score-display" id="score-display"></div>
+
+    <p class="recap-legend">Si la case est en vert, vous avez répondu VRAI ; si elle est en rouge, vous avez répondu FAUX.<br>Rappel : 4 VRAI et 4 FAUX minimum.</p>
+
+    <div class="recap-grid" id="recap-grid"></div>
+
+    <button id="validate-button-recap" class="btn-default" onclick="validateRecap()">DÉCOUVRIR MON SCORE</button>
+    <div id="validation-message-recap"></div>
+
+    <div class="joker-group">
+        <button class="joker-btn" id="btn-joker-small" onclick="useJoker('small')">Petit joker</button>
+        <button class="joker-btn" id="btn-joker-medium" onclick="useJoker('medium')">Moyen joker</button>
+        <button class="joker-btn" id="btn-joker-large" onclick="useJoker('large')">Grand joker</button>
+    </div>
+    <div class="joker-count" id="joker-count"></div>
+    <div id="joker-reveals"></div>
+
+    <button class="giveup-btn" onclick="giveUp()">J'en ai marre</button>
+    <div id="giveup-confirm" style="display:none; text-align:center; margin-top:10px;">
+        <p style="font-weight:bold;">Êtes-vous sûr(e) de vouloir les réponses ?</p>
+        <button class="btn-default" onclick="confirmGiveUp()">Oui, révéler les réponses</button>
+        <button class="btn-default" onclick="cancelGiveUp()">Non, continuer à chercher</button>
+    </div>
+</div>
+</section>
+
+<section id="ending-section" class="etape">
+<div class="container">
+    <h2>Correction</h2>
+    <div id="ending-card"></div>
+</div>
+</section>
+
+<section id="final-section" class="etape">
+<div class="container">
+    <div id="final-link-box">
+        <p style="text-align: center; font-size: 1.1em;"><strong>BRAVO ! La cache se trouve aux coordonnées suivantes :</strong></p>
+        <div style="text-align: center; margin: 15px 0;">
+            <a href="https://www.google.com/maps/search/?api=1&query=43.61023,1.32897" target="_blank" class="gps-link" style="font-size: 1.3em;">43.61023, 1.32897</a>
+        </div>
+
+        <div class="support-box">
+            <div style="text-align: left; margin-bottom: 20px; font-size: 14px; color: #333; line-height: 1.5;">
+                <strong>Si vous n'êtes pas familier du « géocaching » voici ce qu'il vous faut faire maintenant :</strong><br><br>
+                1) Vous rendre aux coordonnées GPS indiquées (soyez discrets).<br>
+                2) Trouver le contenant.<br>
+                3) Si vous le souhaitez, signer le « logbook » et indiquer la date de votre passage.<br>
+                4) Si vous le souhaitez, prendre un des objets se trouvant dans le contenant (un par personne).<br>
+                5) Redissimuler le contenant exactement à l'endroit où vous l'avez trouvé.<br><br>
+                Si le contenant a besoin d'être enlevé, merci de contacter le propriétaire à l'adresse suivante : kingluther@free.fr
+            </div>
+            <p style="font-size: 14px; color: #444;">
+                Si vous avez aimé cette aventure et souhaitez/pouvez soutenir son créateur, n'hésitez pas à faire un don à la hauteur de vos moyens.<br>
+                <strong>Scénario, illustration, conception et entretien de la cache : Martin FEUILLERAC © 2026</strong>
+            </p>
+            <div id="paypal-container-QRBLL5TG5VCV8"></div>
+            <script src="https://www.paypal.com/sdk/js?client-id=BAAUS3_NIDV8soA10_b5bKgMnexRFb8e5KeIbCj1SEfS6MR5cqf6U6p6PhCiRqAguCQ9hWXK5l5kl4UGRM&components=hosted-buttons&disable-funding=venmo&currency=EUR"></script>
+        </div>
+    </div>
+</div>
+</section>
+
+<script>
+    // ----------------------------------------------------------------------
+    // --- BASE DE DONNÉES DES QUESTIONS ---
+    // ----------------------------------------------------------------------
+    const QUESTIONS = [
+        { id: 1,  titre: "Complexe sportif",   bonneReponse: true,  jokerType: null },
+        { id: 2,  titre: "58 élèves",           bonneReponse: true,  jokerType: null },
+        { id: 3,  titre: "P.M.U.",              bonneReponse: true,  jokerType: null },
+        { id: 4,  titre: "7 niveaux",           bonneReponse: true,  jokerType: null },
+        { id: 5,  titre: "3 religions",         bonneReponse: true,  jokerType: null },
+        { id: 6,  titre: "Cimetière",           bonneReponse: false, jokerType: null },
+        { id: 7,  titre: "1 religieuse / 13",   bonneReponse: true,  jokerType: null },
+        { id: 8,  titre: "Dr MACRON",           bonneReponse: false, jokerType: null },
+        { id: 9,  titre: "Columérin(e)s",       bonneReponse: false, jokerType: null },
+        { id: 10, titre: "Val d'Aran",          bonneReponse: false, jokerType: null },
+        { id: 11, titre: "Mosquée",             bonneReponse: true,  jokerType: null },
+        { id: 12, titre: "Boa",                 bonneReponse: true,  jokerType: null }
+    ];
+
+    const FALSE_ANECDOTES = [
+        { id: 6, titre: "Cimetière", explication: "Tout est vrai sauf que le terrain ne s'avançait pas jusqu'à l'actuel rond-point. Les travaux n'ont rogné l'enceinte que de 1 ou 2 mètres, pas plus." },
+        { id: 8, titre: "Dr MACRON", explication: "Tout est vrai sauf l'emplacement du lieu d'exercice du Dr Estelle MACRON, qui est dans le secteur Gramont/Garoussal… et le fait bien sûr qu'elle ait fait enlever sa plaque après l'élection de son frère (et, oui, selon sa tante Françoise MACRON, Emmanuel était traité en plaisantant de « vilain petit canard » aux repas de famille)." },
+        { id: 9, titre: "Columérin(e)s", explication: "Tout est vrai sauf deux petits détails : 1) le choix n'était pas limité à deux propositions. 2) le résultat réel est moins tranché : 62% pour columérins, 20% pour colomierois, 8% pour colomiesains, 6% pour colomiérains et 4% pour des noms plus ou moins fantaisistes." },
+        { id: 10, titre: "Val d'Aran", explication: "C'est totalement faux ! Le quartier du Val d'Aran est à l'Ouest par rapport au « Plein Centre », quant au Val d'Aran espagnol il se trouve beaucoup plus au Sud : il n'y a pas d'alignement particulier entre les deux." }
+    ];
+
+    const JOKER_MISSIONS = {
+        joker1: { reponse: "11" },
+        joker2: { reponse: "ESPERANCE" }
+    };
+
+    const STORAGE_KEY = 'anecdotes_game_state';
+
+    const DEFAULT_STATE = {
+        answers: {},
+        score: null,
+        jokers: { small: true, medium: true, large: true },
+        jokersUsed: [],
+        jokersEarned: 0,
+        jokerMissionsDone: [],
+        lockedAnswers: [],
+        finished: false,
+        endingStep: 0,
+        cardFlipped: false,
+        revealedHints: { falseQuestions: [], trueQuestions: [], distribution: null }
+    };
+
+    function loadState() {
+        try {
+            const saved = sessionStorage.getItem(STORAGE_KEY);
+            if (!saved) return JSON.parse(JSON.stringify(DEFAULT_STATE));
+            return { ...JSON.parse(JSON.stringify(DEFAULT_STATE)), ...JSON.parse(saved) };
+        } catch (e) {
+            console.error("Erreur chargement gameState", e);
+            return JSON.parse(JSON.stringify(DEFAULT_STATE));
+        }
+    }
+
+    function saveState(state) {
+        try {
+            sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch (e) {
+            console.error("Erreur sauvegarde gameState", e);
+        }
+    }
+
+    let gameState = loadState();
+
+    // ----------------------------------------------------------------------
+    // --- FORMATAGE DES COORDONNÉES (N43°XX.XXX' E001°XX.XXX') ---
+    // ----------------------------------------------------------------------
+
+    function toDMM(latDec, lngDec) {
+        function convert(dec, isLat) {
+            const dir = isLat ? (dec >= 0 ? 'N' : 'S') : (dec >= 0 ? 'E' : 'W');
+            const abs = Math.abs(dec);
+            const deg = Math.floor(abs);
+            const min = (abs - deg) * 60;
+            let minStr = min.toFixed(3);
+            if (min < 10) minStr = '0' + minStr;
+            const degStr = isLat ? String(deg).padStart(2, '0') : String(deg).padStart(3, '0');
+            return dir + degStr + '°' + minStr + '’';
+        }
+        return convert(latDec, true) + ' ' + convert(lngDec, false);
+    }
+
+    function extractLatLng(href) {
+        try {
+            const decoded = decodeURIComponent(href);
+            const match = decoded.match(/query=([+-]?\d{1,2}\.\d+),\s*([+-]?\d{1,3}\.\d+)/);
+            if (!match) return null;
+            return { lat: parseFloat(match[1]), lng: parseFloat(match[2]) };
+        } catch (e) {
+            return null;
+        }
+    }
+
+    function formatAllCoordLinks() {
+        document.querySelectorAll('a.gps-link, a.path-link').forEach(a => {
+            const coords = extractLatLng(a.getAttribute('href'));
+            if (coords) {
+                a.textContent = toDMM(coords.lat, coords.lng);
+            }
+        });
+    }
+
+    // ----------------------------------------------------------------------
+    // --- GESTION DES RÉPONSES VRAI / FAUX ---
+    // ----------------------------------------------------------------------
+
+    function handleAnswer(questionId, value) {
+        if (gameState.lockedAnswers.includes(questionId)) return;
+        gameState.answers[questionId] = value;
+        saveState(gameState);
+        updateAnswerUI(questionId);
+    }
+
+    function updateAnswerUI(questionId) {
+        const trueBtn = document.getElementById(`tf-${questionId}-true`);
+        const falseBtn = document.getElementById(`tf-${questionId}-false`);
+        const status = document.getElementById(`tf-status-${questionId}`);
+        if (!trueBtn || !falseBtn) return;
+
+        trueBtn.classList.remove('tf-true-selected');
+        falseBtn.classList.remove('tf-false-selected');
+
+        const locked = gameState.lockedAnswers.includes(questionId);
+        trueBtn.disabled = locked;
+        falseBtn.disabled = locked;
+
+        const value = gameState.answers[questionId];
+        if (value === true) {
+            trueBtn.classList.add('tf-true-selected');
+            if (status) status.textContent = locked ? "🔒 Réponse verrouillée par un joker." : "Réponse enregistrée.";
+        } else if (value === false) {
+            falseBtn.classList.add('tf-false-selected');
+            if (status) status.textContent = locked ? "🔒 Réponse verrouillée par un joker." : "Réponse enregistrée.";
+        } else if (status) {
+            status.textContent = "";
+        }
+    }
+
+    function initAllAnswers() {
+        QUESTIONS.forEach(q => updateAnswerUI(q.id));
+    }
+
+    // ----------------------------------------------------------------------
+    // --- MISSIONS JOKER (sur le terrain) ---
+    // ----------------------------------------------------------------------
+
+    function resetJokerInput(jokerId) {
+        const btn = document.getElementById('validate-button-' + jokerId);
+        const msg = document.getElementById('validation-message-' + jokerId);
+        if (gameState.jokerMissionsDone.includes(jokerId)) return;
+        if (msg) msg.textContent = "";
+        if (btn) {
+            btn.classList.remove('btn-validated');
+            btn.classList.add('btn-default');
+            btn.textContent = "Valider la réponse";
+        }
+    }
+
+    function checkJokerMission(jokerId) {
+        if (gameState.jokerMissionsDone.includes(jokerId)) return;
+        const input = document.getElementById(jokerId + '-input');
+        const btn = document.getElementById('validate-button-' + jokerId);
+        const msg = document.getElementById('validation-message-' + jokerId);
+        if (!input) return;
+
+        const value = input.value.trim().toUpperCase();
+        const expected = JOKER_MISSIONS[jokerId].reponse;
+
+        if (value === expected) {
+            msg.style.color = "#2ecc71";
+            msg.textContent = "✅ Bonne réponse ! Un joker a été ajouté à votre inventaire.";
+            btn.classList.remove('btn-default');
+            btn.classList.add('btn-validated');
+            btn.textContent = "Joker obtenu !";
+            btn.disabled = true;
+
+            gameState.jokerMissionsDone.push(jokerId);
+            gameState.jokersEarned = Math.min(2, gameState.jokersEarned + 1);
+            saveState(gameState);
+        } else {
+            msg.style.color = "#e74c3c";
+            msg.textContent = "❌ Ce n'est pas la bonne réponse.";
+            resetJokerInput(jokerId);
+        }
+    }
+
+    function initJokerMission(jokerId) {
+        const btn = document.getElementById('validate-button-' + jokerId);
+        const input = document.getElementById(jokerId + '-input');
+        if (gameState.jokerMissionsDone.includes(jokerId) && btn) {
+            btn.classList.remove('btn-default');
+            btn.classList.add('btn-validated');
+            btn.textContent = "Joker obtenu !";
+            btn.disabled = true;
+            if (input) input.disabled = true;
+        }
+    }
+
+    // ----------------------------------------------------------------------
+    // --- RÉCAPITULATIF / SCORE ---
+    // ----------------------------------------------------------------------
+
+    function goToRecap() {
+        document.getElementById('recap-section').style.display = 'block';
+        buildRecapGrid();
+        updateJokerButtons();
+        document.getElementById('recap-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function buildRecapGrid() {
+        const grid = document.getElementById('recap-grid');
+        grid.innerHTML = '';
+        QUESTIONS.forEach(q => {
+            const answer = gameState.answers[q.id];
+            const locked = gameState.lockedAnswers.includes(q.id);
+            const btn = document.createElement('button');
+            btn.id = 'recap-btn-' + q.id;
+            btn.textContent = (locked ? '🔒 ' : '') + q.titre;
+
+            if (answer === undefined) {
+                btn.className = 'recap-btn recap-unanswered';
+            } else {
+                btn.className = 'recap-btn ' + (answer ? 'recap-true' : 'recap-false') + (locked ? ' recap-locked' : '');
+            }
+
+            if (!locked) {
+                btn.onclick = () => toggleRecapAnswer(q.id);
+            }
+            grid.appendChild(btn);
+        });
+    }
+
+    function toggleRecapAnswer(questionId) {
+        if (gameState.lockedAnswers.includes(questionId)) return;
+        const current = gameState.answers[questionId];
+        const next = current === undefined ? true : !current;
+        gameState.answers[questionId] = next;
+        saveState(gameState);
+        buildRecapGrid();
+    }
+
+    function validateRecap() {
+        const msg = document.getElementById('validation-message-recap');
+        const unanswered = QUESTIONS.filter(q => gameState.answers[q.id] === undefined);
+
+        if (unanswered.length > 0) {
+            msg.textContent = "❌ Merci de répondre à toutes les questions avant de valider.";
+            return;
+        }
+        msg.textContent = "";
+
+        let score = 0;
+        QUESTIONS.forEach(q => {
+            if (gameState.answers[q.id] === q.bonneReponse) score++;
+        });
+        gameState.score = score;
+        saveState(gameState);
+
+        document.getElementById('score-display').textContent = `Vous avez ${score} / ${QUESTIONS.length} bonnes réponses`;
+
+        if (score === QUESTIONS.length) {
+            gameState.finished = true;
+            saveState(gameState);
+            startEndingSequence();
+        } else {
+            msg.style.color = "#e74c3c";
+            msg.textContent = "❌ Il reste des réponses incorrectes. Corrigez les cases ci-dessus et validez à nouveau.";
+        }
+    }
+
+    // ----------------------------------------------------------------------
+    // --- JOKERS ---
+    // ----------------------------------------------------------------------
+
+    function updateJokerButtons() {
+        const remaining = gameState.jokersEarned - gameState.jokersUsed.length;
+        document.getElementById('joker-count').textContent = `Jokers disponibles : ${Math.max(0, remaining)} (sur ${gameState.jokersEarned} gagnés, max 2 utilisables au total)`;
+
+        ['small', 'medium', 'large'].forEach(type => {
+            const btn = document.getElementById('btn-joker-' + type);
+            const alreadyUsed = gameState.jokersUsed.includes(type);
+            btn.disabled = alreadyUsed || remaining <= 0 || gameState.finished;
+        });
+    }
+
+    function lockAnswer(questionId, value) {
+        gameState.answers[questionId] = value;
+        if (!gameState.lockedAnswers.includes(questionId)) {
+            gameState.lockedAnswers.push(questionId);
+        }
+        updateAnswerUI(questionId);
+    }
+
+    function useJoker(type) {
+        if (gameState.finished) return;
+        const remaining = gameState.jokersEarned - gameState.jokersUsed.length;
+        if (remaining <= 0 || gameState.jokersUsed.includes(type)) return;
+
+        gameState.jokersUsed.push(type);
+
+        const revealDiv = document.createElement('div');
+        revealDiv.className = 'joker-reveal-box';
+
+        if (type === 'small') {
+            const falseIds = QUESTIONS.filter(q => q.bonneReponse === false && !gameState.revealedHints.falseQuestions.includes(q.id)).map(q => q.id);
+            if (falseIds.length > 0) {
+                const pick = falseIds[Math.floor(Math.random() * falseIds.length)];
+                gameState.revealedHints.falseQuestions.push(pick);
+                const q = QUESTIONS.find(qq => qq.id === pick);
+                lockAnswer(pick, false);
+                revealDiv.textContent = `🃏 Petit joker : l'anecdote « ${q.titre} » est FAUSSE. (réponse verrouillée)`;
+            } else {
+                revealDiv.textContent = `🃏 Petit joker : toutes les réponses fausses ont déjà été révélées.`;
+            }
+        } else if (type === 'medium') {
+            const trueIds = QUESTIONS.filter(q => q.bonneReponse === true && !gameState.revealedHints.trueQuestions.includes(q.id)).map(q => q.id);
+            const picks = [];
+            while (picks.length < 2 && trueIds.length > 0) {
+                const idx = Math.floor(Math.random() * trueIds.length);
+                picks.push(trueIds.splice(idx, 1)[0]);
+            }
+            picks.forEach(id => {
+                gameState.revealedHints.trueQuestions.push(id);
+                lockAnswer(id, true);
+            });
+            const titres = picks.map(id => QUESTIONS.find(q => q.id === id).titre);
+            revealDiv.textContent = titres.length > 0
+                ? `🃏 Moyen joker : les anecdotes suivantes sont VRAIES : ${titres.join(', ')}. (réponses verrouillées)`
+                : `🃏 Moyen joker : toutes les réponses vraies ont déjà été révélées.`;
+        } else if (type === 'large') {
+            const trueCount = QUESTIONS.filter(q => q.bonneReponse === true).length;
+            const falseCount = QUESTIONS.filter(q => q.bonneReponse === false).length;
+            gameState.revealedHints.distribution = { true: trueCount, false: falseCount };
+            revealDiv.textContent = `🃏 Grand joker : il y a exactement ${trueCount} anecdotes VRAIES et ${falseCount} anecdotes FAUSSES.`;
+        }
+
+        document.getElementById('joker-reveals').appendChild(revealDiv);
+        saveState(gameState);
+        updateJokerButtons();
+        buildRecapGrid();
+    }
+
+    // ----------------------------------------------------------------------
+    // --- J'EN AI MARRE ---
+    // ----------------------------------------------------------------------
+
+    function giveUp() {
+        document.getElementById('giveup-confirm').style.display = 'block';
+    }
+
+    function cancelGiveUp() {
+        document.getElementById('giveup-confirm').style.display = 'none';
+    }
+
+    function confirmGiveUp() {
+        document.getElementById('giveup-confirm').style.display = 'none';
+        gameState.finished = true;
+        saveState(gameState);
+        startEndingSequence();
+    }
+
+    // ----------------------------------------------------------------------
+    // --- SÉQUENCE DE FIN ---
+    // ----------------------------------------------------------------------
+
+    function startEndingSequence() {
+        if (gameState.endingStep < 1) {
+            gameState.endingStep = 1;
+            saveState(gameState);
+        }
+        document.getElementById('recap-section').style.display = 'none';
+        document.getElementById('ending-section').style.display = 'block';
+        renderEndingStep();
+        document.getElementById('ending-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function deckTilt(i) {
+        const angles = [-8, 5, -3, 9, -6, 2, -9, 4, 7, -4, 6, -2];
+        return angles[i % angles.length] + 'deg';
+    }
+
+    function renderEndingStep() {
+        const container = document.getElementById('ending-card');
+        const step = gameState.endingStep;
+
+        if (step === 1) {
+            container.innerHTML = `
+                <div class="bravo-box">
+                    <h3>BRAVO !</h3>
+                    <p>Vous avez trouvé toutes les bonnes réponses !</p>
+                    <p><strong>Quelques explications à présent…</strong></p>
+                </div>
+                <button class="btn-default btn-center" style="background-color:#2980b9; color:white;" onclick="nextEndingStep()">CONTINUER</button>
+            `;
+        } else if (step === 2) {
+            const trueCount = QUESTIONS.filter(q => q.bonneReponse === true).length;
+            const falseCount = QUESTIONS.filter(q => q.bonneReponse === false).length;
+            container.innerHTML = `
+                <div class="deck-caption">Les 12 anecdotes de votre aventure</div>
+                <div class="mini-deck">
+                    ${QUESTIONS.map((q, i) => `<div class="mini-card ${q.bonneReponse ? 'mini-true' : 'mini-false'}" style="animation-delay:${(i * 0.05).toFixed(2)}s; transform:rotate(${deckTilt(i)});">${q.bonneReponse ? '✓' : '✗'}</div>`).join('')}
+                </div>
+                <div class="deck-legend">${trueCount} anecdotes VRAIES, ${falseCount} anecdotes FAUSSES. Voyons ensemble lesquelles…</div>
+                <button class="btn-default btn-center" style="background-color:#2980b9; color:white;" onclick="nextEndingStep()">CONTINUER</button>
+            `;
+        } else if (step >= 3 && step <= 6) {
+            const cardIndex = step - 2;
+            const anecdote = FALSE_ANECDOTES[step - 3];
+            const flipped = gameState.cardFlipped === true;
+            container.innerHTML = `
+                <div class="flip-scene">
+                    <div class="flip-card${flipped ? ' is-flipped' : ''}" id="flip-card-el">
+                        <div class="flip-face flip-front">
+                            <div class="card-number" style="color:rgba(255,255,255,0.85);">Carte ${cardIndex} / 5</div>
+                            <div class="flip-card-title">${anecdote.titre}</div>
+                            <div class="flip-hint">Touchez pour retourner la carte</div>
+                        </div>
+                        <div class="flip-face flip-back">
+                            <div class="flip-back-verdict">C'ÉTAIT FAUX</div>
+                            <div class="flip-back-text">${anecdote.explication}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-controls">
+                    <button class="btn-default btn-center" id="btn-flip-card" style="${flipped ? 'display:none;' : ''} background-color:#e74c3c; color:white;" onclick="flipCurrentCard()">RETOURNER LA CARTE ↻</button>
+                    <button class="btn-default btn-center" id="btn-next-card" style="${flipped ? '' : 'display:none;'} background-color:#2980b9; color:white;" onclick="nextEndingStep()">CARTE SUIVANTE →</button>
+                </div>
+            `;
+        } else if (step === 7) {
+            container.innerHTML = `
+                <div class="reward-card">
+                    <div class="card-number" style="color:rgba(255,255,255,0.85);">Carte 5 / 5</div>
+                    <div class="reward-title">TOUT LE RESTE EST VRAI !</div>
+                </div>
+                <button class="btn-default btn-center" style="background-color:#2980b9; color:white;" onclick="nextEndingStep()">CARTE SUIVANTE</button>
+            `;
+        } else if (step === 8) {
+            container.innerHTML = `
+                <div class="mission-box" style="border-color:#f39c12; background-color:#fff8e6;">
+                    <strong>Attention :</strong> la cache se trouve dans l'hypercentre de Colomiers. Pour éviter les actes de vandalisme et préserver la cache, soyez le plus discrets possible et veillez à ne pas dévoiler le lieu de la cache aux personnes qui ne participent pas au jeu.
+                </div>
+                <button class="btn-default btn-center" style="background-color:#2980b9; color:white;" onclick="revealCacheCoordinates()">J'ai compris</button>
+            `;
+        }
+        saveState(gameState);
+    }
+
+    function flipCurrentCard() {
+        if (gameState.cardFlipped) return;
+        gameState.cardFlipped = true;
+        saveState(gameState);
+
+        const cardEl = document.getElementById('flip-card-el');
+        if (cardEl) cardEl.classList.add('is-flipped');
+        const flipBtn = document.getElementById('btn-flip-card');
+        const nextBtn = document.getElementById('btn-next-card');
+        if (flipBtn) flipBtn.style.display = 'none';
+        if (nextBtn) nextBtn.style.display = 'block';
+
+        if (window.navigator && typeof navigator.vibrate === 'function') {
+            try { navigator.vibrate(40); } catch (e) { /* ignoré si indisponible */ }
+        }
+    }
+
+    function nextEndingStep() {
+        gameState.cardFlipped = false;
+        gameState.endingStep++;
+        saveState(gameState);
+        renderEndingStep();
+    }
+
+    function mountPaypalButton() {
+        if (window.paypal && paypal.HostedButtons) {
+            paypal.HostedButtons({ hostedButtonId: "QRBLL5TG5VCV8" }).render("#paypal-container-QRBLL5TG5VCV8");
+        }
+    }
+
+    function revealCacheCoordinates() {
+        gameState.endingStep = 9;
+        saveState(gameState);
+        document.getElementById('ending-section').style.display = 'none';
+        document.getElementById('final-link-box').style.display = 'block';
+        formatAllCoordLinks();
+        setTimeout(mountPaypalButton, 50);
+        document.getElementById('final-link-box').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ----------------------------------------------------------------------
+    // --- INIT ---
+    // ----------------------------------------------------------------------
+    document.addEventListener("DOMContentLoaded", function () {
+        initAllAnswers();
+        initJokerMission('joker1');
+        initJokerMission('joker2');
+        formatAllCoordLinks();
+
+        if (gameState.endingStep && gameState.endingStep > 0) {
+            document.getElementById('recap-section').style.display = 'none';
+            if (gameState.endingStep >= 9) {
+                document.getElementById('ending-section').style.display = 'none';
+                document.getElementById('final-link-box').style.display = 'block';
+                setTimeout(mountPaypalButton, 50);
+            } else {
+                document.getElementById('ending-section').style.display = 'block';
+                renderEndingStep();
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
