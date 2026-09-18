@@ -188,40 +188,12 @@
 
         .score-display { text-align: center; font-size: 22px; font-weight: bold; color: #d35400; margin: 20px 0; }
 
-        .joker-group { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; justify-content: center; }
+        .joker-group { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
         .joker-btn {
-            position: relative; flex: 1; min-width: 100px; border: none; border-radius: 12px; cursor: pointer;
-            padding: 14px 8px 10px 8px; color: white; font-weight: bold; font-size: 12px; text-align: center;
-            transition: transform 0.15s ease, box-shadow 0.15s ease; overflow: hidden;
+            flex: 1; min-width: 100px; padding: 12px; border: none; border-radius: 5px; background-color: #2980b9;
+            color: white; font-weight: bold; cursor: pointer; font-size: 14px;
         }
-        .joker-hats { display: flex; justify-content: center; align-items: flex-end; gap: 3px; margin-bottom: 6px; height: 24px; }
-        .joker-hat { position: relative; width: 16px; height: 20px; }
-        .joker-hat::before {
-            content: ""; position: absolute; bottom: 0; left: 50%; width: 0; height: 0;
-            border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 16px solid currentColor;
-            transform: translateX(-50%);
-        }
-        .joker-hat::after {
-            content: ""; position: absolute; top: -2px; left: 50%; width: 6px; height: 6px; border-radius: 50%;
-            background: currentColor; transform: translateX(-50%); box-shadow: 0 0 4px rgba(255,255,255,0.9);
-        }
-        .joker-btn-small { background: linear-gradient(160deg, #e67e22, #ca6f1e); color: #fff5e6; box-shadow: 0 3px 6px rgba(0,0,0,0.25); }
-        .joker-btn-medium { background: linear-gradient(160deg, #f39c12, #d68910); color: #fffaf0; box-shadow: 0 5px 12px rgba(0,0,0,0.3); padding-top: 16px; }
-        .joker-btn-large { background: linear-gradient(160deg, #f1c40f, #d4ac0d); color: #fffdf5; box-shadow: 0 7px 18px rgba(241,196,15,0.5); padding-top: 18px; }
-        .joker-btn-large .joker-hat { filter: drop-shadow(0 0 4px rgba(255,255,255,0.9)); }
-        .joker-btn-medium .joker-hats, .joker-btn-large .joker-hats { transform: scale(1.05); }
-        .joker-btn-large .joker-hats { transform: scale(1.15); }
-        .joker-btn:not(:disabled):hover { transform: translateY(-2px); }
-        .joker-btn:disabled { background: #bdc3c7 !important; box-shadow: none !important; cursor: not-allowed; opacity: 0.7; }
-        .joker-btn.joker-flash { animation: jokerFlash 0.5s ease; }
-        @keyframes jokerFlash {
-            0% { transform: scale(1); }
-            35% { transform: scale(1.12); box-shadow: 0 0 20px 6px rgba(255,255,255,0.7); }
-            100% { transform: scale(1); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .joker-btn.joker-flash { animation: none; }
-        }
+        .joker-btn:disabled { background-color: #bdc3c7; cursor: not-allowed; }
         .joker-count { text-align: center; margin-top: 10px; font-size: 14px; color: #555; }
         .joker-reveal-box { margin-top: 15px; padding: 12px; background-color: #e8f6f3; border: 1px solid #1abc9c; border-radius: 8px; font-size: 14px; }
 
@@ -237,9 +209,9 @@
         .btn-center { display: block; margin: 20px auto 0 auto; width: auto; min-width: 220px; padding: 14px 24px; }
 
         #paypal-container-QRBLL5TG5VCV8 {
-            width: 280px;
-            max-width: 100%;
-            margin: 15px auto 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         /* --- ECRAN INTERMEDIAIRE "BRAVO" --- */
@@ -272,126 +244,6 @@
         .card-title { font-size: 24px; font-weight: bold; margin: 5px 0 10px 0; color: #333; }
         .card-verdict { font-weight: bold; margin-bottom: 12px; }
         .card-text { font-size: 15px; line-height: 1.5; color: #333; text-align: left; }
-
-        /* --- SCENE DE CARTES 3D (paquet + retournement) --- */
-        .deck-caption { text-align: center; font-weight: bold; color: #555; margin-bottom: 5px; }
-        .deck-legend { text-align: center; font-size: 14px; color: #666; margin: 5px 0 20px 0; }
-        .mini-deck {
-            display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
-            gap: 10px; padding: 15px 10px 20px 10px;
-        }
-        .mini-card {
-            width: 46px; height: 66px; border-radius: 7px; color: white; font-size: 20px; font-weight: bold;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            animation: cardAppear 0.45s ease backwards;
-        }
-        .mini-card.mini-true { background: linear-gradient(160deg, #2ecc71, #1e8449); }
-        .mini-card.mini-false { background: linear-gradient(160deg, #e74c3c, #a93226); }
-        @keyframes cardAppear {
-            from { opacity: 0; transform: translateY(18px) scale(0.7); }
-        }
-
-        .flip-scene {
-            perspective: 1200px;
-            width: min(320px, 88vw);
-            height: min(430px, 66vh);
-            margin: 15px auto 20px auto;
-        }
-        .flip-card {
-            position: relative; width: 100%; height: 100%;
-            transform-style: preserve-3d;
-            transition: transform 0.7s cubic-bezier(.4,.2,.2,1);
-        }
-        .flip-card.is-flipped { transform: rotateY(180deg); }
-        .flip-face {
-            position: absolute; inset: 0; backface-visibility: hidden;
-            border-radius: 18px; padding: 25px 20px; box-sizing: border-box;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.28);
-        }
-        .flip-front { background: linear-gradient(160deg, #ff7b6b, #c0392b); color: white; text-align: center; }
-        .flip-card-title { font-size: 24px; font-weight: 800; margin: 12px 0; }
-        .flip-hint { font-size: 13px; opacity: 0.85; margin-top: 15px; }
-        .flip-card-enonce { font-size: 19px; font-weight: 700; line-height: 1.4; font-style: italic; }
-        .flip-back {
-            background: linear-gradient(160deg, #ffffff, #f4f4f4);
-            color: #333; text-align: left; transform: rotateY(180deg);
-            border: 3px solid #e74c3c; overflow-y: auto;
-        }
-        .flip-back-verdict { font-weight: 800; color: #e74c3c; text-align: center; margin-bottom: 10px; font-size: 16px; }
-        .flip-back-text { font-size: 14px; line-height: 1.5; }
-
-        /* --- CARTE RECOMPENSE (5/5) --- */
-        .reward-card {
-            position: relative; overflow: hidden;
-            max-width: min(360px, 90vw); margin: 20px auto; padding: 40px 25px;
-            text-align: center; border-radius: 22px; color: white;
-            background: linear-gradient(160deg, #2ecc71, #159a72);
-            box-shadow: 0 20px 40px rgba(46,204,113,0.4);
-            animation: rewardPulse 1.8s ease-in-out infinite;
-        }
-        .reward-card::before {
-            content: ""; position: absolute; top: -60%; left: -60%; width: 40%; height: 220%;
-            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.55), transparent);
-            transform: rotate(20deg); animation: shineSweep 2.6s ease-in-out infinite;
-        }
-        .reward-title { font-size: 26px; font-weight: 800; margin-top: 10px; text-shadow: 0 2px 6px rgba(0,0,0,0.3); }
-        @keyframes rewardPulse {
-            0%, 100% { box-shadow: 0 20px 40px rgba(46,204,113,0.3); }
-            50% { box-shadow: 0 26px 55px rgba(46,204,113,0.6); }
-        }
-        @keyframes shineSweep {
-            0% { left: -60%; }
-            100% { left: 140%; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .flip-card { transition: none; }
-            .mini-card { animation: none; }
-            .reward-card { animation: none; }
-            .reward-card::before { animation: none; display: none; }
-        }
-
-        /* --- CARTE DE DISCRETION (panneau triangulaire en filigrane) --- */
-        .warning-card {
-            position: relative; overflow: hidden;
-            max-width: min(360px, 90vw); margin: 20px auto; padding: 35px 25px;
-            border-radius: 20px; text-align: left;
-            background: linear-gradient(160deg, #fff8e6, #fdecc0);
-            border: 3px solid #f39c12;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-        .warning-card::before {
-            content: "";
-            position: absolute; inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,6 95,90 5,90' fill='none' stroke='%23f39c12' stroke-width='6'/%3E%3Crect x='46' y='34' width='8' height='28' fill='%23f39c12'/%3E%3Crect x='46' y='68' width='8' height='8' fill='%23f39c12'/%3E%3C/svg%3E");
-            background-repeat: no-repeat; background-position: center; background-size: 75%;
-            opacity: 0.15; pointer-events: none;
-        }
-        .warning-card-text { position: relative; font-size: 15px; line-height: 1.5; color: #7a5b00; }
-        .warning-card-text strong { color: #a9720c; }
-
-        /* --- ICONES DE CARACTERISTIQUES DU PARCOURS --- */
-        .info-icons { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-        .trail-badge {
-            width: 34px; height: 34px; border-radius: 50%; position: relative;
-            display: inline-flex; align-items: center; justify-content: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.18);
-        }
-        .trail-badge svg { width: 18px; height: 18px; }
-        .trail-badge.status-pos { background: linear-gradient(160deg,#eafaf1,#d2f4dd); border: 2px solid #2ecc71; color: #1e8449; }
-        .trail-badge.status-neg { background: linear-gradient(160deg,#fdecea,#fad3ce); border: 2px solid #e74c3c; color: #a93226; }
-        .trail-badge.status-neutral { background: linear-gradient(160deg,#f4f4f4,#e2e2e2); border: 2px solid #95a5a6; color: #616a6b; }
-        .trail-badge .badge-mark {
-            position: absolute; bottom: -3px; right: -3px; width: 15px; height: 15px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 800; color: white;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
-        }
-        .status-pos .badge-mark { background: #27ae60; }
-        .status-neg .badge-mark { background: #c0392b; }
-        .status-neutral .badge-mark { background: #7f8c8d; }
-        .trail-badge-wc { font-size: 11px; font-weight: 800; }
     </style>
 </head>
 <body>
@@ -402,27 +254,6 @@
     <div class="info-box-content">
         <div class="info-col-middle">
             <div style="font-size:20px; font-weight:bold; color:#333;">2,3 km</div>
-            <div class="info-icons">
-                <span class="trail-badge status-pos" title="Faisable à pied">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="4" r="2" fill="currentColor" stroke="none"/><path d="M12 6 L12 14 M12 14 L8 20 M12 14 L16 22 M12 9 L7 12 M12 9 L17 7" stroke-width="2" stroke-linecap="round"/></svg>
-                    <span class="badge-mark">✓</span>
-                </span>
-                <span class="trail-badge status-pos" title="Faisable en vélo / VTT">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="5" cy="17" r="3.4" stroke-width="1.8"/><circle cx="19" cy="17" r="3.4" stroke-width="1.8"/><path d="M5 17 L10 8 L15 8 L19 17 M10 8 L13 17 M15 8 L12 13" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <span class="badge-mark">✓</span>
-                </span>
-                <span class="trail-badge status-pos" title="Accessible en poussette">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="7" cy="19" r="2.2" stroke-width="1.6"/><circle cx="16" cy="19" r="2.2" stroke-width="1.6"/><path d="M4 19 H19 M6 19 L8 9 H17 L19 19 M17 9 L20 4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <span class="badge-mark">✓</span>
-                </span>
-                <span class="trail-badge status-pos" title="Aucun obstacle / escalier sur le parcours">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="17" cy="5" r="1.8" fill="currentColor" stroke="none"/><path d="M12 5v6l5 2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 13a5 5 0 1 0 5 5" stroke-width="1.8" stroke-linecap="round"/><path d="M9 13h6l3 7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <span class="badge-mark">✓</span>
-                </span>
-                <span class="trail-badge status-pos trail-badge-wc" title="Toilettes publiques en fin de parcours">
-                    WC<span class="badge-mark">✓</span>
-                </span>
-            </div>
         </div>
         <div class="info-col-right">
             <strong>Difficulté :</strong> 4.5 / 5<br>
@@ -875,18 +706,9 @@
     <div id="validation-message-recap"></div>
 
     <div class="joker-group">
-        <button class="joker-btn joker-btn-small" id="btn-joker-small" onclick="useJokerAnimated('small')">
-            <span class="joker-hats"><span class="joker-hat"></span></span>
-            Petit joker
-        </button>
-        <button class="joker-btn joker-btn-medium" id="btn-joker-medium" onclick="useJokerAnimated('medium')">
-            <span class="joker-hats"><span class="joker-hat"></span><span class="joker-hat"></span></span>
-            Moyen joker
-        </button>
-        <button class="joker-btn joker-btn-large" id="btn-joker-large" onclick="useJokerAnimated('large')">
-            <span class="joker-hats"><span class="joker-hat"></span><span class="joker-hat"></span><span class="joker-hat"></span></span>
-            Grand joker
-        </button>
+        <button class="joker-btn" id="btn-joker-small" onclick="useJoker('small')">Petit joker</button>
+        <button class="joker-btn" id="btn-joker-medium" onclick="useJoker('medium')">Moyen joker</button>
+        <button class="joker-btn" id="btn-joker-large" onclick="useJoker('large')">Grand joker</button>
     </div>
     <div class="joker-count" id="joker-count"></div>
     <div id="joker-reveals"></div>
@@ -902,6 +724,7 @@
 
 <section id="ending-section" class="etape">
 <div class="container">
+    <h2>Correction</h2>
     <div id="ending-card"></div>
 </div>
 </section>
@@ -955,10 +778,10 @@
     ];
 
     const FALSE_ANECDOTES = [
-        { id: 6, titre: "Cimetière", enonce: "Ce nouveau rond-point sur lequel nous nous trouvons a donc été construit sur une partie du cimetière des religieuses.", explication: "Tout est vrai sauf que le terrain ne s'avançait pas jusqu'à l'actuel rond-point. Les travaux n'ont rogné l'enceinte que de 1 ou 2 mètres, pas plus." },
-        { id: 8, titre: "Dr MACRON", enonce: "À Colomiers au numéro 23 de cette rue, exerce en tant que néphrologue une certaine Dr Estelle MACRON.", explication: "Tout est vrai sauf l'emplacement du lieu d'exercice du Dr Estelle MACRON, qui est dans le secteur Gramont/Garoussal… et le fait bien sûr qu'elle ait fait enlever sa plaque après l'élection de son frère (et, oui, selon sa tante Françoise MACRON, Emmanuel était traité en plaisantant de « vilain petit canard » aux repas de famille)." },
-        { id: 9, titre: "Columérin(e)s", enonce: "Ses habitants sont invités en juillet 1963 à choisir entre Columérins et Colomiérois. C'est finalement Columérins et Columérines qui l'emporte avec 72% des voix contre 28% pour Colomiérois.", explication: "Tout est vrai sauf deux petits détails : 1) le choix n'était pas limité à deux propositions. 2) le résultat réel est moins tranché : 62% pour columérins, 20% pour colomierois, 8% pour colomiesains, 6% pour colomiérains et 4% pour des noms plus ou moins fantaisistes." },
-        { id: 10, titre: "Val d'Aran", enonce: "La flèche qui indique la direction « Val d'Aran » indique aussi la direction du Val d'Aran en Espagne.", explication: "C'est totalement faux ! Le quartier du Val d'Aran est à l'Ouest par rapport au « Plein Centre », quant au Val d'Aran espagnol il se trouve beaucoup plus au Sud : il n'y a pas d'alignement particulier entre les deux." }
+        { id: 6, titre: "Cimetière", explication: "Tout est vrai sauf que le terrain ne s'avançait pas jusqu'à l'actuel rond-point. Les travaux n'ont rogné l'enceinte que de 1 ou 2 mètres, pas plus." },
+        { id: 8, titre: "Dr MACRON", explication: "Tout est vrai sauf l'emplacement du lieu d'exercice du Dr Estelle MACRON, qui est dans le secteur Gramont/Garoussal… et le fait bien sûr qu'elle ait fait enlever sa plaque après l'élection de son frère (et, oui, selon sa tante Françoise MACRON, Emmanuel était traité en plaisantant de « vilain petit canard » aux repas de famille)." },
+        { id: 9, titre: "Columérin(e)s", explication: "Tout est vrai sauf deux petits détails : 1) le choix n'était pas limité à deux propositions. 2) le résultat réel est moins tranché : 62% pour columérins, 20% pour colomierois, 8% pour colomiesains, 6% pour colomiérains et 4% pour des noms plus ou moins fantaisistes." },
+        { id: 10, titre: "Val d'Aran", explication: "C'est totalement faux ! Le quartier du Val d'Aran est à l'Ouest par rapport au « Plein Centre », quant au Val d'Aran espagnol il se trouve beaucoup plus au Sud : il n'y a pas d'alignement particulier entre les deux." }
     ];
 
     const JOKER_MISSIONS = {
@@ -978,7 +801,6 @@
         lockedAnswers: [],
         finished: false,
         endingStep: 0,
-        cardFlipped: false,
         revealedHints: { falseQuestions: [], trueQuestions: [], distribution: null }
     };
 
@@ -1232,18 +1054,6 @@
         updateAnswerUI(questionId);
     }
 
-    function useJokerAnimated(type) {
-        const btn = document.getElementById('btn-joker-' + type);
-        if (btn && !btn.disabled) {
-            btn.classList.add('joker-flash');
-            setTimeout(() => btn.classList.remove('joker-flash'), 500);
-            if (window.navigator && typeof navigator.vibrate === 'function') {
-                try { navigator.vibrate(30); } catch (e) { /* ignoré si indisponible */ }
-            }
-        }
-        useJoker(type);
-    }
-
     function useJoker(type) {
         if (gameState.finished) return;
         const remaining = gameState.jokersEarned - gameState.jokersUsed.length;
@@ -1327,11 +1137,6 @@
         document.getElementById('ending-section').scrollIntoView({ behavior: 'smooth' });
     }
 
-    function deckTilt(i) {
-        const angles = [-8, 5, -3, 9, -6, 2, -9, 4, 7, -4, 6, -2];
-        return angles[i % angles.length] + 'deg';
-    }
-
     function renderEndingStep() {
         const container = document.getElementById('ending-card');
         const step = gameState.endingStep;
@@ -1345,50 +1150,29 @@
                 </div>
                 <button class="btn-default btn-center" style="background-color:#2980b9; color:white;" onclick="nextEndingStep()">CONTINUER</button>
             `;
-        } else if (step === 2) {
-            const trueCount = QUESTIONS.filter(q => q.bonneReponse === true).length;
-            const falseCount = QUESTIONS.filter(q => q.bonneReponse === false).length;
+        } else if (step >= 2 && step <= 5) {
+            const anecdote = FALSE_ANECDOTES[step - 2];
             container.innerHTML = `
-                <div class="deck-caption">Les 12 anecdotes de votre aventure</div>
-                <div class="mini-deck">
-                    ${QUESTIONS.map((q, i) => `<div class="mini-card ${q.bonneReponse ? 'mini-true' : 'mini-false'}" style="animation-delay:${(i * 0.05).toFixed(2)}s; transform:rotate(${deckTilt(i)});">${q.bonneReponse ? '✓' : '✗'}</div>`).join('')}
-                </div>
-                <div class="deck-legend">${trueCount} anecdotes VRAIES, ${falseCount} anecdotes FAUSSES. Voyons ensemble lesquelles…</div>
-                <button class="btn-default btn-center" style="background-color:#2980b9; color:white;" onclick="nextEndingStep()">CONTINUER</button>
-            `;
-        } else if (step >= 3 && step <= 6) {
-            const anecdote = FALSE_ANECDOTES[step - 3];
-            const flipped = gameState.cardFlipped === true;
-            container.innerHTML = `
-                <div class="flip-scene">
-                    <div class="flip-card${flipped ? ' is-flipped' : ''}" id="flip-card-el">
-                        <div class="flip-face flip-front">
-                            <div class="flip-card-enonce">« ${anecdote.enonce} »</div>
-                        </div>
-                        <div class="flip-face flip-back">
-                            <div class="flip-back-verdict">FAUX</div>
-                            <div class="flip-back-text">${anecdote.explication}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-controls">
-                    <button class="btn-default btn-center" id="btn-flip-card" style="${flipped ? 'display:none;' : ''} background-color:#e74c3c; color:white;" onclick="flipCurrentCard()">RETOURNER LA CARTE ↻</button>
-                    <button class="btn-default btn-center" id="btn-next-card" style="${flipped ? '' : 'display:none;'} background-color:#2980b9; color:white;" onclick="nextEndingStep()">CARTE SUIVANTE →</button>
-                </div>
-            `;
-        } else if (step === 7) {
-            container.innerHTML = `
-                <div class="reward-card">
-                    <div class="reward-title">TOUT LE RESTE EST VRAI !</div>
+                <div class="story-card card-false">
+                    <div class="card-number">Carte ${step - 1} / 5</div>
+                    <div class="card-title">${anecdote.titre}</div>
+                    <div class="card-verdict" style="color:#e74c3c;">C'était FAUX.</div>
+                    <div class="card-text">${anecdote.explication}</div>
                 </div>
                 <button class="btn-default btn-center" style="background-color:#2980b9; color:white;" onclick="nextEndingStep()">CARTE SUIVANTE</button>
             `;
-        } else if (step === 8) {
+        } else if (step === 6) {
             container.innerHTML = `
-                <div class="warning-card">
-                    <div class="warning-card-text">
-                        <strong>Attention :</strong> la cache se trouve dans l'hypercentre de Colomiers. Pour éviter les actes de vandalisme et préserver la cache, soyez le plus discrets possible et veillez à ne pas dévoiler le lieu de la cache aux personnes qui ne participent pas au jeu.
-                    </div>
+                <div class="story-card card-true">
+                    <div class="card-number">Carte 5 / 5</div>
+                    <div class="card-title" style="color:#2ecc71;">Tout le reste est vrai !</div>
+                </div>
+                <button class="btn-default btn-center" style="background-color:#2980b9; color:white;" onclick="nextEndingStep()">CARTE SUIVANTE</button>
+            `;
+        } else if (step === 7) {
+            container.innerHTML = `
+                <div class="mission-box" style="border-color:#f39c12; background-color:#fff8e6;">
+                    <strong>Attention :</strong> la cache se trouve dans l'hypercentre de Colomiers. Pour éviter les actes de vandalisme et préserver la cache, soyez le plus discrets possible et veillez à ne pas dévoiler le lieu de la cache aux personnes qui ne participent pas au jeu.
                 </div>
                 <button class="btn-default btn-center" style="background-color:#2980b9; color:white;" onclick="revealCacheCoordinates()">J'ai compris</button>
             `;
@@ -1396,43 +1180,21 @@
         saveState(gameState);
     }
 
-    function flipCurrentCard() {
-        if (gameState.cardFlipped) return;
-        gameState.cardFlipped = true;
-        saveState(gameState);
-
-        const cardEl = document.getElementById('flip-card-el');
-        if (cardEl) cardEl.classList.add('is-flipped');
-        const flipBtn = document.getElementById('btn-flip-card');
-        const nextBtn = document.getElementById('btn-next-card');
-        if (flipBtn) flipBtn.style.display = 'none';
-        if (nextBtn) nextBtn.style.display = 'block';
-
-        if (window.navigator && typeof navigator.vibrate === 'function') {
-            try { navigator.vibrate(40); } catch (e) { /* ignoré si indisponible */ }
-        }
-    }
-
     function nextEndingStep() {
-        gameState.cardFlipped = false;
         gameState.endingStep++;
         saveState(gameState);
         renderEndingStep();
     }
 
-    function mountPaypalButton() {
-        if (window.paypal && paypal.HostedButtons) {
-            paypal.HostedButtons({ hostedButtonId: "QRBLL5TG5VCV8" }).render("#paypal-container-QRBLL5TG5VCV8");
-        }
-    }
-
     function revealCacheCoordinates() {
-        gameState.endingStep = 9;
+        gameState.endingStep = 8;
         saveState(gameState);
         document.getElementById('ending-section').style.display = 'none';
         document.getElementById('final-link-box').style.display = 'block';
         formatAllCoordLinks();
-        setTimeout(mountPaypalButton, 50);
+        if (window.paypal && paypal.HostedButtons) {
+            paypal.HostedButtons({ hostedButtonId: "QRBLL5TG5VCV8" }).render("#paypal-container-QRBLL5TG5VCV8");
+        }
         document.getElementById('final-link-box').scrollIntoView({ behavior: 'smooth' });
     }
 
@@ -1447,10 +1209,12 @@
 
         if (gameState.endingStep && gameState.endingStep > 0) {
             document.getElementById('recap-section').style.display = 'none';
-            if (gameState.endingStep >= 9) {
+            if (gameState.endingStep >= 8) {
                 document.getElementById('ending-section').style.display = 'none';
                 document.getElementById('final-link-box').style.display = 'block';
-                setTimeout(mountPaypalButton, 50);
+                if (window.paypal && paypal.HostedButtons) {
+                    paypal.HostedButtons({ hostedButtonId: "QRBLL5TG5VCV8" }).render("#paypal-container-QRBLL5TG5VCV8");
+                }
             } else {
                 document.getElementById('ending-section').style.display = 'block';
                 renderEndingStep();
