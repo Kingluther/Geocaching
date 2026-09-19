@@ -106,6 +106,33 @@
         .info-col-right strong {
             color: #000;
         }
+
+        .header-banner-img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .trail-badge {
+            width: 34px; height: 34px; border-radius: 50%; position: relative;
+            display: inline-flex; align-items: center; justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.18);
+        }
+        .trail-badge svg { width: 18px; height: 18px; }
+        .trail-badge.status-pos { background: linear-gradient(160deg,#eafaf1,#d2f4dd); border: 2px solid #2ecc71; color: #1e8449; }
+        .trail-badge.status-neg { background: linear-gradient(160deg,#fdecea,#fad3ce); border: 2px solid #e74c3c; color: #a93226; }
+        .trail-badge.status-neutral { background: linear-gradient(160deg,#f4f4f4,#e2e2e2); border: 2px solid #95a5a6; color: #616a6b; }
+        .trail-badge .badge-mark {
+            position: absolute; bottom: -3px; right: -3px; width: 15px; height: 15px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 800; color: white;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+        .status-pos .badge-mark { background: #27ae60; }
+        .status-neg .badge-mark { background: #c0392b; }
+        .status-neutral .badge-mark { background: #7f8c8d; }
+        .trail-badge-wc { font-size: 11px; font-weight: 800; }
         
         .parking-info {
             max-width: 600px;
@@ -326,19 +353,31 @@
 <body>
 
 <div class="info-box-header">
+    <img src="Colomiers.jpg" alt="Image de Colomiers" class="header-banner-img">
     <h1 class="main-title">Le trésor de Colomiers</h1>
     <div class="info-box-content">
-        <div class="info-col-left">
-            <img src="Colomiers.jpg" alt="Image de Colomiers">
-        </div>
         <div class="info-col-middle">
             <div class="distance">3 km</div>
             <div class="info-icons">
-                <span class="info-icon" title="Faisable à pied">🚶</span>
-                <span class="info-icon" title="Faisable en vélo">🚲</span>
-                <span class="info-icon" title="Faisable en poussette">🛒</span> <span class="info-icon" title="Animaux de compagnie autorisés">🐶</span>
-                <span class="info-icon" title="Prévu pour les enfants">👪</span> <span class="info-icon" title="Accessible 24/7">🏪</span>
-                <span class="info-icon" title="Eau potable à proximité">💧</span>
+                <span class="trail-badge status-pos" title="Faisable à pied">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="4" r="2" fill="currentColor" stroke="none"/><path d="M12 6 L12 14 M12 14 L8 20 M12 14 L16 22 M12 9 L7 12 M12 9 L17 7" stroke-width="2" stroke-linecap="round"/></svg>
+                    <span class="badge-mark">✓</span>
+                </span>
+                <span class="trail-badge status-pos" title="Faisable en vélo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="5" cy="17" r="3.4" stroke-width="1.8"/><circle cx="19" cy="17" r="3.4" stroke-width="1.8"/><path d="M5 17 L10 8 L15 8 L19 17 M10 8 L13 17 M15 8 L12 13" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="badge-mark">✓</span>
+                </span>
+                <span class="trail-badge status-pos" title="Faisable en poussette">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="7" cy="19" r="2.2" stroke-width="1.6"/><circle cx="16" cy="19" r="2.2" stroke-width="1.6"/><path d="M4 19 H19 M6 19 L8 9 H17 L19 19 M17 9 L20 4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="badge-mark">✓</span>
+                </span>
+                <span class="trail-badge status-pos" title="Aucun obstacle / escalier sur le parcours">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="17" cy="5" r="1.8" fill="currentColor" stroke="none"/><path d="M12 5v6l5 2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 13a5 5 0 1 0 5 5" stroke-width="1.8" stroke-linecap="round"/><path d="M9 13h6l3 7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="badge-mark">✓</span>
+                </span>
+                <span class="trail-badge status-pos trail-badge-wc" title="Toilettes publiques sur le parcours">
+                    WC<span class="badge-mark">✓</span>
+                </span>
             </div>
         </div>
         <div class="info-col-right">
