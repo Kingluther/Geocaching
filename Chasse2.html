@@ -107,6 +107,33 @@
         .info-col-right strong {
             color: #000;
         }
+
+        .header-banner-img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .trail-badge {
+            width: 34px; height: 34px; border-radius: 50%; position: relative;
+            display: inline-flex; align-items: center; justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.18);
+        }
+        .trail-badge svg { width: 18px; height: 18px; }
+        .trail-badge.status-pos { background: linear-gradient(160deg,#eafaf1,#d2f4dd); border: 2px solid #2ecc71; color: #1e8449; }
+        .trail-badge.status-neg { background: linear-gradient(160deg,#fdecea,#fad3ce); border: 2px solid #e74c3c; color: #a93226; }
+        .trail-badge.status-neutral { background: linear-gradient(160deg,#f4f4f4,#e2e2e2); border: 2px solid #95a5a6; color: #616a6b; }
+        .trail-badge .badge-mark {
+            position: absolute; bottom: -3px; right: -3px; width: 15px; height: 15px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 800; color: white;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+        .status-pos .badge-mark { background: #27ae60; }
+        .status-neg .badge-mark { background: #c0392b; }
+        .status-neutral .badge-mark { background: #7f8c8d; }
+        .trail-badge-wc { font-size: 11px; font-weight: 800; }
         
         /* --- INFO PARKING --- */
         .parking-info {
@@ -321,18 +348,31 @@
 <body>
 
 <div class="info-box-header">
+    <img src="Cabirol.png" alt="Parc du Cabirol" class="header-banner-img">
     <h1 class="main-title">L’armurier du Cabirol</h1>
     <div class="info-box-content">
-        <div class="info-col-left">
-            <img src="Cabirol.png" alt="Parc du Cabirol">
-        </div>
         <div class="info-col-middle">
             <div class="distance">3,7 km</div>
             <div class="info-icons">
-                <span class="info-icon" title="Faisable à pied">🚶</span>
-                <span class="info-icon" title="Chaussures étanches/bottes recommandées">🥾</span>
-                <span class="info-icon" title="Boueux par endroits">🌧️</span>
-                <span class="info-icon" title="Non accessible poussette/PMR">❌🛒</span>
+                <span class="trail-badge status-pos" title="Faisable à pied">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="4" r="2" fill="currentColor" stroke="none"/><path d="M12 6 L12 14 M12 14 L8 20 M12 14 L16 22 M12 9 L7 12 M12 9 L17 7" stroke-width="2" stroke-linecap="round"/></svg>
+                    <span class="badge-mark">✓</span>
+                </span>
+                <span class="trail-badge status-neutral" title="Difficile en vélo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="5" cy="17" r="3.4" stroke-width="1.8"/><circle cx="19" cy="17" r="3.4" stroke-width="1.8"/><path d="M5 17 L10 8 L15 8 L19 17 M10 8 L13 17 M15 8 L12 13" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="badge-mark">!</span>
+                </span>
+                <span class="trail-badge status-neg" title="Impossible en poussette">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="7" cy="19" r="2.2" stroke-width="1.6"/><circle cx="16" cy="19" r="2.2" stroke-width="1.6"/><path d="M4 19 H19 M6 19 L8 9 H17 L19 19 M17 9 L20 4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="badge-mark">✗</span>
+                </span>
+                <span class="trail-badge status-neg" title="Non accessible PMR">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="8" cy="18" r="4" stroke-width="1.8"/><circle cx="18" cy="19" r="1.5" fill="currentColor" stroke="none"/><path d="M8 18 L8 10 L14 10 M8 14 L13 14 M14 10 L18 18" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="badge-mark">✗</span>
+                </span>
+                <span class="trail-badge status-neg trail-badge-wc" title="Pas de toilettes sur le parcours">
+                    WC<span class="badge-mark">✗</span>
+                </span>
             </div>
         </div>
         <div class="info-col-right">
@@ -535,7 +575,7 @@ Le pont est trop vétuste et pas assez sécurisé pour permettre la circulation 
     </div>
 
     <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Nous y voilà. Colomiers a été le théâtre d’un événement historique passionnant : en juin 1940, après la défaite française et l’invasion de Paris par les troupes allemandes, le gouvernement se replie à Bordeaux pendant que le Maréchal Pétain met en place la collaboration. Léon Blum est un des chefs de l’opposition. Il fera partie des 80 parlementaires (sur 600) qui voteront non à la remise des pleins pouvoirs au Maréchal Pétain, tout comme son ami Eugène Montel. A ce titre ils sont des opposants politiques majeurs au régime de Vichy. Léon Blum est par ailleurs de confession juive, donc une cible de premier ordre pour les nazis. </div> </div>
-    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Afin d’y voir plus clair, Blum décide de se retirer à Colomiers au château de l’Armurié qui appartient à la belle-famille d'Eugène Montel. Ils sont accompagnés de Vincent Auriol (premier Président de la IVème république de 1947 à 1954) et tout trois créent dans le château un « centre de réflexion républicaine ». </div> </div>
+    <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Afin d’y voir plus clair, Blum décide de se retirer à Colomiers au château de l’Armurié qui appartient à la belle-famille de Vincent Auriol et dont Eugène Montel est le « gestionnaire » local. Ils sont accompagnés de Vincent Auriol (premier Président de la IVème république de 1947 à 1954) et tout trois créent dans le château un « centre de réflexion républicaine ». </div> </div>
     <div class="dialogue-row"> <img src="Jeanine.png" alt="Jeanine" class="avatar"> <div class="bubble"> <span class="name-tag">Jeanine</span> Bien évidemment leur présence est connue de tous : des Columérins comme du régime de Vichy, et même de Roosevelt, Président des Etats-Unis qui proposera à Léon Blum l’asile pour lui éviter un sort funeste. Léon Blum lui répondra : « On ne quitte pas son pays à l'heure du malheur. Je ne veux pas donner l'exemple d'un chef qui s'enfuit alors que son peuple souffre. » </div> </div>
 
     <div class="mission-box">
