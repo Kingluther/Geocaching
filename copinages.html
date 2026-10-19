@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copinages - Colomiers</title>
+    <style>
+        body { margin: 0; font-family: 'Trebuchet MS', sans-serif; background-color: #fdfaf4; color: #333; }
+        nav { background-color: #3e2723; padding: 15px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        nav a { color: #f5f5f5; text-decoration: none; font-weight: bold; padding: 8px 15px; border-radius: 4px; transition: background 0.3s; }
+        nav a:hover { background-color: #8d6e63; }
+        nav a.active { background-color: #8d6e63; }
+
+        .content {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 40px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            line-height: 1.6;
+            font-size: 1.1em;
+            border-top: 5px solid #2980b9;
+        }
+
+        h1 { color: #3e2723; text-align: center; margin-bottom: 30px; font-size: 2.2em; }
+        h2 { color: #2980b9; margin-top: 30px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+
+        .copinage { margin-bottom: 30px; }
+        .btn-site {
+            display: inline-block;
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        .btn-site:hover { background-color: #388e3c; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">📍 Carte des Quêtes</a>
+        <a href="galerie.html">🎭 Galerie des Personnages</a>
+        <a href="geocaching.html">🧭 Qu'est-ce que le géocaching scénarisé ?</a>
+        <a href="probleme.html">⚠️ Un problème avec une cache ?</a>
+        <a href="faq.html">❓ FAQ</a>
+        <a href="copinages.html" class="active">🤝 Copinages</a>
+    </nav>
+
+    <div class="content">
+        <h1>Copinages</h1>
+
+        <div class="copinage">
+            <h2>Terra Aventura</h2>
+            <p>En 2011 est née l'aventure Terra Aventura, créée par des passionnés de géocaching. Aujourd'hui l'idée de départ s'est étendue à toute la Région Nouvelle Aquitaine, et c'est la région elle-même qui assure la promotion et l'entretien, par les offices du tourisme, des différents lieux.</p>
+            <p>L'application est 100% gratuite, compte plus de 600 parcours et des millions de joueurs. Les parcours sont répartis sur les 12 départements que compte la Nouvelle Aquitaine.</p>
+            <p>Les parcours que nous proposons sont directement inspirés de la dynamique de jeu de Terra Aventura.</p>
+            <a href="https://www.terra-aventura.fr" target="_blank" class="btn-site">Visiter le site de Terra Aventura</a>
+        </div>
+
+        <div class="copinage">
+            <h2>Géocaching.com</h2>
+            <p>Ici on est plus proche du géocaching originel, avec bien souvent un simple container dissimulé. Les géocachings scénarisés que vous trouvez ici sont présents sur ce site, mais uniquement pour les membres premiums, ce qui signifie qu'ils ne sont pas totalement gratuits (alors qu'ils le sont sur ce site ; profitez-en).</p>
+            <p>En revanche, bien d'autres caches sont disponibles, et elles le sont dans le monde entier.</p>
+            <a href="https://www.geocaching.com/" target="_blank" class="btn-site">Visiter Géocaching.com</a>
+        </div>
+    </div>
+
+</body>
+</html>
