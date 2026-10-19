@@ -32,6 +32,7 @@
         .stats { font-size: 0.85em; margin: 8px 0; color: #444; background: #f0f0f0; padding: 8px; border-radius: 8px; line-height: 1.4; }
         .btn-play { display: inline-block; background-color: #4caf50; color: white; padding: 8px 15px; text-decoration: none; border-radius: 20px; font-weight: bold; margin-top: 5px; font-size: 0.9em; }
         .map-avatar { border-radius: 50%; border: 2px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.3); background-color: white; }
+        .avatar-loumpour { background-image: url('Loumpour.jpg'); background-size: 140%; background-position: center; background-repeat: no-repeat; }
         .icon-coming-soon { filter: grayscale(100%) opacity(0.6); }
 
         /* Conteneur global centré pour PayPal */
@@ -81,11 +82,11 @@
             attribution: '&copy; OpenStreetMap'
         }).addTo(map);
 
-        var IconLoumpour = L.icon({ iconUrl: 'Loumpour.jpg', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar' });
+        var IconLoumpour = L.divIcon({ html: '', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar avatar-loumpour' });
         var IconJeanine = L.icon({ iconUrl: 'Jeanine.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar' });
         var IconKcor = L.icon({ iconUrl: 'Kçor.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar icon-coming-soon' });
         var IconMalo = L.icon({ iconUrl: 'Malo.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar' });
-        var IconGrisNez = L.icon({ iconUrl: 'gris-nez.jpg', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar' });
+        var IconAl = L.icon({ iconUrl: 'Al.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar' });
 
         // 1. Firmin Pons (Nouvelles coordonnées)
         L.marker([43.613568947270736, 1.3370833396104178], {icon: IconLoumpour}).addTo(map)
@@ -134,7 +135,7 @@
         L.marker([43.610325395433065, 1.3309818637125792], {icon: IconAl}).addTo(map)
             .bindPopup(`
                 <div class="popup-card">
-                    <img src="Al.jpg" class="vignette-perso">
+                    <img src="Al.png" class="vignette-perso">
                     <h3>Concours d'anecdotes</h3>
                     <div class="stats"><b>Difficulté :</b> 4,5/5 | <b>Terrain :</b> 1,5/5<br>⏳ 1 à 2h</div>
                     <a href="https://kingluther.github.io/Geocaching/Chasse4.html" class="btn-play" target="_blank">Rejoindre Al</a>
