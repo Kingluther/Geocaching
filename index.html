@@ -85,7 +85,7 @@
         var IconJeanine = L.icon({ iconUrl: 'Jeanine.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar' });
         var IconKcor = L.icon({ iconUrl: 'Kçor.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar icon-coming-soon' });
         var IconMalo = L.icon({ iconUrl: 'Malo.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar' });
-        var IconGrisNez = L.icon({ iconUrl: 'Al.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar icon-coming-soon' });
+        var IconGrisNez = L.icon({ iconUrl: 'gris-nez.jpg', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -25], className: 'map-avatar' });
 
         // 1. Firmin Pons (Nouvelles coordonnées)
         L.marker([43.613568947270736, 1.3370833396104178], {icon: IconLoumpour}).addTo(map)
@@ -134,9 +134,10 @@
         L.marker([43.610325395433065, 1.3309818637125792], {icon: IconGrisNez}).addTo(map)
             .bindPopup(`
                 <div class="popup-card">
-                    <img src="gris-nez.jpg" class="vignette-perso" style="filter: grayscale(100%)">
-                    <h3 style="color: #888;">Concours d'anecdotes</h3>
-                    <div class="stats">Bientôt publié</div>
+                    <img src="gris-nez.jpg" class="vignette-perso">
+                    <h3>Concours d'anecdotes</h3>
+                    <div class="stats"><b>Difficulté :</b> 4,5/5 | <b>Terrain :</b> 1,5/5<br>⏳ 1 à 2h</div>
+                    <a href="https://kingluther.github.io/Geocaching/Chasse4.html" class="btn-play" target="_blank">Rejoindre Al</a>
                 </div>
             `);
     </script>

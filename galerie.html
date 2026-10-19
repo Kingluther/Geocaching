@@ -66,6 +66,7 @@
         .hero-info { flex: 1; padding: 40px; background: rgba(0,0,0,0.6); border-radius: 15px; border-left: 5px solid #ffeb3b; }
         .hero-info h2 { color: #ffeb3b; font-size: 2.5em; margin-top: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
         .hero-info p { line-height: 1.6; font-size: 1.1em; }
+        .hero-info a { color: #ffeb3b; }
 
         .hero-image-container { flex: 1; text-align: center; }
         .hero-large-img { max-width: 90%; max-height: 450px; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.8)); transition: opacity 0.3s; }
@@ -159,8 +160,8 @@
                 rencontrerLabel: "Où les rencontrer"
             },
             kcor: { 
-                name: "Kçor", bioImg: "Kçor bio.png", tag: "Le mystère du Bassac", 
-                bio: "Un personnage encore mystérieux qui arpente les environs du Bassac... (Histoire en cours d'écriture !)", 
+                name: "Kçor", bioImg: "Kçor bio.png", tag: "Le loup pas du tout solitaire", 
+                bio: "<a href=\"https://fr.wikipedia.org/wiki/Canis_lupaster_lupaster\" target=\"_blank\">Canis lupaster lupaster</a>, vrai loup égyptien, Kçor est jeune et insouciant, il se balade dans les bois de la ville à la recherche de nouvelles rencontres", 
                 rencontrer: "L'armurier du Cabirol\nDes hauts(sonelle) et des bas(sac)",
                 rencontrerLabel: "Où les rencontrer"
             },
@@ -177,13 +178,13 @@
                 rencontrerLabel: "Où le rencontrer"
             },
             lamas: { 
-                name: "Serge et Bernard", bioImg: "Lama.png", tag: "Les lamas jumeaux", 
+                name: "Serge et Bernard", bioImg: "Lamas.png", tag: "Les lamas jumeaux", 
                 bio: "Bien que leur humour vole parfois au ras des pâquerettes qu'ils broutent, ils sont toujours intéressés par apprendre de nouvelles choses et adorent chercher des trésors.", 
                 rencontrer: "Le trésor de Colomiers",
                 rencontrerLabel: "Où les rencontrer"
             },
             chats: {
-                name: "Malo et Gris-nez", bioImg: "Chats bio.png", tag: "Les chats",
+                name: "Malo et Gris-nez", bioImg: "Chats bio.jpg", tag: "Les chats",
                 bio: "Les deux frères nyctalopes aiment se promener dans les quartiers résidentiels et y pourchasser les oiseaux et parfois les lézards. En revanche il n'aiment pas tout ce qui s'apparente à un chien, de près ou de loin.",
                 rencontrer: "Chats Perget",
                 rencontrerLabel: "Où les rencontrer"
@@ -196,12 +197,12 @@
             { id: "bernard", img: "Bernard.jpg", profilCible: "lamas" }, // Correction appliquée ici
             { id: "cabia", img: "Cabia.png", profilCible: "pies" },
             { id: "casso", img: "Casso.png", profilCible: "pies" },
-            { id: "didier", img: "Didier.jpg", profilCible: "didier" }, // Vérifie bien l'extension .JPG ou .jpg de ton fichier
-            { id: "grisnez", img: "Grisnez.png", profilCible: "chats" },
+            { id: "didier", img: "Didier bio.png", profilCible: "didier" }, // Vérifie bien l'extension .JPG ou .jpg de ton fichier
+            { id: "grisnez", img: "Griz-nez.png", profilCible: "chats" },
             { id: "harry", img: "Harry.png", profilCible: "harry" },
             { id: "jeanine", img: "Jeanine.png", profilCible: "jeanine" },
             { id: "kcor", img: "Kçor.png", profilCible: "kcor" },
-            { id: "loumpour", img: "Loumpour.jpg", profilCible: "loumpour" },
+            { id: "loumpour", img: "Loumpour.jpg", profilCible: "loumpour", zoom: "140%" },
             { id: "mala", img: "Mala.png", profilCible: "mala" },
             { id: "malo", img: "Malo.png", profilCible: "chats" },
             { id: "saro", img: "Saro.png", profilCible: "pies" },
@@ -212,10 +213,13 @@
 
         // 3. Génération de la frise
         friseIcons.forEach((icon) => {
-            const imgElement = document.createElement('img');
-            imgElement.src = icon.img;
+            const imgElement = document.createElement('div');
+            imgElement.style.backgroundImage = 'url("' + encodeURI(icon.img) + '")';
+            imgElement.style.backgroundSize = icon.zoom || 'cover';
+            imgElement.style.backgroundPosition = 'center';
+            imgElement.style.backgroundRepeat = 'no-repeat';
             imgElement.className = 'vignette-choix';
-            imgElement.alt = icon.id;
+            imgElement.title = icon.id;
             imgElement.dataset.profil = icon.profilCible; 
             
             imgElement.onclick = () => showHero(icon.profilCible);
@@ -229,7 +233,7 @@
             // Mise à jour du texte et de la grande image
             document.getElementById('hero-name').innerText = data.name;
             document.getElementById('hero-tagline').innerText = data.tag;
-            document.getElementById('hero-bio').innerText = data.bio;
+            document.getElementById('hero-bio').innerHTML = data.bio;
             document.getElementById('hero-rencontrer-label').innerText = data.rencontrerLabel;
             document.getElementById('hero-rencontrer').innerText = data.rencontrer;
             document.getElementById('hero-img').src = data.bioImg;
